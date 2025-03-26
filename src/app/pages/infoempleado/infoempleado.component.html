@@ -1,0 +1,545 @@
+
+
+ <div class="col-xxl-6">
+
+    <div class="card">
+        <div class="card-body">
+              <!-- Nav tabs -->
+            <ul ngbNav #Justify="ngbNav" [activeId]="1" class="nav nav-tabs mb-3 nav-justified">
+              <li [ngbNavItem]="1">
+                  <a ngbNavLink>
+                      <span class="d-sm-block">DATOS GENERALES</span>
+                  </a>
+                  <ng-template ngbNavContent>
+                      <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+                  </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                  <a ngbNavLink>
+                      <span class="d-sm-block">CARGOS DESENPEÑADOS</span>
+                  </a>
+                  <ng-template ngbNavContent>
+                      <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+                  </ng-template>
+              </li>
+              <li [ngbNavItem]="3">
+                  <a ngbNavLink>
+                      <span class="d-sm-block">HISTORIAL</span>
+                  </a>
+                  <ng-template ngbNavContent>
+                      <ng-template [ngTemplateOutlet]="TabContent2"></ng-template>
+                  </ng-template>
+              </li>
+              <li [ngbNavItem]="4">
+                <a ngbNavLink>
+                    <span class="d-sm-block">HORARIO LABORAL</span>
+                </a>
+                <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent3"></ng-template>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="5">
+                <a ngbNavLink>
+                    <span class="d-sm-block">CAPACITACIONES</span>
+                </a>
+                <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent4"></ng-template>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="6">
+                <a ngbNavLink>
+                    <span class="d-sm-block">DATOS ADICIONALES</span>
+                </a>
+                <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent5"></ng-template>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="7">
+                <a ngbNavLink>
+                    <span class="d-sm-block">ESTRUCTURA FAMILIAR</span>
+                </a>
+                <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent6"></ng-template>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="8">
+                <a ngbNavLink>
+                    <span class="d-sm-block">NIVEL DE ESTUDIOS</span>
+                </a>
+                <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent7"></ng-template>
+                </ng-template>
+            </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content  text-muted">
+              <div [ngbNavOutlet]="Justify"></div>
+            </div>
+        </div><!-- end card-body -->
+    </div><!-- end card -->
+</div><!--end col-->
+
+
+
+<ng-template #TabContent>
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="input-group">
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Codigo</label>
+                <div class="col-sm-12">
+                <input [(ngModel)]="empleado.CODEMP"  type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Cédula</label>
+                <div class="col-sm-12">
+                <input type="text" [(ngModel)]="empleado.NUMCEDULA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Tipo Documento</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.TIPO_DOCUMENTO" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Apellido Materno</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.APELLIDO_MAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Apellido Paterno</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Primer nombre</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.PRIMER_NOMBRE" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Segundo Nombre</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.SEGUNDO_NOMBRE" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Nombre Invitación</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.NOMBRE_INVITACION" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="input-group">
+            <div class="col-sm-3">
+                <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Razón social</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.RAZONSOCIAL" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Id Identidad</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.ID_CLIENTE" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Teléfono 1</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.TLF1" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Teléfono 2</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.TLF2" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Seguro</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.SEGURO" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+    
+            <div class="col-sm-2">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Empresa</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.ID_EMPRESA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="input-group">
+            <div class="col-sm-3">
+                <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Dirección</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.DIRECCION" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Zona</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.CODZONA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">*</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.CODZONA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Sexo</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.SEXO" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Estado Civil</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.ESTCIVIL" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">*</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Apellido Casada</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.APELLIDO_CAS" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Num. hijos</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.NUMHIJOS" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12">
+                  <div class="input-group">
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Urbanización</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="urbanizacion" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Manzana</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="mz" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">No. casa</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="casa" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Grupo</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.CODCCOSTO_MINIS" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Ministerio de Educacion</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Extension</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.NUMEXT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Colegio</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+    
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12">
+                  <div class="input-group">
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Calle Principal</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="callep" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Calle secundaria</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="calles" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Km</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="mz" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Tipo Contrato</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Centro</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.CODCCOSTO" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Costo</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Jefe Inmediato</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.CODJEFA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">*</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                  </div>
+                </div>
+              </div>
+        </div>
+     </div>
+    
+    
+     <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12">
+                  <div class="input-group">
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Via </label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Cond. edificio</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">No. Departamento</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                   
+    
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12">
+                  <div class="input-group">
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Fec. naciemiento</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.FECNAC" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Lugar Nacimiento</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">*</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.APELLIDO_PAT" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Provincia</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.PROVINCIA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-1">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">*</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.PROVINCIA" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">País</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.PAIS" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+         
+                    <div class="col-sm-2">
+                        <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">*</label>
+                        <div class="col-sm-12">
+                       <input type="text" [(ngModel)]="empleado.PAIS" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                        </div>
+                    </div><!--end col-->
+                  </div>
+                </div>
+              </div>
+        </div>
+     </div>
+    
+  </ng-template>
+  <ng-template #TabContent1>
+    <dx-data-grid
+    id="gridContainer"
+    [dataSource]="cargos"
+    keyExpr="CODEMP"
+    [showBorders]="true"
+    [height] = "500"
+  ><dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-paging [pageSize]="10"> </dxo-paging>
+  <dxo-pager
+  [visible]="true"
+  [showInfo]="true"
+  [showNavigationButtons]="true"
+  [showPageSizeSelector]="true"
+  [allowedPageSizes]="[10, 25, 50, 100]"
+></dxo-pager>
+<dxo-search-panel
+  [visible]="true"
+  [highlightCaseSensitive]="true"
+></dxo-search-panel>
+<dxo-group-panel [visible]="true"></dxo-group-panel>
+<dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+<dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+  <dxi-column dataField="CODEMP" caption="Codigo" ></dxi-column>
+  <dxi-column dataField="APELLIDO_PAT" caption="Apellido Materno"></dxi-column>
+  <dxi-column dataField="APELLIDO_MAT" caption="APELLIDO_MAT" ></dxi-column>
+  <dxi-column dataField="APELLIDO_CAS" caption="APELLIDO_CAS"></dxi-column>
+  <dxi-column dataField="NOMBRES" caption="NOMBRES" ></dxi-column>
+  <dxi-column dataField="RAZONSOCIAL" caption="RAZONSOCIAL"></dxi-column>
+  <dxi-column dataField="SEXO" caption="SEXO" ></dxi-column>
+  <dxi-column dataField="TIPO" caption="TIPO"></dxi-column>
+  </dx-data-grid>
+  </ng-template>
+  <ng-template #TabContent2>
+    <dx-data-grid
+    id="gridContainer"
+    [dataSource]="cargos"
+    keyExpr="CODEMP"
+    [showBorders]="true"
+    [height] = "500"
+  ><dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-paging [pageSize]="10"> </dxo-paging>
+  <dxo-pager
+  [visible]="true"
+  [showInfo]="true"
+  [showNavigationButtons]="true"
+  [showPageSizeSelector]="true"
+  [allowedPageSizes]="[10, 25, 50, 100]"
+></dxo-pager>
+<dxo-search-panel
+  [visible]="true"
+  [highlightCaseSensitive]="true"
+></dxo-search-panel>
+<dxo-group-panel [visible]="true"></dxo-group-panel>
+<dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+<dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+  <dxi-column dataField="CODEMP" caption="Codigo" ></dxi-column>
+  <dxi-column dataField="APELLIDO_PAT" caption="Apellido Materno"></dxi-column>
+  <dxi-column dataField="APELLIDO_MAT" caption="APELLIDO_MAT" ></dxi-column>
+  <dxi-column dataField="APELLIDO_CAS" caption="APELLIDO_CAS"></dxi-column>
+  <dxi-column dataField="NOMBRES" caption="NOMBRES" ></dxi-column>
+  <dxi-column dataField="RAZONSOCIAL" caption="RAZONSOCIAL"></dxi-column>
+  <dxi-column dataField="SEXO" caption="SEXO" ></dxi-column>
+  <dxi-column dataField="TIPO" caption="TIPO"></dxi-column>
+  </dx-data-grid>
+</ng-template>
+<ng-template #TabContent3>
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="input-group">
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-5 col-form-label col-form-label-sm">Nombre Conyuge</label>
+                <div class="col-sm-12">
+                <input [(ngModel)]="empleado.NOMBRECONYUGE"  type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Fecha Matri. Civil</label>
+                <div class="col-sm-12">
+                <input type="date" [(ngModel)]="empleado.FECHAMATRICIVIL" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Fecha Matri. Ecleciastico</label>
+                <div class="col-sm-12">
+               <input type="date" [(ngModel)]="empleado.FECHAMATRIECLE" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+            <div class="col-sm-1">
+                <label for="colFormLabelSm" style="font-size: 9px"  class="col-sm-12 col-form-label col-form-label-sm">Celular Conyugue</label>
+                <div class="col-sm-12">
+               <input type="text" [(ngModel)]="empleado.TELEFONOCONYUGE" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div><!--end col-->
+         
+          </div>
+        </div>
+      </div>
+</ng-template>
+<ng-template #TabContent4>
+
+</ng-template>
+<ng-template #TabContent5>
+
+</ng-template>
+<ng-template #TabContent6>
+
+</ng-template>
+<ng-template #TabContent7>
+
+</ng-template>

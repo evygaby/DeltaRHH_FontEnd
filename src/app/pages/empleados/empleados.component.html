@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-xxl-9">
+        <div class="card">
+  
+                 <dx-data-grid
+                  id="gridContainer"
+                  [dataSource]="customers"
+                  keyExpr="CODEMP"
+                  [showBorders]="true"
+                  [height] = "500"
+                ><dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-group-panel [visible]="true"></dxo-group-panel>
+                <dxo-paging [pageSize]="10"> </dxo-paging>
+                <dxo-pager
+                [visible]="true"
+                [showInfo]="true"
+                [showNavigationButtons]="true"
+                [showPageSizeSelector]="true"
+                [allowedPageSizes]="[10, 25, 50, 100]"
+              ></dxo-pager>
+              <dxo-search-panel
+                [visible]="true"
+                [highlightCaseSensitive]="true"
+              ></dxo-search-panel>
+              <dxo-group-panel [visible]="true"></dxo-group-panel>
+              <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+              <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+              <dxi-column type="buttons" [width]="110">
+                
+                <dxi-button
+                  hint="Clone"
+                  icon="copy"
+                  [onClick]="onCloneIconClick"
+                ></dxi-button>
+              </dxi-column>
+
+                <dxi-column dataField="CODEMP" caption="Codigo" ></dxi-column>
+                <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno"></dxi-column>
+                <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" ></dxi-column>
+                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Paterno"></dxi-column>
+                <dxi-column dataField="NOMBRES" caption="NOMBRES" ></dxi-column>
+                <dxi-column dataField="RAZONSOCIAL" caption="RAZONSOCIAL"></dxi-column>
+                <dxi-column dataField="SEXO" caption="SEXO" ></dxi-column>
+                <dxi-column dataField="TIPO" caption="TIPO"></dxi-column>
+                </dx-data-grid>
+  
+              </div>
+            </div><!--end col-->
+          </div><!--end row-->
