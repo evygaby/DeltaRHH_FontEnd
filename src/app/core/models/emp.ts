@@ -30,6 +30,8 @@ export class EMP {
         NUMHIJOS?: number;
         NUMDIAS?: number;
         ACTIVO?: string;
+        ACTIVO_REPORTES_AUMENTOS1?: boolean;
+        ACTIVO1?: boolean;
         SEGURO?: string;
         CODPERSONA?: string;
         CELULAR?: string;
@@ -76,6 +78,8 @@ export class EMP {
         OBSERVACION?: string;
         CODIGO_IESS?: number;
         DISCAPACIDAD?: string;
+       
+        DISCAPACIDAD1?: boolean;
         PORC_DISCAPACIDAD?: number;
         COND_DISCAPACIDAD?: string;
         TIPO_DOC_DISCAPACIDAD?: string;
@@ -124,5 +128,153 @@ export class EMP {
         NACIONALIDAD?: string;
         ANTIGUEDAD?: number;
         PERTENECE_OBRA?: string;
+        FamiliarCargas?: FamiliarCargas[];
+        FamiliarEnfermedad?:FamiliarEnfermedad[];
+        FamiliarDiscapicidad?:FamiliarDiscapicidad[];
+        Cargos?:Cargos[];
+        CentroCosto?:Centros[];
+        Departamentos?:Departamentos[];
+        CuentasBancos?:CuentasBancos[];
+        CuentasContables?:CuentasContables[];
+        Titulos?:Titulos[];
+        Sueldos?:Suekdos[];
+
     
 }
+export class FamiliarDiscapicidad {
+        IDFAMILIA?: number;
+        CODEMP?: number;
+        NOMBRECOMPLETO?: string;
+        PARENTESCO?: string;
+        FECHANACIM?: string;
+        TIPODOC?: string;
+        NUMDOC?: string;
+        ESTADO?: string;
+        FECHA_INGRESO?: string;
+        FECHA_ACTUALIZA?: string;
+        USR_ACTUALIZA?: string;
+        ID_EMPRESA?: number;
+        ENVIO_SRI?: string;
+     
+        RESPONSABILIDAD_ECON?: string;
+        PORC_DISCAPACIDAD?: number;
+        TIPO_DISCAPACIDAD?: string;
+    }
+export class FamiliarCargas {
+     
+                ID_HIJO?: number;
+                CODEMP?: number;
+                TIPO_CARGA?: string;
+                NOMBRE_CARGA?: string;
+                FECHA_NACIMIENTO?: string;
+                SEXO?: string;
+                ID_EMPRESA?: number;
+                FECHA_INGRESO?: string;
+                USUARIO_INGRESO?: string;
+                OTROTIPO?: string;
+                INSTITUCION?: string;
+                FECHA_MODIFICA?: string;
+                USUARIO_MODIFICA?: string;
+                GRADOCURSO?: string;
+                OTRAINSTITUCION?: string;
+            
+
+}
+export class FamiliarEnfermedad {
+        IDFAMILIA?: number;
+        CODEMP?: number;
+        NOMBRECOMPLETO?: string;
+        PARENTESCO?: string;
+        ESTADO?: string;
+        FECHA_INGRESO?: string;
+        USR_INGRESO?: string;
+        FECHA_ACTUALIZA?: string;
+        USR_ACTUALIZA?: string;
+        ID_EMPRESA?: number;
+        RESPONSABILIDAD_ECON?: string;
+        ENFERMEDAD?: string;
+    }
+    export class Cargos {
+        CODCRG?: string;
+        NOMCRG?: string;
+        CODDEP?: number;
+        NOMDEP?: string;
+        PAGO_ADIC?: number;
+      
+
+    }
+    export class Centros  {
+        GCODCCOSTO?: string;
+        CODEMPLEADO?: number;
+        ESTADO_GR?: string;
+        IDEMPRESA?: number;
+    }
+    export class Grupo  {
+        IDCRGEMP?: number;
+        CODEMP?: number;
+        CODSEC?: string;
+        ACTIVO?: string;
+        ID_EMPRESA?: number;
+        CARGO_PRINCIPAL?: string;
+    }
+    export class Departamentos  {
+        CODCRG?: string;
+        NOMCRG?: string;
+        CODDEP?: number;
+        NOMDEP?: string;
+        CODSEC?: string;
+        NOMSEC?: string;
+    } 
+    export class CuentasContables  {
+        TIPO_CTA?: string;
+        PLA_CODCNTA?: string;
+        CODEMP?: number;
+        DES?: string;
+        ID_EMPRESA?: number;
+        ACTIVO1?:boolean;
+        ACTIVO?:string;
+    }
+    export class CuentasBancos  {
+        CODPERSONA?: number;
+        CODBANCO?: string;
+        CTABCO?: string;
+        PORCENT?: string;
+        TIPO_CUENTA?: string;
+        estado1?:boolean;
+        ESTADO?:string;
+    }
+    export class Titulos  {
+        CODEMP?: number;
+        NIVEL?: string;
+        TITULO?: string;
+        PAIS?: string;
+        INSTITUCION?: string;
+        ESTADOESTUDIO?: string;
+        REGSENESCYT?: string;
+        NUMREGSENESCYT?: string;
+        ESTADO?: string;
+        ANIOGRADUAPREVISTA?: string;
+        NIV_EN_CURSO?: string;
+    }
+    export class Suekdos  {
+        
+      
+        
+     
+        CODEMP?: number;
+        FECHA?: string;
+        TIPCONTRATO?: string;
+        CENTRO_COSTO?: string;
+        A_PAGAR?: number;
+        SUELDO?: number;
+        EXTRAS?: number;
+        OTROS?: number;
+        INGRESOS?: number;
+        EGRESOS?: number;
+        DIAS_ENF?: number;
+        DIAS_MAT?: number;
+        SINSUELDO?: number;
+    }
+
+ 
+   

@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GlobalComponent } from "../../global-component";
 import { registro } from 'src/app/extraspages/registrarse/registro.model';
+import { CacheService } from './cache.service';
 
 const API_URL = GlobalComponent.API_URL;
 
@@ -27,7 +28,7 @@ export class AuthenticationService {
     public currentUserSubject: BehaviorSubject<User>;
      public texto!: BehaviorSubject<string>;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private cacheService: CacheService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')!));
         this.texto = new BehaviorSubject<string>("rte");
      }
@@ -56,7 +57,7 @@ export class AuthenticationService {
      * @param email email of user
      * @param password password of user
      */
-    login(usuario: string, ruc:string, password: string) {
+    login(usuario: string, password: string) {
 
         return this.http.post(API_URL+"Usuarios/Login?username="+usuario+"&password="+password , httpOptions);
     }
@@ -84,6 +85,8 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
         this.currentUserSubject.next(null!);
+
+        this.cacheService.cleartodo()
     }
 
     /**

@@ -11,6 +11,9 @@ import { ToastService } from './toast-service';
 import { HttpErrorResponse, HttpResponseBase } from '@angular/common/http';
 import { GlobalComponent } from 'src/app/global-component';
 import { User } from 'src/app/core/models/auth.models';
+import { EventService } from 'src/app/core/services/event.service';
+import { CacheService } from 'src/app/core/services/cache.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +39,7 @@ export class LoginComponent implements OnInit {
   year: number = new Date().getFullYear();
 
   constructor(private formBuilder: UntypedFormBuilder,private authenticationService: AuthenticationService,private router: Router,
-    private authFackservice: AuthfakeauthenticationService,private route: ActivatedRoute,public toastService: ToastService) {
+    private loading: LoadingService,private eventService: EventService,private authFackservice: AuthfakeauthenticationService,private route: ActivatedRoute,public toastService: ToastService) {
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
@@ -67,22 +70,29 @@ export class LoginComponent implements OnInit {
    */
    onSubmit() {
     this.submitted = true;
- 
+ this.loading.showSpinner2("Solicitando accesos")
     // Login Api
-    this.authenticationService.login(this.f['usuario'].value,this.f['ruc'].value, this.f['password'].value)  .subscribe({
-      next: (user:any) => {
-         if(user != null){
+    this.authenticationService.login(this.f['usuario'].value,this.f['password'].value)  .subscribe({
+      next: (user2:any) => {
+       if(user2 == true){
+        this.user= new User
+        
+        this.loading.closeSpinner();
+       this.user.password=this.f['password'].value
+       this.user.Nombre=this.f['usuario'].value
        localStorage.setItem('toast', 'true');
-       localStorage.setItem('currentUser', JSON.stringify(user));
+       localStorage.setItem(GlobalComponent.CURRENT_USER, JSON.stringify(this.user));
        
       //  // localStorage.setItem('token', data.token);
       this.router.navigate(['/']);
        } else {
+        this.loading.closeSpinner();
         this.toastService.show("Usuario o contraseña incorrectos", { classname: 'bg-danger text-white', delay: 15000 });
       }
  
       },
       error: (error: HttpErrorResponse) => {
+        this.loading.closeSpinner();
         this.toastService.show(error.toString(), { classname: 'bg-danger text-white', delay: 15000 });
       }
     });

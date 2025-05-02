@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import { GlobalComponent } from 'src/app/global-component';
 import { Parametros } from './parametros';
@@ -25,13 +25,30 @@ const httpOptions = {
 
 export class EventService {
     public miObjeto: EMP = {};
+    public miObjetoaray: EMP []= [];
     private handler = new Subject<Event>();
+    // searchData$: BehaviorSubject<EMP> = new BehaviorSubject<EMP>(null!);
     constructor(private http: HttpClient) { }
     getObjeto() {
       return this.miObjeto;
   }
+  // sendData(term: any) {
+  //   this.searchData$.next(term);
+  // }
+  // getData() {
+  //   return this.searchData$.asObservable();
+  // }
+
+  getObjetoarray() {
+    return this.miObjetoaray;
+}
   modificarObjeto(nuevoObjeto:EMP) {
     this.miObjeto = nuevoObjeto;
+   
+}
+modificarObjetoarray(miObjetoaray: EMP []) {
+
+  this.miObjetoaray = miObjetoaray;
 }
     /**
      * Broadcast the event
@@ -82,8 +99,28 @@ post(url:string,parametros: Parametros[]) {
    return  this.http.post<Certificado>(API_URL+ 'Archivos/UploadCertificado',formData)
   
     }
-    Consultarempleados():Observable<any> {
-      return this.http.get(API_URL+"Empleados/Get", httpOptions);
+    guardarempleado(empleado:EMP,usu:string,pass:string){
+        const valor=JSON.stringify(empleado)
+       const header = new HttpHeaders({ 'Content-Type': 'application/json' });
+     return  this.http.post<any>(API_URL+ 'Empleados/Post?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
+    
+      }
+    actualizandoempleado(empleado:EMP,usu:string,pass:string){
+        const valor=JSON.stringify(empleado)
+       const header = new HttpHeaders({ 'Content-Type': 'application/json' });
+     return  this.http.put<any>(API_URL+ 'Empleados/Put?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
+    
+      }
+    Consultarempleados(usu:string,pass:string,idempresa:number):Observable<any> {
+      return this.http.get(API_URL+"Empleados/Get?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
   }
-  
+  ConsultarSueldos(usu:string,pass:string,codemp:number):Observable<any> {
+    return this.http.get(API_URL+"Empleados/Sueldos?usu="+usu+"&contrasena="+pass+"&codemp="+codemp, httpOptions);
+}
+      Consultarempresa(usu:string,pass:string):Observable<any> {
+    return this.http.get(API_URL+"Empleados/EMPRESAS?usu="+usu+"&contrasena="+pass, httpOptions);
+      }
+    ConsultarCentros(usu:string,pass:string):Observable<any> {
+    return this.http.get(API_URL+"Empleados/Centro?usu="+usu+"&contrasena="+pass, httpOptions);
+}
 }

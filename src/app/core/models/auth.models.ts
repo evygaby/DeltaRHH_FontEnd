@@ -7,7 +7,7 @@ export class User {
   RucCompania?: string;
   RazonSocial?: string;
   Email?: string;
-  IdCompania?: string;
+  IdCompania?: number;
   token?: string;
   compania?: any;
 }

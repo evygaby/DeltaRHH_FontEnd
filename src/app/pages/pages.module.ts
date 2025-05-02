@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxBoxModule, DxCheckBoxModule, DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -57,14 +57,14 @@ import { InfoempleadoComponent } from './infoempleado/infoempleado.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule,DxCheckBoxModule,
     NgbToastModule,
     NgbProgressbarModule,DropzoneModule,NgbDatepickerModule,
     FlatpickrModule.forRoot(),
     CountToModule,
     NgApexchartsModule,NgbNavModule,
     LeafletModule,
-    NgbDropdownModule,NgSelectModule,
+    NgbDropdownModule,NgSelectModule,DxBoxModule,
     SimplebarAngularModule,
     PagesRoutingModule,DxSelectBoxModule,
     DxTextBoxModule,
