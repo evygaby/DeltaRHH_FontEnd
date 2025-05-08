@@ -2,6 +2,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+   
     "paths": {
       "globalize": [
         "node_modules/globalize/dist/globalize"
@@ -18,7 +19,8 @@
     },
   
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": ["node"],
+  
   },
   "files": [
     "src/main.ts",

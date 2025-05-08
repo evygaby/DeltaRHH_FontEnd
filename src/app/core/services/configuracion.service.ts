@@ -10,6 +10,7 @@ export class opciones {
   Name!: string;
 }
 
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 export const environment = {
@@ -259,10 +260,29 @@ const estadocivil: opciones[] = [
   providedIn: "root",
 })
 export class ConfiguracionService {
-  constructor() {}
+  private config: any;
+  constructor(private http: HttpClient) {}
   getestados(): estado[] {
     return estados;
   }
+
+  getConfig() : Promise<any>{
+    const noCacheUrl = `/assets/config.json?v=${new Date().getTime()}`;
+    return this.http.get(noCacheUrl)
+      .toPromise()
+      .then(config => this.config = config)
+      .catch(err => {
+        console.error('Error al cargar config.json:', err);
+        return Promise.reject(err);
+      });
+  }
+  get apiUrlFoto(): string {
+    return this.config?.apiUrlFoto;
+  }
+  get apiUrl(): string {
+    return this.config?.apiUrl;
+  }
+
   getegeneros(): opciones[] {
     return generos;
   }

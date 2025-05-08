@@ -81,7 +81,7 @@
   </div><!--end col-->
 </div><!--end row-->
 
-<button type="button" (click)="actualizar()"  class="btn rounded-pill btn-primary waves-effect waves-light">Primary</button>
+<button type="button" (click)="submit()"  class="btn rounded-pill btn-primary waves-effect waves-light">{{condicion}}</button>
 
 <ng-template #TabContent>
 
@@ -93,7 +93,7 @@
                    <div class="row align-items-start">
                 <div class="col-sm-3" style="padding-right: 0px;padding-left: 0px;">
                 <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12">Codigo</label>                
-                <input readonly type="text" [(ngModel)]="empleado.CODEMP" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                <input [readonly]="!empleado.esnuevo" [(ngModel)]="empleado.CODEMP" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
                 </div>
                 <div class="col-sm-3" style="padding-right: 0px;padding-left: 0px;">                          
                         <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12">Cédula</label>               
@@ -176,8 +176,14 @@
             
     </div>
     <div class="col-sm-2">
+      <div  id="imagen"  class="col-3" *ngIf="fotoencuesta != null && fotoencuesta!=''" style="text-align: right;">
+        <div style=" color: aliceblue;border: #CF254B;">
+          <img  [src]="foto" style="width: 120px;height: 120px;" />
+        </div>
+      </div>
+
      <!-- Responsive Images -->
-<img src="assets/images/small/img-2.jpg" class="img-fluid" alt="Responsive image">
+
       </div>
    </div>
    <div class="row"> 

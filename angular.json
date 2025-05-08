@@ -50,7 +50,7 @@
               "src/assets/scss/icons.scss"
               
             ],
-            "scripts":[ ],
+            "scripts":[ "node_modules/file-saver/dist/FileSaver.min.js" ],
             "allowedCommonJsDependencies": [
               "ev-emitter/ev-emitter",
               "can-use-dom",
@@ -85,7 +85,10 @@
               "@ckeditor/ckeditor5-build-classic",
               "ngx-csv/ngx-csv",
               "dropzone",
-              "file-saver"
+              "file-saver",
+              "exceljs",
+  "stream-browserify",
+  "buffer"
            ]
           },
           "configurations": {
@@ -157,7 +160,7 @@
            
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [ "node_modules/file-saver/dist/FileSaver.min.js"]
           }
         }
       }

@@ -26,6 +26,7 @@ export class InfoempleadoComponent {
   CALLE_PRIN!: any;
   CALLE_SEC!: any;
   grupos!: any;
+  fotoencuesta!: any;
   dresidencial!: any;
   mz!: any;
   KM!: any;
@@ -52,6 +53,7 @@ export class InfoempleadoComponent {
   DesarrolloVivienda!: string;
   zonas!: any;
   familia!: any;
+  foto!:any
   Bancos!: any;
   cargos!: any;
   descapacidades!: DataSource;
@@ -59,6 +61,7 @@ export class InfoempleadoComponent {
   sueldos!: any;
   TIPO_VI!: any;
   NO_DEPA!: any;
+  condicion!: any;
   tipodocumento!: any;
   sino!: any;
   estadocivil!: any;
@@ -119,7 +122,25 @@ export class InfoempleadoComponent {
     });
     this.getData("info");
     this.empleado = this.servicios.miObjeto;
-
+    if(this.empleado.esnuevo){
+      
+this.condicion="Guardar"
+    }else{
+      this.condicion="Editar"
+      this.servicios.ConsultarSueldos(this.user.Nombre!,this.user.password!,this.empleado.CODEMP!).subscribe(data => {
+        try {
+          this.sueldos = data
+          this.loading.closeSpinner()
+          
+        } catch (error) {
+          console.error(error);
+          // maneja el error como prefieras aquí
+        }
+      });
+    }
+    
+    this.fotoencuesta=this.empleado.NUMCEDULA
+   this.foto=this.config.apiUrlFoto+ this.fotoencuesta+ ".jpg"
     this.empleado.CuentasBancos!.forEach(function (value) {
       if(value.ESTADO=="I"){
         value.estado1=false
@@ -148,16 +169,7 @@ export class InfoempleadoComponent {
       this.empleado.ACTIVO_REPORTES_AUMENTOS1=true
     }
     this.empleados = this.servicios.miObjetoaray;
-    this.servicios.ConsultarSueldos(this.user.Nombre!,this.user.password!,this.empleado.CODEMP!).subscribe(data => {
-      try {
-        this.sueldos = data
-        this.loading.closeSpinner()
-        
-      } catch (error) {
-        console.error(error);
-        // maneja el error como prefieras aquí
-      }
-    });
+    
 
     this.employeesDataSource = new DataSource({
       store: this.empleado.FamiliarCargas,
@@ -185,9 +197,20 @@ export class InfoempleadoComponent {
       // this.NO_DEPA = this.data[6];
     }
   }
-  enviar() {
+
+  submit() {
+    if(this.empleado.esnuevo){
+      this.guardar()
+          }else{
+            this.actualizar()
+          }
+  }
+
+  guardar() {
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Guardando");
+    this.empleado.LIC_MATERNIDAD="N"
+    this.empleado.LIC_ENFERMEDAD="N"
     this.empleado.ID_EMPRESA = this.user.IdCompania!;
     this.empleado.DIRECCION_CSV =
       this.URB +

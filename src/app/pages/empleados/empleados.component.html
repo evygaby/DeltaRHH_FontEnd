@@ -4,6 +4,8 @@
   
                  <dx-data-grid
                   id="gridContainer"
+                  (onExporting)="onExporting($event)"
+                  (onToolbarPreparing)="agregarBotonesToolbar($event)"
                   [dataSource]="customers"
                   keyExpr="CODEMP"
                   [showBorders]="true"
@@ -30,7 +32,7 @@
                 
                 <dxi-button
                   hint="Ver"
-                  icon="assets/images/UsuarioERP.png"
+                  icon="assets/images/ver.png"
                   [onClick]="onCloneIconClick"
                 ></dxi-button>
               </dxi-column>
@@ -57,6 +59,7 @@
                     valueExpr="ID"
                   ></dxo-lookup>
                 </dxi-column>
+                <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
                 </dx-data-grid>
   
               </div>

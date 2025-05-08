@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 // search module
@@ -25,9 +25,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { DxButtonModule, DxDataGridModule, DxNumberBoxModule, DxRadioGroupModule, DxSelectBoxModule } from 'devextreme-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
+import { ConfiguracionService } from './core/services/configuracion.service';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
+export function initApp(configService: ConfiguracionService) {
+  return () => configService.getConfig(); // <- Angular espera esta promesa
 }
 
 if (environment.defaultauth === 'firebase') {
@@ -60,7 +64,13 @@ if (environment.defaultauth === 'firebase') {
     DxSelectBoxModule,
     DxNumberBoxModule,
   ],
-  providers: [
+  providers: [  {
+    provide: APP_INITIALIZER,
+    useFactory: initApp,
+    deps: [ConfiguracionService],
+    multi: true, // importante: permite múltiples inicializadores
+      },
+
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },

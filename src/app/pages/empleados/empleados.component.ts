@@ -2,6 +2,8 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import dxDataGrid from 'devextreme/ui/data_grid';
+import { Workbook, WorksheetViewFrozen } from 'exceljs';
 import { combineLatest, Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/core/models/auth.models';
 import { EMP } from 'src/app/core/models/emp';
@@ -10,7 +12,7 @@ import { ConfiguracionService } from 'src/app/core/services/configuracion.servic
 import { EventService } from 'src/app/core/services/event.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { GlobalComponent } from 'src/app/global-component';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
@@ -40,6 +42,23 @@ export class EmpleadosComponent {
     //  ngOnInit(): void {
     //      this.bookData$ = this.servicios.getData();
     //    }
+    
+    async  onExporting(e: DxDataGridTypes.ExportingEvent) {
+      const workbook = new Workbook();
+      const worksheet = workbook.addWorksheet('Employees');
+  
+      await exportDataGrid({
+        component: e.component,
+        worksheet: worksheet,
+        autoFilterEnabled: true
+      });
+    
+      const buffer = await workbook.xlsx.writeBuffer();
+      saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Empleados.xlsx');
+    
+      e.cancel = true;
+    }
+    
     getData(page: string): void {
     const cachedData = this.cacheService.get(page);
 
@@ -59,9 +78,27 @@ export class EmpleadosComponent {
       });
     }
   }
-  
+  agregarBotonesToolbar(e: any) {
+    e.toolbarOptions.items.unshift({
+      location: 'before',
+      widget: 'dxButton',
+      options: {
+        text: 'Nuevo Cliente',
+        icon: 'add',
+        onClick: () => {
+          const empleado=new EMP()
+          empleado.esnuevo=true;
+          this.servicios.modificarObjeto(empleado)
+          this.servicios.modificarObjetoarray(this.customers)
+          this.router.navigate(['/empleadosdetalle']);
+        }
+      }
+    });
+  }
     onCloneIconClick = (e: DxDataGridTypes.ColumnButtonClickEvent) => {
-      this.servicios.modificarObjeto(e.row?.data)
+      const empleado=e.row?.data
+      empleado.esnuevo=false;
+      this.servicios.modificarObjeto(empleado)
       this.servicios.modificarObjetoarray(this.customers)
       this.router.navigate(['/empleadosdetalle']);
     };
@@ -71,3 +108,7 @@ export class EmpleadosComponent {
      //  this.cacheService.clear('1'); // puedes adaptar esto según tu lógica para limpiar el caché
     }
     }
+function exportDataGrid(arg0: { component: dxDataGrid<any, any>; worksheet: any; autoFilterEnabled: boolean; }) {
+  throw new Error('Function not implemented.');
+}
+

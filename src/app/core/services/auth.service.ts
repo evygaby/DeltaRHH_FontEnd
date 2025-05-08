@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { GlobalComponent } from "../../global-component";
 import { registro } from 'src/app/extraspages/registrarse/registro.model';
 import { CacheService } from './cache.service';
+import { ConfiguracionService } from './configuracion.service';
 
 const API_URL = GlobalComponent.API_URL;
 
@@ -28,7 +29,7 @@ export class AuthenticationService {
     public currentUserSubject: BehaviorSubject<User>;
      public texto!: BehaviorSubject<string>;
 
-    constructor(private http: HttpClient,private cacheService: CacheService) {
+    constructor(private http: HttpClient,private cacheService: CacheService,private config: ConfiguracionService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')!));
         this.texto = new BehaviorSubject<string>("rte");
      }
@@ -59,15 +60,15 @@ export class AuthenticationService {
      */
     login(usuario: string, password: string) {
 
-        return this.http.post(API_URL+"Usuarios/Login?username="+usuario+"&password="+password , httpOptions);
+        return this.http.post(this.config.apiUrl+"Usuarios/Login?username="+usuario+"&password="+password , httpOptions);
     }
     suscribirse(nombre: string, mail: string, ruc: string,idplan:string) {
 
-        return this.http.post(API_URL+"Suscripcion?nombre="+nombre+"&mail="+mail +"&ruc="+ruc+"&idplan="+idplan, httpOptions);
+        return this.http.post(this.config.apiUrl+"Suscripcion?nombre="+nombre+"&mail="+mail +"&ruc="+ruc+"&idplan="+idplan, httpOptions);
     }
     Planes() {
 
-        return this.http.get(API_URL+"Suscripcion/Getplanes", httpOptions);
+        return this.http.get(this.config.apiUrl+"Suscripcion/Getplanes", httpOptions);
     }
     /**
      * Returns the current user

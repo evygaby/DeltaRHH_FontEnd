@@ -1,3 +1,4 @@
+import { ConfiguracionService } from 'src/app/core/services/configuracion.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
@@ -14,7 +15,7 @@ interface Event {
 }
 
 type EventCallback = (payload: any) => void;
-const API_URL = GlobalComponent.API_URL;
+
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,7 +29,7 @@ export class EventService {
     public miObjetoaray: EMP []= [];
     private handler = new Subject<Event>();
     // searchData$: BehaviorSubject<EMP> = new BehaviorSubject<EMP>(null!);
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,private config :ConfiguracionService) { }
     getObjeto() {
       return this.miObjeto;
   }
@@ -71,7 +72,7 @@ modificarObjetoarray(miObjetoaray: EMP []) {
             .subscribe(callback);
     }
 get(url:string):Observable<any> {
-    return this.http.get(API_URL+url, httpOptions);
+    return this.http.get(this.config.apiUrl+url, httpOptions);
 }
 
 post(url:string,parametros: Parametros[]) {
@@ -80,12 +81,12 @@ post(url:string,parametros: Parametros[]) {
        link=link+"&"+parametros[i].nombre+"="+parametros[i].valor
        console.log(link)
       }
-    return this.http.post(API_URL+link, httpOptions);
+    return this.http.post(this.config.apiUrl+link, httpOptions);
 }
   postfactura(url:string,factura: NubeFactura):Observable<any> {
     //console.log(JSON.stringify(factura))
     //https://localhost:7271/api/NubeFactura
-      return this.http.post(API_URL+url,JSON.stringify(factura), httpOptions);
+      return this.http.post(this.config.apiUrl+url,JSON.stringify(factura), httpOptions);
       
   }
     subircertificado(file: File,certificado:Certificado){
@@ -96,31 +97,31 @@ post(url:string,parametros: Parametros[]) {
      formData.append('fecha', certificado.fecha);
      formData.append('clave', certificado.clave);
     formData.append('file', file,file.name);
-   return  this.http.post<Certificado>(API_URL+ 'Archivos/UploadCertificado',formData)
+   return  this.http.post<Certificado>(this.config.apiUrl+ 'Archivos/UploadCertificado',formData)
   
     }
     guardarempleado(empleado:EMP,usu:string,pass:string){
         const valor=JSON.stringify(empleado)
        const header = new HttpHeaders({ 'Content-Type': 'application/json' });
-     return  this.http.post<any>(API_URL+ 'Empleados/Post?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
+     return  this.http.post<any>(this.config.apiUrl+ 'Empleados/Post?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
     
       }
     actualizandoempleado(empleado:EMP,usu:string,pass:string){
         const valor=JSON.stringify(empleado)
        const header = new HttpHeaders({ 'Content-Type': 'application/json' });
-     return  this.http.put<any>(API_URL+ 'Empleados/Put?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
+     return  this.http.put<any>(this.config.apiUrl+ 'Empleados/Put?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
     
       }
     Consultarempleados(usu:string,pass:string,idempresa:number):Observable<any> {
-      return this.http.get(API_URL+"Empleados/Get?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
+      return this.http.get(this.config.apiUrl+"Empleados/Get?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
   }
   ConsultarSueldos(usu:string,pass:string,codemp:number):Observable<any> {
-    return this.http.get(API_URL+"Empleados/Sueldos?usu="+usu+"&contrasena="+pass+"&codemp="+codemp, httpOptions);
+    return this.http.get(this.config.apiUrl+"Empleados/Sueldos?usu="+usu+"&contrasena="+pass+"&codemp="+codemp, httpOptions);
 }
       Consultarempresa(usu:string,pass:string):Observable<any> {
-    return this.http.get(API_URL+"Empleados/EMPRESAS?usu="+usu+"&contrasena="+pass, httpOptions);
+    return this.http.get(this.config.apiUrl+"Empleados/EMPRESAS?usu="+usu+"&contrasena="+pass, httpOptions);
       }
     ConsultarCentros(usu:string,pass:string):Observable<any> {
-    return this.http.get(API_URL+"Empleados/Centro?usu="+usu+"&contrasena="+pass, httpOptions);
+    return this.http.get(this.config.apiUrl+"Empleados/Centro?usu="+usu+"&contrasena="+pass, httpOptions);
 }
 }
