@@ -26,6 +26,7 @@ import { DxButtonModule, DxDataGridModule, DxNumberBoxModule, DxRadioGroupModule
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionService } from './core/services/configuracion.service';
+import {  CurrencyInputDirective } from './pages/infoempleado/currency-input.directive';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -42,7 +43,7 @@ if (environment.defaultauth === 'firebase') {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,CurrencyInputDirective 
   ],
   imports: [
     TranslateModule.forRoot({

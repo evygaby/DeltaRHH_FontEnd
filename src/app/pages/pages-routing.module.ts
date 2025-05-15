@@ -6,6 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from "./dashboards/dashboard/dashboard.component";
 import { UsuarioComponent } from './usuario/usuario.component';
 import { EmpleadosComponent } from './empleados/empleados.component';
+import { CantonesComponent } from './cantones/cantones.component';
+import { PaisesComponent } from './paises/paises.component';
+import { ProvinciasComponent } from './provincias/provincias.component';
 
 
 const routes: Routes = [
@@ -24,6 +27,18 @@ const routes: Routes = [
   {
     path: "empleadosdetalle",
     component: InfoempleadoComponent
+  },
+  {
+    path: "paises",
+    component: PaisesComponent
+  },
+  {
+    path: "provincias",
+    component: ProvinciasComponent
+  },
+  {
+    path: "cantones",
+    component: CantonesComponent
   },
     {
       path: '', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)

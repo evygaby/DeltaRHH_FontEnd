@@ -16,6 +16,33 @@ import { Injectable } from "@angular/core";
 export const environment = {
   myCustomProperty: "original value",
 };
+
+const motivosalida: opciones[] = [
+  {  
+    ID: "R",
+    Name: "Renuncia",
+  },
+  {
+    ID: "D",
+    Name: "Despido",
+  },
+  {
+    ID: "T",
+    Name: "Término de Contrato",
+  },
+  {
+    ID: "C",
+    Name: "Cambio de Sección",
+  },{
+    ID: "J",
+    Name: "Jubilación",
+  },
+  {
+    ID: "F",
+    Name: "Fallecimiento",
+  },
+];
+
 const parentesco: opciones[] = [
   {
     ID: "CONYUGE",
@@ -78,6 +105,16 @@ const generos: opciones[] = [
   {
     ID: "M",
     Name: "MASCULINO",
+  },
+];
+const tipocuentas: opciones[] = [
+  {
+    ID: "A",
+    Name: "AHORRO",
+  },
+  {
+    ID: "C",
+    Name: "CORRIENTE",
   },
 ];
 const tipodiscapcidad: opciones[] = [
@@ -204,6 +241,7 @@ const tipodocumento: opciones[] = [
     Name: "PASAPORTE",
   },
 ];
+
 const sino: opciones[] = [
   {
     ID: "S",
@@ -289,11 +327,18 @@ export class ConfiguracionService {
   getfamiliar(): opciones[] {
     return parentesco;
   }
+  getTipocuemtas(): opciones[] {
+    return tipocuentas;
+  }
   getcarga(): opciones[] {
     return carga;
   }
+
   getcolegios(): opciones[] {
     return colegios;
+  }
+  getmotivosalida(): opciones[] {
+    return motivosalida;
   }
   getestudio(): opciones[] {
     return estudios;

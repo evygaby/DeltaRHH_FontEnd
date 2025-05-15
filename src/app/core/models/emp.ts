@@ -144,7 +144,6 @@ export class EMP {
 }
 export class FamiliarDiscapicidad {
         IDFAMILIA?: number=0;
-        CODEMP?: number=0;
         NOMBRECOMPLETO?: string="";
         PARENTESCO?: string="";
         FECHANACIM?: string="";
@@ -164,7 +163,7 @@ export class FamiliarDiscapicidad {
 export class FamiliarCargas {
      
                 ID_HIJO?: number=0;
-                CODEMP?: number=0;
+              
                 TIPO_CARGA?: string="";
                 NOMBRE_CARGA?: string="";
                 FECHA_NACIMIENTO?: string="";
@@ -183,7 +182,7 @@ export class FamiliarCargas {
 }
 export class FamiliarEnfermedad {
         IDFAMILIA?: number=0;
-        CODEMP?: number=0;
+       
         NOMBRECOMPLETO?: string="";
         PARENTESCO?: string="";
         ESTADO?: string="";
@@ -195,24 +194,14 @@ export class FamiliarEnfermedad {
         RESPONSABILIDAD_ECON?: string="";
         ENFERMEDAD?: string="";
     }
-    export class Cargos {
-        CODCRG?: string="";
-        NOMCRG?: string="";
-        CODDEP?: number=0;
-        NOMDEP?: string="";
-        PAGO_ADIC?: number=0;
-      
 
-    }
     export class Centros  {
-        GCODCCOSTO?: string="";
-        CODEMPLEADO?: number=0;
+        GCODCCOSTO?: string="";  
         ESTADO_GR?: string="";
         IDEMPRESA?: number=0;
     }
     export class Grupo  {
         IDCRGEMP?: number=0;
-        CODEMP?: number=0;
         CODSEC?: string="";
         ACTIVO?: string="";
         ID_EMPRESA?: number=0;
@@ -225,27 +214,34 @@ export class FamiliarEnfermedad {
         NOMDEP?: string="";
         CODSEC?: string="";
         NOMSEC?: string="";
+        CARGO_PRINCIPAL?: string="";
+        ACTIVO?: string="";
     } 
+        export class Cargos {
+        IDCRGEMP:number=0;
+        CODCRG?: string="";
+        CODSEC?: string="";
+        ACTIVO?: string="";
+        CARGO_PRINCIPAL?: string="";
+       
+      
+
+    }
     export class CuentasContables  {
         TIPO_CTA?: string="";
         PLA_CODCNTA?: string="";
-        CODEMP?: number=0;
-        DES?: string="";
-        ID_EMPRESA?: number=0;
-        ACTIVO1?:boolean;
         ACTIVO?:string="";
     }
     export class CuentasBancos  {
-        CODPERSONA?: number=0;
+     
         CODBANCO?: string="";
         CTABCO?: string="";
         PORCENT?: string="";
         TIPO_CUENTA?: string="";
-        estado1?:boolean;
         ESTADO?:string="";
     }
     export class Titulos  {
-        CODEMP?: number=0;
+       
         NIVEL?: string="";
         TITULO?: string="";
         PAIS?: string="";

@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCheckBoxModule, DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxBoxModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -42,6 +42,10 @@ import { LoadingComponent } from './loading/loading.component';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { EmpleadosComponent } from './empleados/empleados.component';
 import { InfoempleadoComponent } from './infoempleado/infoempleado.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { PaisesComponent } from './paises/paises.component';
+import { CantonesComponent } from './cantones/cantones.component';
+import { ProvinciasComponent } from './provincias/provincias.component';
 
 
 
@@ -54,11 +58,14 @@ import { InfoempleadoComponent } from './infoempleado/infoempleado.component';
     LoadingComponent,
     EmpleadosComponent,
     InfoempleadoComponent,
+    PaisesComponent,
+    CantonesComponent,
+    ProvinciasComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule,DxCheckBoxModule,
-    NgbToastModule,
+    FormsModule,DxCheckBoxModule, DxDateBoxModule,MatNativeDateModule,
+    NgbToastModule,DxTextAreaModule,
     NgbProgressbarModule,DropzoneModule,NgbDatepickerModule,
     FlatpickrModule.forRoot(),
     CountToModule,

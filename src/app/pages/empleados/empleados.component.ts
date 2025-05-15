@@ -83,7 +83,7 @@ export class EmpleadosComponent {
       location: 'before',
       widget: 'dxButton',
       options: {
-        text: 'Nuevo Cliente',
+        text: 'Nuevo Empleado',
         icon: 'add',
         onClick: () => {
           const empleado=new EMP()

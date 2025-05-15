@@ -1,6 +1,6 @@
 // import { Messages } from 'devextreme/localization/messages/de.json';
 import { FamiliarDiscapicidad } from "./../../core/models/emp";
-import { Component, inject, Output } from "@angular/core";
+import { Component, inject, Output, Pipe, PipeTransform } from "@angular/core";
 import { EventService } from "src/app/core/services/event.service";
 import { EmpleadosComponent } from "../empleados/empleados.component";
 import { EMP } from "src/app/core/models/emp";
@@ -18,7 +18,8 @@ import { LoadingService } from "src/app/core/services/loading.service";
   templateUrl: "./infoempleado.component.html",
   styleUrls: ["./infoempleado.component.scss"],
 })
-export class InfoempleadoComponent {
+
+export class InfoempleadoComponent implements PipeTransform {
   empleado: EMP = {};
   empleados: EMP[] = [];
   URB!: any;
@@ -28,6 +29,7 @@ export class InfoempleadoComponent {
   grupos!: any;
   fotoencuesta!: any;
   dresidencial!: any;
+  PLA_CODCNTA!: any;
   mz!: any;
   KM!: any;
   NO_CASA!: any;
@@ -40,18 +42,24 @@ export class InfoempleadoComponent {
   paises!: any;
   cantones!: any;
   centrosmin!: any;
-
+  maxLength = null;
+  height = 90;
+  iess!: any;
+  autoResizeEnabled!: boolean;
   Depa!: any;
   ListaCargos!: any;
   Secciones!: any;
-
+tipocuentas!: any;
   provincias!: any;
+  Razon !: any;
   empresas!: any;
   employeesDataSource!: DataSource;
   generos!: any;
   carga!: any;
   DesarrolloVivienda!: string;
   zonas!: any;
+  seguros!: any;
+  extensiones!: any;
   familia!: any;
   foto!:any
   Bancos!: any;
@@ -59,12 +67,18 @@ export class InfoempleadoComponent {
   descapacidades!: DataSource;
   tipocontrato!: any;
   sueldos!: any;
+   estudios!: any;
   TIPO_VI!: any;
   NO_DEPA!: any;
   condicion!: any;
   tipodocumento!: any;
+  titulos!: any;
   sino!: any;
   estadocivil!: any;
+  tipocuenta!: any;
+  titulosacademicos!: any;
+  
+  motivosalida!: any;
   tipodiscapcidad!: any;
   finalArray: Output[] = [];
   private cacheSubscription!: Subscription;
@@ -73,6 +87,9 @@ export class InfoempleadoComponent {
   private loading = inject(LoadingService);
   constructor(private cacheService: CacheService) {
     flatpickr.localize(Spanish);
+    this.estudios=this.config.getestudio()
+    this.motivosalida = this.config.getmotivosalida();
+  this.titulos=this.config.gettitulos()
     this.sino = this.config.getsino();
     this.estadocivil = this.config.getestadocivil();
     this.TIPO_VI = this.config.gettipovivienda();
@@ -80,12 +97,22 @@ export class InfoempleadoComponent {
     this.colegios = this.config.getcolegios();
     this.tipocontrato = this.config.gettipocontrato();
     this.familia = this.config.getfamiliar();
+    this.tipocuentas=this.config.getTipocuemtas()
     this.generos = this.config.getegeneros();
     this.carga = this.config.getcarga();
     this.tipodiscapcidad = this.config.gettipodiscapcidad();
     this.cacheSubscription = this.cacheService.cache$.subscribe((data) => {
       if (data != null) {
-        if (data.clase == "provincias") {
+         if (data.clase == "iess") {
+          this.iess = data.data;
+        }
+        if (data.clase == "cuenta") {
+          this.PLA_CODCNTA = data.data;
+        }
+        if (data.clase == "tipocuenta") {
+          this.tipocuenta = data.data;
+        }
+         if (data.clase == "provincias") {
           this.provincias = data.data;
         }
         if (data.clase == "Depa") {
@@ -93,6 +120,12 @@ export class InfoempleadoComponent {
         }
         if (data.clase == "ListaCargos") {
           this.ListaCargos = data.data;
+        }
+        if (data.clase == "seg") {
+          this.seguros = data.data;
+        }
+        if (data.clase == "ext") {
+          this.extensiones = data.data;
         }
         if (data.clase == "Secciones") {
           this.Secciones = data.data;
@@ -127,6 +160,7 @@ export class InfoempleadoComponent {
 this.condicion="Guardar"
     }else{
       this.condicion="Editar"
+      this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
       this.servicios.ConsultarSueldos(this.user.Nombre!,this.user.password!,this.empleado.CODEMP!).subscribe(data => {
         try {
           this.sueldos = data
@@ -141,33 +175,6 @@ this.condicion="Guardar"
     
     this.fotoencuesta=this.empleado.NUMCEDULA
    this.foto=this.config.apiUrlFoto+ this.fotoencuesta+ ".jpg"
-    this.empleado.CuentasBancos!.forEach(function (value) {
-      if(value.ESTADO=="I"){
-        value.estado1=false
-      }
-      else{
-        value.estado1=true
-      }
-    }); 
-    this.empleado.CuentasContables!.forEach(function (value) {
-      if(value.ACTIVO=="S"){
-        value.ACTIVO1=false
-      }
-      else{
-        value.ACTIVO1=true
-      }
-    }); 
-    if(this.empleado.DISCAPACIDAD=="S"){
-      this.empleado.DISCAPACIDAD1=true
-    }else{
-      this.empleado.DISCAPACIDAD1=false
-    }
-    if(this.empleado.ACTIVO=="S"){
-      this.empleado.ACTIVO1=true
-    }
-    if(this.empleado.ACTIVO_REPORTES_AUMENTOS=="S"){
-      this.empleado.ACTIVO_REPORTES_AUMENTOS1=true
-    }
     this.empleados = this.servicios.miObjetoaray;
     
 
@@ -179,31 +186,85 @@ this.condicion="Guardar"
       store: this.empleado.FamiliarDiscapicidad,
       sort: "IDFAMILIA",
     });
-    // this.result = this.empleados.filter(s => s.CODEMP==this.empleado.CODJEFA)[0].NOMBRES!;
-    if (this.empleado.DIRECCION_CSV != null) {
-      var data = this.empleado.DIRECCION_CSV?.split(",", 10);
-      this.URB = data[0];
-      this.mz = data[1];
-      this.CALLE_PRIN = data[2];
-      this.NO_CASA = data[3];
-      this.CALLE_SEC = data[4];
-      this.COND = data[5];
-      this.NO_DEPA = data[6];
-      this.KM = data[7];
-      this.via = data[8];
-      if (data.length == 10) {
-        this.DesarrolloVivienda = data[9];
-      }
-      // this.NO_DEPA = this.data[6];
+    if(this.empleado.DIRECCION?.includes(' MZ:undefined Calle:undefined Casa:undefined Y:undefined KM:undefined Vía:undefined edif:undefined Dpto:undefined')){
+      this.empleado.DIRECCION =""
     }
+    // this.result = this.empleados.filter(s => s.CODEMP==this.empleado.CODJEFA)[0].NOMBRES!;
+    if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefined,undefined')){
+      this.empleado.DIRECCION_CSV =""
+    }else{
+      if(this.empleado.DIRECCION_CSV !=''&& this.empleado.DIRECCION_CSV !=null){
+        var data = this.empleado.DIRECCION_CSV?.split(",", 10);
+        this.URB = data![0];
+        this.mz = data![1];
+        this.CALLE_PRIN = data![2];
+        this.NO_CASA = data![3];
+        this.CALLE_SEC = data![4];
+        this.COND = data![5];
+        this.NO_DEPA = data![6];
+        this.KM = data![7];
+        this.via = data![8];
+        if (data!.length == 10) {
+          this.DesarrolloVivienda = data![9];
+        }
+      }
+     
+      // this.NO_DEPA = this.data[6];
+    
   }
+  }
+  toBoolean = (data: any) => data.ESTADO === 'A';
 
+  fromBoolean = (newData: any, value: boolean) => {
+    newData.ESTADO = value ? 'A' : 'I';
+  };
+  toBoolean2 = (data: any) => data.CARGO_PRINCIPAL === 'S';
+
+  fromBoolean2 = (newData: any, value: boolean) => {
+    newData.CARGO_PRINCIPAL = value ? 'S' : 'N';
+  };
+
+  toBoolean3 = (data: any) => data.ACTIVO === 'S';
+
+  fromBoolean3 = (newData: any, value: boolean) => {
+    newData.ACTIVO = value ? 'S' : 'N';
+  };
+
+  toBooleans = (data: any) => data.ACTIVO === 'S';
+
+  fromBooleans = (newData: any, value: boolean) => {
+    newData.ACTIVO = value ? 'S' : 'N';
+  };
   submit() {
     if(this.empleado.esnuevo){
       this.guardar()
           }else{
             this.actualizar()
           }
+  }
+
+  cambiarpaterno(ev:any){
+
+   this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
+  }
+
+  cambiarmaterno
+  (ev:any){
+   
+    this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
+ 
+  }
+  cambiarprimero
+  (ev:any){
+   
+    this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
+ 
+  }
+  cambiarsegundo
+  (ev:any){
+  
+    this.empleado.RAZONSOCIAL=    this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
+ 
   }
 
   guardar() {
@@ -283,7 +344,10 @@ this.condicion="Guardar"
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Actualizando");
     this.empleado.ID_EMPRESA = this.user.IdCompania!;
-    this.empleado.DIRECCION_CSV =
+if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefined,undefined')){
+
+}else{
+  this.empleado.DIRECCION_CSV =
       this.URB +
       "," +
       this.mz +
@@ -337,6 +401,10 @@ this.condicion="Guardar"
       direccion = direccion + " Dpto:" + this.NO_DEPA;
     }
     this.empleado.DIRECCION = direccion;
+  
+  
+}
+
     this.servicios
       .actualizandoempleado(
         this.empleado,
@@ -354,6 +422,13 @@ this.condicion="Guardar"
         },
       });
   }
+
+ transform(value: any): any {
+    if (!value) return value;
+    
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
   getData(page: string): void {
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     const cachedData = this.cacheService.get(page);
@@ -362,15 +437,21 @@ this.condicion="Guardar"
     const cachedDataca = this.cacheService.get("cachedDataca");
     const cachedDatazo = this.cacheService.get("zonas");
     const cachedDataempresa = this.cacheService.get("empresas");
+    const cachedDataext = this.cacheService.get("ext");
+    const cachedDataseguros = this.cacheService.get("seg");
     const cachedDatacent = this.cacheService.get("centrosmin");
     const cachedDataDepa = this.cacheService.get("Depa");
     const cachedDataListaCargos = this.cacheService.get("ListaCargos");
     const cachedDataSecciones = this.cacheService.get("Secciones");
     const cachedDataBanco = this.cacheService.get("bancos");
+    const cachedTipoCuenta = this.cacheService.get("tipocuenta");
+        const cachedCuenta = this.cacheService.get("cuenta");
+        const cachediess= this.cacheService.get("iess");
     // Si los datos no están en caché, los recuperamos del servidor y los almacenamos en la caché.
     if (
-      !cachedDatapr ||
-      !cachedDatapa ||
+      !cachedDatapr ||!cachedDataext ||!cachedDataseguros ||!cachedTipoCuenta ||
+
+      !cachedDatapa ||  !cachedCuenta ||!cachediess ||
       !cachedDataca ||
       !cachedDatazo ||
       !cachedDatacent||!cachedDataDepa||!cachedDataListaCargos||!cachedDataSecciones||!cachedDataBanco
@@ -438,10 +519,55 @@ this.condicion="Guardar"
             "&contrasena=" +
             this.user.password 
         ),
+        
+        ext: this.servicios.get(
+          "Empleados/EXTENSION?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password +
+            "&idempresa=" +
+            this.user.IdCompania
+        ),
+        
+        seg: this.servicios.get(
+          "Empleados/SEGUROS?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password +
+            "&idempresa=" +
+            this.user.IdCompania
+        ),
+         tipo: this.servicios.get(
+          "Empleados/TIPOCUENTA?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password +
+            "&idempresa=" +
+            this.user.IdCompania
+        ), 
+        cuen: this.servicios.get(
+          "Empleados/CUENTAS?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password +
+            "&idempresa=" +
+            this.user.IdCompania
+        ),
+         iess: this.servicios.get(
+          "Empleados/DESCIESS?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password 
+        ),
       };
       const combined = combineLatest(observables);
       combined.subscribe({
         next: (data: any) => {
+           this.iess=data.iess
+          this.PLA_CODCNTA=data.cuen
+          this.tipocuenta=data.tipo
+          this.extensiones=data.ext
+          this.seguros=data.seg
           this.cantones = data.a;
           this.paises = data.b;
           this.provincias = data.c;
@@ -451,6 +577,36 @@ this.condicion="Guardar"
           this.ListaCargos=data.lc
           this.Secciones=data.secc
           this.Bancos=data.bancos
+          
+          this.cacheService.set(
+            "cuenta",
+            "cuenta",
+            new Date(),
+            data.cuen
+          ); 
+            this.cacheService.set(
+            "iess",
+            "iess",
+            new Date(),
+            data.iess
+          ); 
+          this.cacheService.set(
+            "tipocuenta",
+            "tipocuenta",
+            new Date(),
+            data.tipo
+          ); this.cacheService.set(
+            "ext",
+            "ext",
+            new Date(),
+            data.ext
+          );
+          this.cacheService.set(
+            "seg",
+            "seg",
+            new Date(),
+            data.seg
+          );
           this.cacheService.set(
             "Depa",
             "Depa",
@@ -510,7 +666,7 @@ this.condicion="Guardar"
         localStorage.getItem(GlobalComponent.CURRENT_USER)!
       );
       this.servicios
-        .ConsultarCentros(this.user.Nombre!, this.user.password!)
+        .ConsultarCentros(this.user.Nombre!, this.user.password!,this.user.IdCompania!)
         .subscribe((data: any) => {
           try {
             this.grupos = data;

@@ -121,7 +121,7 @@ post(url:string,parametros: Parametros[]) {
       Consultarempresa(usu:string,pass:string):Observable<any> {
     return this.http.get(this.config.apiUrl+"Empleados/EMPRESAS?usu="+usu+"&contrasena="+pass, httpOptions);
       }
-    ConsultarCentros(usu:string,pass:string):Observable<any> {
-    return this.http.get(this.config.apiUrl+"Empleados/Centro?usu="+usu+"&contrasena="+pass, httpOptions);
+    ConsultarCentros(usu:string,pass:string,idempresa:number):Observable<any> {
+    return this.http.get(this.config.apiUrl+"Empleados/Centro?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
 }
 }

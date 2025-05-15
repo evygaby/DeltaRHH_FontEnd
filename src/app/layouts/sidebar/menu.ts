@@ -16,22 +16,32 @@ export const MENU: MenuItem[] = [
         id: 8,
         label: 'Empleados',
         link: '/empleados',
-        badge: {
-          variant: 'bg-success',
-          text: 'MENUITEMS.DASHBOARD.BADGE',
-        },
+      
         parentId: 2,
       }
-      // ,{
-      //   id: 8,
-      //   label: 'detalle',
-      //   link: '/empleadosdetalle',
-      //   badge: {
-      //     variant: 'bg-success',
-      //     text: 'MENUITEMS.DASHBOARD.BADGE',
-      //   },
-      //   parentId: 2,
-      // }
+      ,{
+        id: 8,
+        label: 'Paises',
+        link: '/paises',
+      
+        parentId: 2,
+      }
+      ,{
+        id: 9,
+        label: 'Provincia',
+        link: '/provincias',
+      
+        parentId: 2,
+      }
+      ,{
+        id: 8,
+        label: 'Cantones',
+        link: '/cantones',
+      
+        parentId: 2,
+      }
+
+
     ]
   },
   // {
