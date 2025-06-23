@@ -1,5 +1,8 @@
+
+
+
 <div class="row">
-  <div class="col-xxl-6">
+
     <div class="card">
       <div class="card-body">
         <!-- Nav tabs -->
@@ -82,14 +85,16 @@
       <!-- end card-body -->
     </div>
     <!-- end card -->
-  </div>
+
   <!--end col-->
 </div>
-<!--end row-->
 
+
+<!--end row-->
+<form #form="ngForm" (ngSubmit)="submit(form)">
 <button
-  type="button"
-  (click)="submit()"
+  type="submit"
+ 
   class="btn rounded-pill btn-primary waves-effect waves-light"
 >
   {{ condicion }}
@@ -98,8 +103,8 @@
 <ng-template #TabContent>
   <div class="row align-items-start">
     <div class="row">
-      <div class="col-sm-10">
-        <div class="row">
+      <div class="col-sm-10" style="padding-right: 0px; padding-left: 0px">
+        <div class="row" >
           <div class="col-sm-6">
             <div class="row align-items-start">
               <div
@@ -112,13 +117,16 @@
                   class="col-sm-12"
                   >Codigo</label
                 >
-                <input
+                <input type="number"
+                  id="CODEMP" 
                   [readonly]="!empleado.esnuevo"
                   [(ngModel)]="empleado.CODEMP"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  [class.is-invalid]="(nombreCampo.invalid && (nombreCampo.touched || intentoEnvio))"
+                  class="form-control form-control-sm" name="CODEMP" required  #nombreCampo="ngModel"
+                  id="CODEMP"
                   placeholder=""
                 />
+               
               </div>
               <div
                 class="col-sm-3"
@@ -131,12 +139,14 @@
                   >Cédula</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   [(ngModel)]="empleado.NUMCEDULA"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                     [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
+                  class="form-control form-control-sm" name="NUMCEDULA" required  #NUMCEDULA="ngModel"
+                  id="NUMCEDULA"
                   placeholder=""
                 />
+                  
               </div>
               <div
                 class="col-sm-3"
@@ -149,8 +159,9 @@
                   >Tipo Documento</label
                 >
                 <select
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm"  name="TIPO_DOCUMENTO" required  #TIPO_DOCUMENTO="ngModel"
                   [(ngModel)]="empleado.TIPO_DOCUMENTO"
+                    [class.is-invalid]="(TIPO_DOCUMENTO.invalid && (TIPO_DOCUMENTO.touched || intentoEnvio))"
                   aria-label="Default select example"
                 >
                   <option
@@ -160,6 +171,7 @@
                     {{ person.Name }}
                   </option>
                 </select>
+                
               </div>
               <div
                 class="col-sm-3"
@@ -174,11 +186,14 @@
                 <input
                   type="text"
                   (input)="cambiarmaterno($event)"
-                  [(ngModel)]="empleado.APELLIDO_MAT"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  [(ngModel)]="empleado.APELLIDO_MAT" name="APELLIDO_MAT" required  #APELLIDO_MAT="ngModel"
+                  class="form-control form-control-sm" 
+                  id="APELLIDO_MAT"
+                    [class.is-invalid]="(APELLIDO_MAT.invalid && (APELLIDO_MAT.touched || intentoEnvio))"
+                  
                   placeholder=""
                 />
+                 
               </div>
             </div>
           </div>
@@ -197,11 +212,14 @@
                 <input
                   type="text"
                   (input)="cambiarpaterno($event)"
-                  [(ngModel)]="empleado.APELLIDO_PAT"
+                  [(ngModel)]="empleado.APELLIDO_PAT" name="APELLIDO_PAT" required  #APELLIDO_PAT="ngModel"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="APELLIDO_PAT" 
+                    [class.is-invalid]="(APELLIDO_PAT.invalid && (APELLIDO_PAT.touched || intentoEnvio))"
+                  
                   placeholder=""
                 />
+                
               </div>
               <div
                 class="col-sm-3"
@@ -216,11 +234,14 @@
                 <input
                   type="text"
                   (input)="cambiarprimero($event)"
-                  [(ngModel)]="empleado.PRIMER_NOMBRE"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  [(ngModel)]="empleado.PRIMER_NOMBRE" name="PRIMER_NOMBRE" required  #PRIMER_NOMBRE="ngModel"
+                  class="form-control form-control-sm" 
+                  id="PRIMER_NOMBRE"
+                    [class.is-invalid]="(PRIMER_NOMBRE.invalid && (PRIMER_NOMBRE.touched || intentoEnvio))"
+                  
                   placeholder=""
                 />
+                 
               </div>
               <div
                 class="col-sm-3"
@@ -235,9 +256,9 @@
                 <input
                   type="text"
                   (input)="cambiarsegundo($event)"
-                  [(ngModel)]="empleado.SEGUNDO_NOMBRE"
+                  [(ngModel)]="empleado.SEGUNDO_NOMBRE" name="SEGUNDO_NOMBRE"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="SEGUNDO_NOMBRE"
                   placeholder=""
                 />
               </div>
@@ -253,16 +274,19 @@
                 >
                 <input
                   type="text"
-                  [(ngModel)]="empleado.NOMBRE_INVITACION"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  [(ngModel)]="empleado.NOMBRE_INVITACION" name="NOMBRE_INVITACION" required  #NOMBRE_INVITACION="ngModel"
+                  class="form-control form-control-sm" 
+                  id="NOMBRE_INVITACION"
+                   [class.is-invalid]="(NOMBRE_INVITACION.invalid && (NOMBRE_INVITACION.touched || intentoEnvio))"
+                  
                   placeholder=""
                 />
+               
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" >
           <div class="col-sm-6">
             <div class="row align-items-start">
               <div
@@ -276,10 +300,10 @@
                   >Razón social</label
                 >
                 <input
-                  type="text"
-                  [(ngModel)]="empleado.RAZONSOCIAL"
+                  type="text" readonly
+                  [(ngModel)]="empleado.RAZONSOCIAL" name="RAZONSOCIAL"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="RAZONSOCIAL"
                   placeholder=""
                 />
               </div>
@@ -294,12 +318,15 @@
                   >Id Identidad</label
                 >
                 <input
-                  type="text"
-                  [(ngModel)]="empleado.ID_CLIENTE"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  type="number"
+                  [(ngModel)]="empleado.ID_CLIENTE" name="ID_CLIENTE" required  #ID_CLIENTE="ngModel"
+                  class="form-control form-control-sm" 
+                   [class.is-invalid]="(ID_CLIENTE.invalid && (ID_CLIENTE.touched || intentoEnvio))"
+                  
+                  id="ID_CLIENTE"
                   placeholder=""
                 />
+                  
               </div>
             </div>
           </div>
@@ -316,9 +343,9 @@
                   >Teléfono 1</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   [(ngModel)]="empleado.TLF1"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm" name="TLF1"
                   id="colFormLabelSm"
                   placeholder=""
                 />
@@ -334,15 +361,15 @@
                   >Teléfono 2</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   [(ngModel)]="empleado.TLF2"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm" name="TLF2"
                   id="colFormLabelSm"
                   placeholder=""
                 />
               </div>
               <div
-                class="col-sm-4"
+                class="col-sm-6"
                 style="padding-right: 0px; padding-left: 0px"
               >
                 <label
@@ -352,8 +379,8 @@
                   >Seguro</label
                 >
                 <select
-                  class="form-control form-control-sm"
-                  [(ngModel)]="empleado.SEGURO"
+                  class="form-control form-control-sm"  name="SEGURO"
+                  [(ngModel)]="empleado.SEGURO" 
                   aria-label="Default select example"
                 >
                   <option
@@ -364,7 +391,7 @@
                   </option>
                 </select>
               </div>
-              <div
+              <!-- <div
                 class="col-sm-2"
                 style="padding-right: 0px; padding-left: 0px"
               >
@@ -386,7 +413,7 @@
                     {{ person.CODIGO }}
                   </option>
                 </select>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -406,38 +433,27 @@
         <!-- Responsive Images -->
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-          >Dirección</label
-        >
-        <input
-          readonly
-          type="text"
-          [(ngModel)]="URB"
-          class="form-control form-control-sm"
-          id="colFormLabelSm"
-          placeholder=""
-        />
-      </div>
-      <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
+  
+    <div class="row" >
+       
+
+      <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+         <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
         <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
           >Dirección Consolidad</label
         >
         <input
           readonly
           type="text"
-          [(ngModel)]="empleado.DIRECCION"
+          [(ngModel)]="empleado.DIRECCION" name="DIRECCION"
           class="form-control form-control-sm"
           id="colFormLabelSm"
           placeholder=""
         />
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
         <div class="panel panel-default" style="border: 3px">
-          <div class="panel-heading">Detalles del Domicilio</div>
+
+          <div class="panel-heading">Detalles</div>
           <div class="panel-body">
             <div class="row">
               <div class="row align-items-start">
@@ -451,11 +467,15 @@
                     class="col-sm-12"
                     >Desarrollo Resid.</label
                   >
-                  <select
-                    class="form-control form-control-sm"
-                    [(ngModel)]="DesarrolloVivienda"
-                    aria-label="Default select example"
+                 
+
+                  <select 
+                    class="form-control form-control-sm"   [(ngModel)]="DesarrolloVivienda"
+                     [class.is-invalid]="(DesarrolloViviendaModel.invalid && (DesarrolloViviendaModel.touched || intentoEnvio))"
+                     name="DesarrolloVivienda" required  #DesarrolloViviendaModel="ngModel" id="DesarrolloVivienda"
+                    aria-label="" placeholder=""
                   >
+                
                     <option
                       *ngFor="let person of TIPO_VI"
                       value="{{ person.ID }}"
@@ -463,27 +483,30 @@
                       {{ person.Name }}
                     </option>
                   </select>
+              
                 </div>
+                <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+          >Dirección</label
+        >
+        <input
+  
+  type="text"
+  [(ngModel)]="URB"
+ [class.is-invalid]="(URBModel.invalid && (URBModel.touched || intentoEnvio))"
+  class="form-control form-control-sm"
+  name="URB"
+  required
+  #URBModel="ngModel"
+  id="URB"
+  placeholder=""
+/>
+
+       
+      </div>
+                
                 <div
-                  class="col-sm-3"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >No. casa</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="NO_CASA"
-                    class="form-control form-control-sm"
-                    id="colFormLabelSm"
-                    placeholder=""
-                  />
-                </div>
-                <div
-                  class="col-sm-2"
+                  class="col-sm-4"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
@@ -494,36 +517,38 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="mz"
+                    [(ngModel)]="mz"  name="mz"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="mz"
                     placeholder=""
                   />
                 </div>
+                
+                
+              </div>
+            </div>
+            <div class="row">
+              <div class="row align-items-start">
                 <div
-                  class="col-sm-3"
+                  class="col-sm-4"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
                     for="colFormLabelSm"
                     style="font-size: 9px"
                     class="col-sm-12"
-                    >Km</label
+                    >No. casa</label
                   >
                   <input
                     type="text"
-                    [(ngModel)]="KM"
+                    [(ngModel)]="NO_CASA" name="NO_CASA"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="NO_CASA"
                     placeholder=""
                   />
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="row align-items-start">
                 <div
-                  class="col-sm-6"
+                  class="col-sm-4"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
@@ -534,14 +559,14 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="CALLE_PRIN"
+                    [(ngModel)]="CALLE_PRIN"  name="CALLE_PRIN"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="CALLE_PRIN"
                     placeholder=""
                   />
                 </div>
                 <div
-                  class="col-sm-6"
+                  class="col-sm-4"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
@@ -552,18 +577,37 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="CALLE_SEC"
+                    [(ngModel)]="CALLE_SEC" name="CALLE_SEC"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="CALLE_SEC"
                     placeholder=""
                   />
                 </div>
+            
               </div>
             </div>
             <div class="row">
               <div class="row align-items-start">
+                    <div
+                  class="col-sm-4"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Km</label
+                  >
+                  <input
+                    type="text"
+                    [(ngModel)]="KM" name="KM"
+                    class="form-control form-control-sm"
+                    id="KM"
+                    placeholder=""
+                  />
+                </div>
                 <div
-                  class="col-sm-6"
+                  class="col-sm-4"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
@@ -574,14 +618,14 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="via"
+                    [(ngModel)]="via" name="via"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="via"
                     placeholder=""
                   />
                 </div>
                 <div
-                  class="col-sm-6"
+                  class="col-sm-4"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
@@ -592,12 +636,13 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="COND"
+                    [(ngModel)]="COND" name="COND"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="COND"
                     placeholder=""
                   />
                 </div>
+                
               </div>
             </div>
             <div class="row">
@@ -614,9 +659,9 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="NO_DEPA"
+                    [(ngModel)]="NO_DEPA" name="NO_DEPA"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="NO_DEPA"
                     placeholder=""
                   />
                 </div>
@@ -632,11 +677,13 @@
                   >
                   <input
                     type="text"
-                    [(ngModel)]="empleado.REFERENCIADOMICILIO"
+                    [(ngModel)]="empleado.REFERENCIADOMICILIO" name="REFERENCIADOMICILIO" required  #REFERENCIADOMICILIO="ngModel"
                     class="form-control form-control-sm"
-                    id="colFormLabelSm"
+                    id="REFERENCIADOMICILIO"
+                      [class.is-invalid]="(REFERENCIADOMICILIO.invalid && (REFERENCIADOMICILIO.touched || intentoEnvio))"
                     placeholder=""
                   />
+                  
                 </div>
               </div>
             </div>
@@ -652,15 +699,20 @@
                 class="col-sm-12"
                 >Fecha Nacimiento</label
               >
-              <input
-                class="form-control form-control-sm"
-                [(ngModel)]="empleado.FECNAC"
-                type="text"
-                mwlFlatpickr
-                [altInput]="true"
-                [convertModelValue]="true"
-              />
-            </div>
+          <input
+  class="form-control form-control-sm"
+  [(ngModel)]="empleado.FECNAC"
+  name="FECNAC"
+  #FECNAC="ngModel"
+  type="text"
+  required
+  mwlFlatpickr
+  
+  [convertModelValue]="true"
+  [class.is-invalid]="FECNAC.invalid && (FECNAC.touched || intentoEnvio)"
+/>
+           
+    </div>
             <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
               <label
                 for="colFormLabelSm"
@@ -670,8 +722,9 @@
               >
               <select
                 class="form-control form-control-sm"
-                [(ngModel)]="empleado.PAIS"
+                [(ngModel)]="empleado.PAIS" name="PAIS" required  #PAIS="ngModel"
                 aria-label="Default select example"
+                [class.is-invalid]="(PAIS.invalid && (PAIS.touched || intentoEnvio))"
               >
                 <option
                   *ngFor="let person of paises"
@@ -680,6 +733,7 @@
                   {{ person.NOMPAIS }}
                 </option>
               </select>
+               
             </div>
             <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
               <label
@@ -690,8 +744,9 @@
               >
               <select
                 class="form-control form-control-sm"
-                [(ngModel)]="empleado.PROVINCIA"
+                [(ngModel)]="empleado.PROVINCIA" name="PROVINCIA" required  #PROVINCIA="ngModel"
                 aria-label="Default select example"
+                [class.is-invalid]="(PROVINCIA.invalid && (PROVINCIA.touched || intentoEnvio))"
               >
                 <option
                   *ngFor="let person of provincias"
@@ -700,6 +755,7 @@
                   {{ person.NOMPROV }}
                 </option>
               </select>
+              
             </div>
           </div>
         </div>
@@ -708,17 +764,21 @@
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Lugar Nacimiento</label
             >
-            <select
+    
+            <select id="rrer"
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.CANTON"
+              [class.is-invalid]="(CIUDAD.invalid && (CIUDAD.touched || intentoEnvio))"
+              [(ngModel)]="empleado.CIUDAD" name="CIUDAD" required  #CIUDAD="ngModel"
               aria-label="Default select example"
             >
+
               <option
                 *ngFor="let person of cantones"
-                value="{{ person.CODCANTON }}"
+                value="{{ person.CODCIUDAD}}"
               >
-                {{ person.NOMCANTON }}
+                {{ person.NOMCIUDAD }}
               </option>
+             
             </select>
           </div>
         </div>
@@ -732,54 +792,64 @@
             >
             <select
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.SEXO"
+              [(ngModel)]="empleado.SEXO" name="SEXO" required  #SEXO="ngModel"
               aria-label="Default select example"
+                [class.is-invalid]="(SEXO.invalid && (SEXO.touched || intentoEnvio))"
             >
               <option *ngFor="let person of generos" value="{{ person.ID }}">
                 {{ person.Name }}
               </option>
             </select>
+            
           </div>
           <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Estado Civil</label
             >
-            <select
+            <select (change)="onSelectChange($event)"
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.ESTCIVIL"
+              [(ngModel)]="empleado.ESTCIVIL"  name="ESTCIVIL" required  #ESTCIVIL="ngModel"
               aria-label="Default select example"
+                 [class.is-invalid]="(ESTCIVIL.invalid && (ESTCIVIL.touched || intentoEnvio))"
             >
-              <option
+              <option 
                 *ngFor="let person of estadocivil"
                 value="{{ person.ID }}"
               >
                 {{ person.Name }}
               </option>
             </select>
+            
           </div>
           <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Apellido Casada</label
             >
+
+       
             <input
-              type="text"
-              [(ngModel)]="empleado.APELLIDO_CAS"
+              type="text" #APELLIDO_CAS="ngModel"
+              [(ngModel)]="empleado.APELLIDO_CAS" name="APELLIDO_CAS" [required]="esRequerido"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              [class.is-invalid]="(APELLIDO_CAS.invalid && (APELLIDO_CAS.touched || intentoEnvio))"
+              id="APELLIDO_CAS"
               placeholder=""
             />
+             
           </div>
           <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >No Hijos</label
             >
             <input
-              type="text"
-              [(ngModel)]="empleado.NUMHIJOS"
+              type="number"
+              [(ngModel)]="empleado.NUMHIJOS" name="NUMHIJOS" required  #NUMHIJOS="ngModel"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="NUMHIJOS"
+              [class.is-invalid]="(NUMHIJOS.invalid && (NUMHIJOS.touched || intentoEnvio))"
               placeholder=""
             />
+       
           </div>
         </div>
         <div class="row align-items-start">
@@ -788,9 +858,10 @@
               >Ministerio de Educacion</label
             >
             <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.CODCCOSTO_MINIS"
+              class="form-control form-control-sm" 
+              [(ngModel)]="empleado.CODCCOSTO_MINIS" name="CODCCOSTO_MINIS" required  #CODCCOSTO_MINIS="ngModel"
               aria-label="Default select example"
+                            [class.is-invalid]="(CODCCOSTO_MINIS.invalid && (CODCCOSTO_MINIS.touched || intentoEnvio))"
             >
               <option
                 *ngFor="let person of centrosmin"
@@ -799,15 +870,17 @@
                 {{ person.NOMCCOSTO }}
               </option>
             </select>
+             
           </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >No Extensión</label
             >
             <select
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.NUMEXT"
+              [(ngModel)]="empleado.NUMEXT" name="NUMEXT"
               aria-label="Default select example"
+              
             >
               <option
                 *ngFor="let person of extensiones"
@@ -817,25 +890,7 @@
               </option>
             </select>
           </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Colegio</label
-            >
-            <div class="col-sm-12">
-              <select
-                class="form-control form-control-sm"
-                [(ngModel)]="empleado.ID_EMPRESA"
-                aria-label="Default select example"
-              >
-                <option
-                  *ngFor="let person of empresas"
-                  value="{{ person.ID_EMPRESA }}"
-                >
-                  {{ person.CODIGO }}
-                </option>
-              </select>
-            </div>
-          </div>
+         
         </div>
 
         <div class="row align-items-start">
@@ -845,8 +900,10 @@
             >
             <select
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.TIPCONTRATO"
+              [(ngModel)]="empleado.TIPCONTRATO" name="TIPCONTRATO" required  #TIPCONTRATO="ngModel"
               aria-label="Default select example"
+                [class.is-invalid]="(TIPCONTRATO.invalid && (TIPCONTRATO.touched || intentoEnvio))"
+           
             >
               <option
                 *ngFor="let person of tipocontrato"
@@ -855,6 +912,7 @@
                 {{ person.Name }}
               </option>
             </select>
+           
           </div>
           <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
@@ -862,8 +920,9 @@
             >
             <select
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.CODCCOSTO"
+              [(ngModel)]="empleado.CODCCOSTO" name="CODCCOSTO" required  #CODCCOSTO="ngModel"
               aria-label="Default select example"
+              [class.is-invalid]="(CODCCOSTO.invalid && (CODCCOSTO.touched || intentoEnvio))"
             >
               <option
                 *ngFor="let person of grupos"
@@ -872,6 +931,7 @@
                 {{ person.NOMCCOSTO }}
               </option>
             </select>
+         
           </div>
           <div class="col-sm-5" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
@@ -879,16 +939,18 @@
             >
             <select
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.CODJEFA"
+              [(ngModel)]="empleado.CODJEFA" name="CODJEFA" required  #CODJEFA="ngModel"
               aria-label="Default select example"
+               [class.is-invalid]="(CODJEFA.invalid && (CODJEFA.touched || intentoEnvio))"
             >
               <option
-                *ngFor="let person of empleados"
+                *ngFor="let person of jefas"
                 value="{{ person.CODEMP }}"
               >
                 {{ person.RAZONSOCIAL }}
               </option>
             </select>
+               
           </div>
         </div>
         <!-- Hoverable Rows -->
@@ -910,30 +972,30 @@
               icon="assets/images/btn_eliminar.png"
             ></dxi-button>
           </dxi-column>
-          <dxi-column dataField="GCODCCOSTO" caption="Centro" [width]="100">
+          <dxi-column dataField="GCODCCOSTO" caption="Centro" [width]="200">
             <dxi-validation-rule type="required"></dxi-validation-rule>
             <dxo-lookup
-              [dataSource]="grupos"
-              displayExpr="NOMCCOSTO"
-              valueExpr="CODCCOSTO"
+              [dataSource]="GCENTROCOSTO"
+              displayExpr="NOMGRUPOCCOSTO"
+              valueExpr="GCODCCOSTO"
             ></dxo-lookup>
           </dxi-column>
-          <dxi-column dataField="IDEMPRESA" caption="Empresa" [width]="150">
+          <dxi-column dataField="IDEMPRESA" caption="Empresa" [width]="200">
             <dxi-validation-rule type="required"></dxi-validation-rule>
             <dxo-lookup
               [dataSource]="empresas"
-              displayExpr="RAZONSOCIAL"
+              displayExpr="CODIGO"
               valueExpr="ID_EMPRESA"
             ></dxo-lookup>
           </dxi-column>
            <dxi-column
             dataType="boolean"
-            [calculateCellValue]="toBoolean"
-            [setCellValue]="fromBoolean"
+            [calculateCellValue]="toBooleanG"
+            [setCellValue]="fromBooleanG"
             [showEditorAlways]="true"
             dataField="ESTADO_GR"
             caption="ESTADO"
-            [width]="50"
+            [width]="100"
           >
             <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-column>
@@ -957,28 +1019,28 @@
     </div>
     <!-- titulo -->
 
-    <div class="row">
+    <div class="row" style="padding-right: 0px; padding-left: 0px">
       <div class="col-sm-6">
         <div class="row align-items-start">
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+          <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Titulo</label
             >
             <input
               type="text"
-              [(ngModel)]="empleado.PROFESION"
+              [(ngModel)]="empleado.PROFESION" name="PROFESION"
               class="form-control form-control-sm"
               id="colFormLabelSm"
               placeholder=""
             />
           </div>
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+          <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Mail</label
             >
             <input
               type="text"
-              [(ngModel)]="empleado.MAIL"
+              [(ngModel)]="empleado.MAIL" name="MAIL"
               class="form-control form-control-sm"
               id="colFormLabelSm"
               placeholder=""
@@ -997,7 +1059,7 @@
               type="text"
               mwlFlatpickr
               [altInput]="true"
-              [convertModelValue]="true"
+              [convertModelValue]="true"  name="FEC_INGPRESCOLAR"
               [(ngModel)]="empleado.FEC_INGPRESCOLAR"
               class="form-control form-control-sm"
               id="colFormLabelSm"
@@ -1009,10 +1071,10 @@
               >Fec. Antg Hasta</label
             >
             <input
-              type="text"
+              type="text" name="FEC_SALPRESCOLAR"
               mwlFlatpickr
               [altInput]="true"
-              [convertModelValue]="true"
+              [convertModelValue]="true" 
               [(ngModel)]="empleado.FEC_SALPRESCOLAR"
               class="form-control form-control-sm"
               id="colFormLabelSm"
@@ -1022,7 +1084,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="padding-right: 0px; padding-left: 0px">
           
           <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
@@ -1032,7 +1094,7 @@
               <span class="form-control form-control-sm">$</span>
               <input
                 type="number" style="width: 110px;"
-                [(ngModel)]="empleado.SUELDO"
+                [(ngModel)]="empleado.SUELDO" name="SUELDO"
                 mask="0*.00"
                 class="form-control form-control-sm"
                 id="cleave-phone"
@@ -1049,7 +1111,7 @@
               <span class="form-control form-control-sm">$</span>
               <input
                 type="number" style="width: 110px;"
-                [(ngModel)]="empleado.BENEFICIO"
+                [(ngModel)]="empleado.BENEFICIO" name="BENEFICIO"
                 mask="0*.00"
                 class="form-control form-control-sm"
                 id="cleave-phone"
@@ -1066,7 +1128,7 @@
               <input 
                 type="number" style="width: 110px;"
                 [(ngModel)]="empleado.BENEFICIO2"
-                mask="0*.00"
+                mask="0*.00"  name="BENEFICIO2"
                 class="form-control form-control-sm"
                 id="cleave-phone"
                 placeholder=""
@@ -1081,8 +1143,8 @@
             <input
               type="text"
               mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true"
+              [altInput]="true"  name="FEC_AIESS"
+              [convertModelValue]="true" 
               [(ngModel)]="empleado.FEC_AIESS"
               class="form-control form-control-sm"
               id="colFormLabelSm"
@@ -1097,7 +1159,7 @@
               type="text"
               mwlFlatpickr
               [altInput]="true"
-              [convertModelValue]="true"
+              [convertModelValue]="true" name="FEC_INI_JUBILACION"
               [(ngModel)]="empleado.FEC_INI_JUBILACION"
               class="form-control form-control-sm"
               id="colFormLabelSm"
@@ -1106,7 +1168,7 @@
           </div>
         </div>
     <!-- codigo IEES -->
-    <div class="row">
+    <div class="row" style="padding-right: 0px; padding-left: 0px">
       <div class="col-sm-6">
         <div class="row align-items-start">
           <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
@@ -1115,7 +1177,7 @@
             >
  <select
             class="form-control form-control-sm"
-            [(ngModel)]="empleado.CODIGO_IESS"
+            [(ngModel)]="empleado.CODIGO_IESS" name="CODIGO_IESS"
             aria-label="Default select example"
           >
             <option
@@ -1137,7 +1199,7 @@
               type="text"
               mwlFlatpickr
               [altInput]="true"
-              [convertModelValue]="true"
+              [convertModelValue]="true" name="FECINGRESO"
               [(ngModel)]="empleado.FECINGRESO"
               class="form-control form-control-sm"
               id="colFormLabelSm"
@@ -1156,7 +1218,7 @@
             <input
               class="form-control form-control-sm"
               [(ngModel)]="empleado.FECSALIDA"
-              type="text"
+              type="text" name="FECSALIDA" 
               mwlFlatpickr
               [altInput]="true"
               [convertModelValue]="true"
@@ -1168,7 +1230,7 @@
             >
             <select
               class="form-control form-control-sm"
-              [(ngModel)]="empleado.MOTIVO_SALIDA"
+              [(ngModel)]="empleado.MOTIVO_SALIDA" name="MOTIVO_SALIDA"
               aria-label="Default select example"
             >
               <option
@@ -1188,7 +1250,7 @@
               <span class="form-control form-control-sm">$</span>
               <input
                 type="number" style="width: 110px;"
-                [(ngModel)]="empleado.SUELDO_JUBILADO"
+                [(ngModel)]="empleado.SUELDO_JUBILADO" name="SUELDO_JUBILADO"
                 mask="0*.00"
                 class="form-control form-control-sm"
                 id="cleave-phone"
@@ -1210,7 +1272,13 @@
           id="gridContainer"
           [dataSource]="empleado.CuentasContables!"
           keyExpr="PLA_CODCNTA"
-          [showBorders]="true"
+           [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
+
           [height]="200"
         >
           <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
@@ -1233,7 +1301,7 @@
             ></dxo-lookup>
           </dxi-column>
 
-          <dxi-column dataField="PLA_CODCNTA" caption="" [width]="300">
+          <dxi-column dataField="PLA_CODCNTA" caption="" [width]="250">
             <dxi-validation-rule type="required"></dxi-validation-rule>
             <dxo-lookup
               [dataSource]="PLA_CODCNTA"
@@ -1249,7 +1317,7 @@
             [showEditorAlways]="true"
             dataField="ACTIVO"
             caption="ESTADO"
-            [width]="150"
+            [width]="70"
           >
             <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-column>
@@ -1277,7 +1345,12 @@
           id="gridContainer"
           [dataSource]="empleado.CuentasBancos!"
           keyExpr="CTABCO"
-          [showBorders]="true"
+           [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
           [height]="200"
         >
           <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
@@ -1313,7 +1386,7 @@
             [showEditorAlways]="true"
             dataField="ESTADO"
             caption="ESTADO"
-            [width]="150"
+            [width]="70"
           >
             <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-column>
@@ -1351,13 +1424,49 @@
         </dx-data-grid>
       </div>
       <div class="col-sm-6">
+      
         <div class="row">
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px;padding-top:20px">
+          
+            <dx-check-box
+              [value]="empleado.ACTIVO === 'S'" text="Empleado Activo"
+              (onValueChanged)="empleado.ACTIVO = $event.value ? 'S' : 'N'"
+            >
+            </dx-check-box>
+          </div>
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-6"
+              >NUMDIAS
+            </label>
+            <input
+              type="number"
+              [(ngModel)]="empleado.NUMDIAS" name="NUMDIAS"
+              class="form-control form-control-sm"
+              id="colFormLabelSm"
+              placeholder=""
+            />
+          </div>
+                <div class="col-sm-4" style="padding-top:20px">
+     
+            <dx-check-box
+              [value]="empleado.ACTIVO_REPORTES_AUMENTOS === 'S'" text="ACTIVO REP. AUMENTOS"
+              (onValueChanged)="
+                empleado.ACTIVO_REPORTES_AUMENTOS = $event.value ? 'S' : 'N'
+              "
+            >
+            </dx-check-box>
+          </div>
+       
+        
+    
+        </div>
+  <div class="row">
           <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
             >Observación</label
           >
-          <dx-text-area
-            (height)="(90)"
-            [maxLength]="maxLength!"
+          <dx-text-area style="height:190px"
+            (height)="(190)"
+            [maxLength]="maxLength!"  name="OBSERVACION"
             [(ngModel)]="empleado.OBSERVACION"
             (autoResizeEnabled)="(true)"
             [inputAttr]="{ 'aria-label': 'Notes' }"
@@ -1366,81 +1475,30 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >DISCAPACIDAD</label
-            >
+           <div class="col-sm-6" style="padding-top:20px">
+       
             <dx-check-box
-              [value]="empleado.DISCAPACIDAD === 'S'"
+              [value]="empleado.DISCAPACIDAD === 'S'" text="DISCAPACIDAD"
               (onValueChanged)="
                 empleado.DISCAPACIDAD = $event.value ? 'S' : 'N'
               "
             >
             </dx-check-box>
           </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Porcentaje Discapacidad</label
             >
             <input
-              type="text"
-              [(ngModel)]="empleado.PORC_DISCAPACIDAD"
-              class="form-control form-control-sm"
-              id="colFormLabelSm"
-              placeholder=""
-            />
-          </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Activo</label
-            >
-
-            <dx-check-box
-              [value]="empleado.ACTIVO === 'S'"
-              (onValueChanged)="empleado.ACTIVO = $event.value ? 'S' : 'N'"
-            >
-            </dx-check-box>
-          </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >ACTIVO RE. AUMENTOS S.
-            </label>
-            <dx-check-box
-              [value]="empleado.ACTIVO_REPORTES_AUMENTOS === 'S'"
-              (onValueChanged)="
-                empleado.ACTIVO_REPORTES_AUMENTOS = $event.value ? 'S' : 'N'
-              "
-            >
-            </dx-check-box>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >NUMDIAS
-            </label>
-            <input
-              type="text"
-              [(ngModel)]="empleado.NUMDIAS"
+              type="number"
+              [(ngModel)]="empleado.PORC_DISCAPACIDAD" name="PORC_DISCAPACIDAD"
               class="form-control form-control-sm"
               id="colFormLabelSm"
               placeholder=""
             />
           </div>
 
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >TIPO DOC DISCAPACIDAD
-            </label>
-            <input
-              type="text"
-              [(ngModel)]="empleado.TIPO_DOC_DISCAPACIDAD"
-              class="form-control form-control-sm"
-              id="colFormLabelSm"
-              placeholder=""
-            />
-          </div>
+       
         </div>
       </div>
     </div>
@@ -1451,7 +1509,12 @@
     id="gridContainer"
     [dataSource]="empleado.Departamentos!"
     keyExpr="CODCRG"
-    [showBorders]="true"
+   [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
     [height]="250"
   >
     <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
@@ -1462,7 +1525,7 @@
         icon="assets/images/btn_eliminar.png"
       ></dxi-button>
     </dxi-column>
-    <dxi-column dataField="CODCRG" caption="Cargo" [width]="250">
+    <dxi-column dataField="CODCRG" caption="Cargo" [width]="200">
       <dxi-validation-rule type="required"></dxi-validation-rule>
       <dxo-lookup
         [dataSource]="ListaCargos"
@@ -1480,7 +1543,7 @@
       ></dxo-lookup>
     </dxi-column>
 
-    <dxi-column dataField="CODSEC" caption="Sección" [width]="150">
+    <dxi-column dataField="CODSEC" caption="Sección" [width]="170">
       <dxi-validation-rule type="required"></dxi-validation-rule>
       <dxo-lookup
         [dataSource]="Secciones"
@@ -1497,7 +1560,7 @@
       [showEditorAlways]="true"
       dataField="ACTIVO"
       caption="Cargo Actual"
-      [width]="150"
+      [width]="100"
     >
      
     </dxi-column>
@@ -1509,7 +1572,7 @@
       [showEditorAlways]="true"
       dataField="CARGO_PRINCIPAL"
       caption="Cargo Principal"
-      [width]="150"
+      [width]="100"
     >
      
     </dxi-column>
@@ -1536,7 +1599,12 @@
     id="gridContainer"
     [dataSource]="sueldos!"
     keyExpr="CODEMP"
-    [showBorders]="true"
+    [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
     [height]="450"
   >
     <dxo-paging [pageSize]="10"> </dxo-paging>
@@ -1569,20 +1637,20 @@
       [width]="200"
     ></dxi-column>
     <dxi-column
-      dataField="A_PAGAR"
+      dataField="A_PAGAR"   [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar"
       caption="A_Pagar"
       [width]="100"
     ></dxi-column>
-    <dxi-column dataField="SUELDO" caption="Sueldo" [width]="100"></dxi-column>
-    <dxi-column dataField="EXTRAS" caption="Extras" [width]="100"></dxi-column>
-    <dxi-column dataField="OTROS" caption="Otros" [width]="100"></dxi-column>
+    <dxi-column dataField="SUELDO"  [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar" caption="Sueldo" [width]="100"></dxi-column>
+    <dxi-column dataField="EXTRAS"  [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar" caption="Extras" [width]="100"></dxi-column>
+    <dxi-column dataField="OTROS" [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar" caption="Otros" [width]="100"></dxi-column>
     <dxi-column
       dataField="INGRESOS"
-      caption="Ingresos"
+      caption="Ingresos"  [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar"
       [width]="100"
     ></dxi-column>
     <dxi-column
-      dataField="EGRESOS"
+      dataField="EGRESOS" [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar"
       caption="Egresos"
       [width]="100"
     ></dxi-column>
@@ -1605,115 +1673,7 @@
 </ng-template>
 <ng-template #TabContent3>
   <div class="row">
-    <div class="col-sm-6">
-      <div class="row align-items-start">
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Codigo</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.CODEMP"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Cédula</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.NUMCEDULA"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Tipo Documento</label
-          >
-          <select
-            class="form-control form-control-sm"
-            [(ngModel)]="empleado.TIPO_DOCUMENTO"
-            aria-label="Default select example"
-          >
-            <option
-              *ngFor="let person of tipodocumento"
-              value="{{ person.ID }}"
-            >
-              {{ person.Name }}
-            </option>
-          </select>
-        </div>
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Apellido Materno</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.APELLIDO_MAT"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="row align-items-start">
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Apellido Paterno</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.APELLIDO_PAT"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Primer nombre</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.PRIMER_NOMBRE"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Segundo Nombre</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.SEGUNDO_NOMBRE"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Nombre Invitación</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.NOMBRE_INVITACION"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
-      </div>
-    </div>
+    
   </div>
 </ng-template>
 <ng-template #TabContent4> </ng-template>
@@ -1727,7 +1687,7 @@
           >
           <input
             type="text"
-            [(ngModel)]="empleado.NOMBRECONYUGE"
+            [(ngModel)]="empleado.NOMBRECONYUGE"  name="NOMBRECONYUGE"
             class="form-control form-control-sm"
             id="colFormLabelSm"
             placeholder=""
@@ -1741,7 +1701,7 @@
             type="text"
             mwlFlatpickr
             [altInput]="true"
-            [convertModelValue]="true"
+            [convertModelValue]="true" name="FECHAMATRICIVIL"
             [(ngModel)]="empleado.FECHAMATRICIVIL"
             class="form-control form-control-sm"
             id="colFormLabelSm"
@@ -1761,7 +1721,7 @@
             mwlFlatpickr
             [altInput]="true"
             [convertModelValue]="true"
-            [(ngModel)]="empleado.FECHAMATRIECLE"
+            [(ngModel)]="empleado.FECHAMATRIECLE" name="FECHAMATRIECLE"
             class="form-control form-control-sm"
             id="colFormLabelSm"
             placeholder=""
@@ -1772,8 +1732,8 @@
             >Telefono conyugue</label
           >
           <input
-            type="text"
-            [(ngModel)]="empleado.TELEFONOCONYUGE"
+            type="number"
+            [(ngModel)]="empleado.TELEFONOCONYUGE" name="TELEFONOCONYUGE"
             class="form-control form-control-sm"
             id="colFormLabelSm"
             placeholder=""
@@ -1791,7 +1751,7 @@
           >
           <input
             type="text"
-            [(ngModel)]="empleado.EMAILPERSONAL"
+            [(ngModel)]="empleado.EMAILPERSONAL" name="EMAILPERSONAL"
             class="form-control form-control-sm"
             id="colFormLabelSm"
             placeholder=""
@@ -1804,7 +1764,7 @@
           >
           <input
             type="text"
-            [(ngModel)]="empleado.APELLIDO_PAT"
+            [(ngModel)]="empleado.APELLIDO_PAT" name="APELLIDO_PAT"
             class="form-control form-control-sm"
             id="colFormLabelSm"
             placeholder=""
@@ -1816,7 +1776,7 @@
           >
           <input
             type="text"
-            [(ngModel)]="empleado.RUC"
+            [(ngModel)]="empleado.RUC" name="RUC"
             class="form-control form-control-sm"
             id="colFormLabelSm"
             placeholder=""
@@ -1844,7 +1804,7 @@
                 >
                 <input
                   type="text"
-                  [(ngModel)]="empleado.CONTACTOEMERGENCIA"
+                  [(ngModel)]="empleado.CONTACTOEMERGENCIA" name="CONTACTOEMERGENCIA"
                   class="form-control form-control-sm"
                   id="colFormLabelSm"
                   placeholder=""
@@ -1861,7 +1821,7 @@
                   >parentesco</label
                 >
                 <select
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm" name="PARENTESCOEMERGENCIA"
                   [(ngModel)]="empleado.PARENTESCOEMERGENCIA"
                   aria-label="Default select example"
                 >
@@ -1885,7 +1845,7 @@
                 >
                 <input
                   type="text"
-                  [(ngModel)]="empleado.OTROPARENTEMERGENCIA"
+                  [(ngModel)]="empleado.OTROPARENTEMERGENCIA"  name="OTROPARENTEMERGENCIA"
                   class="form-control form-control-sm"
                   id="colFormLabelSm"
                   placeholder=""
@@ -1902,8 +1862,8 @@
                   >Teléfono</label
                 >
                 <input
-                  type="text"
-                  [(ngModel)]="empleado.TELEFONOEMERGENCIA"
+                  type="number"
+                  [(ngModel)]="empleado.TELEFONOEMERGENCIA" name="TELEFONOEMERGENCIA"
                   class="form-control form-control-sm"
                   id="colFormLabelSm"
                   placeholder=""
@@ -1925,7 +1885,7 @@
                 >
                 <input
                   type="text"
-                  [(ngModel)]="empleado.CONTACTOEMERGENCIA2"
+                  [(ngModel)]="empleado.CONTACTOEMERGENCIA2" name="CONTACTOEMERGENCIA2"
                   class="form-control form-control-sm"
                   id="colFormLabelSm"
                   placeholder=""
@@ -1942,7 +1902,7 @@
                   >parentesco</label
                 >
                 <select
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm" name="PARENTESCOEMERGENCIA2"
                   [(ngModel)]="empleado.PARENTESCOEMERGENCIA2"
                   aria-label="Default select example"
                 >
@@ -1966,7 +1926,7 @@
                 >
                 <input
                   type="text"
-                  [(ngModel)]="empleado.OTROPARENTEMERGENCIA2"
+                  [(ngModel)]="empleado.OTROPARENTEMERGENCIA2" name="OTROPARENTEMERGENCIA2"
                   class="form-control form-control-sm"
                   id="colFormLabelSm"
                   placeholder=""
@@ -1983,8 +1943,8 @@
                   >Teléfono</label
                 >
                 <input
-                  type="text"
-                  [(ngModel)]="empleado.TELEFONOEMERGENCIA2"
+                  type="number"
+                  [(ngModel)]="empleado.TELEFONOEMERGENCIA2" name="TELEFONOEMERGENCIA2"
                   class="form-control form-control-sm"
                   id="colFormLabelSm"
                   placeholder=""
@@ -2007,7 +1967,12 @@
                 id="gridContainer"
                 [dataSource]="descapacidades"
                 keyExpr="IDFAMILIA"
-                [showBorders]="true"
+              [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
                 [height]="200"
               >
                 <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
@@ -2119,7 +2084,12 @@
     id="gridContainer"
     [dataSource]="employeesDataSource!"
     keyExpr="ID_HIJO"
-    [showBorders]="true"
+     [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
     [height]="250"
   >
     <dxi-column type="buttons" caption="Acción " [width]="150">
@@ -2201,9 +2171,13 @@
       <dx-data-grid
         id="gridContainer"
         [dataSource]="empleado.Titulos!"
-        keyExpr="NUMREGSENESCYT"
-        [showBorders]="true"
-        [height]="200"
+        keyExpr="IDTITULO"
+        [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+        [height]="400"
       >
         <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
         <dxi-column type="buttons" caption="Acción" [width]="100">
@@ -2216,7 +2190,7 @@
             icon="assets/images/btn_eliminar.png"
           ></dxi-button>
         </dxi-column>
-        <dxi-column dataField="NIVEL" caption="Nivel" [width]="150">
+        <dxi-column dataField="NIVEL" caption="Nivel" [width]="100">
           <dxi-validation-rule type="required"></dxi-validation-rule>
           <dxo-lookup
             [dataSource]="titulos"
@@ -2231,7 +2205,7 @@
           <dxo-lookup
             [dataSource]="paises"
             displayExpr="NOMPAIS"
-            valueExpr="CODPAIS"
+            valueExpr="NOMPAIS"
           ></dxo-lookup>
         </dxi-column>
         <dxi-column
@@ -2243,7 +2217,7 @@
         <dxi-column
           dataField="ESTADOESTUDIO"
           caption="Estado estudio"
-          [width]="150"
+          [width]="100"
         >
           <dxi-validation-rule type="required"></dxi-validation-rule>
           <dxo-lookup
@@ -2263,7 +2237,7 @@
         <dxi-column
           dataField="NUMREGSENESCYT"
           caption="No Registrado"
-          [width]="150"
+          [width]="100"
         >
         </dxi-column>
         <dxi-column
@@ -2273,15 +2247,15 @@
           [showEditorAlways]="true"
           dataField="ESTADO"
           caption="Estado"
-          [width]="150"
+          [width]="70"
         >
-          <dxi-validation-rule type="required"></dxi-validation-rule>
+          
         </dxi-column>
 
         <dxi-column
           dataField="ANIOGRADUAPREVISTA"
           caption="Año de graduación"
-          [width]="150"
+          [width]="100"
         >
         </dxi-column>
         <dxi-column
@@ -2309,3 +2283,4 @@
     </div>
   </div>
 </ng-template>
+</form>

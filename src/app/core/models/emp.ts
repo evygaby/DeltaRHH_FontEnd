@@ -1,7 +1,7 @@
 export class EMP {
 
         esnuevo?: boolean;    
-       CODEMP?: number=0;
+       CODEMP?: string="";
         APELLIDO_PAT?: string="";
         APELLIDO_MAT?: string="";
         APELLIDO_CAS?: string="";
@@ -17,7 +17,7 @@ export class EMP {
         PAIS?: string="";
         PROVINCIA?: string="";
         CIUDAD?: string="";
-        FECINGRESO?: string="";
+        FECINGRESO?: Date=new Date;
         FECSALIDA?: string="";
         SEGSOCIAL?: string="";
         NUMCEDULA?: string="";
@@ -28,8 +28,8 @@ export class EMP {
         CODCCOSTO?: string="";
         FECNAC?: string="";
         NUMEXT?: number=0;
-        NUMHIJOS?: number=0;
-        NUMDIAS?: number=0;
+        NUMHIJOS?:string="";
+        NUMDIAS?:string="";
         ACTIVO?: string="";
         ACTIVO_REPORTES_AUMENTOS1?: boolean;
         ACTIVO1?: boolean;
@@ -38,14 +38,14 @@ export class EMP {
         CELULAR?: string="";
         MNT_DIC?: number=0;
         HOR_DIC?: number=0;
-        BENEFICIO?: number=0;
+        BENEFICIO?:string="";
         CODGRUPO?: number;
         MNT_ABRIL?: number=0;
         MNT_ABRIL1?: number=0;
         MNT_ABRIL2?: number=0;
         MNT_DIC_2000?: number=0;
         CODCATEGORIA?: string="";
-        ACTIVO_REPORTES_AUMENTOS?: string="";
+        ACTIVO_REPORTES_AUMENTOS?: string=""; 
         DEDUCCION?: number=0;
         LIC_MATERNIDAD?: string="";
         FEC_MATERNIDADI?: string="";
@@ -64,24 +64,24 @@ export class EMP {
         ASISTE_V?: string="";
         SUELDO_DIC?: number=0;
         ANIOS_DOCENCIA?: number=0;
-        CANTON?: number=0;
+        // CANTON?: number=0;
         OTRAS_ACTIVIDADES?: string="";
-        BENEFICIO2?: number=0;
+        BENEFICIO2?: string="";
         MAIL?: string="";
         ID_INSTITUCION?: string="";
         PRESCOLAR?: string="";
         FEC_INGPRESCOLAR?: string="";
         FEC_SALPRESCOLAR?: string="";
-        ID_CLIENTE?: number=0;
+        ID_CLIENTE?: string="";
         FECHA_DIGITACION?: string="";
         ID_EMPRESA?: number=0;
         TIPO_DOCUMENTO?: string="";
         OBSERVACION?: string="";
         CODIGO_IESS?: number=0;
         DISCAPACIDAD?: string="";
-       
+        CUIDAD?: string="";
         DISCAPACIDAD1?: boolean;
-        PORC_DISCAPACIDAD?: number=0;
+        PORC_DISCAPACIDAD?: string="";
         COND_DISCAPACIDAD?: string="";
         TIPO_DOC_DISCAPACIDAD?: string="";
         ID_DISCAPACIDAD?: string="";
@@ -118,7 +118,7 @@ export class EMP {
         MOTIVO_SALIDA?: string="";
         FEC_AIESS?: string="";
         FEC_INI_JUBILACION?: string="";
-        SUELDO_JUBILADO?: number=0;
+        SUELDO_JUBILADO?: string="";
         LIC_SINSUELDO_EMPR?: string="";
         FEC_SINSUELDOEMPR_INI?: string="";
         FEC_SINSUELDOEMPR_FIN?: string="";

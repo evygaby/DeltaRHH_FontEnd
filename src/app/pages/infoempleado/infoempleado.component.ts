@@ -1,3 +1,4 @@
+import { estado } from './../../core/services/configuracion.service';
 // import { Messages } from 'devextreme/localization/messages/de.json';
 import { FamiliarDiscapicidad } from "./../../core/models/emp";
 import { Component, inject, Output, Pipe, PipeTransform } from "@angular/core";
@@ -13,6 +14,7 @@ import DataSource from "devextreme/data/data_source";
 import flatpickr from "flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { LoadingService } from "src/app/core/services/loading.service";
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 @Component({
   selector: "app-infoempleado",
   templateUrl: "./infoempleado.component.html",
@@ -22,7 +24,7 @@ import { LoadingService } from "src/app/core/services/loading.service";
 export class InfoempleadoComponent implements PipeTransform {
   empleado: EMP = {};
   empleados: EMP[] = [];
-  URB!: any;
+  URB: string = '';
   data!: any;
   CALLE_PRIN!: any;
   CALLE_SEC!: any;
@@ -56,9 +58,10 @@ tipocuentas!: any;
   employeesDataSource!: DataSource;
   generos!: any;
   carga!: any;
-  DesarrolloVivienda!: string;
+  DesarrolloVivienda: string="";
   zonas!: any;
   seguros!: any;
+  jefas!: any;
   extensiones!: any;
   familia!: any;
   foto!:any
@@ -71,21 +74,31 @@ tipocuentas!: any;
   TIPO_VI!: any;
   NO_DEPA!: any;
   condicion!: any;
+  intentoEnvio = false;
   tipodocumento!: any;
   titulos!: any;
-  sino!: any;
+  sino!: any;esRequerido = false;
   estadocivil!: any;
   tipocuenta!: any;
   titulosacademicos!: any;
-  
+    GCENTROCOSTO!: any;
   motivosalida!: any;
   tipodiscapcidad!: any;
   finalArray: Output[] = [];
+    miFormulario: FormGroup;
+  ciudad: string = ''; // ngModel standalone
+
   private cacheSubscription!: Subscription;
   private servicios = inject(EventService);
   private config = inject(ConfiguracionService);
   private loading = inject(LoadingService);
-  constructor(private cacheService: CacheService) {
+  constructor(private fb: FormBuilder,private cacheService: CacheService) {
+
+
+    this.miFormulario = this.fb.group({
+       nombre: ['', Validators.required],
+      edad: [null, [Validators.required, Validators.min(18)]],
+    });
     flatpickr.localize(Spanish);
     this.estudios=this.config.getestudio()
     this.motivosalida = this.config.getmotivosalida();
@@ -103,7 +116,10 @@ tipocuentas!: any;
     this.tipodiscapcidad = this.config.gettipodiscapcidad();
     this.cacheSubscription = this.cacheService.cache$.subscribe((data) => {
       if (data != null) {
-         if (data.clase == "iess") {
+         if (data.clase == "jefas") {
+          this.jefas = data.data;
+        }
+        if (data.clase == "iess") {
           this.iess = data.data;
         }
         if (data.clase == "cuenta") {
@@ -157,20 +173,47 @@ tipocuentas!: any;
     this.empleado = this.servicios.miObjeto;
     if(this.empleado.esnuevo){
       
-this.condicion="Guardar"
+    this.condicion="Guardar"
+    this.empleado.ACTIVO='S'
+    this.empleado.NUMDIAS='30'
+    this.empleado.ACTIVO_REPORTES_AUMENTOS='S'
+    this.empleado.TIPO_DOCUMENTO='C'
+    this.empleado.SEGURO='NO'
     }else{
       this.condicion="Editar"
       this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
-      this.servicios.ConsultarSueldos(this.user.Nombre!,this.user.password!,this.empleado.CODEMP!).subscribe(data => {
-        try {
-          this.sueldos = data
-          this.loading.closeSpinner()
-          
-        } catch (error) {
-          console.error(error);
-          // maneja el error como prefieras aquí
-        }
+     
+     const observables = {
+        a: this.servicios.get(
+          "Empleados/Sueldos?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password+
+            "&codemp=" +
+            Number.parseInt( this.empleado.CODEMP!)
+        ),
+        b: this.servicios.get(
+          "Empleados/GCENTROCOSTO2?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password
+        ),
+      
+      };
+      const combined = combineLatest(observables);
+      combined.subscribe({
+        next: (data: any) => {
+        
+          this.sueldos=data.a
+           this.GCENTROCOSTO=data.b
+         
+            
+        },
+        error: (error: any) => {},
       });
+
+     
+
     }
     
     this.fotoencuesta=this.empleado.NUMCEDULA
@@ -213,6 +256,11 @@ this.condicion="Guardar"
     
   }
   }
+    toBooleanG = (data: any) => data.ESTADO_GR === 'A';
+
+  fromBooleanG = (newData: any, value: boolean) => {
+    newData.ESTADO_GR = value ? 'A' : 'I';
+  };
   toBoolean = (data: any) => data.ESTADO === 'A';
 
   fromBoolean = (newData: any, value: boolean) => {
@@ -235,14 +283,29 @@ this.condicion="Guardar"
   fromBooleans = (newData: any, value: boolean) => {
     newData.ACTIVO = value ? 'S' : 'N';
   };
-  submit() {
-    if(this.empleado.esnuevo){
+  submit(form: NgForm) {
+        this.intentoEnvio = true;
+   if (form.valid) {
+     if(this.empleado.esnuevo){
       this.guardar()
           }else{
             this.actualizar()
           }
-  }
+  }else{
 
+          this.loading.showMensajeError("Revisar campos obligatorios");
+  }
+   
+  }
+  
+onSelectChange(event: Event) {
+  const value = (event.target as HTMLSelectElement).value;
+  if(value=='C'){
+    this.esRequerido = true;
+  }else{
+     this.esRequerido = false;
+  }
+}
   cambiarpaterno(ev:any){
 
    this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
@@ -428,7 +491,9 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
     
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-
+formatDolar(e: any) {
+return `$${Number(e.value).toFixed(2)}`;
+}
   getData(page: string): void {
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     const cachedData = this.cacheService.get(page);
@@ -447,18 +512,19 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
     const cachedTipoCuenta = this.cacheService.get("tipocuenta");
         const cachedCuenta = this.cacheService.get("cuenta");
         const cachediess= this.cacheService.get("iess");
+        const cachedjefas= this.cacheService.get("jefas");
     // Si los datos no están en caché, los recuperamos del servidor y los almacenamos en la caché.
     if (
       !cachedDatapr ||!cachedDataext ||!cachedDataseguros ||!cachedTipoCuenta ||
 
       !cachedDatapa ||  !cachedCuenta ||!cachediess ||
       !cachedDataca ||
-      !cachedDatazo ||
+      !cachedDatazo ||   !cachedjefas||
       !cachedDatacent||!cachedDataDepa||!cachedDataListaCargos||!cachedDataSecciones||!cachedDataBanco
     ) {
       const observables = {
         a: this.servicios.get(
-          "Empleados/CANTONES?usu=" +
+          "Empleados/CUIDADES?usu=" +
             this.user.Nombre +
             "&contrasena=" +
             this.user.password
@@ -559,6 +625,12 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
             "&contrasena=" +
             this.user.password 
         ),
+         jefas: this.servicios.get(
+          "Empleados/JEFAS?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password 
+        ),
       };
       const combined = combineLatest(observables);
       combined.subscribe({
@@ -577,7 +649,13 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
           this.ListaCargos=data.lc
           this.Secciones=data.secc
           this.Bancos=data.bancos
-          
+          this.jefas=data.jefas
+           this.cacheService.set(
+            "jefas",
+            "jefas",
+            new Date(),
+            data.jefas
+          );
           this.cacheService.set(
             "cuenta",
             "cuenta",

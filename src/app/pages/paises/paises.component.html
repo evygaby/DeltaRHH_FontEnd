@@ -5,29 +5,29 @@
               <div id="app-container">
                 <dx-data-grid id="dataGrid"
                   [dataSource]="remoteDataSource"
-                  keyExpr="CODPAIS"
-                  [allowColumnResizing]="true"
-                  [columnAutoWidth]="true"
-                  [allowColumnReordering]="true"
+                  keyExpr="CODPAIS"             
                   [showBorders]="true"
                   >
 
-                  <dxi-column type="buttons" [width]="110">
-                    <dxi-button name="edit"></dxi-button>
-                   
-                  
-                  </dxi-column>
-                  <dxi-column dataField="CODPAIS" [width]="200" [fixed]="true" caption="Codigo">
+              <dxi-column
+  caption="Acción"
+  type="buttons"
+  [buttons]="['edit']"
+  [fixed]="true"
+  fixedPosition="left"
+  alignment="left">
+</dxi-column>
+                  <dxi-column dataField="CODPAIS" [width]="200"  caption="Codigo">
                     <dxi-validation-rule type="required"></dxi-validation-rule>
                     <dxi-validation-rule type="stringLength" max="2" message="Máximo 2 caracteres."></dxi-validation-rule>
                   </dxi-column>
-                  <dxi-column dataField="NOMPAIS" [width]="200" [fixed]="true" caption="Nombre">
+                  <dxi-column dataField="NOMPAIS" [width]="400"  caption="Nombre">
                     <dxi-validation-rule type="required"></dxi-validation-rule>
                   </dxi-column>
   
   
   
-                  <dxi-column dataField="NACIONALIDAD" [width]="200" caption="Nacionalidad">
+                  <dxi-column dataField="NACIONALIDAD" [width]="400" caption="Nacionalidad">
                     <dxi-validation-rule type="required" ></dxi-validation-rule>
                     
                   </dxi-column>

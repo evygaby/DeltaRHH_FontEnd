@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NgbToastModule, NgbProgressbarModule,
   NgbNavModule,
@@ -68,7 +68,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
     NgbToastModule,DxTextAreaModule,
     NgbProgressbarModule,DropzoneModule,NgbDatepickerModule,
     FlatpickrModule.forRoot(),
-    CountToModule,
+    CountToModule,ReactiveFormsModule,
     NgApexchartsModule,NgbNavModule,
     LeafletModule,
     NgbDropdownModule,NgSelectModule,DxBoxModule,

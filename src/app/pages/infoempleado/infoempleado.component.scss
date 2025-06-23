@@ -1,0 +1,18 @@
+.responsive-grid {
+  width: 100%;
+  overflow-x: auto;
+}
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+.is-invalid {
+border: 1px solid red !important;
+  background-color: #ffe6e6;
+}
+.flatpickr-input.is-invalid {
+  border-color: #dc3545;
+}
+input.flatpickr-input.is-invalid + .form-control.is-invalid {
+  border-color: #dc3545;
+}

@@ -115,6 +115,10 @@ post(url:string,parametros: Parametros[]) {
     Consultarempleados(usu:string,pass:string,idempresa:number):Observable<any> {
       return this.http.get(this.config.apiUrl+"Empleados/Get?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
   }
+    ConsultarGcentrocosto(usu:string,pass:string):Observable<any> {
+      const link =this.config.apiUrl+"Empleados/GCENTROCOSTO?usu="+usu+"&contrasena="+pass
+    return this.http.get(this.config.apiUrl+"Empleados/GCENTROCOSTO?usu="+usu+"&contrasena="+pass, httpOptions);
+}
   ConsultarSueldos(usu:string,pass:string,codemp:number):Observable<any> {
     return this.http.get(this.config.apiUrl+"Empleados/Sueldos?usu="+usu+"&contrasena="+pass+"&codemp="+codemp, httpOptions);
 }

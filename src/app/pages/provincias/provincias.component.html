@@ -12,22 +12,22 @@
                   [showBorders]="true"
                   >
 
-                  <dxi-column type="buttons" [width]="110">
+                  <dxi-column type="buttons" [width]="110"  caption="Acción">
                     <dxi-button name="edit"></dxi-button>
                    
                   
                   </dxi-column>
-                  <dxi-column dataField="CODPROV" [width]="200" [fixed]="true" caption="Codigo">
+                  <dxi-column dataField="CODPROV" [width]="200"  caption="Codigo">
                     <dxi-validation-rule type="required"></dxi-validation-rule>
                     <dxi-validation-rule type="stringLength" max="2" message="Máximo 2 caracteres."></dxi-validation-rule>
                   </dxi-column>
-                  <dxi-column dataField="NOMPROV" [width]="200" [fixed]="true" caption="Nombre">
+                  <dxi-column dataField="NOMPROV" [width]="400"  caption="Nombre">
                     <dxi-validation-rule type="required"></dxi-validation-rule>
                   </dxi-column>
   
   
   
-                  <dxi-column dataField="CODPAIS" [width]="200" caption="PAIS">
+                  <dxi-column dataField="CODPAIS" [width]="400" caption="PAIS">
                     <dxi-validation-rule type="required" ></dxi-validation-rule>
                     <dxo-lookup
                     [dataSource]="paises"
@@ -40,7 +40,6 @@
                     
                   </dxi-column>
   
-                  <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                   <dxo-search-panel [visible]="true"></dxo-search-panel>
   
