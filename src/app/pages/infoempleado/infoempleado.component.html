@@ -99,7 +99,8 @@
 >
   {{ condicion }}
 </button>
-
+  <button (click)="onClick()" class="btn rounded-pill btn-danger waves-effect waves-light" type="button" id="button-addon1">Regresar</button>
+     
 <ng-template #TabContent>
   <div class="row align-items-start">
     <div class="row">
@@ -139,14 +140,24 @@
                   >Cédula</label
                 >
                 <input
-                  type="number"
+                 *ngIf="isnumerico"
+                   type="text"
+                  [maxlength]="maxlength"
+                  pattern="\d*"
                   [(ngModel)]="empleado.NUMCEDULA"
-                     [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
+                  [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
                   class="form-control form-control-sm" name="NUMCEDULA" required  #NUMCEDULA="ngModel"
                   id="NUMCEDULA"
                   placeholder=""
                 />
-                  
+                     <input
+                  type="text" *ngIf="!isnumerico"           
+                  [(ngModel)]="empleado.NUMCEDULA"
+                     [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
+                  class="form-control form-control-sm" name="NUMCEDULA2" required  #NUMCEDULA="ngModel"
+                  id="NUMCEDULA2"
+                  placeholder=""
+                />
               </div>
               <div
                 class="col-sm-3"
@@ -158,7 +169,7 @@
                   class="col-sm-12"
                   >Tipo Documento</label
                 >
-                <select
+                <select (change)="onSelectChangecedula($event)"
                   class="form-control form-control-sm"  name="TIPO_DOCUMENTO" required  #TIPO_DOCUMENTO="ngModel"
                   [(ngModel)]="empleado.TIPO_DOCUMENTO"
                     [class.is-invalid]="(TIPO_DOCUMENTO.invalid && (TIPO_DOCUMENTO.touched || intentoEnvio))"
@@ -173,33 +184,7 @@
                 </select>
                 
               </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Apellido Materno</label
-                >
-                <input
-                  type="text"
-                  (input)="cambiarmaterno($event)"
-                  [(ngModel)]="empleado.APELLIDO_MAT" name="APELLIDO_MAT" required  #APELLIDO_MAT="ngModel"
-                  class="form-control form-control-sm" 
-                  id="APELLIDO_MAT"
-                    [class.is-invalid]="(APELLIDO_MAT.invalid && (APELLIDO_MAT.touched || intentoEnvio))"
-                  
-                  placeholder=""
-                />
-                 
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="row align-items-start">
-              <div
+                 <div
                 class="col-sm-3"
                 style="padding-right: 0px; padding-left: 0px"
               >
@@ -221,6 +206,35 @@
                 />
                 
               </div>
+             
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="row align-items-start">
+           
+ <div
+                class="col-sm-3"
+                style="padding-right: 0px; padding-left: 0px"
+              >
+                <label
+                  for="colFormLabelSm"
+                  style="font-size: 9px"
+                  class="col-sm-12"
+                  >Apellido Materno</label
+                >
+                <input
+                  type="text"
+                  (input)="cambiarmaterno($event)"
+                  [(ngModel)]="empleado.APELLIDO_MAT" name="APELLIDO_MAT" required  #APELLIDO_MAT="ngModel"
+                  class="form-control form-control-sm" 
+                  id="APELLIDO_MAT"
+                    [class.is-invalid]="(APELLIDO_MAT.invalid && (APELLIDO_MAT.touched || intentoEnvio))"
+                  
+                  placeholder=""
+                />
+                 
+              </div>
+
               <div
                 class="col-sm-3"
                 style="padding-right: 0px; padding-left: 0px"
@@ -346,7 +360,7 @@
                   type="number"
                   [(ngModel)]="empleado.TLF1"
                   class="form-control form-control-sm" name="TLF1"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm88"
                   placeholder=""
                 />
               </div>
@@ -364,7 +378,7 @@
                   type="number"
                   [(ngModel)]="empleado.TLF2"
                   class="form-control form-control-sm" name="TLF2"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm2"
                   placeholder=""
                 />
               </div>
@@ -447,7 +461,7 @@
           type="text"
           [(ngModel)]="empleado.DIRECCION" name="DIRECCION"
           class="form-control form-control-sm"
-          id="colFormLabelSm"
+          id="colFormLabelSm3"
           placeholder=""
         />
       </div>
@@ -766,7 +780,7 @@
             >
     
             <select id="rrer"
-              class="form-control form-control-sm"
+              class="form-control form-control-sm" name="rrer"
               [class.is-invalid]="(CIUDAD.invalid && (CIUDAD.touched || intentoEnvio))"
               [(ngModel)]="empleado.CIUDAD" name="CIUDAD" required  #CIUDAD="ngModel"
               aria-label="Default select example"
@@ -886,7 +900,7 @@
                 *ngFor="let person of extensiones"
                 value="{{ person.NUMEXT }}"
               >
-                {{ person.DSCEXT }}
+               {{ person.NUMEXT }} - {{ person.DSCEXT }}
               </option>
             </select>
           </div>
@@ -997,7 +1011,7 @@
             caption="ESTADO"
             [width]="100"
           >
-            <dxi-validation-rule type="required"></dxi-validation-rule>
+  
           </dxi-column>
           <dxo-editing
             mode="popup"
@@ -1030,7 +1044,7 @@
               type="text"
               [(ngModel)]="empleado.PROFESION" name="PROFESION"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm4"
               placeholder=""
             />
           </div>
@@ -1042,7 +1056,7 @@
               type="text"
               [(ngModel)]="empleado.MAIL" name="MAIL"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm5"
               placeholder=""
             />
           </div>
@@ -1062,7 +1076,7 @@
               [convertModelValue]="true"  name="FEC_INGPRESCOLAR"
               [(ngModel)]="empleado.FEC_INGPRESCOLAR"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm6"
               placeholder=""
             />
           </div>
@@ -1077,7 +1091,7 @@
               [convertModelValue]="true" 
               [(ngModel)]="empleado.FEC_SALPRESCOLAR"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm7"
               placeholder=""
             />
           </div>
@@ -1147,7 +1161,7 @@
               [convertModelValue]="true" 
               [(ngModel)]="empleado.FEC_AIESS"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm8"
               placeholder=""
             />
           </div>
@@ -1162,7 +1176,7 @@
               [convertModelValue]="true" name="FEC_INI_JUBILACION"
               [(ngModel)]="empleado.FEC_INI_JUBILACION"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm99"
               placeholder=""
             />
           </div>
@@ -1202,7 +1216,7 @@
               [convertModelValue]="true" name="FECINGRESO"
               [(ngModel)]="empleado.FECINGRESO"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm11"
               placeholder=""
             />
           </div>
@@ -1319,7 +1333,7 @@
             caption="ESTADO"
             [width]="70"
           >
-            <dxi-validation-rule type="required"></dxi-validation-rule>
+
           </dxi-column>
 
           <dxo-editing
@@ -1388,7 +1402,7 @@
             caption="ESTADO"
             [width]="70"
           >
-            <dxi-validation-rule type="required"></dxi-validation-rule>
+        
           </dxi-column>
 
           <dxi-column dataField="PORCENT" caption="Porcentaje" [width]="100">
@@ -1442,7 +1456,7 @@
               type="number"
               [(ngModel)]="empleado.NUMDIAS" name="NUMDIAS"
               class="form-control form-control-sm"
-              id="colFormLabelSm"
+              id="colFormLabelSm22"
               placeholder=""
             />
           </div>
@@ -1489,13 +1503,12 @@
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Porcentaje Discapacidad</label
             >
-            <input
-              type="number"
-              [(ngModel)]="empleado.PORC_DISCAPACIDAD" name="PORC_DISCAPACIDAD"
-              class="form-control form-control-sm"
-              id="colFormLabelSm"
-              placeholder=""
-            />
+  <dx-number-box
+  [(ngModel)]="empleado.PORC_DISCAPACIDAD"
+  [min]="1"
+  [max]="100" name="PORC_DISCAPACIDAD"
+  placeholder="">
+</dx-number-box>
           </div>
 
        
@@ -1507,6 +1520,8 @@
 <ng-template #TabContent1>
   <dx-data-grid
     id="gridContainer"
+    (onEditorPreparing)="onEditorPreparing($event)"
+     (onRowUpdating)="onRowUpdating($event)"
     [dataSource]="empleado.Departamentos!"
     keyExpr="CODCRG"
    [columnAutoWidth]="true"
@@ -1515,7 +1530,7 @@
   [allowColumnResizing]="true"
   columnResizingMode="widget"
   class="responsive-grid"
-    [height]="250"
+    [height]="700"
   >
     <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
     <dxi-column type="buttons" caption="Acción" [width]="100">
@@ -1546,7 +1561,7 @@
     <dxi-column dataField="CODSEC" caption="Sección" [width]="170">
       <dxi-validation-rule type="required"></dxi-validation-rule>
       <dxo-lookup
-        [dataSource]="Secciones"
+        [dataSource]="seccionfiltrada"
         displayExpr="NOMSEC"
         valueExpr="CODSEC"
       ></dxo-lookup>
@@ -1583,6 +1598,7 @@
       [allowDeleting]="true"
       [allowAdding]="true"
     >
+
     </dxo-editing>
     <dxo-popup
       title="Editar "
@@ -1605,9 +1621,9 @@
   [allowColumnResizing]="true"
   columnResizingMode="widget"
   class="responsive-grid"
-    [height]="450"
+    [height]="650"
   >
-    <dxo-paging [pageSize]="10"> </dxo-paging>
+    <dxo-paging [pageSize]="25"> </dxo-paging>
     <dxo-pager
       [visible]="true"
       [showInfo]="true"
@@ -1689,7 +1705,7 @@
             type="text"
             [(ngModel)]="empleado.NOMBRECONYUGE"  name="NOMBRECONYUGE"
             class="form-control form-control-sm"
-            id="colFormLabelSm"
+            id="colFormLabelSm33"
             placeholder=""
           />
         </div>
@@ -1704,7 +1720,7 @@
             [convertModelValue]="true" name="FECHAMATRICIVIL"
             [(ngModel)]="empleado.FECHAMATRICIVIL"
             class="form-control form-control-sm"
-            id="colFormLabelSm"
+            id="colFormLabelSm34"
             placeholder=""
           />
         </div>
@@ -1723,7 +1739,7 @@
             [convertModelValue]="true"
             [(ngModel)]="empleado.FECHAMATRIECLE" name="FECHAMATRIECLE"
             class="form-control form-control-sm"
-            id="colFormLabelSm"
+            id="colFormLabelSm36"
             placeholder=""
           />
         </div>
@@ -1735,7 +1751,7 @@
             type="number"
             [(ngModel)]="empleado.TELEFONOCONYUGE" name="TELEFONOCONYUGE"
             class="form-control form-control-sm"
-            id="colFormLabelSm"
+            id="colFormLabelSm39"
             placeholder=""
           />
         </div>
@@ -1753,23 +1769,12 @@
             type="text"
             [(ngModel)]="empleado.EMAILPERSONAL" name="EMAILPERSONAL"
             class="form-control form-control-sm"
-            id="colFormLabelSm"
+            id="colFormLabelSm77"
             placeholder=""
           />
         </div>
 
-        <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >No afiliación</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.APELLIDO_PAT" name="APELLIDO_PAT"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            placeholder=""
-          />
-        </div>
+       
         <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
           <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
             >Ruc</label
@@ -1778,7 +1783,7 @@
             type="text"
             [(ngModel)]="empleado.RUC" name="RUC"
             class="form-control form-control-sm"
-            id="colFormLabelSm"
+            id="colFormLabelSm79"
             placeholder=""
           />
         </div>
@@ -1806,7 +1811,7 @@
                   type="text"
                   [(ngModel)]="empleado.CONTACTOEMERGENCIA" name="CONTACTOEMERGENCIA"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm378"
                   placeholder=""
                 />
               </div>
@@ -1847,7 +1852,7 @@
                   type="text"
                   [(ngModel)]="empleado.OTROPARENTEMERGENCIA"  name="OTROPARENTEMERGENCIA"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm666666"
                   placeholder=""
                 />
               </div>
@@ -1865,7 +1870,7 @@
                   type="number"
                   [(ngModel)]="empleado.TELEFONOEMERGENCIA" name="TELEFONOEMERGENCIA"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm77777"
                   placeholder=""
                 />
               </div>
@@ -1887,7 +1892,7 @@
                   type="text"
                   [(ngModel)]="empleado.CONTACTOEMERGENCIA2" name="CONTACTOEMERGENCIA2"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm8888"
                   placeholder=""
                 />
               </div>
@@ -1928,7 +1933,7 @@
                   type="text"
                   [(ngModel)]="empleado.OTROPARENTEMERGENCIA2" name="OTROPARENTEMERGENCIA2"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="colFormLabelSm999999999"
                   placeholder=""
                 />
               </div>
@@ -1973,7 +1978,7 @@
   [allowColumnResizing]="true"
   columnResizingMode="widget"
   class="responsive-grid"
-                [height]="200"
+              [height]="400"
               >
                 <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
                 <dxi-column type="buttons" caption="Acción" [width]="100">
@@ -2090,7 +2095,7 @@
   [allowColumnResizing]="true"
   columnResizingMode="widget"
   class="responsive-grid"
-    [height]="250"
+   [height]="700"
   >
     <dxi-column type="buttons" caption="Acción " [width]="150">
       <dxi-button name="edit" icon="assets/images/btn_edit.png"></dxi-button>
@@ -2177,7 +2182,7 @@
   [showBorders]="true"
   [allowColumnResizing]="true"
   columnResizingMode="widget"
-        [height]="400"
+      [height]="700"
       >
         <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
         <dxi-column type="buttons" caption="Acción" [width]="100">

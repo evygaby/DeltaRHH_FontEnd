@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxBoxModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -63,7 +63,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
     ProvinciasComponent,
   ],
   imports: [
-    CommonModule,
+    CommonModule,DxNumberBoxModule,
     FormsModule,DxCheckBoxModule, DxDateBoxModule,MatNativeDateModule,
     NgbToastModule,DxTextAreaModule,
     NgbProgressbarModule,DropzoneModule,NgbDatepickerModule,

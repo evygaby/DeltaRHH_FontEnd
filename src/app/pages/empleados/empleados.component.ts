@@ -58,7 +58,7 @@ export class EmpleadosComponent {
     
       e.cancel = true;
     }
-    
+  
     getData(page: string): void {
     const cachedData = this.cacheService.get(page);
 

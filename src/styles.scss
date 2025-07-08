@@ -2,3 +2,16 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+
+[aria-label="Guardar"] .dx-button-content {
+  background-color: #364574 !important; /* Verde */
+  color: white !important;
+  border-radius: 4px;
+}
+
+/* Botón CANCELAR del popup del dx-data-grid */
+[aria-label="Cancelar"] .dx-button-content {
+  background-color: #dc3545 !important; /* Rojo */
+  color: white !important;
+  border-radius: 4px;
+}

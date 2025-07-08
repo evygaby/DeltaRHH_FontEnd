@@ -1,7 +1,9 @@
+import { OfflineComponent } from './../../account/auth/errors/offline/offline.component';
+import { filter } from 'rxjs/operators';
 import { estado } from './../../core/services/configuracion.service';
 // import { Messages } from 'devextreme/localization/messages/de.json';
 import { FamiliarDiscapicidad } from "./../../core/models/emp";
-import { Component, inject, Output, Pipe, PipeTransform } from "@angular/core";
+import { Component, inject, Output, Pipe, PipeTransform, ViewEncapsulation } from "@angular/core";
 import { EventService } from "src/app/core/services/event.service";
 import { EmpleadosComponent } from "../empleados/empleados.component";
 import { EMP } from "src/app/core/models/emp";
@@ -15,10 +17,12 @@ import flatpickr from "flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { LoadingService } from "src/app/core/services/loading.service";
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: "app-infoempleado",
   templateUrl: "./infoempleado.component.html",
   styleUrls: ["./infoempleado.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class InfoempleadoComponent implements PipeTransform {
@@ -79,6 +83,8 @@ tipocuentas!: any;
   titulos!: any;
   sino!: any;esRequerido = false;
   estadocivil!: any;
+seccionfiltrada!: any;
+  isnumerico!:boolean
   tipocuenta!: any;
   titulosacademicos!: any;
     GCENTROCOSTO!: any;
@@ -87,17 +93,19 @@ tipocuentas!: any;
   finalArray: Output[] = [];
     miFormulario: FormGroup;
   ciudad: string = ''; // ngModel standalone
-
+   maxlength:number=0
+   minLength:number=0
   private cacheSubscription!: Subscription;
   private servicios = inject(EventService);
   private config = inject(ConfiguracionService);
   private loading = inject(LoadingService);
-  constructor(private fb: FormBuilder,private cacheService: CacheService) {
+  constructor(private fb: FormBuilder,private cacheService: CacheService,private router: Router) {
 
 
     this.miFormulario = this.fb.group({
        nombre: ['', Validators.required],
-      edad: [null, [Validators.required, Validators.min(18)]],
+       edad: [null, [Validators.required, Validators.min(18)]],
+       
     });
     flatpickr.localize(Spanish);
     this.estudios=this.config.getestudio()
@@ -171,6 +179,9 @@ tipocuentas!: any;
     });
     this.getData("info");
     this.empleado = this.servicios.miObjeto;
+    if(this.empleado.esnuevo==undefined){
+this.router.navigate(['/empleados']);
+    }
     if(this.empleado.esnuevo){
       
     this.condicion="Guardar"
@@ -182,7 +193,20 @@ tipocuentas!: any;
     }else{
       this.condicion="Editar"
       this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
-     
+     if(this.empleado.TIPO_DOCUMENTO=='C'){
+      this.isnumerico=true
+      this.minLength=10
+      this.maxlength=10
+     }
+      if(this.empleado.TIPO_DOCUMENTO=='R'){
+      this.isnumerico=true
+      this.minLength=10
+      this.maxlength=10
+     }
+      if(this.empleado.TIPO_DOCUMENTO=='P'){
+      this.isnumerico=false
+      
+     }
      const observables = {
         a: this.servicios.get(
           "Empleados/Sueldos?usu=" +
@@ -256,6 +280,50 @@ tipocuentas!: any;
     
   }
   }
+
+
+  onEditorPreparing(e: any) {
+  if (e.parentType === 'dataRow' && e.dataField === 'CODDEP') {
+    e.editorOptions.onValueChanged = (args: any) => {
+      const nuevoValor = args.value;
+     this.seccionfiltrada= this.Secciones.filter((p: { coddep:any, CODSEC: any,NOMSEC:any }) => p.coddep==args.value);
+      console.log('Categoría cambiada a:', nuevoValor);
+
+      // Opcional: puedes actualizar otro campo o disparar lógica personalizada
+      e.setValue(nuevoValor); // esto es importante para que guarde el valor
+    };
+  }
+}
+
+onRowUpdating(e: any) {
+if(e.newData.CARGO_PRINCIPAL ='S'){
+  this.empleado.Departamentos?.forEach((value, index, array) => {
+  if(value.CODCRG!=e.oldData.CODCRG){
+    value.CARGO_PRINCIPAL='N'
+  }
+});
+}
+
+
+  console.log('Antes de guardar cambios:', e.oldData, '→', e.newData);
+}
+
+
+onSelectChangecedula(event: Event){
+  const value = (event.target as HTMLSelectElement).value;
+  if(value=='C'){
+    this.minLength=10
+this.maxlength=10
+  }
+if(value=='R'){
+    this.minLength=13
+this.maxlength=13
+  }
+if(value=='P'){
+    this.isnumerico=false
+  }
+}
+
     toBooleanG = (data: any) => data.ESTADO_GR === 'A';
 
   fromBooleanG = (newData: any, value: boolean) => {
@@ -331,6 +399,13 @@ onSelectChange(event: Event) {
   }
 
   guardar() {
+
+const cantidadActivos = this.empleado.Departamentos!.filter(u=> u.CARGO_PRINCIPAL=='S').length;
+if(cantidadActivos>1){
+  this.loading.showMensajeError("Cargo principal solo debe de ser uno");
+  return
+}
+
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Guardando");
     this.empleado.LIC_MATERNIDAD="N"
@@ -404,6 +479,12 @@ onSelectChange(event: Event) {
       });
   }
   actualizar() {
+
+const cantidadActivos = this.empleado.Departamentos!.filter(u=> u.CARGO_PRINCIPAL=='S').length;
+if(cantidadActivos>1){
+  this.loading.showMensajeError("Cargo principal solo debe de ser uno");
+  return
+}
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Actualizando");
     this.empleado.ID_EMPRESA = this.user.IdCompania!;
@@ -485,7 +566,10 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
         },
       });
   }
+  onClick(){
+this.router.navigate(['/empleados']);
 
+    }
  transform(value: any): any {
     if (!value) return value;
     

@@ -16,3 +16,7 @@ border: 1px solid red !important;
 input.flatpickr-input.is-invalid + .form-control.is-invalid {
   border-color: #dc3545;
 }
+:host ::ng-deep .dx-datagrid-headers .dx-header-row .dx-datagrid-text-content {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}

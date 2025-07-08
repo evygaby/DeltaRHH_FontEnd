@@ -2,3 +2,10 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+  .padre {
+  text-align: center;
+}
+:host ::ng-deep .dx-datagrid-headers .dx-header-row .dx-datagrid-text-content {
+  font-size: 20px !important;
+  font-weight: bold !important;
+}

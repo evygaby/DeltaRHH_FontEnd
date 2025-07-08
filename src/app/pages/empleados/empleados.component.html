@@ -1,14 +1,20 @@
-
+<div class="row">
+    <div class="col-lg-12">
         <div class="card">
-  
+            <div class="card-body">
+              <div id="app-container">
+         
                  <dx-data-grid
                   id="gridContainer"
                   (onExporting)="onExporting($event)"
                   (onToolbarPreparing)="agregarBotonesToolbar($event)"
                   [dataSource]="customers"
                   keyExpr="CODEMP"
+                    [allowColumnResizing]="true"
+                  [columnAutoWidth]="true"
+                  [allowColumnReordering]="true"
                   [showBorders]="true"
-                  [height] = "500"
+                 [height]="700"
                 ><dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-group-panel [visible]="true"></dxo-group-panel>
@@ -37,9 +43,9 @@
               </dxi-column>
 
                 <dxi-column dataField="CODEMP" caption="Codigo" [width]="100" ></dxi-column>
-                <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno" [width]="150"></dxi-column>
-                <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" [width]="150"></dxi-column>
-                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="150"></dxi-column>
+                <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno" [width]="200"></dxi-column>
+                <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" [width]="200"></dxi-column>
+                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="200"></dxi-column>
                 <dxi-column dataField="NOMBRES" caption="Nombres"  [width]="200"></dxi-column>
                 <dxi-column dataField="RAZONSOCIAL" caption="Razón Social" [width]="300"></dxi-column>
                 <dxi-column dataField="SEXO" caption="Sexo" [width]="100" >
@@ -50,7 +56,7 @@
       valueExpr="ID"
     ></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="TIPCONTRATO" caption="Tipo Contrato">
+                <dxi-column dataField="TIPCONTRATO" caption="Tipo Contrato" [width]="200">
                   <dxi-validation-rule type="required" ></dxi-validation-rule>
                   <dxo-lookup
                     [dataSource]="tipocontrato"
@@ -59,7 +65,12 @@
                   ></dxo-lookup>
                 </dxi-column>
                 <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+                
                 </dx-data-grid>
   
-              </div>
+             </div>
+            </div>
+        </div>
+    </div>
+  </div>
           

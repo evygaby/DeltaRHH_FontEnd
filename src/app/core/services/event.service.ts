@@ -102,12 +102,14 @@ post(url:string,parametros: Parametros[]) {
     }
     guardarempleado(empleado:EMP,usu:string,pass:string){
         const valor=JSON.stringify(empleado)
+         console.log(valor)
        const header = new HttpHeaders({ 'Content-Type': 'application/json' });
      return  this.http.post<any>(this.config.apiUrl+ 'Empleados/Post?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
     
       }
     actualizandoempleado(empleado:EMP,usu:string,pass:string){
         const valor=JSON.stringify(empleado)
+        console.log(valor)
        const header = new HttpHeaders({ 'Content-Type': 'application/json' });
      return  this.http.put<any>(this.config.apiUrl+ 'Empleados/Put?usu='+usu+"&contrasena="+pass,JSON.stringify(empleado), {headers:header})
     
@@ -115,6 +117,8 @@ post(url:string,parametros: Parametros[]) {
     Consultarempleados(usu:string,pass:string,idempresa:number):Observable<any> {
       return this.http.get(this.config.apiUrl+"Empleados/Get?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
   }
+
+  
     ConsultarGcentrocosto(usu:string,pass:string):Observable<any> {
       const link =this.config.apiUrl+"Empleados/GCENTROCOSTO?usu="+usu+"&contrasena="+pass
     return this.http.get(this.config.apiUrl+"Empleados/GCENTROCOSTO?usu="+usu+"&contrasena="+pass, httpOptions);
