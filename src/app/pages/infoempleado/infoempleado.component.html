@@ -1,42 +1,38 @@
-
-
-
 <div class="row">
-
-    <div class="card">
-      <div class="card-body">
-        <!-- Nav tabs -->
-        <ul
-          ngbNav
-          #Justify="ngbNav"
-          [activeId]="1"
-          class="nav nav-tabs mb-3 nav-justified"
-        >
-          <li [ngbNavItem]="1">
-            <a ngbNavLink>
-              <span class="d-sm-block">DATOS GENERALES</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-            </ng-template>
-          </li>
-          <li [ngbNavItem]="2">
-            <a ngbNavLink>
-              <span class="d-sm-block">CARGOS DESENPEÑADOS</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
-            </ng-template>
-          </li>
-          <li [ngbNavItem]="3">
-            <a ngbNavLink>
-              <span class="d-sm-block">HISTORIAL</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent2"></ng-template>
-            </ng-template>
-          </li>
-          <!-- <li [ngbNavItem]="4">
+  <div class="card">
+    <div class="card-body">
+      <!-- Nav tabs -->
+      <ul
+        ngbNav
+        #Justify="ngbNav"
+        [activeId]="1"
+        class="nav nav-tabs mb-3 nav-justified"
+      >
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>
+            <span class="d-sm-block">DATOS GENERALES</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>
+            <span class="d-sm-block">CARGOS DESENPEÑADOS</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink>
+            <span class="d-sm-block">HISTORIAL</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent2"></ng-template>
+          </ng-template>
+        </li>
+        <!-- <li [ngbNavItem]="4">
                 <a ngbNavLink>
                     <span class="d-sm-block">HORARIO LABORAL</span>
                 </a>
@@ -44,372 +40,420 @@
                     <ng-template [ngTemplateOutlet]="TabContent3"></ng-template>
                 </ng-template>
             </li> -->
-          <li [ngbNavItem]="5">
-            <a ngbNavLink>
-              <span class="d-sm-block">CAPACITACIONES</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent4"></ng-template>
-            </ng-template>
-          </li>
-          <li [ngbNavItem]="6">
-            <a ngbNavLink>
-              <span class="d-sm-block">DATOS ADICIONALES</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent5"></ng-template>
-            </ng-template>
-          </li>
-          <li [ngbNavItem]="7">
-            <a ngbNavLink>
-              <span class="d-sm-block">ESTRUCTURA FAMILIAR</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent6"></ng-template>
-            </ng-template>
-          </li>
-          <li [ngbNavItem]="8">
-            <a ngbNavLink>
-              <span class="d-sm-block">NIVEL DE ESTUDIOS</span>
-            </a>
-            <ng-template ngbNavContent>
-              <ng-template [ngTemplateOutlet]="TabContent7"></ng-template>
-            </ng-template>
-          </li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content text-muted">
-          <div [ngbNavOutlet]="Justify"></div>
-        </div>
+        <li [ngbNavItem]="5">
+          <a ngbNavLink>
+            <span class="d-sm-block">CAPACITACIONES</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent4"></ng-template>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="6">
+          <a ngbNavLink>
+            <span class="d-sm-block">DATOS ADICIONALES</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent5"></ng-template>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="7">
+          <a ngbNavLink>
+            <span class="d-sm-block">ESTRUCTURA FAMILIAR</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent6"></ng-template>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="8">
+          <a ngbNavLink>
+            <span class="d-sm-block">NIVEL DE ESTUDIOS</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent7"></ng-template>
+          </ng-template>
+        </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content text-muted">
+        <div [ngbNavOutlet]="Justify"></div>
       </div>
-      <!-- end card-body -->
     </div>
-    <!-- end card -->
+    <!-- end card-body -->
+  </div>
+  <!-- end card -->
 
   <!--end col-->
 </div>
 
-
 <!--end row-->
-<form #form="ngForm" autoFocusInvalid  (ngSubmit)="submit(form)">
-<button
-  type="submit"
- 
-  class="btn rounded-pill btn-primary waves-effect waves-light"
->
-  {{ condicion }}
-</button>
-  <button (click)="onClick()" class="btn rounded-pill btn-danger waves-effect waves-light" type="button" id="button-addon1">Regresar</button>
-     
-<ng-template #TabContent>
-  <div class="row align-items-start">
-    <div class="row">
-      <div class="col-sm-10" style="padding-right: 0px; padding-left: 0px">
-        <div class="row" >
-          <div class="col-sm-6">
-            <div class="row align-items-start">
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Codigo</label
-                >
-                <input type="number"
-                  id="CODEMP" 
-                 
-                  [(ngModel)]="empleado.CODEMP" 
-                  class="form-control form-control-sm" name="CODEMP" readonly   #nombreCampo="ngModel"
-                  id="CODEMP"
-                  placeholder=""
-                />
-               
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Cédula</label
-                >
-                <input
-                 *ngIf="isnumerico"
-                   type="text"
-                  [maxlength]="maxlength"
-                  [minlength]="maxlength"
-                  currencyInput
-                  data-priority="1"
-                  [(ngModel)]="empleado.NUMCEDULA"
-                  [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
-                  class="form-control form-control-sm" name="NUMCEDULA" required  #NUMCEDULA="ngModel"
-                  id="NUMCEDULA"
-                  placeholder=""
-                />
-                     <input
-                     data-priority="1"
-                  type="text" *ngIf="!isnumerico"           
-                  [(ngModel)]="empleado.NUMCEDULA"
-                     [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
-                  class="form-control form-control-sm" name="NUMCEDULA2" required  #NUMCEDULA="ngModel"
-                  id="NUMCEDULA2"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Tipo Documento</label
-                >
-                <select (change)="onSelectChangecedula($event)" data-priority="2"
-                  class="form-control form-control-sm"  name="TIPO_DOCUMENTO" required  #TIPO_DOCUMENTO="ngModel"
-                  [(ngModel)]="empleado.TIPO_DOCUMENTO"
-                    [class.is-invalid]="(TIPO_DOCUMENTO.invalid && (TIPO_DOCUMENTO.touched || intentoEnvio))"
-                  aria-label="Default select example"
-                >
-                  <option
-                    *ngFor="let person of tipodocumento"
-                    value="{{ person.ID }}"
-                  >
-                    {{ person.Name }}
-                  </option>
-                </select>
-                
-              </div>
-                 <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Apellido Paterno</label
-                >
-                <input
-                  type="text"
-                  (input)="cambiarpaterno($event)"
-                  [(ngModel)]="empleado.APELLIDO_PAT" name="APELLIDO_PAT" required  #APELLIDO_PAT="ngModel"
-                  class="form-control form-control-sm"
-                  id="APELLIDO_PAT" 
-                    [class.is-invalid]="(APELLIDO_PAT.invalid && (APELLIDO_PAT.touched || intentoEnvio))"
-                  
-                  placeholder=""
-                />
-                
-              </div>
-             
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="row align-items-start">
-           
- <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Apellido Materno</label
-                >
-                <input
-                  type="text"
-                  (input)="cambiarmaterno($event)"
-                  [(ngModel)]="empleado.APELLIDO_MAT" name="APELLIDO_MAT" required  #APELLIDO_MAT="ngModel"
-                  class="form-control form-control-sm" 
-                  id="APELLIDO_MAT"
-                    [class.is-invalid]="(APELLIDO_MAT.invalid && (APELLIDO_MAT.touched || intentoEnvio))"
-                  
-                  placeholder=""
-                />
-                 
-              </div>
+<form #form="ngForm" autoFocusInvalid (ngSubmit)="submit(form)">
+  <button
+    type="submit"
+    class="btn rounded-pill btn-primary waves-effect waves-light"
+  >
+    {{ condicion }}
+  </button>
+  <button
+    (click)="onClick()"
+    class="btn rounded-pill btn-danger waves-effect waves-light"
+    type="button"
+    id="button-addon1"
+  >
+    Regresar
+  </button>
 
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Primer nombre</label
+  <ng-template #TabContent>
+    <div class="row align-items-start">
+      <div class="row">
+        <div class="col-sm-10" style="padding-right: 0px; padding-left: 0px">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row align-items-start">
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
                 >
-                <input
-                  type="text"
-                  (input)="cambiarprimero($event)"
-                  [(ngModel)]="empleado.PRIMER_NOMBRE" name="PRIMER_NOMBRE" required  #PRIMER_NOMBRE="ngModel"
-                  class="form-control form-control-sm" 
-                  id="PRIMER_NOMBRE"
-                    [class.is-invalid]="(PRIMER_NOMBRE.invalid && (PRIMER_NOMBRE.touched || intentoEnvio))"
-                  
-                  placeholder=""
-                />
-                 
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Segundo Nombre</label
-                >
-                <input
-                  type="text"
-                  (input)="cambiarsegundo($event)"
-                  [(ngModel)]="empleado.SEGUNDO_NOMBRE" name="SEGUNDO_NOMBRE"
-                  class="form-control form-control-sm"
-                  id="SEGUNDO_NOMBRE"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Nombre Invitación</label
-                >
-                <input
-                  type="text"
-                  [(ngModel)]="empleado.NOMBRE_INVITACION" name="NOMBRE_INVITACION" required  #NOMBRE_INVITACION="ngModel"
-                  class="form-control form-control-sm" 
-                  id="NOMBRE_INVITACION"
-                   [class.is-invalid]="(NOMBRE_INVITACION.invalid && (NOMBRE_INVITACION.touched || intentoEnvio))"
-                  
-                  placeholder=""
-                />
-               
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" >
-          <div class="col-sm-6">
-            <div class="row align-items-start">
-              <div
-                class="col-sm-8"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Razón social</label
-                >
-                <input
-                  type="text" readonly
-                  [(ngModel)]="empleado.RAZONSOCIAL" name="RAZONSOCIAL"
-                  class="form-control form-control-sm"
-                  id="RAZONSOCIAL"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-4"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Id Identidad</label
-                >
-                <input
-                  type="number"
-                  [(ngModel)]="empleado.ID_CLIENTE" name="ID_CLIENTE" required  #ID_CLIENTE="ngModel"
-                  class="form-control form-control-sm" 
-                   [class.is-invalid]="(ID_CLIENTE.invalid && (ID_CLIENTE.touched || intentoEnvio))"
-                  
-                  id="ID_CLIENTE"
-                  placeholder=""
-                />
-                  
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="row align-items-start">
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Teléfono 1</label
-                >
-                <input
-                  type="text"
-                  currencyInput 
-                  [(ngModel)]="empleado.TLF1"
-                  class="form-control form-control-sm" name="TLF1"
-                  id="colFormLabelSm88"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Teléfono 2</label
-                >
-                <input
-                  type="text"
-                  currencyInput
-                  [(ngModel)]="empleado.TLF2"
-                  class="form-control form-control-sm" name="TLF2"
-                  id="colFormLabelSm2"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-6"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Seguro</label
-                >
-                <select
-                  class="form-control form-control-sm"  name="SEGURO"
-                  [(ngModel)]="empleado.SEGURO" 
-                  aria-label="Default select example"
-                >
-                  <option
-                    *ngFor="let person of seguros"
-                    value="{{ person.Cadena }}"
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Codigo</label
                   >
-                    {{ person.Descripcion }}
-                  </option>
-                </select>
+                  <input
+                    type="number"
+                    id="CODEMP"
+                    [(ngModel)]="empleado.CODEMP"
+                    class="form-control form-control-sm"
+                    name="CODEMP"
+                    readonly
+                    #nombreCampo="ngModel"
+                    id="CODEMP"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Cédula</label
+                  >
+                  <input
+                    *ngIf="isnumerico"
+                    type="text"
+                    [maxlength]="maxlength"
+                    [minlength]="maxlength"
+                    currencyInput
+                    data-priority="1"
+                    [(ngModel)]="empleado.NUMCEDULA"
+                    [class.is-invalid]="
+                      NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio)
+                    "
+                    class="form-control form-control-sm"
+                    name="NUMCEDULA"
+                    required
+                    #NUMCEDULA="ngModel"
+                    id="NUMCEDULA"
+                    placeholder=""
+                  />
+                  <input
+                    data-priority="1"
+                    type="text"
+                    *ngIf="!isnumerico"
+                    [(ngModel)]="empleado.NUMCEDULA"
+                    [class.is-invalid]="
+                      NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio)
+                    "
+                    class="form-control form-control-sm"
+                    name="NUMCEDULA2"
+                    required
+                    #NUMCEDULA="ngModel"
+                    id="NUMCEDULA2"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Tipo Documento</label
+                  >
+                  <select
+                    (change)="onSelectChangecedula($event)"
+                    data-priority="2"
+                    class="form-control form-control-sm"
+                    name="TIPO_DOCUMENTO"
+                    required
+                    #TIPO_DOCUMENTO="ngModel"
+                    [(ngModel)]="empleado.TIPO_DOCUMENTO"
+                    [class.is-invalid]="
+                      TIPO_DOCUMENTO.invalid &&
+                      (TIPO_DOCUMENTO.touched || intentoEnvio)
+                    "
+                    aria-label="Default select example"
+                  >
+                    <option
+                      *ngFor="let person of tipodocumento"
+                      value="{{ person.ID }}"
+                    >
+                      {{ person.Name }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Apellido Paterno</label
+                  >
+                  <input
+                    type="text"
+                    (input)="cambiarpaterno($event)"
+                    [(ngModel)]="empleado.APELLIDO_PAT"
+                    name="APELLIDO_PAT"
+                    required
+                    #APELLIDO_PAT="ngModel"
+                    class="form-control form-control-sm"
+                    id="APELLIDO_PAT"
+                    [class.is-invalid]="
+                      APELLIDO_PAT.invalid &&
+                      (APELLIDO_PAT.touched || intentoEnvio)
+                    "
+                    placeholder=""
+                  />
+                </div>
               </div>
-              <!-- <div
+            </div>
+            <div class="col-sm-6">
+              <div class="row align-items-start">
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Apellido Materno</label
+                  >
+                  <input
+                    type="text"
+                    (input)="cambiarmaterno($event)"
+                    [(ngModel)]="empleado.APELLIDO_MAT"
+                    name="APELLIDO_MAT"
+                    required
+                    #APELLIDO_MAT="ngModel"
+                    class="form-control form-control-sm"
+                    id="APELLIDO_MAT"
+                    [class.is-invalid]="
+                      APELLIDO_MAT.invalid &&
+                      (APELLIDO_MAT.touched || intentoEnvio)
+                    "
+                    placeholder=""
+                  />
+                </div>
+
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Primer nombre</label
+                  >
+                  <input
+                    type="text"
+                    (input)="cambiarprimero($event)"
+                    [(ngModel)]="empleado.PRIMER_NOMBRE"
+                    name="PRIMER_NOMBRE"
+                    required
+                    #PRIMER_NOMBRE="ngModel"
+                    class="form-control form-control-sm"
+                    id="PRIMER_NOMBRE"
+                    [class.is-invalid]="
+                      PRIMER_NOMBRE.invalid &&
+                      (PRIMER_NOMBRE.touched || intentoEnvio)
+                    "
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Segundo Nombre</label
+                  >
+                  <input
+                    type="text"
+                    (input)="cambiarsegundo($event)"
+                    [(ngModel)]="empleado.SEGUNDO_NOMBRE"
+                    name="SEGUNDO_NOMBRE"
+                    class="form-control form-control-sm"
+                    id="SEGUNDO_NOMBRE"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Nombre Invitación</label
+                  >
+                  <input
+                    type="text"
+                    [(ngModel)]="empleado.NOMBRE_INVITACION"
+                    name="NOMBRE_INVITACION"
+                    required
+                    #NOMBRE_INVITACION="ngModel"
+                    class="form-control form-control-sm"
+                    id="NOMBRE_INVITACION"
+                    [class.is-invalid]="
+                      NOMBRE_INVITACION.invalid &&
+                      (NOMBRE_INVITACION.touched || intentoEnvio)
+                    "
+                    placeholder=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row align-items-start">
+                <div
+                  class="col-sm-8"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Razón social</label
+                  >
+                  <input
+                    type="text"
+                    readonly
+                    [(ngModel)]="empleado.RAZONSOCIAL"
+                    name="RAZONSOCIAL"
+                    class="form-control form-control-sm"
+                    id="RAZONSOCIAL"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-4"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Id Identidad</label
+                  >
+                  <input
+                    type="number"
+                    [(ngModel)]="empleado.ID_CLIENTE"
+                    name="ID_CLIENTE"
+                    required
+                    #ID_CLIENTE="ngModel"
+                    class="form-control form-control-sm"
+                    [class.is-invalid]="
+                      ID_CLIENTE.invalid && (ID_CLIENTE.touched || intentoEnvio)
+                    "
+                    id="ID_CLIENTE"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="row align-items-start">
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Teléfono 1</label
+                  >
+                  <input
+                    type="text"
+                    currencyInput
+                    [(ngModel)]="empleado.TLF1"
+                    class="form-control form-control-sm"
+                    name="TLF1"
+                    id="colFormLabelSm88"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Teléfono 2</label
+                  >
+                  <input
+                    type="text"
+                    currencyInput
+                    [(ngModel)]="empleado.TLF2"
+                    class="form-control form-control-sm"
+                    name="TLF2"
+                    id="colFormLabelSm2"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-6"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Seguro</label
+                  >
+                  <select
+                    class="form-control form-control-sm"
+                    name="SEGURO"
+                    [(ngModel)]="empleado.SEGURO"
+                    aria-label="Default select example"
+                  >
+                    <option
+                      *ngFor="let person of seguros"
+                      value="{{ person.Cadena }}"
+                    >
+                      {{ person.Descripcion }}
+                    </option>
+                  </select>
+                </div>
+                <!-- <div
                 class="col-sm-2"
                 style="padding-right: 0px; padding-left: 0px"
               >
@@ -432,46 +476,1627 @@
                   </option>
                 </select>
               </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div
+            id="imagen"
+            class="col-3"
+            *ngIf="fotoencuesta != null && fotoencuesta != ''"
+            style="text-align: right"
+          >
+            <div style="color: aliceblue; border: #cf254b">
+              <img [src]="foto" style="height: 120px" />
+            </div>
+          </div>
+
+          <!-- Responsive Images -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+          <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Dirección Consolidad</label
+            >
+            <input
+              readonly
+              type="text"
+              [(ngModel)]="empleado.DIRECCION"
+              name="DIRECCION"
+              class="form-control form-control-sm"
+              id="colFormLabelSm3"
+              placeholder=""
+            />
+          </div>
+          <div class="panel panel-default" style="border: 3px">
+            <div class="panel-heading">Detalles</div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="row align-items-start">
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Desarrollo Resid.</label
+                    >
+
+                    <select
+                      class="form-control form-control-sm"
+                      [(ngModel)]="DesarrolloVivienda"
+                      [class.is-invalid]="
+                        DesarrolloViviendaModel.invalid &&
+                        (DesarrolloViviendaModel.touched || intentoEnvio)
+                      "
+                      name="DesarrolloVivienda"
+                      required
+                      #DesarrolloViviendaModel="ngModel"
+                      id="DesarrolloVivienda"
+                      aria-label=""
+                      placeholder=""
+                    >
+                      <option
+                        *ngFor="let person of TIPO_VI"
+                        value="{{ person.ID }}"
+                      >
+                        {{ person.Name }}
+                      </option>
+                    </select>
+                  </div>
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Dirección</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="URB"
+                      [class.is-invalid]="
+                        URBModel.invalid && (URBModel.touched || intentoEnvio)
+                      "
+                      class="form-control form-control-sm"
+                      name="URB"
+                      required
+                      #URBModel="ngModel"
+                      id="URB"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >MZ.</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="mz"
+                      name="mz"
+                      class="form-control form-control-sm"
+                      id="mz"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row align-items-start">
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >No. casa</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="NO_CASA"
+                      name="NO_CASA"
+                      class="form-control form-control-sm"
+                      id="NO_CASA"
+                      placeholder=""
+                    />
+                  </div>
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Calle Principal</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="CALLE_PRIN"
+                      name="CALLE_PRIN"
+                      class="form-control form-control-sm"
+                      id="CALLE_PRIN"
+                      placeholder=""
+                    />
+                  </div>
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Calle Secundaria</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="CALLE_SEC"
+                      name="CALLE_SEC"
+                      class="form-control form-control-sm"
+                      id="CALLE_SEC"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row align-items-start">
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Km</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="KM"
+                      name="KM"
+                      class="form-control form-control-sm"
+                      id="KM"
+                      placeholder=""
+                    />
+                  </div>
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Via</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="via"
+                      name="via"
+                      class="form-control form-control-sm"
+                      id="via"
+                      placeholder=""
+                    />
+                  </div>
+                  <div
+                    class="col-sm-4"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Condominio</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="COND"
+                      name="COND"
+                      class="form-control form-control-sm"
+                      id="COND"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row align-items-start">
+                  <div
+                    class="col-sm-2"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >No. Depa.</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="NO_DEPA"
+                      name="NO_DEPA"
+                      class="form-control form-control-sm"
+                      id="NO_DEPA"
+                      placeholder=""
+                    />
+                  </div>
+                  <div
+                    class="col-sm-10"
+                    style="padding-right: 0px; padding-left: 0px"
+                  >
+                    <label
+                      for="colFormLabelSm"
+                      style="font-size: 9px"
+                      class="col-sm-12"
+                      >Referencia Dom.</label
+                    >
+                    <input
+                      type="text"
+                      [(ngModel)]="empleado.REFERENCIADOMICILIO"
+                      name="REFERENCIADOMICILIO"
+                      required
+                      #REFERENCIADOMICILIO="ngModel"
+                      class="form-control form-control-sm"
+                      id="REFERENCIADOMICILIO"
+                      [class.is-invalid]="
+                        REFERENCIADOMICILIO.invalid &&
+                        (REFERENCIADOMICILIO.touched || intentoEnvio)
+                      "
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row align-items-start">
+              <div
+                class="col-sm-4"
+                style="padding-right: 0px; padding-left: 0px"
+              >
+                <label
+                  for="colFormLabelSm"
+                  style="font-size: 9px"
+                  class="col-sm-12"
+                  >Fecha Nacimiento</label
+                >
+                <input
+                  class="form-control form-control-sm"
+                  [(ngModel)]="empleado.FECNAC"
+                  name="FECNAC"
+                  #FECNAC="ngModel"
+                  type="text"
+                  required
+                  mwlFlatpickr
+                  [convertModelValue]="true"
+                  [class.is-invalid]="
+                    FECNAC.invalid && (FECNAC.touched || intentoEnvio)
+                  "
+                />
+              </div>
+              <div
+                class="col-sm-4"
+                style="padding-right: 0px; padding-left: 0px"
+              >
+                <label
+                  for="colFormLabelSm"
+                  style="font-size: 9px"
+                  class="col-sm-12"
+                  >Pais</label
+                >
+                <select
+                  (change)="pais($event)"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="empleado.PAIS"
+                  name="PAIS"
+                  required
+                  #PAIS="ngModel"
+                  aria-label="Default select example"
+                  [class.is-invalid]="
+                    PAIS.invalid && (PAIS.touched || intentoEnvio)
+                  "
+                >
+                  <option value=""></option>
+                  <option
+                    *ngFor="let person of paises"
+                    value="{{ person.CODPAIS }}"
+                  >
+                    {{ person.NOMPAIS?.toUpperCase() }}
+                  </option>
+                </select>
+              </div>
+              <div
+                class="col-sm-4"
+                style="padding-right: 0px; padding-left: 0px"
+              >
+                <label
+                  for="colFormLabelSm"
+                  style="font-size: 9px"
+                  class="col-sm-12"
+                  >Provincia</label
+                >
+                <select
+                  (change)="provincia($event)"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="empleado.PROVINCIA"
+                  name="PROVINCIA"
+                  required
+                  #PROVINCIA="ngModel"
+                  aria-label="Default select example"
+                  [class.is-invalid]="
+                    PROVINCIA.invalid && (PROVINCIA.touched || intentoEnvio)
+                  "
+                >
+                  <option
+                    *ngFor="let person of provinciafiltrada"
+                    value="{{ person.CODPROV }}"
+                  >
+                    {{ person.NOMPROV?.toUpperCase() }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div
+              class="col-sm-12"
+              style="padding-right: 0px; padding-left: 0px"
+            >
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Lugar Nacimiento</label
+              >
+
+              <select
+                id="rrer"
+                class="form-control form-control-sm"
+                name="rrer"
+                [class.is-invalid]="
+                  CIUDAD.invalid && (CIUDAD.touched || intentoEnvio)
+                "
+                [(ngModel)]="empleado.CIUDAD"
+                name="CIUDAD"
+                required
+                #CIUDAD="ngModel"
+                aria-label="Default select example"
+              >
+                <option
+                  *ngFor="let person of cantonesfiltrada"
+                  value="{{ person.CODCIUDAD }}"
+                >
+                  {{ person.NOMCIUDAD?.toUpperCase() }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="row align-items-start">
+            <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Sexo</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.SEXO"
+                name="SEXO"
+                required
+                #SEXO="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  SEXO.invalid && (SEXO.touched || intentoEnvio)
+                "
+              >
+                <option *ngFor="let person of generos" value="{{ person.ID }}">
+                  {{ person.Name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Estado Civil</label
+              >
+              <select
+                (change)="onSelectChange($event)"
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.ESTCIVIL"
+                name="ESTCIVIL"
+                required
+                #ESTCIVIL="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  ESTCIVIL.invalid && (ESTCIVIL.touched || intentoEnvio)
+                "
+              >
+                <option
+                  *ngFor="let person of estadocivil"
+                  value="{{ person.ID }}"
+                >
+                  {{ person.Name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Apellido Casada</label
+              >
+
+              <input
+                type="text"
+                #APELLIDO_CAS="ngModel"
+                [(ngModel)]="empleado.APELLIDO_CAS"
+                name="APELLIDO_CAS"
+                [required]="esRequerido"
+                class="form-control form-control-sm"
+                [class.is-invalid]="
+                  APELLIDO_CAS.invalid && (APELLIDO_CAS.touched || intentoEnvio)
+                "
+                id="APELLIDO_CAS"
+                placeholder=""
+              />
+            </div>
+            <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >No Hijos</label
+              >
+              <input
+                type="text"
+                maxlength="2"
+                currencyInput
+                [(ngModel)]="empleado.NUMHIJOS"
+                name="NUMHIJOS"
+                required
+                #NUMHIJOS="ngModel"
+                class="form-control form-control-sm"
+                id="NUMHIJOS"
+                [class.is-invalid]="
+                  NUMHIJOS.invalid && (NUMHIJOS.touched || intentoEnvio)
+                "
+                placeholder=""
+              />
+            </div>
+          </div>
+          <div class="row align-items-start">
+            <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Ministerio de Educacion</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.CODCCOSTO_MINIS"
+                name="CODCCOSTO_MINIS"
+                required
+                #CODCCOSTO_MINIS="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  CODCCOSTO_MINIS.invalid &&
+                  (CODCCOSTO_MINIS.touched || intentoEnvio)
+                "
+              >
+                <option value=""></option>
+                <option
+                  *ngFor="let person of centrosmin"
+                  value="{{ person.CODCCOSTO }}"
+                >
+                  {{ person.NOMCCOSTO }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >No Extensión</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.NUMEXT"
+                name="NUMEXT"
+                aria-label="Default select example"
+              >
+                <option value=""></option>
+                <option
+                  *ngFor="let person of extensiones"
+                  value="{{ person.NUMEXT }}"
+                >
+                  {{ person.NUMEXT }} - {{ person.DSCEXT }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row align-items-start">
+            <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Tipo Contrato</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.TIPCONTRATO"
+                name="TIPCONTRATO"
+                required
+                #TIPCONTRATO="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  TIPCONTRATO.invalid && (TIPCONTRATO.touched || intentoEnvio)
+                "
+              >
+                <option
+                  *ngFor="let person of tipocontrato"
+                  value="{{ person.ID }}"
+                >
+                  {{ person.Name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Centro Costo</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.CODCCOSTO"
+                name="CODCCOSTO"
+                required
+                #CODCCOSTO="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  CODCCOSTO.invalid && (CODCCOSTO.touched || intentoEnvio)
+                "
+              >
+                <option
+                  *ngFor="let person of grupos"
+                  value="{{ person.CODCCOSTO }}"
+                >
+                  {{ person.NOMCCOSTO }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-5" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Jefa Inmediata</label
+              >
+              <!-- el campo debe de ser string para que coja la validacion -->
+
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.CODJEFA"
+                name="CODJEFA"
+                required
+                #CODJEFA="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  CODJEFA.invalid && (CODJEFA.touched || intentoEnvio)
+                "
+              >
+                <option value=""></option>
+                <option
+                  *ngFor="let person of jefas"
+                  value="{{ person.CODEMP }}"
+                >
+                  {{ person.RAZONSOCIAL }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <!-- Hoverable Rows -->
+          <div class="row align-items-start">
+            <dx-data-grid
+              id="gridContainer"
+              [dataSource]="empleado.CentroCosto!"
+              keyExpr="GCODCCOSTO"
+              [showBorders]="true"
+              [height]="200"
+            >
+              <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+              <dxi-column type="buttons" caption="Acción" [width]="70">
+                <dxi-button
+                  name="edit"
+                  icon="assets/images/btn_edit.png"
+                ></dxi-button>
+                <dxi-button
+                  name="delete"
+                  icon="assets/images/btn_eliminar.png"
+                ></dxi-button>
+              </dxi-column>
+              <dxi-column dataField="GCODCCOSTO" caption="Centro" [width]="200">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+                <dxo-lookup
+                  [dataSource]="GCENTROCOSTO"
+                  displayExpr="NOMGRUPOCCOSTO"
+                  valueExpr="GCODCCOSTO"
+                ></dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="IDEMPRESA" caption="Empresa" [width]="200">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+                <dxo-lookup
+                  [dataSource]="empresas"
+                  displayExpr="CODIGO"
+                  valueExpr="ID_EMPRESA"
+                ></dxo-lookup>
+              </dxi-column>
+              <dxi-column
+                dataType="boolean"
+                [calculateCellValue]="toBooleanG"
+                [setCellValue]="fromBooleanG"
+                [showEditorAlways]="true"
+                dataField="ESTADO_GR"
+                caption="ESTADO"
+                [width]="100"
+              >
+              </dxi-column>
+              <dxo-editing
+                mode="popup"
+                [allowUpdating]="true"
+                [allowDeleting]="true"
+                [allowAdding]="true"
+              >
+              </dxo-editing>
+              <dxo-popup
+                title="Editar "
+                [showTitle]="true"
+                [width]="200"
+                [height]="145"
+                [position]="{ my: 'top', at: 'top' }"
+              >
+              </dxo-popup>
+            </dx-data-grid>
+          </div>
+        </div>
+      </div>
+      <!-- titulo -->
+
+      <div class="row" style="padding-right: 0px; padding-left: 0px">
+        <div class="col-sm-6">
+          <div class="row align-items-start">
+            <div
+              class="col-sm-12"
+              style="padding-right: 0px; padding-left: 0px"
+            >
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Titulo</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="empleado.PROFESION"
+                name="PROFESION"
+                class="form-control form-control-sm"
+                id="colFormLabelSm4"
+                placeholder=""
+              />
+            </div>
+            <div
+              class="col-sm-12"
+              style="padding-right: 0px; padding-left: 0px"
+            >
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Mail</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="empleado.MAIL"
+                name="MAIL"
+                class="form-control form-control-sm"
+                id="colFormLabelSm5"
+                placeholder=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row align-items-start">
+            <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Fec. Antg desde</label
+              >
+              <input
+                type="text"
+                mwlFlatpickr
+                [altInput]="true"
+                [convertModelValue]="true"
+                name="FEC_INGPRESCOLAR"
+                [(ngModel)]="empleado.FEC_INGPRESCOLAR"
+                class="form-control form-control-sm"
+                id="colFormLabelSm6"
+                placeholder=""
+              />
+            </div>
+            <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Fec. Antg Hasta</label
+              >
+              <input
+                type="text"
+                name="FEC_SALPRESCOLAR"
+                mwlFlatpickr
+                [altInput]="true"
+                [convertModelValue]="true"
+                [(ngModel)]="empleado.FEC_SALPRESCOLAR"
+                class="form-control form-control-sm"
+                id="colFormLabelSm7"
+                placeholder=""
+              />
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-2">
-        <div
-          id="imagen"
-          class="col-3"
-          *ngIf="fotoencuesta != null && fotoencuesta != ''"
-          style="text-align: right"
-        >
-          <div style="color: aliceblue; border: #cf254b">
-            <img [src]="foto" style="height: 120px" />
+      <div class="row" style="padding-right: 0px; padding-left: 0px">
+        <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
+          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+            >Sueldo</label
+          >
+          <div class="input-group">
+            <span class="form-control form-control-sm">$</span>
+            <input
+              type="number"
+              style="width: 110px"
+              [(ngModel)]="empleado.SUELDO"
+              name="SUELDO"
+              mask="0*.00"
+              class="form-control form-control-sm"
+              id="cleave-phone"
+              placeholder=""
+            />
+          </div>
+          <div></div>
+        </div>
+        <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
+          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+            >Cop. Transp</label
+          >
+          <div class="input-group">
+            <span class="form-control form-control-sm">$</span>
+            <input
+              type="number"
+              style="width: 110px"
+              [(ngModel)]="empleado.BENEFICIO"
+              name="BENEFICIO"
+              mask="0*.00"
+              class="form-control form-control-sm"
+              id="cleave-phone"
+              placeholder=""
+            />
           </div>
         </div>
+        <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
+          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+            >Bonificación</label
+          >
+          <div class="input-group">
+            <span class="form-control form-control-sm">$</span>
+            <input
+              type="number"
+              style="width: 110px"
+              [(ngModel)]="empleado.BENEFICIO2"
+              mask="0*.00"
+              name="BENEFICIO2"
+              class="form-control form-control-sm"
+              id="cleave-phone"
+              placeholder=""
+            />
+          </div>
+        </div>
+        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+            >Fecha Afiliación</label
+          >
 
-        <!-- Responsive Images -->
+          <input
+            type="text"
+            mwlFlatpickr
+            [altInput]="true"
+            name="FEC_AIESS"
+            [convertModelValue]="true"
+            [(ngModel)]="empleado.FEC_AIESS"
+            class="form-control form-control-sm"
+            id="colFormLabelSm8"
+            placeholder=""
+          />
+        </div>
+        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+            >Fecha Jubilación</label
+          >
+          <input
+            type="text"
+            mwlFlatpickr
+            [altInput]="true"
+            [convertModelValue]="true"
+            name="FEC_INI_JUBILACION"
+            [(ngModel)]="empleado.FEC_INI_JUBILACION"
+            class="form-control form-control-sm"
+            id="colFormLabelSm99"
+            placeholder=""
+          />
+        </div>
+      </div>
+      <!-- codigo IEES -->
+      <div class="row" style="padding-right: 0px; padding-left: 0px">
+        <div class="col-sm-6">
+          <div class="row align-items-start">
+            <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Codigo IEES</label
+              >
+              
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.CODIGO_IESS"
+                name="CODIGO_IESS"
+                required
+                #CODIGO_IESS="ngModel"
+                aria-label="Default select example"
+                [class.is-invalid]="
+                  CODIGO_IESS.invalid && (CODIGO_IESS.touched || intentoEnvio)
+                "
+              >
+                <option value=""></option>
+                <option
+                  *ngFor="let person of iess"
+                  value="{{ person.CODIGO_IESS }}"
+                >
+                  {{ person.CODIGO_IESS }} - {{ person.CARGO_ACTIVIDAD }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Fec. Ingreso</label
+              >
+              <input
+                type="text"
+                mwlFlatpickr
+                [altInput]="true"
+                [convertModelValue]="true"
+                name="FECINGRESO"
+                [(ngModel)]="empleado.FECINGRESO"
+                class="form-control form-control-sm"
+                id="colFormLabelSm11"
+                placeholder=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row align-items-start">
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Fecha Salida</label
+              >
+              <input
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.FECSALIDA"
+                type="text"
+                name="FECSALIDA"
+                mwlFlatpickr
+                [altInput]="true"
+                [convertModelValue]="true"
+              />
+            </div>
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Motivo Salida</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="empleado.MOTIVO_SALIDA"
+                name="MOTIVO_SALIDA"
+                aria-label="Default select example"
+              >
+                <option
+                  *ngFor="let person of motivosalida"
+                  value="{{ person.ID }}"
+                >
+                  {{ person.Name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Pension Jubilación
+              </label>
+              <div class="input-group">
+                <span class="form-control form-control-sm">$</span>
+                <input
+                  type="number"
+                  style="width: 110px"
+                  [(ngModel)]="empleado.SUELDO_JUBILADO"
+                  name="SUELDO_JUBILADO"
+                  mask="0*.00"
+                  class="form-control form-control-sm"
+                  id="cleave-phone"
+                  placeholder=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="padding-right: 0px; padding-left: 0px">
+        <div class="col-sm-6">
+          <div class="mb-2">
+            <h5>Cuentas Contables</h5>
+          </div>
+          <dx-data-grid
+            id="gridContainer"
+            [dataSource]="empleado.CuentasContables!"
+            keyExpr="PLA_CODCNTA"
+            [columnAutoWidth]="true"
+            [wordWrapEnabled]="true"
+            [showBorders]="true"
+            [allowColumnResizing]="true"
+            columnResizingMode="widget"
+            class="responsive-grid"
+            [height]="200"
+          >
+            <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+            <dxi-column type="buttons" caption="Acción" [width]="70">
+              <dxi-button
+                name="edit"
+                icon="assets/images/btn_edit.png"
+              ></dxi-button>
+              <dxi-button
+                name="delete"
+                icon="assets/images/btn_eliminar.png"
+              ></dxi-button>
+            </dxi-column>
+            <dxi-column dataField="TIPO_CTA" caption="" [width]="150">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+              <dxo-lookup
+                [dataSource]="tipocuenta"
+                displayExpr="nombre_tipo"
+                valueExpr="tipo_cta"
+              ></dxo-lookup>
+            </dxi-column>
+
+            <dxi-column dataField="PLA_CODCNTA" caption="" [width]="250">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+              <dxo-lookup
+                [dataSource]="PLA_CODCNTA"
+                displayExpr="cuenta"
+                valueExpr="ID"
+              ></dxo-lookup>
+            </dxi-column>
+
+            <dxi-column
+              dataType="boolean"
+              [calculateCellValue]="toBooleans"
+              [setCellValue]="fromBooleans"
+              [showEditorAlways]="true"
+              dataField="ACTIVO"
+              caption="ESTADO"
+              [width]="70"
+            >
+            </dxi-column>
+
+            <dxo-editing
+              mode="popup"
+              [allowUpdating]="true"
+              [allowDeleting]="true"
+              [allowAdding]="true"
+            >
+            </dxo-editing>
+            <dxo-popup
+              title="Editar "
+              [showTitle]="true"
+              [width]="200"
+              [height]="145"
+              [position]="{ my: 'top', at: 'top' }"
+            >
+            </dxo-popup>
+          </dx-data-grid>
+          <div class="mb-2">
+            <h5>Cuentas Bancarias</h5>
+          </div>
+
+          <dx-data-grid
+            id="gridContainer"
+            [dataSource]="empleado.CuentasBancos!"
+            keyExpr="CTABCO"
+            [columnAutoWidth]="true"
+            [wordWrapEnabled]="true"
+            [showBorders]="true"
+            [allowColumnResizing]="true"
+            columnResizingMode="widget"
+            class="responsive-grid"
+            [height]="200"
+          >
+            <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+            <dxi-column type="buttons" caption="Acción" [width]="70">
+              <dxi-button
+                name="edit"
+                icon="assets/images/btn_edit.png"
+              ></dxi-button>
+              <dxi-button
+                name="delete"
+                icon="assets/images/btn_eliminar.png"
+              ></dxi-button>
+            </dxi-column>
+            <dxi-column dataField="CODBANCO" caption="Banco" [width]="150">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+              <dxo-lookup
+                [dataSource]="Bancos"
+                displayExpr="NOMBANCO"
+                valueExpr="CODBANCO"
+              ></dxo-lookup>
+            </dxi-column>
+            <dxi-column
+              dataField="CTABCO"
+              caption="Número de cuenta"
+              [width]="150"
+            >
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+              dataType="boolean"
+              [calculateCellValue]="toBoolean"
+              [setCellValue]="fromBoolean"
+              [showEditorAlways]="true"
+              dataField="ESTADO"
+              caption="ESTADO"
+              [width]="70"
+            >
+            </dxi-column>
+
+            <dxi-column dataField="PORCENT" caption="Porcentaje" [width]="100">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+              dataField="TIPO_CUENTA"
+              caption="Tipo Cuenta"
+              [width]="100"
+            >
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+              <dxo-lookup
+                [dataSource]="tipocuentas"
+                displayExpr="Name"
+                valueExpr="ID"
+              ></dxo-lookup>
+            </dxi-column>
+            <dxo-editing
+              mode="popup"
+              [allowUpdating]="true"
+              [allowDeleting]="true"
+              [allowAdding]="true"
+            >
+            </dxo-editing>
+            <dxo-popup
+              title="Editar "
+              [showTitle]="true"
+              [width]="200"
+              [height]="145"
+              [position]="{ my: 'top', at: 'top' }"
+            >
+            </dxo-popup>
+          </dx-data-grid>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div
+              class="col-sm-4"
+              style="padding-right: 0px; padding-left: 0px; padding-top: 20px"
+            >
+              <dx-check-box
+                [value]="empleado.ACTIVO === 'S'"
+                text="Empleado Activo"
+                (onValueChanged)="empleado.ACTIVO = $event.value ? 'S' : 'N'"
+              >
+              </dx-check-box>
+            </div>
+            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-6"
+                >NUMDIAS
+              </label>
+              <input
+                type="number"
+                [(ngModel)]="empleado.NUMDIAS"
+                name="NUMDIAS"
+                class="form-control form-control-sm"
+                id="colFormLabelSm22"
+                placeholder=""
+              />
+            </div>
+            <div class="col-sm-4" style="padding-top: 20px">
+              <dx-check-box
+                [value]="empleado.ACTIVO_REPORTES_AUMENTOS === 'S'"
+                text="ACTIVO REP. AUMENTOS"
+                (onValueChanged)="
+                  empleado.ACTIVO_REPORTES_AUMENTOS = $event.value ? 'S' : 'N'
+                "
+              >
+              </dx-check-box>
+            </div>
+          </div>
+          <div class="row">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Observación</label
+            >
+            <dx-text-area
+              style="height: 190px"
+              (height)="(190)"
+              [maxLength]="maxLength!"
+              name="OBSERVACION"
+              [(ngModel)]="empleado.OBSERVACION"
+              (autoResizeEnabled)="(true)"
+              [inputAttr]="{ 'aria-label': 'Notes' }"
+            >
+            </dx-text-area>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6" style="padding-top: 20px">
+              <dx-check-box
+                [value]="empleado.DISCAPACIDAD === 'S'"
+                text="DISCAPACIDAD"
+                (onValueChanged)="
+                  empleado.DISCAPACIDAD = $event.value ? 'S' : 'N'
+                "
+              >
+              </dx-check-box>
+            </div>
+            <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+                >Porcentaje Discapacidad</label
+              >
+              <dx-number-box
+                [(ngModel)]="empleado.PORC_DISCAPACIDAD"
+                [min]="1"
+                [max]="100"
+                name="PORC_DISCAPACIDAD"
+                placeholder=""
+              >
+              </dx-number-box>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  
-    <div class="row" >
-       
+  </ng-template>
+  <ng-template #TabContent1>
+    <div class="grid-container">
+      <dx-data-grid
+        id="gridContainer"
+        (onEditorPreparing)="onEditorPreparing($event)"
+        (onRowUpdating)="onRowUpdating($event)"
+        [dataSource]="empleado.Departamentos!"
+        keyExpr="CODCRG"
+        [showBorders]="true"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        class="responsive-grid"
+        [height]="'100%'"
+        [width]="'100%'"
+      >
+        <dxo-paging [pageSize]="25"> </dxo-paging>
+        <dxo-pager
+          [visible]="true"
+          [showInfo]="true"
+          [showNavigationButtons]="true"
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
+        <dxi-column type="buttons" caption="Acción" [width]="100">
+          <dxi-button
+            name="edit"
+            icon="assets/images/btn_edit.png"
+          ></dxi-button>
+          <dxi-button
+            name="delete"
+            icon="assets/images/btn_eliminar.png"
+          ></dxi-button>
+        </dxi-column>
+        <dxi-column dataField="CODCRG" caption="Cargo" [width]="200">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxo-lookup
+            [dataSource]="ListaCargos"
+            displayExpr="NOMCRG"
+            valueExpr="CODCRG"
+          ></dxo-lookup>
+        </dxi-column>
 
-      <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-         <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
-        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-          >Dirección Consolidad</label
+        <dxi-column dataField="CODDEP" caption="Departamento" [width]="150">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxo-lookup
+            [dataSource]="Depa"
+            displayExpr="NOMDEP"
+            valueExpr="CODDEP"
+          ></dxo-lookup>
+        </dxi-column>
+
+        <dxi-column dataField="CODSEC" caption="Sección" [width]="170">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxo-lookup
+            [dataSource]="seccionfiltrada"
+            displayExpr="NOMSEC"
+            valueExpr="CODSEC"
+          ></dxo-lookup>
+        </dxi-column>
+
+        <dxi-column
+          dataType="boolean"
+          [calculateCellValue]="toBoolean3"
+          [setCellValue]="fromBoolean3"
+          [showEditorAlways]="true"
+          dataField="ACTIVO"
+          caption="Cargo Actual"
+          [width]="100"
         >
-        <input
-          readonly
-          type="text"
-          [(ngModel)]="empleado.DIRECCION" name="DIRECCION"
-          class="form-control form-control-sm"
-          id="colFormLabelSm3"
-          placeholder=""
-        />
-      </div>
-        <div class="panel panel-default" style="border: 3px">
+        </dxi-column>
 
-          <div class="panel-heading">Detalles</div>
+        <dxi-column
+          dataType="boolean"
+          [calculateCellValue]="toBoolean2"
+          [setCellValue]="fromBoolean2"
+          [showEditorAlways]="true"
+          dataField="CARGO_PRINCIPAL"
+          caption="Cargo Principal"
+          [width]="100"
+        >
+        </dxi-column>
+
+        <dxo-editing
+          mode="popup"
+          [allowUpdating]="true"
+          [allowDeleting]="true"
+          [allowAdding]="true"
+        >
+        </dxo-editing>
+        <dxo-popup
+          title="Editar "
+          [showTitle]="true"
+          [width]="200"
+          [height]="145"
+          [position]="{ my: 'top', at: 'top' }"
+        >
+        </dxo-popup>
+      </dx-data-grid>
+    </div>
+  </ng-template>
+  <ng-template #TabContent2>
+    <div class="grid-container">
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="sueldos!"
+        keyExpr="CODEMP"
+        [columnAutoWidth]="true"
+        [wordWrapEnabled]="true"
+        [showBorders]="true"
+        [allowColumnResizing]="true"
+        columnResizingMode="widget"
+        class="responsive-grid"
+        [height]="'100%'"
+        [width]="'100%'"
+      >
+        <dxo-paging [pageSize]="25"> </dxo-paging>
+        <dxo-pager
+          [visible]="true"
+          [showInfo]="true"
+          [showNavigationButtons]="true"
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
+
+        <dxi-column
+          dataType="date"
+          format="shortDate"
+          dataField="FECHA"
+          caption="Fecha "
+          [width]="100"
+        ></dxi-column>
+        <dxi-column dataField="TIPCONTRATO" caption="Contrato" [width]="100">
+          <dxo-lookup
+            [dataSource]="tipocontrato"
+            displayExpr="Name"
+            valueExpr="ID"
+          ></dxo-lookup>
+        </dxi-column>
+        <dxi-column
+          dataField="CENTRO_COSTO"
+          caption="Centro de Costos"
+          [width]="200"
+        ></dxi-column>
+        <dxi-column
+          dataField="A_PAGAR"
+          [format]="{ type: 'fixedPoint', precision: 2 }"
+          [customizeText]="formatDolar"
+          caption="A_Pagar"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column
+          dataField="SUELDO"
+          [format]="{ type: 'fixedPoint', precision: 2 }"
+          [customizeText]="formatDolar"
+          caption="Sueldo"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column
+          dataField="EXTRAS"
+          [format]="{ type: 'fixedPoint', precision: 2 }"
+          [customizeText]="formatDolar"
+          caption="Extras"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column
+          dataField="OTROS"
+          [format]="{ type: 'fixedPoint', precision: 2 }"
+          [customizeText]="formatDolar"
+          caption="Otros"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column
+          dataField="INGRESOS"
+          caption="Ingresos"
+          [format]="{ type: 'fixedPoint', precision: 2 }"
+          [customizeText]="formatDolar"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column
+          dataField="EGRESOS"
+          [format]="{ type: 'fixedPoint', precision: 2 }"
+          [customizeText]="formatDolar"
+          caption="Egresos"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column
+          dataField="DIAS_ENF"
+          caption="Días enfermedad"
+          [width]="150"
+        ></dxi-column>
+        <dxi-column
+          dataField="DIAS_MAT"
+          caption="Días Maternidad"
+          [width]="150"
+        ></dxi-column>
+        <dxi-column
+          dataField="SINSUELDO"
+          caption="Sin Sueldo"
+          [width]="100"
+        ></dxi-column>
+      </dx-data-grid>
+    </div>
+  </ng-template>
+  <ng-template #TabContent3>
+    <div class="row"></div>
+  </ng-template>
+  <ng-template #TabContent4>
+    <div class="grid-container">
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="capacitaciones!"
+        [columnAutoWidth]="true"
+        [wordWrapEnabled]="true"
+        [showBorders]="true"
+        [allowColumnResizing]="true"
+        columnResizingMode="widget"
+        class="responsive-grid"
+        [height]="'100%'"
+        [width]="'100%'"
+      >
+        <dxo-paging [pageSize]="10"> </dxo-paging>
+        <dxo-pager
+          [visible]="true"
+          [showInfo]="true"
+          [showNavigationButtons]="true"
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
+        <dxi-column
+          dataType="date"
+          format="shortDate"
+          dataField="FECHA"
+          caption="FECHA"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column dataField="EMPRESA" caption="EMPRESA" [width]="125">
+        </dxi-column>
+        <dxi-column dataField="DESCRIPCION" caption="DESCRIPCION" [width]="425">
+        </dxi-column>
+        <dxi-column
+          dataField="TIPO_AISTENCIA"
+          caption="TIPO AISTENCIA"
+          [width]="100"
+        ></dxi-column>
+        <dxi-column dataField="DURACION" caption="DURACION" [width]="125">
+        </dxi-column>
+        <dxi-column
+          dataField="PORC_SUBSIDIO"
+          caption="PORC SUBSIDIO"
+          [width]="125"
+        ></dxi-column>
+      </dx-data-grid>
+    </div>
+  </ng-template>
+  <ng-template #TabContent5>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row align-items-start">
+          <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Nombre Conyugue</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="empleado.NOMBRECONYUGE"
+              name="NOMBRECONYUGE"
+              class="form-control form-control-sm"
+              id="colFormLabelSm33"
+              placeholder=""
+            />
+          </div>
+          <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Fecha Mat. civil</label
+            >
+            <input
+              type="text"
+              mwlFlatpickr
+              [altInput]="true"
+              [convertModelValue]="true"
+              name="FECHAMATRICIVIL"
+              [(ngModel)]="empleado.FECHAMATRICIVIL"
+              class="form-control form-control-sm"
+              id="colFormLabelSm34"
+              placeholder=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row align-items-start">
+          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Fecha Mat. eclesiastico</label
+            >
+            <input
+              type="text"
+              mwlFlatpickr
+              [altInput]="true"
+              [convertModelValue]="true"
+              [(ngModel)]="empleado.FECHAMATRIECLE"
+              name="FECHAMATRIECLE"
+              class="form-control form-control-sm"
+              id="colFormLabelSm36"
+              placeholder=""
+            />
+          </div>
+          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Telefono conyugue</label
+            >
+            <input
+              type="number"
+              [(ngModel)]="empleado.TELEFONOCONYUGE"
+              name="TELEFONOCONYUGE"
+              class="form-control form-control-sm"
+              id="colFormLabelSm39"
+              placeholder=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row align-items-start">
+          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Email Personal</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="empleado.EMAILPERSONAL"
+              name="EMAILPERSONAL"
+              class="form-control form-control-sm"
+              id="colFormLabelSm77"
+              placeholder=""
+            />
+          </div>
+
+          <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
+            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
+              >Ruc</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="empleado.RUC"
+              name="RUC"
+              class="form-control form-control-sm"
+              id="colFormLabelSm79"
+              placeholder=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default" style="border: 3px">
+          <div class="panel-heading">En caso de emergencia contactar a</div>
           <div class="panel-body">
             <div class="row">
               <div class="row align-items-start">
@@ -483,188 +2108,17 @@
                     for="colFormLabelSm"
                     style="font-size: 9px"
                     class="col-sm-12"
-                    >Desarrollo Resid.</label
-                  >
-                 
-
-                  <select 
-                    class="form-control form-control-sm"   [(ngModel)]="DesarrolloVivienda"
-                     [class.is-invalid]="(DesarrolloViviendaModel.invalid && (DesarrolloViviendaModel.touched || intentoEnvio))"
-                     name="DesarrolloVivienda" required  #DesarrolloViviendaModel="ngModel" id="DesarrolloVivienda"
-                    aria-label="" placeholder=""
-                  >
-                
-                    <option
-                      *ngFor="let person of TIPO_VI"
-                      value="{{ person.ID }}"
-                    >
-                      {{ person.Name }}
-                    </option>
-                  </select>
-              
-                </div>
-                <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-          >Dirección</label
-        >
-        <input
-  
-  type="text"
-  [(ngModel)]="URB"
- [class.is-invalid]="(URBModel.invalid && (URBModel.touched || intentoEnvio))"
-  class="form-control form-control-sm"
-  name="URB"
-  required
-  #URBModel="ngModel"
-  id="URB"
-  placeholder=""
-/>
-
-       
-      </div>
-                
-                <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >MZ.</label
+                    >Contacto #1 (nombre completo)</label
                   >
                   <input
                     type="text"
-                    [(ngModel)]="mz"  name="mz"
+                    [(ngModel)]="empleado.CONTACTOEMERGENCIA"
+                    name="CONTACTOEMERGENCIA"
                     class="form-control form-control-sm"
-                    id="mz"
+                    id="colFormLabelSm378"
                     placeholder=""
                   />
                 </div>
-                
-                
-              </div>
-            </div>
-            <div class="row">
-              <div class="row align-items-start">
-                <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >No. casa</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="NO_CASA" name="NO_CASA"
-                    class="form-control form-control-sm"
-                    id="NO_CASA"
-                    placeholder=""
-                  />
-                </div>
-                <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >Calle Principal</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="CALLE_PRIN"  name="CALLE_PRIN"
-                    class="form-control form-control-sm"
-                    id="CALLE_PRIN"
-                    placeholder=""
-                  />
-                </div>
-                <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >Calle Secundaria</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="CALLE_SEC" name="CALLE_SEC"
-                    class="form-control form-control-sm"
-                    id="CALLE_SEC"
-                    placeholder=""
-                  />
-                </div>
-            
-              </div>
-            </div>
-            <div class="row">
-              <div class="row align-items-start">
-                    <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >Km</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="KM" name="KM"
-                    class="form-control form-control-sm"
-                    id="KM"
-                    placeholder=""
-                  />
-                </div>
-                <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >Via</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="via" name="via"
-                    class="form-control form-control-sm"
-                    id="via"
-                    placeholder=""
-                  />
-                </div>
-                <div
-                  class="col-sm-4"
-                  style="padding-right: 0px; padding-left: 0px"
-                >
-                  <label
-                    for="colFormLabelSm"
-                    style="font-size: 9px"
-                    class="col-sm-12"
-                    >Condominio</label
-                  >
-                  <input
-                    type="text"
-                    [(ngModel)]="COND" name="COND"
-                    class="form-control form-control-sm"
-                    id="COND"
-                    placeholder=""
-                  />
-                </div>
-                
-              </div>
-            </div>
-            <div class="row">
-              <div class="row align-items-start">
                 <div
                   class="col-sm-2"
                   style="padding-right: 0px; padding-left: 0px"
@@ -673,1731 +2127,509 @@
                     for="colFormLabelSm"
                     style="font-size: 9px"
                     class="col-sm-12"
-                    >No. Depa.</label
+                    >parentesco</label
                   >
-                  <input
-                    type="text"
-                    [(ngModel)]="NO_DEPA" name="NO_DEPA"
+                  <select
                     class="form-control form-control-sm"
-                    id="NO_DEPA"
-                    placeholder=""
-                  />
+                    name="PARENTESCOEMERGENCIA"
+                    [(ngModel)]="empleado.PARENTESCOEMERGENCIA"
+                    aria-label="Default select example"
+                  >
+                    <option
+                      *ngFor="let person of familia"
+                      value="{{ person.ID }}"
+                    >
+                      {{ person.Name }}
+                    </option>
+                  </select>
                 </div>
                 <div
-                  class="col-sm-10"
+                  class="col-sm-3"
                   style="padding-right: 0px; padding-left: 0px"
                 >
                   <label
                     for="colFormLabelSm"
                     style="font-size: 9px"
                     class="col-sm-12"
-                    >Referencia Dom.</label
+                    >Otro Parentezco</label
                   >
                   <input
                     type="text"
-                    [(ngModel)]="empleado.REFERENCIADOMICILIO" name="REFERENCIADOMICILIO" required  #REFERENCIADOMICILIO="ngModel"
+                    [(ngModel)]="empleado.OTROPARENTEMERGENCIA"
+                    name="OTROPARENTEMERGENCIA"
                     class="form-control form-control-sm"
-                    id="REFERENCIADOMICILIO"
-                      [class.is-invalid]="(REFERENCIADOMICILIO.invalid && (REFERENCIADOMICILIO.touched || intentoEnvio))"
+                    id="colFormLabelSm666666"
                     placeholder=""
                   />
-                  
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Teléfono</label
+                  >
+                  <input
+                    type="number"
+                    [(ngModel)]="empleado.TELEFONOEMERGENCIA"
+                    name="TELEFONOEMERGENCIA"
+                    class="form-control form-control-sm"
+                    id="colFormLabelSm77777"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="row align-items-start">
+                <div
+                  class="col-sm-4"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Contacto #2 (nombre completo)</label
+                  >
+                  <input
+                    type="text"
+                    [(ngModel)]="empleado.CONTACTOEMERGENCIA2"
+                    name="CONTACTOEMERGENCIA2"
+                    class="form-control form-control-sm"
+                    id="colFormLabelSm8888"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-2"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >parentesco</label
+                  >
+                  <select
+                    class="form-control form-control-sm"
+                    name="PARENTESCOEMERGENCIA2"
+                    [(ngModel)]="empleado.PARENTESCOEMERGENCIA2"
+                    aria-label="Default select example"
+                  >
+                    <option
+                      *ngFor="let person of familia"
+                      value="{{ person.ID }}"
+                    >
+                      {{ person.Name }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Otro Parentezco</label
+                  >
+                  <input
+                    type="text"
+                    [(ngModel)]="empleado.OTROPARENTEMERGENCIA2"
+                    name="OTROPARENTEMERGENCIA2"
+                    class="form-control form-control-sm"
+                    id="colFormLabelSm999999999"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  class="col-sm-3"
+                  style="padding-right: 0px; padding-left: 0px"
+                >
+                  <label
+                    for="colFormLabelSm"
+                    style="font-size: 9px"
+                    class="col-sm-12"
+                    >Teléfono</label
+                  >
+                  <input
+                    type="number"
+                    [(ngModel)]="empleado.TELEFONOEMERGENCIA2"
+                    name="TELEFONOEMERGENCIA2"
+                    class="form-control form-control-sm"
+                    id="colFormLabelSm"
+                    placeholder=""
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="row align-items-start">
-            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-              <label
-                for="colFormLabelSm"
-                style="font-size: 9px"
-                class="col-sm-12"
-                >Fecha Nacimiento</label
-              >
-          <input
-  class="form-control form-control-sm"
-  [(ngModel)]="empleado.FECNAC"
-  name="FECNAC"
-  #FECNAC="ngModel"
-  type="text"
-  required
-  mwlFlatpickr
-  [convertModelValue]="true"
-  [class.is-invalid]="FECNAC.invalid && (FECNAC.touched || intentoEnvio)"
-/>
-           
-    </div>
-            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-              <label
-                for="colFormLabelSm"
-                style="font-size: 9px"
-                class="col-sm-12"
-                >Pais</label
-              >
-              <select (change)="pais($event)"
-                class="form-control form-control-sm"
-                [(ngModel)]="empleado.PAIS" name="PAIS" required  #PAIS="ngModel"
-                aria-label="Default select example"
-                [class.is-invalid]="(PAIS.invalid && (PAIS.touched || intentoEnvio))"
-              > <option value=""></option>
-                <option
-                  *ngFor="let person of paises"
-                  value="{{ person.CODPAIS }}"
-                >
-                  {{ person.NOMPAIS?.toUpperCase() }}
-                </option>
-              </select>
-               
-            </div>
-            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-              <label
-                for="colFormLabelSm"
-                style="font-size: 9px"
-                class="col-sm-12"
-                >Provincia</label
-              >
-              <select (change)="provincia($event)"
-                class="form-control form-control-sm"
-                [(ngModel)]="empleado.PROVINCIA" name="PROVINCIA" required  #PROVINCIA="ngModel"
-                aria-label="Default select example"
-                [class.is-invalid]="(PROVINCIA.invalid && (PROVINCIA.touched || intentoEnvio))"
-              >
-         
-                <option
-                  *ngFor="let person of provinciafiltrada"
-                  value="{{ person.CODPROV }}"
-                >
-                  {{ person.NOMPROV?.toUpperCase() }}
-                </option>
-              </select>
-              
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Lugar Nacimiento</label
-            >
-    
-            <select id="rrer"
-              class="form-control form-control-sm" name="rrer"
-              [class.is-invalid]="(CIUDAD.invalid && (CIUDAD.touched || intentoEnvio))"
-              [(ngModel)]="empleado.CIUDAD" name="CIUDAD" required  #CIUDAD="ngModel"
-              aria-label="Default select example"
-            >
-
-              <option
-                *ngFor="let person of cantonesfiltrada"
-                value="{{ person.CODCIUDAD}}"
-              >
-                {{ person.NOMCIUDAD?.toUpperCase() }}
-              </option>
-             
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="row align-items-start">
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Sexo</label
-            >
-            <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.SEXO" name="SEXO" required  #SEXO="ngModel"
-              aria-label="Default select example"
-                [class.is-invalid]="(SEXO.invalid && (SEXO.touched || intentoEnvio))"
-            >
-              <option *ngFor="let person of generos" value="{{ person.ID }}">
-                {{ person.Name }}
-              </option>
-            </select>
-            
-          </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Estado Civil</label
-            >
-            <select (change)="onSelectChange($event)"
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.ESTCIVIL"  name="ESTCIVIL" required  #ESTCIVIL="ngModel"
-              aria-label="Default select example"
-                 [class.is-invalid]="(ESTCIVIL.invalid && (ESTCIVIL.touched || intentoEnvio))"
-            >
-              <option 
-                *ngFor="let person of estadocivil"
-                value="{{ person.ID }}"
-              >
-                {{ person.Name }}
-              </option>
-            </select>
-            
-          </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Apellido Casada</label
-            >
-
-       
-            <input
-              type="text" #APELLIDO_CAS="ngModel"
-              [(ngModel)]="empleado.APELLIDO_CAS" name="APELLIDO_CAS" [required]="esRequerido"
-              class="form-control form-control-sm"
-              [class.is-invalid]="(APELLIDO_CAS.invalid && (APELLIDO_CAS.touched || intentoEnvio))"
-              id="APELLIDO_CAS"
-              placeholder=""
-            />
-             
-          </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >No Hijos</label
-            >
-            <input
-              type="text"
-              maxlength="2" currencyInput
-              [(ngModel)]="empleado.NUMHIJOS" name="NUMHIJOS" required  #NUMHIJOS="ngModel"
-              class="form-control form-control-sm"
-              id="NUMHIJOS"
-              [class.is-invalid]="(NUMHIJOS.invalid && (NUMHIJOS.touched || intentoEnvio))"
-              placeholder=""
-            />
-       
-          </div>
-        </div>
-        <div class="row align-items-start">
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Ministerio de Educacion</label
-            >
-            <select
-              class="form-control form-control-sm" 
-              [(ngModel)]="empleado.CODCCOSTO_MINIS" name="CODCCOSTO_MINIS" required  #CODCCOSTO_MINIS="ngModel"
-              aria-label="Default select example"
-                            [class.is-invalid]="(CODCCOSTO_MINIS.invalid && (CODCCOSTO_MINIS.touched || intentoEnvio))"
-            >
-             <option value=""></option>
-              <option
-                *ngFor="let person of centrosmin"
-                value="{{ person.CODCCOSTO }}"
-              >
-                {{ person.NOMCCOSTO }}
-              </option>
-            </select>
-             
-          </div>
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >No Extensión</label
-            >
-            <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.NUMEXT" name="NUMEXT"
-              aria-label="Default select example"
-              
-            > <option value=""></option>
-              <option
-                *ngFor="let person of extensiones"
-                value="{{ person.NUMEXT }}"
-              >
-               {{ person.NUMEXT }} - {{ person.DSCEXT }}
-              </option>
-            </select>
-          </div>
-         
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Tipo Contrato</label
-            >
-            <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.TIPCONTRATO" name="TIPCONTRATO" required  #TIPCONTRATO="ngModel"
-              aria-label="Default select example"
-                [class.is-invalid]="(TIPCONTRATO.invalid && (TIPCONTRATO.touched || intentoEnvio))"
-           
-            >
-              <option
-                *ngFor="let person of tipocontrato"
-                value="{{ person.ID }}"
-              >
-                {{ person.Name }}
-              </option>
-            </select>
-           
-          </div>
-          <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Centro Costo</label
-            >
-            <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.CODCCOSTO" name="CODCCOSTO" required  #CODCCOSTO="ngModel"
-              aria-label="Default select example"
-              [class.is-invalid]="(CODCCOSTO.invalid && (CODCCOSTO.touched || intentoEnvio))"
-            >
-              <option
-                *ngFor="let person of grupos"
-                value="{{ person.CODCCOSTO }}"
-              >
-                {{ person.NOMCCOSTO }}
-              </option>
-            </select>
-         
-          </div>
-          <div class="col-sm-5" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Jefa Inmediata</label
-            >
-<!-- el campo debe de ser string para que coja la validacion -->
-
-            <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.CODJEFA" name="CODJEFA" required  #CODJEFA="ngModel"
-              aria-label="Default select example"
-               [class.is-invalid]="(CODJEFA.invalid && (CODJEFA.touched || intentoEnvio))"
-            > <option value=""></option>
-              <option
-                *ngFor="let person of jefas"
-                value="{{ person.CODEMP }}"
-              >
-                {{ person.RAZONSOCIAL }}
-              </option>
-            </select>
-               
-          </div>
-        </div>
-        <!-- Hoverable Rows -->
-         <div class="row align-items-start">
-        <dx-data-grid
-          id="gridContainer"
-          [dataSource]="empleado.CentroCosto!"
-          keyExpr="GCODCCOSTO"
-          [showBorders]="true"
-          [height]="200"
-        >
-          <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
-          <dxi-column type="buttons" caption="Acción" [width]="70">
-            <dxi-button
-              name="edit"
-              icon="assets/images/btn_edit.png"
-            ></dxi-button>
-            <dxi-button
-              name="delete"
-              icon="assets/images/btn_eliminar.png"
-            ></dxi-button>
-          </dxi-column>
-          <dxi-column dataField="GCODCCOSTO" caption="Centro" [width]="200">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-            <dxo-lookup
-              [dataSource]="GCENTROCOSTO"
-              displayExpr="NOMGRUPOCCOSTO"
-              valueExpr="GCODCCOSTO"
-            ></dxo-lookup>
-          </dxi-column>
-          <dxi-column dataField="IDEMPRESA" caption="Empresa" [width]="200">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-            <dxo-lookup
-              [dataSource]="empresas"
-              displayExpr="CODIGO"
-              valueExpr="ID_EMPRESA"
-            ></dxo-lookup>
-          </dxi-column>
-           <dxi-column
-            dataType="boolean"
-            [calculateCellValue]="toBooleanG"
-            [setCellValue]="fromBooleanG"
-            [showEditorAlways]="true"
-            dataField="ESTADO_GR"
-            caption="ESTADO"
-            [width]="100"
-          >
-  
-          </dxi-column>
-          <dxo-editing
-            mode="popup"
-            [allowUpdating]="true"
-            [allowDeleting]="true"
-            [allowAdding]="true"
-          >
-          </dxo-editing>
-          <dxo-popup
-            title="Editar "
-            [showTitle]="true"
-            [width]="200"
-            [height]="145"
-            [position]="{ my: 'top', at: 'top' }"
-          >
-          </dxo-popup>
-        </dx-data-grid>
-        </div>
       </div>
     </div>
-    <!-- titulo -->
-
-    <div class="row" style="padding-right: 0px; padding-left: 0px">
-      <div class="col-sm-6">
-        <div class="row align-items-start">
-          <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Titulo</label
-            >
-            <input
-              type="text"
-              [(ngModel)]="empleado.PROFESION" name="PROFESION"
-              class="form-control form-control-sm"
-              id="colFormLabelSm4"
-              placeholder=""
-            />
-          </div>
-          <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Mail</label
-            >
-            <input
-              type="text"
-              [(ngModel)]="empleado.MAIL" name="MAIL"
-              class="form-control form-control-sm"
-              id="colFormLabelSm5"
-              placeholder=""
-            />
-          </div>
-        </div>
-    
-      </div>
-      <div class="col-sm-6">
-        <div class="row align-items-start">
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Fec. Antg desde</label
-            >
-            <input
-              type="text"
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true"  name="FEC_INGPRESCOLAR"
-              [(ngModel)]="empleado.FEC_INGPRESCOLAR"
-              class="form-control form-control-sm"
-              id="colFormLabelSm6"
-              placeholder=""
-            />
-          </div>
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Fec. Antg Hasta</label
-            >
-            <input
-              type="text" name="FEC_SALPRESCOLAR"
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true" 
-              [(ngModel)]="empleado.FEC_SALPRESCOLAR"
-              class="form-control form-control-sm"
-              id="colFormLabelSm7"
-              placeholder=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row" style="padding-right: 0px; padding-left: 0px">
-          
-          <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Sueldo</label
-            >
-            <div class="input-group">
-              <span class="form-control form-control-sm">$</span>
-              <input
-                type="number" style="width: 110px;"
-                [(ngModel)]="empleado.SUELDO" name="SUELDO"
-                mask="0*.00"
-                class="form-control form-control-sm"
-                id="cleave-phone"
-                placeholder=""
-              />
-            </div>
-            <div></div>
-          </div>
-          <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Cop. Transp</label
-            >
-            <div class="input-group">
-              <span class="form-control form-control-sm">$</span>
-              <input
-                type="number" style="width: 110px;"
-                [(ngModel)]="empleado.BENEFICIO" name="BENEFICIO"
-                mask="0*.00"
-                class="form-control form-control-sm"
-                id="cleave-phone"
-                placeholder=""
-              />
-            </div>
-          </div>
-          <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Bonificación</label
-            >
-            <div class="input-group">
-              <span class="form-control form-control-sm">$</span>
-              <input 
-                type="number" style="width: 110px;"
-                [(ngModel)]="empleado.BENEFICIO2"
-                mask="0*.00"  name="BENEFICIO2"
-                class="form-control form-control-sm"
-                id="cleave-phone"
-                placeholder=""
-              />
-            </div>
-          </div>
-             <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Fecha Afiliación</label
-            >
-
-            <input
-              type="text"
-              mwlFlatpickr
-              [altInput]="true"  name="FEC_AIESS"
-              [convertModelValue]="true" 
-              [(ngModel)]="empleado.FEC_AIESS"
-              class="form-control form-control-sm"
-              id="colFormLabelSm8"
-              placeholder=""
-            />
-          </div>
-          <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Fecha Jubilación</label
-            >
-            <input
-              type="text"
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true" name="FEC_INI_JUBILACION"
-              [(ngModel)]="empleado.FEC_INI_JUBILACION"
-              class="form-control form-control-sm"
-              id="colFormLabelSm99"
-              placeholder=""
-            />
-          </div>
-        </div>
-    <!-- codigo IEES -->
-    <div class="row" style="padding-right: 0px; padding-left: 0px">
-      <div class="col-sm-6">
-        <div class="row align-items-start">
-          <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Codigo IEES</label
-            >
-                    <!-- <select 
-                    class="form-control form-control-sm"   [(ngModel)]="DesarrolloVivienda"
-                     [class.is-invalid]="(DesarrolloViviendaModel.invalid && (DesarrolloViviendaModel.touched || intentoEnvio))"
-                     name="DesarrolloVivienda" required  #DesarrolloViviendaModel="ngModel" id="DesarrolloVivienda"
-                    aria-label="" placeholder=""
-                  >
-
-                  </select> -->
-
-
-          <select
-            class="form-control form-control-sm"
-            [(ngModel)]="empleado.CODIGO_IESS" name="CODIGO_IESS"  required  #CODIGO_IESS="ngModel"
-              aria-label="Default select example"
-                            [class.is-invalid]="(CODIGO_IESS.invalid && (CODIGO_IESS.touched || intentoEnvio))"
-           ><option value=""></option>
-            <option
-              *ngFor="let person of iess"
-              value="{{ person.CODIGO_IESS }}"
-            >
-              {{ person.CODIGO_IESS }} - {{ person.CARGO_ACTIVIDAD }}
-            </option>
-          </select>
-
-          </div>
-         
-
-          <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Fec. Ingreso</label
-            >
-            <input
-              type="text"
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true" name="FECINGRESO"
-              [(ngModel)]="empleado.FECINGRESO"
-              class="form-control form-control-sm"
-              id="colFormLabelSm11"
-              placeholder=""
-            />
-          </div>
-          
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="row align-items-start">
-          <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Fecha Salida</label
-            >
-            <input
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.FECSALIDA"
-              type="text" name="FECSALIDA" 
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true"
-            />
-          </div>
-          <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Motivo Salida</label
-            >
-            <select
-              class="form-control form-control-sm"
-              [(ngModel)]="empleado.MOTIVO_SALIDA" name="MOTIVO_SALIDA"
-              aria-label="Default select example"
-            >
-              <option
-                *ngFor="let person of motivosalida"
-                value="{{ person.ID }}"
-              >
-                {{ person.Name }}
-              </option>
-            </select>
-          </div>
-       
-          <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Pension Jubilación
-            </label>
-               <div class="input-group">
-              <span class="form-control form-control-sm">$</span>
-              <input
-                type="number" style="width: 110px;"
-                [(ngModel)]="empleado.SUELDO_JUBILADO" name="SUELDO_JUBILADO"
-                mask="0*.00"
-                class="form-control form-control-sm"
-                id="cleave-phone"
-                placeholder=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" style="padding-right: 0px; padding-left: 0px">
-      <div class="col-sm-6">
-     
-<div class="mb-2">
-  <h5>Cuentas Contables</h5>
-</div>
-        <dx-data-grid
-          id="gridContainer" 
-          [dataSource]="empleado.CuentasContables!"
-          keyExpr="PLA_CODCNTA"
-           [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-
-          [height]="200"
-        >
-          <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
-          <dxi-column type="buttons" caption="Acción" [width]="70">
-            <dxi-button
-              name="edit"
-              icon="assets/images/btn_edit.png"
-            ></dxi-button>
-            <dxi-button
-              name="delete"
-              icon="assets/images/btn_eliminar.png"
-            ></dxi-button>
-          </dxi-column>
-          <dxi-column dataField="TIPO_CTA" caption="" [width]="150">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-            <dxo-lookup
-              [dataSource]="tipocuenta"
-              displayExpr="nombre_tipo"
-              valueExpr="tipo_cta"
-            ></dxo-lookup>
-          </dxi-column>
-
-          <dxi-column dataField="PLA_CODCNTA" caption="" [width]="250">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-            <dxo-lookup
-              [dataSource]="PLA_CODCNTA"
-              displayExpr="cuenta"
-              valueExpr="ID"
-            ></dxo-lookup>
-          </dxi-column>
-
-          <dxi-column
-            dataType="boolean"
-            [calculateCellValue]="toBooleans"
-            [setCellValue]="fromBooleans"
-            [showEditorAlways]="true"
-            dataField="ACTIVO"
-            caption="ESTADO"
-            [width]="70"
-          >
-
-          </dxi-column>
-
-          <dxo-editing
-            mode="popup"
-            [allowUpdating]="true"
-            [allowDeleting]="true"
-            [allowAdding]="true"
-          >
-          </dxo-editing>
-          <dxo-popup
-            title="Editar "
-            [showTitle]="true"
-            [width]="200"
-            [height]="145"
-            [position]="{ my: 'top', at: 'top' }"
-          >
-          </dxo-popup>
-        </dx-data-grid>
-        <div class="mb-2">
-  <h5>Cuentas Bancarias</h5>
-</div>
-   
-        <dx-data-grid
-          id="gridContainer"
-          [dataSource]="empleado.CuentasBancos!"
-          keyExpr="CTABCO"
-           [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-          [height]="200"
-        >
-          <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
-          <dxi-column type="buttons" caption="Acción" [width]="70">
-            <dxi-button
-              name="edit"
-              icon="assets/images/btn_edit.png"
-            ></dxi-button>
-            <dxi-button
-              name="delete"
-              icon="assets/images/btn_eliminar.png"
-            ></dxi-button>
-          </dxi-column>
-          <dxi-column dataField="CODBANCO" caption="Banco" [width]="150">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-            <dxo-lookup
-              [dataSource]="Bancos"
-              displayExpr="NOMBANCO"
-              valueExpr="CODBANCO"
-            ></dxo-lookup>
-          </dxi-column>
-          <dxi-column
-            dataField="CTABCO"
-            caption="Número de cuenta"
-            [width]="150"
-          >
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-          </dxi-column>
-          <dxi-column
-            dataType="boolean"
-            [calculateCellValue]="toBoolean"
-            [setCellValue]="fromBoolean"
-            [showEditorAlways]="true"
-            dataField="ESTADO"
-            caption="ESTADO"
-            [width]="70"
-          >
-        
-          </dxi-column>
-
-          <dxi-column dataField="PORCENT" caption="Porcentaje" [width]="100">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-          </dxi-column>
-          <dxi-column
-            dataField="TIPO_CUENTA"
-            caption="Tipo Cuenta"
-            [width]="100"
-          >
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-            <dxo-lookup
-              [dataSource]="tipocuentas"
-              displayExpr="Name"
-              valueExpr="ID"
-            ></dxo-lookup>
-          </dxi-column>
-          <dxo-editing
-            mode="popup"
-            [allowUpdating]="true"
-            [allowDeleting]="true"
-            [allowAdding]="true"
-          >
-          </dxo-editing>
-          <dxo-popup
-            title="Editar "
-            [showTitle]="true"
-            [width]="200"
-            [height]="145"
-            [position]="{ my: 'top', at: 'top' }"
-          >
-          </dxo-popup>
-        </dx-data-grid>
-      </div>
-      <div class="col-sm-6">
-      
-        <div class="row">
-            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px;padding-top:20px">
-          
-            <dx-check-box
-              [value]="empleado.ACTIVO === 'S'" text="Empleado Activo"
-              (onValueChanged)="empleado.ACTIVO = $event.value ? 'S' : 'N'"
-            >
-            </dx-check-box>
-          </div>
-            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-6"
-              >NUMDIAS
-            </label>
-            <input
-              type="number"
-              [(ngModel)]="empleado.NUMDIAS" name="NUMDIAS"
-              class="form-control form-control-sm"
-              id="colFormLabelSm22"
-              placeholder=""
-            />
-          </div>
-                <div class="col-sm-4" style="padding-top:20px">
-     
-            <dx-check-box
-              [value]="empleado.ACTIVO_REPORTES_AUMENTOS === 'S'" text="ACTIVO REP. AUMENTOS"
-              (onValueChanged)="
-                empleado.ACTIVO_REPORTES_AUMENTOS = $event.value ? 'S' : 'N'
-              "
-            >
-            </dx-check-box>
-          </div>
-       
-        
-    
-        </div>
-  <div class="row">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Observación</label
-          >
-          <dx-text-area style="height:190px"
-            (height)="(190)"
-            [maxLength]="maxLength!"  name="OBSERVACION"
-            [(ngModel)]="empleado.OBSERVACION"
-            (autoResizeEnabled)="(true)"
-            [inputAttr]="{ 'aria-label': 'Notes' }"
-          >
-          </dx-text-area>
-        </div>
-
-        <div class="row">
-           <div class="col-sm-6" style="padding-top:20px">
-       
-            <dx-check-box
-              [value]="empleado.DISCAPACIDAD === 'S'" text="DISCAPACIDAD"
-              (onValueChanged)="
-                empleado.DISCAPACIDAD = $event.value ? 'S' : 'N'
-              "
-            >
-            </dx-check-box>
-          </div>
-          <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-            <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-              >Porcentaje Discapacidad</label
-            >
-  <dx-number-box
-  [(ngModel)]="empleado.PORC_DISCAPACIDAD"
-  [min]="1"
-  [max]="100" name="PORC_DISCAPACIDAD"
-  placeholder="">
-</dx-number-box>
-          </div>
-
-       
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-<ng-template #TabContent1>
-  <div class="grid-container">
-  <dx-data-grid
-    id="gridContainer"
-    (onEditorPreparing)="onEditorPreparing($event)"
-     (onRowUpdating)="onRowUpdating($event)"
-    [dataSource]="empleado.Departamentos!"
-    keyExpr="CODCRG"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  [columnAutoWidth]="true"
-  class="responsive-grid"
-    [height]="'100%'"
-    [width]="'100%'"
-  >
-      <dxo-paging [pageSize]="25"> </dxo-paging>
-    <dxo-pager
-      [visible]="true"
-      [showInfo]="true"
-      [showNavigationButtons]="true"
-      [showPageSizeSelector]="true"
-      [allowedPageSizes]="[10, 25, 50, 100]"
-    ></dxo-pager>
-    <dxi-column type="buttons" caption="Acción" [width]="100">
-      <dxi-button name="edit" icon="assets/images/btn_edit.png"></dxi-button>
-      <dxi-button
-        name="delete"
-        icon="assets/images/btn_eliminar.png"
-      ></dxi-button>
-    </dxi-column>
-    <dxi-column dataField="CODCRG" caption="Cargo" [width]="200">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-      <dxo-lookup
-        [dataSource]="ListaCargos"
-        displayExpr="NOMCRG"
-        valueExpr="CODCRG"
-      ></dxo-lookup>
-    </dxi-column>
-
-    <dxi-column dataField="CODDEP" caption="Departamento" [width]="150">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-      <dxo-lookup
-        [dataSource]="Depa"
-        displayExpr="NOMDEP"
-        valueExpr="CODDEP"
-      ></dxo-lookup>
-    </dxi-column>
-
-    <dxi-column dataField="CODSEC" caption="Sección" [width]="170">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-      <dxo-lookup
-        [dataSource]="seccionfiltrada"
-        displayExpr="NOMSEC"
-        valueExpr="CODSEC"
-      ></dxo-lookup>
-    </dxi-column>
-    
-    
-    <dxi-column
-      dataType="boolean"
-      [calculateCellValue]="toBoolean3"
-      [setCellValue]="fromBoolean3"
-      [showEditorAlways]="true"
-      dataField="ACTIVO"
-      caption="Cargo Actual"
-      [width]="100"
-    >
-     
-    </dxi-column>
-
-    <dxi-column
-      dataType="boolean"
-      [calculateCellValue]="toBoolean2"
-      [setCellValue]="fromBoolean2"
-      [showEditorAlways]="true"
-      dataField="CARGO_PRINCIPAL"
-      caption="Cargo Principal"
-      [width]="100"
-    >
-     
-    </dxi-column>
-
-    <dxo-editing
-      mode="popup"
-      [allowUpdating]="true"
-      [allowDeleting]="true"
-      [allowAdding]="true"
-    >
-
-    </dxo-editing>
-    <dxo-popup
-      title="Editar "
-      [showTitle]="true"
-      [width]="200"
-      [height]="145"
-      [position]="{ my: 'top', at: 'top' }"
-    >
-    </dxo-popup>
-  </dx-data-grid>
-  </div>
-</ng-template>
-<ng-template #TabContent2>
-  <div class="grid-container">
-  <dx-data-grid
-    id="gridContainer"
-    [dataSource]="sueldos!"
-    keyExpr="CODEMP"
-    [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-     [height]="'100%'"
-                  [width]="'100%'"
-  >
-    <dxo-paging [pageSize]="25"> </dxo-paging>
-    <dxo-pager
-      [visible]="true"
-      [showInfo]="true"
-      [showNavigationButtons]="true"
-      [showPageSizeSelector]="true"
-      [allowedPageSizes]="[10, 25, 50, 100]"
-    ></dxo-pager>
-
-  
-    <dxi-column
-      dataType="date"
-      format="shortDate"
-      dataField="FECHA"
-      caption="Fecha "
-      [width]="100"
-    ></dxi-column>
-    <dxi-column dataField="TIPCONTRATO" caption="Contrato" [width]="100">
-      <dxo-lookup
-        [dataSource]="tipocontrato"
-        displayExpr="Name"
-        valueExpr="ID"
-      ></dxo-lookup>
-    </dxi-column>
-    <dxi-column
-      dataField="CENTRO_COSTO"
-      caption="Centro de Costos"
-      [width]="200"
-    ></dxi-column>
-    <dxi-column
-      dataField="A_PAGAR"   [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar"
-      caption="A_Pagar"
-      [width]="100"
-    ></dxi-column>
-    <dxi-column dataField="SUELDO"  [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar" caption="Sueldo" [width]="100"></dxi-column>
-    <dxi-column dataField="EXTRAS"  [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar" caption="Extras" [width]="100"></dxi-column>
-    <dxi-column dataField="OTROS" [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar" caption="Otros" [width]="100"></dxi-column>
-    <dxi-column
-      dataField="INGRESOS"
-      caption="Ingresos"  [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar"
-      [width]="100"
-    ></dxi-column>
-    <dxi-column
-      dataField="EGRESOS" [format]="{ type: 'fixedPoint', precision: 2 }" [customizeText]="formatDolar"
-      caption="Egresos"
-      [width]="100"
-    ></dxi-column>
-    <dxi-column
-      dataField="DIAS_ENF"
-      caption="Días enfermedad"
-      [width]="150"
-    ></dxi-column>
-    <dxi-column
-      dataField="DIAS_MAT"
-      caption="Días Maternidad"
-      [width]="150"
-    ></dxi-column>
-    <dxi-column
-      dataField="SINSUELDO"
-      caption="Sin Sueldo"
-      [width]="100"
-    ></dxi-column>
-  </dx-data-grid>
-  </div>
-</ng-template>
-<ng-template #TabContent3>
-  <div class="row">
-    
-  </div>
-</ng-template>
-<ng-template #TabContent4> 
-  <div class="grid-container">
- <dx-data-grid
-    id="gridContainer"
-    [dataSource]="capacitaciones!"
-
-     [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-   [height]="'100%'"
-   [width]="'100%'"
-  >
-    <dxo-paging [pageSize]="10"> </dxo-paging>
-    <dxo-pager
-      [visible]="true"
-      [showInfo]="true"
-      [showNavigationButtons]="true"
-      [showPageSizeSelector]="true"
-      [allowedPageSizes]="[10, 25, 50, 100]"
-    ></dxo-pager>
-    <dxi-column
-
-                  dataType="date"
-                  format="shortDate"
-                  dataField="FECHA"
-                  caption="FECHA"
-                  [width]="100"
-
-    ></dxi-column>
-    <dxi-column dataField="EMPRESA" caption="EMPRESA" [width]="125">
-     
-    </dxi-column>
-    <dxi-column dataField="DESCRIPCION" caption="DESCRIPCION" [width]="425">
-    
-    </dxi-column>
-    <dxi-column
-      dataField="TIPO_AISTENCIA"
-      caption="TIPO AISTENCIA"
-      [width]="100"
-    ></dxi-column>
-    <dxi-column dataField="DURACION" caption="DURACION" [width]="125">
-      
-    </dxi-column>
-    <dxi-column
-      dataField="PORC_SUBSIDIO"
-      caption="PORC SUBSIDIO"
-      [width]="125"
-    ></dxi-column>
-
-  </dx-data-grid>
-</div>
-
-</ng-template>
-<ng-template #TabContent5>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="row align-items-start">
-        <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Nombre Conyugue</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.NOMBRECONYUGE"  name="NOMBRECONYUGE"
-            class="form-control form-control-sm"
-            id="colFormLabelSm33"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Fecha Mat. civil</label
-          >
-          <input
-            type="text"
-            mwlFlatpickr
-            [altInput]="true"
-            [convertModelValue]="true" name="FECHAMATRICIVIL"
-            [(ngModel)]="empleado.FECHAMATRICIVIL"
-            class="form-control form-control-sm"
-            id="colFormLabelSm34"
-            placeholder=""
-          />
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="row align-items-start">
-        <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Fecha Mat. eclesiastico</label
-          >
-          <input
-            type="text"
-            mwlFlatpickr
-            [altInput]="true"
-            [convertModelValue]="true"
-            [(ngModel)]="empleado.FECHAMATRIECLE" name="FECHAMATRIECLE"
-            class="form-control form-control-sm"
-            id="colFormLabelSm36"
-            placeholder=""
-          />
-        </div>
-        <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Telefono conyugue</label
-          >
-          <input
-            type="number"
-            [(ngModel)]="empleado.TELEFONOCONYUGE" name="TELEFONOCONYUGE"
-            class="form-control form-control-sm"
-            id="colFormLabelSm39"
-            placeholder=""
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row align-items-start">
-        <div class="col-sm-3" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Email Personal</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.EMAILPERSONAL" name="EMAILPERSONAL"
-            class="form-control form-control-sm"
-            id="colFormLabelSm77"
-            placeholder=""
-          />
-        </div>
-
-       
-        <div class="col-sm-2" style="padding-right: 0px; padding-left: 0px">
-          <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-            >Ruc</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="empleado.RUC" name="RUC"
-            class="form-control form-control-sm"
-            id="colFormLabelSm79"
-            placeholder=""
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="panel panel-default" style="border: 3px">
-        <div class="panel-heading">En caso de emergencia contactar a</div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="row align-items-start">
-              <div
-                class="col-sm-4"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Contacto #1 (nombre completo)</label
-                >
-                <input
-                  type="text"
-                  [(ngModel)]="empleado.CONTACTOEMERGENCIA" name="CONTACTOEMERGENCIA"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm378"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-2"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >parentesco</label
-                >
-                <select
-                  class="form-control form-control-sm" name="PARENTESCOEMERGENCIA"
-                  [(ngModel)]="empleado.PARENTESCOEMERGENCIA"
-                  aria-label="Default select example"
-                >
-                  <option
-                    *ngFor="let person of familia"
-                    value="{{ person.ID }}"
-                  >
-                    {{ person.Name }}
-                  </option>
-                </select>
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Otro Parentezco</label
-                >
-                <input
-                  type="text"
-                  [(ngModel)]="empleado.OTROPARENTEMERGENCIA"  name="OTROPARENTEMERGENCIA"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm666666"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Teléfono</label
-                >
-                <input
-                  type="number"
-                  [(ngModel)]="empleado.TELEFONOEMERGENCIA" name="TELEFONOEMERGENCIA"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm77777"
-                  placeholder=""
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="row align-items-start">
-              <div
-                class="col-sm-4"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Contacto #2 (nombre completo)</label
-                >
-                <input
-                  type="text"
-                  [(ngModel)]="empleado.CONTACTOEMERGENCIA2" name="CONTACTOEMERGENCIA2"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm8888"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-2"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >parentesco</label
-                >
-                <select
-                  class="form-control form-control-sm" name="PARENTESCOEMERGENCIA2"
-                  [(ngModel)]="empleado.PARENTESCOEMERGENCIA2"
-                  aria-label="Default select example"
-                >
-                  <option
-                    *ngFor="let person of familia"
-                    value="{{ person.ID }}"
-                  >
-                    {{ person.Name }}
-                  </option>
-                </select>
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Otro Parentezco</label
-                >
-                <input
-                  type="text"
-                  [(ngModel)]="empleado.OTROPARENTEMERGENCIA2" name="OTROPARENTEMERGENCIA2"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm999999999"
-                  placeholder=""
-                />
-              </div>
-              <div
-                class="col-sm-3"
-                style="padding-right: 0px; padding-left: 0px"
-              >
-                <label
-                  for="colFormLabelSm"
-                  style="font-size: 9px"
-                  class="col-sm-12"
-                  >Teléfono</label
-                >
-                <input
-                  type="number"
-                  [(ngModel)]="empleado.TELEFONOEMERGENCIA2" name="TELEFONOEMERGENCIA2"
-                  class="form-control form-control-sm"
-                  id="colFormLabelSm"
-                  placeholder=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="panel panel-default" style="border: 3px">
-        <div class="panel-heading">Familiar Discapacidad</div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="row align-items-start">
-              <dx-data-grid
-                id="gridContainer"
-                [dataSource]="descapacidades"
-                keyExpr="IDFAMILIA"
-              [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-              [height]="250"
-              >
-                <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
-                <dxi-column type="buttons" caption="Acción" [width]="100">
-                  <dxi-button
-                    name="edit"
-                    icon="assets/images/btn_edit.png"
-                  ></dxi-button>
-                  <dxi-button
-                    name="delete"
-                    icon="assets/images/btn_eliminar.png"
-                  ></dxi-button>
-                </dxi-column>
-                <dxi-column
-                  dataField="NOMBRECOMPLETO"
-                  caption="Nombres Completos"
-                  [width]="300"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                </dxi-column>
-                <dxi-column
-                  dataField="PARENTESCO"
-                  caption="Parentesco"
-                  [width]="100"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                  <dxo-lookup
-                    [dataSource]="carga"
-                    displayExpr="Name"
-                    valueExpr="ID"
-                  ></dxo-lookup>
-                </dxi-column>
-                <dxi-column
-                  dataType="date"
-                  format="shortDate"
-                  dataField="FECHANACIM"
-                  caption="Fecha Nacimiento"
-                  [width]="150"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                </dxi-column>
-                <dxi-column
-                  dataField="TIPODOC"
-                  caption="Tipo Documento"
-                  [width]="100"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                  <dxo-lookup
-                    [dataSource]="tipodocumento"
-                    displayExpr="Name"
-                    valueExpr="ID"
-                  ></dxo-lookup>
-                </dxi-column>
-                <dxi-column
-                  dataField="NUMDOC"
-                  caption="Número Documento"
-                  [width]="150"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                </dxi-column>
-                <dxi-column
-                  dataField="TIPO_DISCAPACIDAD"
-                  caption="Tipo Discapacidad"
-                  [width]="150"
-                >
-                  <dxo-lookup
-                    [dataSource]="tipodiscapcidad"
-                    displayExpr="Name"
-                    valueExpr="ID"
-                  ></dxo-lookup>
-                </dxi-column>
-                <dxi-column
-                  dataField="ENVIO_SRI"
-                  caption="Envio SRI"
-                  [width]="80"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                  <dxo-lookup
-                    [dataSource]="sino"
-                    displayExpr="Name"
-                    valueExpr="ID"
-                  ></dxo-lookup>
-                </dxi-column>
-                  <dxi-column
-            dataType="boolean"
-            [calculateCellValue]="toBoolean"
-            [setCellValue]="fromBoolean"
-            [showEditorAlways]="true"
-            dataField="ACTIVO"
-            caption="ESTADO"
-            [width]="70">
-              </dxi-column>
-                <dxo-editing
-                  mode="popup"
-                  [allowUpdating]="true"
-                  [allowDeleting]="true"
-                  [allowAdding]="true"
-                >
-                </dxo-editing>
-                <dxo-popup
-                  title="Editar "
-                  [showTitle]="true"
-                  [width]="200"
-                  [height]="145"
-                  [position]="{ my: 'top', at: 'top' }"
-                >
-                </dxo-popup>
-              </dx-data-grid>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-   <div class="row">
-    <div class="col-sm-12">
-      <div class="panel panel-default" style="border: 3px">
-        <div class="panel-heading">Enfermedades Catastróficas</div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="row align-items-start">
-              <dx-data-grid
-                id="gridContainer"
-                [dataSource]="catastroficas"
-                keyExpr="IDFAMILIA"
-              [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-              [height]="250"
-              >
-                <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
-                <dxi-column type="buttons" caption="Acción" [width]="100">
-                  <dxi-button
-                    name="edit"
-                    icon="assets/images/btn_edit.png"
-                  ></dxi-button>
-                  <dxi-button
-                    name="delete"
-                    icon="assets/images/btn_eliminar.png"
-                  ></dxi-button>
-                </dxi-column>
-                <dxi-column
-                  dataField="NOMBRECOMPLETO"
-                  caption="Nombres Completos"
-                  [width]="200"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                </dxi-column>
-                <dxi-column
-                  dataField="PARENTESCO"
-                  caption="Parentesco"
-                  [width]="100"
-                >
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                  <dxo-lookup
-                    [dataSource]="carga"
-                    displayExpr="Name"
-                    valueExpr="ID"
-                  ></dxo-lookup>
-                </dxi-column>
-         
-                <dxi-column
-                  dataField="ENFERMEDAD"
-                  caption="ENFERMEDAD"
-                  [width]="300">
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                 
-                </dxi-column>
-                <dxi-column
-                  dataField="RESPONSABILIDAD_ECON"
-                  caption="RESPONSABILIDAD ECON"
-                  [width]="150"
-                >
-                   <dxo-lookup
-                    [dataSource]="sino"
-                    displayExpr="Name"
-                    valueExpr="ID"
-                  ></dxo-lookup>
-                  <dxi-validation-rule type="required"></dxi-validation-rule>
-                </dxi-column>
-                      <dxi-column
-            dataType="boolean"
-            [calculateCellValue]="toBoolean"
-            [setCellValue]="fromBoolean"
-            [showEditorAlways]="true"
-            dataField="ACTIVO"
-            caption="ESTADO"
-            [width]="70">
-              </dxi-column>
-                <dxo-editing
-                  mode="popup"
-                  [allowUpdating]="true"
-                  [allowDeleting]="true"
-                  [allowAdding]="true"
-                >
-                </dxo-editing>
-                <dxo-popup
-                  title="Editar "
-                  [showTitle]="true"
-                  [width]="200"
-                  [height]="145"
-                  [position]="{ my: 'top', at: 'top' }"
-                >
-                </dxo-popup>
-              </dx-data-grid>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-<ng-template #TabContent6>
-   <div class="grid-container">
-  <dx-data-grid
-    id="gridContainer"
-    [dataSource]="employeesDataSource!"
-    keyExpr="ID_HIJO"
-                  [allowColumnResizing]="true"
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default" style="border: 3px">
+          <div class="panel-heading">Familiar Discapacidad</div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="row align-items-start">
+                <dx-data-grid
+                  id="gridContainer"
+                  [dataSource]="descapacidades"
+                  keyExpr="IDFAMILIA"
                   [columnAutoWidth]="true"
-                  [allowColumnReordering]="true"
+                  [wordWrapEnabled]="true"
                   [showBorders]="true"
-                  [height]="'100%'"
-                  [width]="'100%'"
-  >
-    <dxo-paging [pageSize]="25"> </dxo-paging>
-    <dxo-pager
-      [visible]="true"
-      [showInfo]="true"
-      [showNavigationButtons]="true"
-      [showPageSizeSelector]="true"
-      [allowedPageSizes]="[10, 25, 50, 100]"
-    ></dxo-pager>
+                  [allowColumnResizing]="true"
+                  columnResizingMode="widget"
+                  class="responsive-grid"
+                  [height]="250"
+                >
+                  <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+                  <dxi-column type="buttons" caption="Acción" [width]="100">
+                    <dxi-button
+                      name="edit"
+                      icon="assets/images/btn_edit.png"
+                    ></dxi-button>
+                    <dxi-button
+                      name="delete"
+                      icon="assets/images/btn_eliminar.png"
+                    ></dxi-button>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="NOMBRECOMPLETO"
+                    caption="Nombres Completos"
+                    [width]="300"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="PARENTESCO"
+                    caption="Parentesco"
+                    [width]="100"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxo-lookup
+                      [dataSource]="carga"
+                      displayExpr="Name"
+                      valueExpr="ID"
+                    ></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column
+                    dataType="date"
+                    format="shortDate"
+                    dataField="FECHANACIM"
+                    caption="Fecha Nacimiento"
+                    [width]="150"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="TIPODOC"
+                    caption="Tipo Documento"
+                    [width]="100"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxo-lookup
+                      [dataSource]="tipodocumento"
+                      displayExpr="Name"
+                      valueExpr="ID"
+                    ></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="NUMDOC"
+                    caption="Número Documento"
+                    [width]="150"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="TIPO_DISCAPACIDAD"
+                    caption="Tipo Discapacidad"
+                    [width]="150"
+                  >
+                    <dxo-lookup
+                      [dataSource]="tipodiscapcidad"
+                      displayExpr="Name"
+                      valueExpr="ID"
+                    ></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="ENVIO_SRI"
+                    caption="Envio SRI"
+                    [width]="80"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxo-lookup
+                      [dataSource]="sino"
+                      displayExpr="Name"
+                      valueExpr="ID"
+                    ></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column
+                    dataType="boolean"
+                    [calculateCellValue]="toBoolean"
+                    [setCellValue]="fromBoolean"
+                    [showEditorAlways]="true"
+                    dataField="ACTIVO"
+                    caption="ESTADO"
+                    [width]="70"
+                  >
+                  </dxi-column>
+                  <dxo-editing
+                    mode="popup"
+                    [allowUpdating]="true"
+                    [allowDeleting]="true"
+                    [allowAdding]="true"
+                  >
+                  </dxo-editing>
+                  <dxo-popup
+                    title="Editar "
+                    [showTitle]="true"
+                    [width]="200"
+                    [height]="145"
+                    [position]="{ my: 'top', at: 'top' }"
+                  >
+                  </dxo-popup>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default" style="border: 3px">
+          <div class="panel-heading">Enfermedades Catastróficas</div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="row align-items-start">
+                <dx-data-grid
+                  id="gridContainer"
+                  [dataSource]="catastroficas"
+                  keyExpr="IDFAMILIA"
+                  [columnAutoWidth]="true"
+                  [wordWrapEnabled]="true"
+                  [showBorders]="true"
+                  [allowColumnResizing]="true"
+                  columnResizingMode="widget"
+                  class="responsive-grid"
+                  [height]="250"
+                >
+                  <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+                  <dxi-column type="buttons" caption="Acción" [width]="100">
+                    <dxi-button
+                      name="edit"
+                      icon="assets/images/btn_edit.png"
+                    ></dxi-button>
+                    <dxi-button
+                      name="delete"
+                      icon="assets/images/btn_eliminar.png"
+                    ></dxi-button>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="NOMBRECOMPLETO"
+                    caption="Nombres Completos"
+                    [width]="200"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="PARENTESCO"
+                    caption="Parentesco"
+                    [width]="100"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxo-lookup
+                      [dataSource]="carga"
+                      displayExpr="Name"
+                      valueExpr="ID"
+                    ></dxo-lookup>
+                  </dxi-column>
 
-    <dxi-column type="buttons" caption="Acción " [width]="150">
-      <dxi-button name="edit" icon="assets/images/btn_edit.png"></dxi-button>
-      <dxi-button
-        name="delete"
-        icon="assets/images/btn_eliminar.png"
-      ></dxi-button>
-    </dxi-column>
+                  <dxi-column
+                    dataField="ENFERMEDAD"
+                    caption="ENFERMEDAD"
+                    [width]="300"
+                  >
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column
+                    dataField="RESPONSABILIDAD_ECON"
+                    caption="RESPONSABILIDAD ECON"
+                    [width]="150"
+                  >
+                    <dxo-lookup
+                      [dataSource]="sino"
+                      displayExpr="Name"
+                      valueExpr="ID"
+                    ></dxo-lookup>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column
+                    dataType="boolean"
+                    [calculateCellValue]="toBoolean"
+                    [setCellValue]="fromBoolean"
+                    [showEditorAlways]="true"
+                    dataField="ACTIVO"
+                    caption="ESTADO"
+                    [width]="70"
+                  >
+                  </dxi-column>
+                  <dxo-editing
+                    mode="popup"
+                    [allowUpdating]="true"
+                    [allowDeleting]="true"
+                    [allowAdding]="true"
+                  >
+                  </dxo-editing>
+                  <dxo-popup
+                    title="Editar "
+                    [showTitle]="true"
+                    [width]="200"
+                    [height]="145"
+                    [position]="{ my: 'top', at: 'top' }"
+                  >
+                  </dxo-popup>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #TabContent6>
+    <div class="grid-container">
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="employeesDataSource!"
+        keyExpr="ID_HIJO"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        [showBorders]="true"
+        [height]="'100%'"
+        [width]="'100%'"
+      >
+        <dxo-paging [pageSize]="25"> </dxo-paging>
+        <dxo-pager
+          [visible]="true"
+          [showInfo]="true"
+          [showNavigationButtons]="true"
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
 
-    <dxi-column
-      dataField="NOMBRE_CARGA"
-      caption="Nombres completos "
-      [width]="300"
-    ></dxi-column>
-    <dxi-column dataField="TIPO_CARGA" caption="Parentesco" [width]="125">
-      <dxi-validation-rule
-        type="required"
-        message="The OrderDate field is required."
-      ></dxi-validation-rule>
-      <dxo-lookup
-        [dataSource]="carga"
-        displayExpr="Name"
-        valueExpr="ID"
-      ></dxo-lookup>
-    </dxi-column>
-    <dxi-column dataField="SEXO" caption="Sexo" [width]="125">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-      <dxo-lookup
-        [dataSource]="generos"
-        displayExpr="Name"
-        valueExpr="ID"
-      ></dxo-lookup>
-    </dxi-column>
-    <dxi-column
-      dataField="FECHA_NACIMIENTO"
-      caption="Fecha nacimiento"
-      dataType="date"
-      format="shortDate"
-      [width]="200"
-    ></dxi-column>
-    <dxi-column dataField="INSTITUCION" caption="Inst. educativa" [width]="125">
-      <dxo-lookup
-        [dataSource]="colegios"
-        displayExpr="Name"
-        valueExpr="ID"
-      ></dxo-lookup>
-    </dxi-column>
-    <dxi-column
-      dataField="GRADOCURSO"
-      caption="Grado o curso"
-      [width]="125"
-    ></dxi-column>
-    <dxi-column
-      dataField="OTRAINSTITUCION"
-      caption="Otra"
-      [width]="300"
-    ></dxi-column>
-    <dxo-editing
-      mode="popup"
-      [allowUpdating]="true"
-      [allowDeleting]="true"
-      [allowAdding]="true"
-    >
-    </dxo-editing>
-    <dxo-popup
-      title="Editar"
-      [showTitle]="true"
-      [width]="200"
-      [height]="145"
-      [position]="{ my: 'top', at: 'top' }"
-    >
-    </dxo-popup>
-  </dx-data-grid>
-  </div>
-</ng-template>
-<ng-template #TabContent7>
-<div class="grid-container">
+        <dxi-column type="buttons" caption="Acción " [width]="150">
+          <dxi-button
+            name="edit"
+            icon="assets/images/btn_edit.png"
+          ></dxi-button>
+          <dxi-button
+            name="delete"
+            icon="assets/images/btn_eliminar.png"
+          ></dxi-button>
+        </dxi-column>
+
+        <dxi-column
+          dataField="NOMBRE_CARGA"
+          caption="Nombres completos "
+          [width]="300"
+        ></dxi-column>
+        <dxi-column dataField="TIPO_CARGA" caption="Parentesco" [width]="125">
+          <dxi-validation-rule
+            type="required"
+            message="The OrderDate field is required."
+          ></dxi-validation-rule>
+          <dxo-lookup
+            [dataSource]="carga"
+            displayExpr="Name"
+            valueExpr="ID"
+          ></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="SEXO" caption="Sexo" [width]="125">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxo-lookup
+            [dataSource]="generos"
+            displayExpr="Name"
+            valueExpr="ID"
+          ></dxo-lookup>
+        </dxi-column>
+        <dxi-column
+          dataField="FECHA_NACIMIENTO"
+          caption="Fecha nacimiento"
+          dataType="date"
+          format="shortDate"
+          [width]="200"
+        ></dxi-column>
+        <dxi-column
+          dataField="INSTITUCION"
+          caption="Inst. educativa"
+          [width]="125"
+        >
+          <dxo-lookup
+            [dataSource]="colegios"
+            displayExpr="Name"
+            valueExpr="ID"
+          ></dxo-lookup>
+        </dxi-column>
+        <dxi-column
+          dataField="GRADOCURSO"
+          caption="Grado o curso"
+          [width]="125"
+        ></dxi-column>
+        <dxi-column
+          dataField="OTRAINSTITUCION"
+          caption="Otra"
+          [width]="300"
+        ></dxi-column>
+        <dxo-editing
+          mode="popup"
+          [allowUpdating]="true"
+          [allowDeleting]="true"
+          [allowAdding]="true"
+        >
+        </dxo-editing>
+        <dxo-popup
+          title="Editar"
+          [showTitle]="true"
+          [width]="200"
+          [height]="145"
+          [position]="{ my: 'top', at: 'top' }"
+        >
+        </dxo-popup>
+      </dx-data-grid>
+    </div>
+  </ng-template>
+  <ng-template #TabContent7>
+    <div class="grid-container">
       <dx-data-grid
         id="gridContainer"
         [dataSource]="empleado.Titulos!"
         keyExpr="IDTITULO"
-                  [allowColumnResizing]="true"
-                  [columnAutoWidth]="true"
-                  [allowColumnReordering]="true"
-                  [showBorders]="true"
-                  [height]="'100%'"
-                  [width]="'100%'"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        [showBorders]="true"
+        [height]="'100%'"
+        [width]="'100%'"
       >
         <dxo-paging [pageSize]="25"> </dxo-paging>
-    <dxo-pager
-      [visible]="true"
-      [showInfo]="true"
-      [showNavigationButtons]="true"
-      [showPageSizeSelector]="true"
-      [allowedPageSizes]="[10, 25, 50, 100]"
-    ></dxo-pager>
+        <dxo-pager
+          [visible]="true"
+          [showInfo]="true"
+          [showNavigationButtons]="true"
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
 
         <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
         <dxi-column type="buttons" caption="Acción" [width]="100">
@@ -2469,7 +2701,6 @@
           caption="Estado"
           [width]="70"
         >
-          
         </dxi-column>
 
         <dxi-column
@@ -2500,7 +2731,6 @@
         >
         </dxo-popup>
       </dx-data-grid>
-    
-  </div>
-</ng-template>
+    </div>
+  </ng-template>
 </form>
