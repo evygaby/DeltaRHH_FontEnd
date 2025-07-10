@@ -46,6 +46,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { PaisesComponent } from './paises/paises.component';
 import { CantonesComponent } from './cantones/cantones.component';
 import { ProvinciasComponent } from './provincias/provincias.component';
+import { CurrencyInputDirective } from './infoempleado/currency-input.directive';
+import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirective';
 
 
 
@@ -53,7 +55,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
 @NgModule({
   declarations: [
     DashboardComponent,
-    ToastsContainer,
+    ToastsContainer,CurrencyInputDirective,AutoFocusInvalidDirective,
     UsuarioComponent,
     LoadingComponent,
     EmpleadosComponent,
@@ -62,6 +64,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
     CantonesComponent,
     ProvinciasComponent,
   ],
+   exports: [AutoFocusInvalidDirective],
   imports: [
     CommonModule,DxNumberBoxModule,
     FormsModule,DxCheckBoxModule, DxDateBoxModule,MatNativeDateModule,

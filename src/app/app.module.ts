@@ -43,7 +43,7 @@ if (environment.defaultauth === 'firebase') {
 
 @NgModule({
   declarations: [
-    AppComponent,CurrencyInputDirective 
+    AppComponent 
   ],
   imports: [
     TranslateModule.forRoot({

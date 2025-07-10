@@ -91,7 +91,7 @@
 
 
 <!--end row-->
-<form #form="ngForm" (ngSubmit)="submit(form)">
+<form #form="ngForm" autoFocusInvalid  (ngSubmit)="submit(form)">
 <button
   type="submit"
  
@@ -120,10 +120,9 @@
                 >
                 <input type="number"
                   id="CODEMP" 
-                  [readonly]="!empleado.esnuevo"
-                  [(ngModel)]="empleado.CODEMP"
-                  [class.is-invalid]="(nombreCampo.invalid && (nombreCampo.touched || intentoEnvio))"
-                  class="form-control form-control-sm" name="CODEMP" required  #nombreCampo="ngModel"
+                 
+                  [(ngModel)]="empleado.CODEMP" 
+                  class="form-control form-control-sm" name="CODEMP" readonly   #nombreCampo="ngModel"
                   id="CODEMP"
                   placeholder=""
                 />
@@ -143,7 +142,9 @@
                  *ngIf="isnumerico"
                    type="text"
                   [maxlength]="maxlength"
-                  pattern="\d*"
+                  [minlength]="maxlength"
+                  currencyInput
+                  data-priority="1"
                   [(ngModel)]="empleado.NUMCEDULA"
                   [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
                   class="form-control form-control-sm" name="NUMCEDULA" required  #NUMCEDULA="ngModel"
@@ -151,6 +152,7 @@
                   placeholder=""
                 />
                      <input
+                     data-priority="1"
                   type="text" *ngIf="!isnumerico"           
                   [(ngModel)]="empleado.NUMCEDULA"
                      [class.is-invalid]="(NUMCEDULA.invalid && (NUMCEDULA.touched || intentoEnvio))"
@@ -169,7 +171,7 @@
                   class="col-sm-12"
                   >Tipo Documento</label
                 >
-                <select (change)="onSelectChangecedula($event)"
+                <select (change)="onSelectChangecedula($event)" data-priority="2"
                   class="form-control form-control-sm"  name="TIPO_DOCUMENTO" required  #TIPO_DOCUMENTO="ngModel"
                   [(ngModel)]="empleado.TIPO_DOCUMENTO"
                     [class.is-invalid]="(TIPO_DOCUMENTO.invalid && (TIPO_DOCUMENTO.touched || intentoEnvio))"
@@ -357,7 +359,8 @@
                   >Teléfono 1</label
                 >
                 <input
-                  type="number"
+                  type="text"
+                  currencyInput 
                   [(ngModel)]="empleado.TLF1"
                   class="form-control form-control-sm" name="TLF1"
                   id="colFormLabelSm88"
@@ -375,7 +378,8 @@
                   >Teléfono 2</label
                 >
                 <input
-                  type="number"
+                  type="text"
+                  currencyInput
                   [(ngModel)]="empleado.TLF2"
                   class="form-control form-control-sm" name="TLF2"
                   id="colFormLabelSm2"
@@ -721,7 +725,6 @@
   type="text"
   required
   mwlFlatpickr
-  
   [convertModelValue]="true"
   [class.is-invalid]="FECNAC.invalid && (FECNAC.touched || intentoEnvio)"
 />
@@ -734,17 +737,17 @@
                 class="col-sm-12"
                 >Pais</label
               >
-              <select
+              <select (change)="pais($event)"
                 class="form-control form-control-sm"
                 [(ngModel)]="empleado.PAIS" name="PAIS" required  #PAIS="ngModel"
                 aria-label="Default select example"
                 [class.is-invalid]="(PAIS.invalid && (PAIS.touched || intentoEnvio))"
-              >
+              > <option value=""></option>
                 <option
                   *ngFor="let person of paises"
                   value="{{ person.CODPAIS }}"
                 >
-                  {{ person.NOMPAIS }}
+                  {{ person.NOMPAIS?.toUpperCase() }}
                 </option>
               </select>
                
@@ -756,17 +759,18 @@
                 class="col-sm-12"
                 >Provincia</label
               >
-              <select
+              <select (change)="provincia($event)"
                 class="form-control form-control-sm"
                 [(ngModel)]="empleado.PROVINCIA" name="PROVINCIA" required  #PROVINCIA="ngModel"
                 aria-label="Default select example"
                 [class.is-invalid]="(PROVINCIA.invalid && (PROVINCIA.touched || intentoEnvio))"
               >
+         
                 <option
-                  *ngFor="let person of provincias"
+                  *ngFor="let person of provinciafiltrada"
                   value="{{ person.CODPROV }}"
                 >
-                  {{ person.NOMPROV }}
+                  {{ person.NOMPROV?.toUpperCase() }}
                 </option>
               </select>
               
@@ -787,10 +791,10 @@
             >
 
               <option
-                *ngFor="let person of cantones"
+                *ngFor="let person of cantonesfiltrada"
                 value="{{ person.CODCIUDAD}}"
               >
-                {{ person.NOMCIUDAD }}
+                {{ person.NOMCIUDAD?.toUpperCase() }}
               </option>
              
             </select>
@@ -856,7 +860,8 @@
               >No Hijos</label
             >
             <input
-              type="number"
+              type="text"
+              maxlength="2" currencyInput
               [(ngModel)]="empleado.NUMHIJOS" name="NUMHIJOS" required  #NUMHIJOS="ngModel"
               class="form-control form-control-sm"
               id="NUMHIJOS"
@@ -877,6 +882,7 @@
               aria-label="Default select example"
                             [class.is-invalid]="(CODCCOSTO_MINIS.invalid && (CODCCOSTO_MINIS.touched || intentoEnvio))"
             >
+             <option value=""></option>
               <option
                 *ngFor="let person of centrosmin"
                 value="{{ person.CODCCOSTO }}"
@@ -895,7 +901,7 @@
               [(ngModel)]="empleado.NUMEXT" name="NUMEXT"
               aria-label="Default select example"
               
-            >
+            > <option value=""></option>
               <option
                 *ngFor="let person of extensiones"
                 value="{{ person.NUMEXT }}"
@@ -951,12 +957,14 @@
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Jefa Inmediata</label
             >
+<!-- el campo debe de ser string para que coja la validacion -->
+
             <select
               class="form-control form-control-sm"
               [(ngModel)]="empleado.CODJEFA" name="CODJEFA" required  #CODJEFA="ngModel"
               aria-label="Default select example"
                [class.is-invalid]="(CODJEFA.invalid && (CODJEFA.touched || intentoEnvio))"
-            >
+            > <option value=""></option>
               <option
                 *ngFor="let person of jefas"
                 value="{{ person.CODEMP }}"
@@ -968,6 +976,7 @@
           </div>
         </div>
         <!-- Hoverable Rows -->
+         <div class="row align-items-start">
         <dx-data-grid
           id="gridContainer"
           [dataSource]="empleado.CentroCosto!"
@@ -1029,6 +1038,7 @@
           >
           </dxo-popup>
         </dx-data-grid>
+        </div>
       </div>
     </div>
     <!-- titulo -->
@@ -1189,16 +1199,27 @@
             <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
               >Codigo IEES</label
             >
- <select
+                    <!-- <select 
+                    class="form-control form-control-sm"   [(ngModel)]="DesarrolloVivienda"
+                     [class.is-invalid]="(DesarrolloViviendaModel.invalid && (DesarrolloViviendaModel.touched || intentoEnvio))"
+                     name="DesarrolloVivienda" required  #DesarrolloViviendaModel="ngModel" id="DesarrolloVivienda"
+                    aria-label="" placeholder=""
+                  >
+
+                  </select> -->
+
+
+          <select
             class="form-control form-control-sm"
-            [(ngModel)]="empleado.CODIGO_IESS" name="CODIGO_IESS"
-            aria-label="Default select example"
-          >
+            [(ngModel)]="empleado.CODIGO_IESS" name="CODIGO_IESS"  required  #CODIGO_IESS="ngModel"
+              aria-label="Default select example"
+                            [class.is-invalid]="(CODIGO_IESS.invalid && (CODIGO_IESS.touched || intentoEnvio))"
+           ><option value=""></option>
             <option
               *ngFor="let person of iess"
               value="{{ person.CODIGO_IESS }}"
             >
-              {{ person.CARGO_ACTIVIDAD }}
+              {{ person.CODIGO_IESS }} - {{ person.CARGO_ACTIVIDAD }}
             </option>
           </select>
 
@@ -1276,14 +1297,14 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding-right: 0px; padding-left: 0px">
       <div class="col-sm-6">
-        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-          >Cuentas Contables</label
-        >
-
+     
+<div class="mb-2">
+  <h5>Cuentas Contables</h5>
+</div>
         <dx-data-grid
-          id="gridContainer"
+          id="gridContainer" 
           [dataSource]="empleado.CuentasContables!"
           keyExpr="PLA_CODCNTA"
            [columnAutoWidth]="true"
@@ -1352,9 +1373,10 @@
           >
           </dxo-popup>
         </dx-data-grid>
-        <label for="colFormLabelSm" style="font-size: 9px" class="col-sm-12"
-          >Cuentas Bancarias</label
-        >
+        <div class="mb-2">
+  <h5>Cuentas Bancarias</h5>
+</div>
+   
         <dx-data-grid
           id="gridContainer"
           [dataSource]="empleado.CuentasBancos!"
@@ -1518,21 +1540,28 @@
   </div>
 </ng-template>
 <ng-template #TabContent1>
+  <div class="grid-container">
   <dx-data-grid
     id="gridContainer"
     (onEditorPreparing)="onEditorPreparing($event)"
      (onRowUpdating)="onRowUpdating($event)"
     [dataSource]="empleado.Departamentos!"
     keyExpr="CODCRG"
-   [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
   [showBorders]="true"
   [allowColumnResizing]="true"
-  columnResizingMode="widget"
+  [columnAutoWidth]="true"
   class="responsive-grid"
-    [height]="700"
+    [height]="'100%'"
+    [width]="'100%'"
   >
-    <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+      <dxo-paging [pageSize]="25"> </dxo-paging>
+    <dxo-pager
+      [visible]="true"
+      [showInfo]="true"
+      [showNavigationButtons]="true"
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 25, 50, 100]"
+    ></dxo-pager>
     <dxi-column type="buttons" caption="Acción" [width]="100">
       <dxi-button name="edit" icon="assets/images/btn_edit.png"></dxi-button>
       <dxi-button
@@ -1609,8 +1638,10 @@
     >
     </dxo-popup>
   </dx-data-grid>
+  </div>
 </ng-template>
 <ng-template #TabContent2>
+  <div class="grid-container">
   <dx-data-grid
     id="gridContainer"
     [dataSource]="sueldos!"
@@ -1621,7 +1652,8 @@
   [allowColumnResizing]="true"
   columnResizingMode="widget"
   class="responsive-grid"
-    [height]="650"
+     [height]="'100%'"
+                  [width]="'100%'"
   >
     <dxo-paging [pageSize]="25"> </dxo-paging>
     <dxo-pager
@@ -1632,7 +1664,7 @@
       [allowedPageSizes]="[10, 25, 50, 100]"
     ></dxo-pager>
 
-    <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+  
     <dxi-column
       dataType="date"
       format="shortDate"
@@ -1686,13 +1718,69 @@
       [width]="100"
     ></dxi-column>
   </dx-data-grid>
+  </div>
 </ng-template>
 <ng-template #TabContent3>
   <div class="row">
     
   </div>
 </ng-template>
-<ng-template #TabContent4> </ng-template>
+<ng-template #TabContent4> 
+  <div class="grid-container">
+ <dx-data-grid
+    id="gridContainer"
+    [dataSource]="capacitaciones!"
+
+     [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
+   [height]="'100%'"
+   [width]="'100%'"
+  >
+    <dxo-paging [pageSize]="10"> </dxo-paging>
+    <dxo-pager
+      [visible]="true"
+      [showInfo]="true"
+      [showNavigationButtons]="true"
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 25, 50, 100]"
+    ></dxo-pager>
+    <dxi-column
+
+                  dataType="date"
+                  format="shortDate"
+                  dataField="FECHA"
+                  caption="FECHA"
+                  [width]="100"
+
+    ></dxi-column>
+    <dxi-column dataField="EMPRESA" caption="EMPRESA" [width]="125">
+     
+    </dxi-column>
+    <dxi-column dataField="DESCRIPCION" caption="DESCRIPCION" [width]="425">
+    
+    </dxi-column>
+    <dxi-column
+      dataField="TIPO_AISTENCIA"
+      caption="TIPO AISTENCIA"
+      [width]="100"
+    ></dxi-column>
+    <dxi-column dataField="DURACION" caption="DURACION" [width]="125">
+      
+    </dxi-column>
+    <dxi-column
+      dataField="PORC_SUBSIDIO"
+      caption="PORC SUBSIDIO"
+      [width]="125"
+    ></dxi-column>
+
+  </dx-data-grid>
+</div>
+
+</ng-template>
 <ng-template #TabContent5>
   <div class="row">
     <div class="col-sm-6">
@@ -1978,7 +2066,7 @@
   [allowColumnResizing]="true"
   columnResizingMode="widget"
   class="responsive-grid"
-              [height]="400"
+              [height]="250"
               >
                 <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
                 <dxi-column type="buttons" caption="Acción" [width]="100">
@@ -2061,6 +2149,115 @@
                     valueExpr="ID"
                   ></dxo-lookup>
                 </dxi-column>
+                  <dxi-column
+            dataType="boolean"
+            [calculateCellValue]="toBoolean"
+            [setCellValue]="fromBoolean"
+            [showEditorAlways]="true"
+            dataField="ACTIVO"
+            caption="ESTADO"
+            [width]="70">
+              </dxi-column>
+                <dxo-editing
+                  mode="popup"
+                  [allowUpdating]="true"
+                  [allowDeleting]="true"
+                  [allowAdding]="true"
+                >
+                </dxo-editing>
+                <dxo-popup
+                  title="Editar "
+                  [showTitle]="true"
+                  [width]="200"
+                  [height]="145"
+                  [position]="{ my: 'top', at: 'top' }"
+                >
+                </dxo-popup>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default" style="border: 3px">
+        <div class="panel-heading">Enfermedades Catastróficas</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="row align-items-start">
+              <dx-data-grid
+                id="gridContainer"
+                [dataSource]="catastroficas"
+                keyExpr="IDFAMILIA"
+              [columnAutoWidth]="true"
+  [wordWrapEnabled]="true"
+  [showBorders]="true"
+  [allowColumnResizing]="true"
+  columnResizingMode="widget"
+  class="responsive-grid"
+              [height]="250"
+              >
+                <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+                <dxi-column type="buttons" caption="Acción" [width]="100">
+                  <dxi-button
+                    name="edit"
+                    icon="assets/images/btn_edit.png"
+                  ></dxi-button>
+                  <dxi-button
+                    name="delete"
+                    icon="assets/images/btn_eliminar.png"
+                  ></dxi-button>
+                </dxi-column>
+                <dxi-column
+                  dataField="NOMBRECOMPLETO"
+                  caption="Nombres Completos"
+                  [width]="200"
+                >
+                  <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column
+                  dataField="PARENTESCO"
+                  caption="Parentesco"
+                  [width]="100"
+                >
+                  <dxi-validation-rule type="required"></dxi-validation-rule>
+                  <dxo-lookup
+                    [dataSource]="carga"
+                    displayExpr="Name"
+                    valueExpr="ID"
+                  ></dxo-lookup>
+                </dxi-column>
+         
+                <dxi-column
+                  dataField="ENFERMEDAD"
+                  caption="ENFERMEDAD"
+                  [width]="300">
+                  <dxi-validation-rule type="required"></dxi-validation-rule>
+                 
+                </dxi-column>
+                <dxi-column
+                  dataField="RESPONSABILIDAD_ECON"
+                  caption="RESPONSABILIDAD ECON"
+                  [width]="150"
+                >
+                   <dxo-lookup
+                    [dataSource]="sino"
+                    displayExpr="Name"
+                    valueExpr="ID"
+                  ></dxo-lookup>
+                  <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                      <dxi-column
+            dataType="boolean"
+            [calculateCellValue]="toBoolean"
+            [setCellValue]="fromBoolean"
+            [showEditorAlways]="true"
+            dataField="ACTIVO"
+            caption="ESTADO"
+            [width]="70">
+              </dxi-column>
                 <dxo-editing
                   mode="popup"
                   [allowUpdating]="true"
@@ -2085,18 +2282,27 @@
   </div>
 </ng-template>
 <ng-template #TabContent6>
+   <div class="grid-container">
   <dx-data-grid
     id="gridContainer"
     [dataSource]="employeesDataSource!"
     keyExpr="ID_HIJO"
-     [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-  class="responsive-grid"
-   [height]="700"
+                  [allowColumnResizing]="true"
+                  [columnAutoWidth]="true"
+                  [allowColumnReordering]="true"
+                  [showBorders]="true"
+                  [height]="'100%'"
+                  [width]="'100%'"
   >
+    <dxo-paging [pageSize]="25"> </dxo-paging>
+    <dxo-pager
+      [visible]="true"
+      [showInfo]="true"
+      [showNavigationButtons]="true"
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 25, 50, 100]"
+    ></dxo-pager>
+
     <dxi-column type="buttons" caption="Acción " [width]="150">
       <dxi-button name="edit" icon="assets/images/btn_edit.png"></dxi-button>
       <dxi-button
@@ -2169,21 +2375,30 @@
     >
     </dxo-popup>
   </dx-data-grid>
+  </div>
 </ng-template>
 <ng-template #TabContent7>
-  <div class="row">
-    <div class="row align-items-start">
+<div class="grid-container">
       <dx-data-grid
         id="gridContainer"
         [dataSource]="empleado.Titulos!"
         keyExpr="IDTITULO"
-        [columnAutoWidth]="true"
-  [wordWrapEnabled]="true"
-  [showBorders]="true"
-  [allowColumnResizing]="true"
-  columnResizingMode="widget"
-      [height]="700"
+                  [allowColumnResizing]="true"
+                  [columnAutoWidth]="true"
+                  [allowColumnReordering]="true"
+                  [showBorders]="true"
+                  [height]="'100%'"
+                  [width]="'100%'"
       >
+        <dxo-paging [pageSize]="25"> </dxo-paging>
+    <dxo-pager
+      [visible]="true"
+      [showInfo]="true"
+      [showNavigationButtons]="true"
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 25, 50, 100]"
+    ></dxo-pager>
+
         <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
         <dxi-column type="buttons" caption="Acción" [width]="100">
           <dxi-button
@@ -2285,7 +2500,7 @@
         >
         </dxo-popup>
       </dx-data-grid>
-    </div>
+    
   </div>
 </ng-template>
 </form>

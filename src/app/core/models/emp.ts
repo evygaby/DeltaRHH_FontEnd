@@ -77,7 +77,7 @@ export class EMP {
         ID_EMPRESA?: number=0;
         TIPO_DOCUMENTO?: string="";
         OBSERVACION?: string="";
-        CODIGO_IESS?: number=0;
+        CODIGO_IESS?: string="";
         DISCAPACIDAD?: string="";
         CUIDAD?: string="";
         DISCAPACIDAD1?: boolean;
@@ -111,7 +111,7 @@ export class EMP {
         ACTUALIZAWEB?: string="";
         UNIFICADO?: string="";
         CODCCOSTO_MINIS?: string="";
-        CODJEFA?: number=0;
+        CODJEFA?: string="";
         LIC_SINSUELDO?: string="";
         FEC_SINSUELDOINI?: string="";
         FEC_SINSUELDOFIN?: string="";

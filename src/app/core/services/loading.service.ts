@@ -40,10 +40,10 @@ export class LoadingService {
     notify({
       message: mensaje,
       height: 145,
-      width: 200,
+      width: 300,
       minWidth: 150,
       type: "error",
-      displayTime: 3500,
+      displayTime: 4500,
       animation: {
         show: {
           type: "fade",

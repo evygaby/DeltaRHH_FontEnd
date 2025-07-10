@@ -5,31 +5,25 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class CurrencyInputDirective {
  constructor(private el: ElementRef) {}
+// Detectar cuando el usuario escribe
+  @HostListener('input', ['$event'])
+  onInput(event: any): void {
+    let value = this.el.nativeElement.value;
 
-  // Detectar cuando el usuario hace "blur" (salir del input)
-  @HostListener('blur', ['$event.target.value'])
-  onBlur(value: string) {
-    this.el.nativeElement.value = this.formatMoney(value);
+    // Reemplazar todo lo que no sea un número
+    value = value.replace(/[^0-9]/g, ''); // Solo permite números
+
+    // Establecer el valor de entrada
+    this.el.nativeElement.value = value;
   }
-
-  // Detectar cuando el usuario escribe
-  @HostListener('input', ['$event.target.value'])
-  onInput(value: string) {
-    let formattedValue = value.replace(/[^0-9.]+/g, ''); // Eliminar caracteres no numéricos
-    this.el.nativeElement.value = this.addCurrencySymbol(formattedValue);
-  }
-
-  // Método para agregar el símbolo "$" al valor formateado
-  private addCurrencySymbol(value: string): string {
-    if (value === '') return '';  // Si no hay valor, retornar vacío
-    let parsedValue = parseFloat(value).toFixed(2);  // Asegurar que el valor tenga 2 decimales
-    return `$ ${parsedValue}`;
-  }
-
-  // Método para formatear correctamente el valor con el símbolo "$"
-  private formatMoney(value: string): string {
-    if (!value) return '';
-    let parsedValue = parseFloat(value).toFixed(2);
-    return `$ ${parsedValue}`;
+  @HostListener('submit')
+  onFormSubmit() {
+    const firstInvalidControl: HTMLElement = document.querySelector(
+      'form .ng-invalid'
+    ) as HTMLElement;
+    
+    if (firstInvalidControl) {
+      firstInvalidControl.focus();
+    }
   }
 }

@@ -69,28 +69,18 @@ tipocuentas!: any;
   extensiones!: any;
   familia!: any;
   foto!:any
-  Bancos!: any;
-  cargos!: any;
+Bancos!: any;cargos!: any;
   descapacidades!: DataSource;
   tipocontrato!: any;
+  catastroficas!: any;
   sueldos!: any;
    estudios!: any;
   TIPO_VI!: any;
-  NO_DEPA!: any;
-  condicion!: any;
-  intentoEnvio = false;
-  tipodocumento!: any;
-  titulos!: any;
-  sino!: any;esRequerido = false;
-  estadocivil!: any;
-seccionfiltrada!: any;
-  isnumerico!:boolean
-  tipocuenta!: any;
-  titulosacademicos!: any;
-    GCENTROCOSTO!: any;
-  motivosalida!: any;
-  tipodiscapcidad!: any;
-  finalArray: Output[] = [];
+  NO_DEPA!: any;condicion!: any;intentoEnvio = false;tipodocumento!: any;titulos!: any;
+  sino!: any;esRequerido = false;estadocivil!: any;
+seccionfiltrada!: any;provinciafiltrada!: any;cantonesfiltrada!: any;isnumerico!:boolean
+  tipocuenta!: any;capacitaciones: any;titulosacademicos!: any;
+    GCENTROCOSTO!: any;motivosalida!: any;tipodiscapcidad!: any;finalArray: Output[] = [];
     miFormulario: FormGroup;
   ciudad: string = ''; // ngModel standalone
    maxlength:number=0
@@ -138,6 +128,7 @@ seccionfiltrada!: any;
         }
          if (data.clase == "provincias") {
           this.provincias = data.data;
+          
         }
         if (data.clase == "Depa") {
           this.Depa = data.data;
@@ -153,12 +144,14 @@ seccionfiltrada!: any;
         }
         if (data.clase == "Secciones") {
           this.Secciones = data.data;
+          this.seccionfiltrada= data.data;
         }
         if (data.clase == "pais") {
           this.paises = data.data;
         }
         if (data.clase == "cantones") {
           this.cantones = data.data;
+          this.cantonesfiltrada= data.data;
         }
         if (data.clase == "zonas") {
           this.zonas = data.data;
@@ -183,17 +176,30 @@ seccionfiltrada!: any;
 this.router.navigate(['/empleados']);
     }
     if(this.empleado.esnuevo){
-      
+       this.isnumerico=true
+      this.minLength=10
+    this.maxlength=10
     this.condicion="Guardar"
     this.empleado.ACTIVO='S'
     this.empleado.NUMDIAS='30'
+    this.empleado.NUMHIJOS='0'
     this.empleado.ACTIVO_REPORTES_AUMENTOS='S'
     this.empleado.TIPO_DOCUMENTO='C'
     this.empleado.SEGURO='NO'
     }else{
+      
       this.condicion="Editar"
       this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
-     if(this.empleado.TIPO_DOCUMENTO=='C'){
+    if(this.cantones!= undefined)
+{
+   this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
+    
+}   
+if(this.provincias!= undefined)
+{
+this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,NOMPROV:any }) => p.CODPAIS==this.empleado.PAIS);
+} 
+      if(this.empleado.TIPO_DOCUMENTO=='C'){
       this.isnumerico=true
       this.minLength=10
       this.maxlength=10
@@ -207,6 +213,8 @@ this.router.navigate(['/empleados']);
       this.isnumerico=false
       
      }
+     if(this.empleado.CODEMP!=undefined){
+      this.loading.showSpinner2("Consultando")
      const observables = {
         a: this.servicios.get(
           "Empleados/Sueldos?usu=" +
@@ -215,6 +223,14 @@ this.router.navigate(['/empleados']);
             this.user.password+
             "&codemp=" +
             Number.parseInt( this.empleado.CODEMP!)
+        ),
+         ca: this.servicios.get(
+          "Empleados/capacitaciones?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password+
+            "&cedula=" +
+            this.empleado.NUMCEDULA!
         ),
         b: this.servicios.get(
           "Empleados/GCENTROCOSTO2?usu=" +
@@ -227,29 +243,32 @@ this.router.navigate(['/empleados']);
       const combined = combineLatest(observables);
       combined.subscribe({
         next: (data: any) => {
-        
+        this.capacitaciones=data.ca
           this.sueldos=data.a
            this.GCENTROCOSTO=data.b
-         
-            
+          this.loading.closeSpinner()
         },
-        error: (error: any) => {},
-      });
-
-     
-
+        error: (error: any) => {
+           this.loading.closeSpinner()
+            this.loading.showMensajeError(error.message);
+        },
+      });    
+      }
     }
     
     this.fotoencuesta=this.empleado.NUMCEDULA
-   this.foto=this.config.apiUrlFoto+ this.fotoencuesta+ ".jpg"
+    this.foto=this.config.apiUrlFoto+ this.fotoencuesta+ ".jpg"
     this.empleados = this.servicios.miObjetoaray;
-    
-
     this.employeesDataSource = new DataSource({
       store: this.empleado.FamiliarCargas,
       sort: "CODEMP",
     });
-    this.descapacidades = new DataSource({
+    this.catastroficas = new DataSource({
+      store: this.empleado.FamiliarEnfermedad,
+      sort: "IDFAMILIA",
+    });
+
+      this.descapacidades = new DataSource({
       store: this.empleado.FamiliarDiscapicidad,
       sort: "IDFAMILIA",
     });
@@ -365,7 +384,27 @@ if(value=='P'){
   }
    
   }
+  pais(event: Event) {
+  const value = (event.target as HTMLSelectElement).value;
+   this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,NOMPROV:any }) => p.CODPAIS==value);
+   if(this.provinciafiltrada.length>0){
+  this.empleado.PROVINCIA=this.provinciafiltrada[0].CODPROV
+   this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
+     if(this.cantonesfiltrada.length>0){
+  this.empleado.CUIDAD=this.cantonesfiltrada[0].CODCIUDAD
+   }
+  }
+   else{
+  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV=="");
+   
+   }
   
+    }
+provincia(event: Event) {
+  const value = (event.target as HTMLSelectElement).value;
+  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==value);
+ 
+}
 onSelectChange(event: Event) {
   const value = (event.target as HTMLSelectElement).value;
   if(value=='C'){
@@ -375,37 +414,26 @@ onSelectChange(event: Event) {
   }
 }
   cambiarpaterno(ev:any){
-
    this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
   }
-
   cambiarmaterno
   (ev:any){
-   
     this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
- 
   }
   cambiarprimero
   (ev:any){
-   
     this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
- 
   }
   cambiarsegundo
   (ev:any){
-  
     this.empleado.RAZONSOCIAL=    this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
- 
   }
-
   guardar() {
-
 const cantidadActivos = this.empleado.Departamentos!.filter(u=> u.CARGO_PRINCIPAL=='S').length;
 if(cantidadActivos>1){
   this.loading.showMensajeError("Cargo principal solo debe de ser uno");
   return
 }
-
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Guardando");
     this.empleado.LIC_MATERNIDAD="N"
@@ -451,7 +479,6 @@ if(cantidadActivos>1){
           direccion = direccion + " V:" + this.NO_CASA;
         }
       }
-  
       if (this.KM != "") {
         direccion = direccion + " KM:" + this.KM;
       }
@@ -465,6 +492,7 @@ if(cantidadActivos>1){
         direccion = direccion + " Dpto:" + this.NO_DEPA;
       }
       this.empleado.DIRECCION = direccion;
+      this.empleado.CODEMP='0'
     this.servicios
       .guardarempleado(this.empleado, this.user.Nombre!, this.user.password!)
       .subscribe({
@@ -474,7 +502,7 @@ if(cantidadActivos>1){
         },
         error: (error: any) => {
           this.loading.closeSpinner();
-          this.loading.showMensajeError(error);
+          this.loading.showMensajeError(error.message);
         },
       });
   }
@@ -488,7 +516,7 @@ if(cantidadActivos>1){
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Actualizando");
     this.empleado.ID_EMPRESA = this.user.IdCompania!;
-if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefined,undefined')){
+if( this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefined,undefined')){
 
 }else{
   this.empleado.DIRECCION_CSV =
@@ -531,7 +559,6 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
         direccion = direccion + " V:" + this.NO_CASA;
       }
     }
-
     if (this.KM != "") {
       direccion = direccion + " KM:" + this.KM;
     }
@@ -545,10 +572,7 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
       direccion = direccion + " Dpto:" + this.NO_DEPA;
     }
     this.empleado.DIRECCION = direccion;
-  
-  
 }
-
     this.servicios
       .actualizandoempleado(
         this.empleado,
@@ -562,7 +586,7 @@ if(this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefin
         },
         error: (error: any) => {
           this.loading.closeSpinner();
-          this.loading.showMensajeError(error);
+          this.loading.showMensajeError(error.message);
         },
       });
   }
@@ -594,14 +618,15 @@ return `$${Number(e.value).toFixed(2)}`;
     const cachedDataSecciones = this.cacheService.get("Secciones");
     const cachedDataBanco = this.cacheService.get("bancos");
     const cachedTipoCuenta = this.cacheService.get("tipocuenta");
-        const cachedCuenta = this.cacheService.get("cuenta");
-        const cachediess= this.cacheService.get("iess");
-        const cachedjefas= this.cacheService.get("jefas");
+    const cachedCuenta = this.cacheService.get("cuenta");
+    const cachediess= this.cacheService.get("iess");
+    const cachedjefas= this.cacheService.get("jefas");
+    const cachedprovincias= this.cacheService.get("provincias");
     // Si los datos no están en caché, los recuperamos del servidor y los almacenamos en la caché.
     if (
       !cachedDatapr ||!cachedDataext ||!cachedDataseguros ||!cachedTipoCuenta ||
 
-      !cachedDatapa ||  !cachedCuenta ||!cachediess ||
+      !cachedDatapa ||  !cachedCuenta ||!cachediess ||!cachedprovincias ||
       !cachedDataca ||
       !cachedDatazo ||   !cachedjefas||
       !cachedDatacent||!cachedDataDepa||!cachedDataListaCargos||!cachedDataSecciones||!cachedDataBanco
@@ -803,7 +828,9 @@ return `$${Number(e.value).toFixed(2)}`;
             data.ce
           );
         },
-        error: (error: any) => {},
+        error: (error: any) => {
+          this.loading.showMensajeError(error.message);
+        },
       });
     }
     if (!cachedDataempresa) {
@@ -818,7 +845,7 @@ return `$${Number(e.value).toFixed(2)}`;
             this.cacheService.set("empresas", "empresas", new Date(), data);
           } catch (error) {
             console.error(error);
-            // maneja el error como prefieras aquí
+          
           }
         });
     }
