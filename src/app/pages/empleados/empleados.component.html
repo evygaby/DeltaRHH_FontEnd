@@ -29,7 +29,7 @@
               <dxo-group-panel [visible]="true"></dxo-group-panel>
               <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
               <dxo-scrolling rowRenderingMode="virtual" > </dxo-scrolling>
-              <dxi-column type="buttons" [width]="110" caption="Acción">
+              <dxi-column type="buttons" [width]="80" caption="Acción">
                 
                 <dxi-button
                   hint="Ver"
@@ -38,10 +38,10 @@
                 ></dxi-button>
               </dxi-column>
 
-                <dxi-column dataField="CODEMP" caption="Codigo" [width]="100" ></dxi-column>
-                <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno" [width]="200"></dxi-column>
-                <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" [width]="200"></dxi-column>
-                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="200"></dxi-column>
+                <dxi-column dataField="CODEMP" caption="Codigo" [width]="80" ></dxi-column>
+                <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno" [width]="180"></dxi-column>
+                <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" [width]="180"></dxi-column>
+                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="150"></dxi-column>
                 <dxi-column dataField="NOMBRES" caption="Nombres"  [width]="200"></dxi-column>
                 <dxi-column dataField="RAZONSOCIAL" caption="Razón Social" [width]="300"></dxi-column>
                 <dxi-column dataField="SEXO" caption="Sexo" [width]="100" >
@@ -52,7 +52,7 @@
       valueExpr="ID"
     ></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="TIPCONTRATO" caption="Tipo Contrato" [width]="200">
+                <dxi-column dataField="TIPCONTRATO" caption="Tipo Contrato" [width]="120">
                   <dxi-validation-rule type="required" ></dxi-validation-rule>
                   <dxo-lookup
                     [dataSource]="tipocontrato"
@@ -60,6 +60,7 @@
                     valueExpr="ID"
                   ></dxo-lookup>
                 </dxi-column>
+                    <dxi-column dataField="ACTIVO" caption="ACTIVO"  [width]="80" ></dxi-column>
                 <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
                 
                 </dx-data-grid>
