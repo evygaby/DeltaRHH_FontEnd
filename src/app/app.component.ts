@@ -23,7 +23,7 @@ import { AuthenticationService } from './core/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'Sistema Adminitrativo';
+  title = 'Recursos Humanos';
   loadingText?:string="Procesando"
   @Output() onComplete = new EventEmitter<void>();
   @Input() init:number = 20;

@@ -44,15 +44,15 @@ $vertical-menu-title-color:                       var(--#{$prefix}vertical-menu-
 $vertical-menu-item-icon-width:                   1.75rem;
 
 // Dark Menu
-$vertical-menu-bg-dark:                         var(--#{$prefix}vertical-menu-bg-dark);
-$vertical-menu-border-dark:                     var(--#{$prefix}vertical-menu-bg-dark);
-$vertical-menu-item-color-dark:                 var(--#{$prefix}vertical-menu-item-color-dark);
-$vertical-menu-item-hover-color-dark:           var(--#{$prefix}vertical-menu-item-hover-color-dark);
-$vertical-menu-item-active-color-dark:          var(--#{$prefix}vertical-menu-item-active-color-dark);
-$vertical-menu-sub-item-color-dark:             var(--#{$prefix}vertical-menu-sub-item-color-dark);
-$vertical-menu-sub-item-hover-color-dark:       var(--#{$prefix}vertical-menu-sub-item-hover-color-dark);
-$vertical-menu-sub-item-active-color-dark:      var(--#{$prefix}vertical-menu-sub-item-active-color-dark);
-$vertical-menu-title-color-dark:                var(--#{$prefix}vertical-menu-title-color-dark);
+$vertical-menu-bg-dark:                         #fff;//var(--#{$prefix}vertical-menu-bg-dark);
+$vertical-menu-border-dark:                     #fff;//var(--#{$prefix}vertical-menu-bg-dark);
+$vertical-menu-item-color-dark:                 #333;//var(--#{$prefix}vertical-menu-item-color-dark);
+$vertical-menu-item-hover-color-dark:           #333;//var(--#{$prefix}vertical-menu-item-hover-color-dark);
+$vertical-menu-item-active-color-dark:          #333;//var(--#{$prefix}vertical-menu-item-active-color-dark);
+$vertical-menu-sub-item-color-dark:             #333;//var(--#{$prefix}vertical-menu-sub-item-color-dark);
+$vertical-menu-sub-item-hover-color-dark:       #333;//var(--#{$prefix}vertical-menu-sub-item-hover-color-dark);
+$vertical-menu-sub-item-active-color-dark:      #333;//var(--#{$prefix}vertical-menu-sub-item-active-color-dark);
+$vertical-menu-title-color-dark:                #333;//var(--#{$prefix}vertical-menu-title-color-dark);
 
 // vertical gradient Menu
 $vertical-menu-bg-gradient:                         var(--#{$prefix}vertical-menu-bg-gradient);
@@ -91,7 +91,7 @@ $twocolumn-menu-item-active-bg-dark:              var(--#{$prefix}twocolumn-menu
 $twocolumn-menu-item-color-gradient:              rgba($white, 0.6);
 
 // Topbar - (Default Light)
-$header-height:                                    70px;
+$header-height:                                    50px;
 $header-bg:                                       var(--#{$prefix}header-bg);
 $header-item-color:                               var(--#{$prefix}header-item-color);
 
@@ -109,7 +109,7 @@ $topbar-user-bg: var(--#{$prefix}topbar-user-bg);
 $topbar-user-bg-dark: var(--#{$prefix}topbar-user-bg-dark);
 
 // Footer
-$footer-height: 60px;
+$footer-height: 40px;
 $footer-bg: var(--#{$prefix}footer-bg);
 $footer-color: var(--#{$prefix}footer-color);
 

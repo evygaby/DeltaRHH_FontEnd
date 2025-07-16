@@ -5,12 +5,14 @@
                   (onToolbarPreparing)="agregarBotonesToolbar($event)"
                   [dataSource]="customers"
                   keyExpr="CODEMP"
-                    [allowColumnResizing]="true"
+                  [allowColumnResizing]="true"
                   [columnAutoWidth]="true"
                   [allowColumnReordering]="true"
                   [showBorders]="true"
+                  [showRowLines]="true"
                   [height]="'100%'"
                   [width]="'100%'"
+                  [rowAlternationEnabled]="true"
                 ><dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-group-panel [visible]="true"></dxo-group-panel>
@@ -33,15 +35,16 @@
                 
                 <dxi-button
                   hint="Ver"
-                  icon="assets/images/ver.png"
+                  icon="find"
                   [onClick]="onCloneIconClick"
                 ></dxi-button>
               </dxi-column>
 
-                <dxi-column dataField="CODEMP" caption="Codigo" [width]="80" ></dxi-column>
+                <dxi-column dataField="CODEMP" caption="Codigo" [width]="80"  >
+                </dxi-column>
                 <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno" [width]="180"></dxi-column>
                 <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" [width]="180"></dxi-column>
-                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="150"></dxi-column>
+                <!-- <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="150" visible="false"></dxi-column> -->
                 <dxi-column dataField="NOMBRES" caption="Nombres"  [width]="200"></dxi-column>
                 <dxi-column dataField="RAZONSOCIAL" caption="Razón Social" [width]="300"></dxi-column>
                 <dxi-column dataField="SEXO" caption="Sexo" [width]="100" >

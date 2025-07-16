@@ -188,7 +188,7 @@ this.router.navigate(['/empleados']);
     this.empleado.SEGURO='NO'
     }else{
       
-      this.condicion="Editar"
+      this.condicion="Guardar"
       this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
     if(this.cantones!= undefined)
 {

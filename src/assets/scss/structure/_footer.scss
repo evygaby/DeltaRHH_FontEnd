@@ -4,8 +4,8 @@
 
 .footer {
     bottom: 0;
-    padding: 20px calc(#{$grid-gutter-width} * 0.5);
-    position: absolute;
+    padding: 10px calc(#{$grid-gutter-width} * 0.5);
+    position: fixed;
     right: 0;
     color: $footer-color;
     left: $vertical-menu-width;
