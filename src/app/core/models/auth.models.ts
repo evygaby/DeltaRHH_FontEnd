@@ -2,12 +2,10 @@ export class User {
   IdUsuario?: number;
   Nombre?: string;
   password?: string;
-  Apellido?: string;
-  lastName?: string;
-  RucCompania?: string;
-  RazonSocial?: string;
-  Email?: string;
-  IdCompania?: number;
+  RAZONSOCIAL?: string;
+  MAIL?: string;
+  ID_EMPRESA?: number;
+  Codigo?: number;
   token?: string;
-  compania?: any;
+  usu_adm?:string;
 }

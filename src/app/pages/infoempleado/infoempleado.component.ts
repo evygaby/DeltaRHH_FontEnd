@@ -206,8 +206,8 @@ this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,N
      }
       if(this.empleado.TIPO_DOCUMENTO=='R'){
       this.isnumerico=true
-      this.minLength=10
-      this.maxlength=10
+      this.minLength=13
+      this.maxlength=13
      }
       if(this.empleado.TIPO_DOCUMENTO=='P'){
       this.isnumerico=false
@@ -438,7 +438,7 @@ if(cantidadActivos>1){
     this.loading.showSpinner2("Guardando");
     this.empleado.LIC_MATERNIDAD="N"
     this.empleado.LIC_ENFERMEDAD="N"
-    this.empleado.ID_EMPRESA = this.user.IdCompania!;
+    this.empleado.ID_EMPRESA = this.user.ID_EMPRESA!;
     this.empleado.DIRECCION_CSV =
       this.URB +
       "," +
@@ -515,7 +515,7 @@ if(cantidadActivos>1){
 }
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Actualizando");
-    this.empleado.ID_EMPRESA = this.user.IdCompania!;
+    this.empleado.ID_EMPRESA = this.user.ID_EMPRESA!;
 if( this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefined,undefined')){
 
 }else{
@@ -662,7 +662,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
         ca: this.servicios.get(
           "Empleados/Depa?usu=" +
@@ -670,7 +670,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
         lc: this.servicios.get(
           "Empleados/ListaCargos?usu=" +
@@ -678,7 +678,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
         secc: this.servicios.get(
           "Empleados/Secciones?usu=" +
@@ -686,7 +686,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
         bancos: this.servicios.get(
           "Empleados/Bancos?usu=" +
@@ -701,7 +701,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
         
         seg: this.servicios.get(
@@ -710,7 +710,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
          tipo: this.servicios.get(
           "Empleados/TIPOCUENTA?usu=" +
@@ -718,7 +718,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ), 
         cuen: this.servicios.get(
           "Empleados/CUENTAS?usu=" +
@@ -726,7 +726,7 @@ return `$${Number(e.value).toFixed(2)}`;
             "&contrasena=" +
             this.user.password +
             "&idempresa=" +
-            this.user.IdCompania
+            this.user.ID_EMPRESA
         ),
          iess: this.servicios.get(
           "Empleados/DESCIESS?usu=" +
@@ -855,7 +855,7 @@ return `$${Number(e.value).toFixed(2)}`;
         localStorage.getItem(GlobalComponent.CURRENT_USER)!
       );
       this.servicios
-        .ConsultarCentros(this.user.Nombre!, this.user.password!,this.user.IdCompania!)
+        .ConsultarCentros(this.user.Nombre!, this.user.password!,this.user.ID_EMPRESA!)
         .subscribe((data: any) => {
           try {
             this.grupos = data;

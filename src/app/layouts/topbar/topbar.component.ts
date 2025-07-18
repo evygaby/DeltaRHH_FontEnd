@@ -72,7 +72,7 @@ export class TopbarComponent implements OnInit {
   onChange(event: any) {
     this.loading.showSpinner2("Cargando")
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
-    this.user.IdCompania = event.ID_EMPRESA;
+    this.user.ID_EMPRESA = event.ID_EMPRESA;
     localStorage.setItem(
       GlobalComponent.CURRENT_USER,
       JSON.stringify(this.user)
@@ -81,7 +81,7 @@ export class TopbarComponent implements OnInit {
       .Consultarempleados(
         this.user.Nombre!,
         this.user.password!,
-        this.user.IdCompania!
+        this.user.ID_EMPRESA!
       )
       .subscribe((data) => {
         try {
@@ -107,7 +107,7 @@ export class TopbarComponent implements OnInit {
           try {
             this.empresas = data;
             this.selectedPeople = this.empresas[0].ID_EMPRESA;
-            this.user.IdCompania = this.empresas[0].ID_EMPRESA;
+            this.user.ID_EMPRESA = this.empresas[0].ID_EMPRESA;
             localStorage.setItem(
               GlobalComponent.CURRENT_USER,
               JSON.stringify(this.user)

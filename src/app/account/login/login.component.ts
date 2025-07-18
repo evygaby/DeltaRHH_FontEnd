@@ -9,11 +9,12 @@ import { AuthfakeauthenticationService } from '../../core/services/authfake.serv
 import { first } from 'rxjs/operators';
 import { ToastService } from './toast-service';
 import { HttpErrorResponse, HttpResponseBase } from '@angular/common/http';
-import { GlobalComponent } from 'src/app/global-component';
-import { User } from 'src/app/core/models/auth.models';
-import { EventService } from 'src/app/core/services/event.service';
-import { CacheService } from 'src/app/core/services/cache.service';
-import { LoadingService } from 'src/app/core/services/loading.service';
+import { GlobalComponent } from '../../../app/global-component';
+import { User } from '../../core/models/auth.models';
+import { MenuItem } from '../../layouts/sidebar/menu.model';
+import { EventService } from '../../core/services/event.service';
+import { CacheService } from '../../core/services/cache.service';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -74,10 +75,14 @@ export class LoginComponent implements OnInit {
     // Login Api
     this.authenticationService.login(this.f['usuario'].value,this.f['password'].value)  .subscribe({
       next: (user2:any) => {
-       if(user2 == true){
-        this.user= new User
-        
-        this.loading.closeSpinner();
+       if(user2.usuarioLogueado.CODEMP !=0){
+        this.user=new User
+       this.user.Codigo=user2.usuarioLogueado.CODEMP
+       this.user.ID_EMPRESA=user2.usuarioLogueado.ID_EMPRESA
+       this.user.RAZONSOCIAL=user2.usuarioLogueado.RAZONSOCIAL  
+       this.user.MAIL=user2.usuarioLogueado.MAIL
+       this.user.usu_adm=user2.usuarioLogueado.USU_RRHH
+       this.loading.closeSpinner();
        this.user.password=this.f['password'].value
        this.user.Nombre=this.f['usuario'].value
        localStorage.setItem('toast', 'true');

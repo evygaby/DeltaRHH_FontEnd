@@ -66,7 +66,7 @@ export class EmpleadosComponent {
     if (!cachedData) {
       this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
       this.loading.showSpinner2("Consultando empleados")
-      this.servicios.Consultarempleados(this.user.Nombre!,this.user.password!,this.user.IdCompania!).subscribe(data => {
+      this.servicios.Consultarempleados(this.user.Nombre!,this.user.password!,this.user.ID_EMPRESA!).subscribe(data => {
         try {
           this.customers = data
           this.loading.closeSpinner()
