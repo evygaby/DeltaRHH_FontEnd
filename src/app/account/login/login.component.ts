@@ -15,6 +15,8 @@ import { MenuItem } from '../../layouts/sidebar/menu.model';
 import { EventService } from '../../core/services/event.service';
 import { CacheService } from '../../core/services/cache.service';
 import { LoadingService } from '../../core/services/loading.service';
+import { MENU } from 'src/app/layouts/sidebar/menu';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
   error = '';
   returnUrl!: string;
   user!:User
+  menu!:MenuItem;
   toast!: false;
 
   // set the current year
@@ -85,9 +88,14 @@ export class LoginComponent implements OnInit {
        this.loading.closeSpinner();
        this.user.password=this.f['password'].value
        this.user.Nombre=this.f['usuario'].value
+       this.menu= new MenuItem
+       this.menu=user2.Menu
+       //this.menu.label=user2.Menu.name
+       //this.menu.link=user2.Menu.url
+       //this.menu.subItems=user2.Menu.children
        localStorage.setItem('toast', 'true');
        localStorage.setItem(GlobalComponent.CURRENT_USER, JSON.stringify(this.user));
-       
+       localStorage.setItem(GlobalComponent.Menu, JSON.stringify(this.menu));
       //  // localStorage.setItem('token', data.token);
       this.router.navigate(['/']);
        } else {

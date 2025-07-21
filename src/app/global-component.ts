@@ -16,6 +16,7 @@ export const GlobalComponent = {
     order:'apps/order',
     orderId:'apps/order/',
     CURRENT_USER:'currentUser',
+    Menu:'MenuAccesos',
     // Customers Api
     customer:'apps/customer',
 }

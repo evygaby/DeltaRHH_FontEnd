@@ -1,5 +1,5 @@
-export interface MenuItem {
-  id?: number;
+export class MenuItem {
+  id?: string;
   label?: any;
   icon?: string;
   link?: string;

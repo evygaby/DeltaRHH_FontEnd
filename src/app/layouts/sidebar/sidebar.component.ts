@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
+import { GlobalComponent } from 'src/app/global-component';
 
 @Component({
   selector: 'app-sidebar',
@@ -24,7 +25,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     // Menu Items
-    this.menuItems = MENU;
+    this.menuItems = JSON.parse(localStorage.getItem(GlobalComponent.Menu)!);
   }
 
   /***

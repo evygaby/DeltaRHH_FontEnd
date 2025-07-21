@@ -2,39 +2,39 @@ import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
   {
-    id: 1,
+    id: "1",
     label: 'MENUITEMS.MENU.TEXT',
     isTitle: true
   },
   {
-    id: 20000,
+    id: "20000",
     label: 'Mantenimientos',
     icon: 'ri-dashboard-2-line',
     subItems: [
      
       {
-        id: 8,
+        id: "8",
         label: 'Empleados',
         link: '/empleados',
       
         parentId: 2,
       }
       ,{
-        id: 8,
+        id: "8",
         label: 'Paises',
         link: '/paises',
       
         parentId: 2,
       }
       ,{
-        id: 9,
+        id: "9",
         label: 'Provincia',
         link: '/provincias',
       
         parentId: 2,
       }
       ,{
-        id: 8,
+        id: "8",
         label: 'Cantones',
         link: '/cantones',
       
