@@ -3,5 +3,5 @@ export class Certificado {
   idcompania!: number;
   ruc!: string;
   clave!: string;
-  fecha!: string;
+  fecha!: string;   
 }

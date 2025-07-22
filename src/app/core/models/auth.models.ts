@@ -9,5 +9,5 @@ export class User {
   Email?: string;
   IdCompania?: number;
   token?: string;
-  compania?: any;
+  compania?: any;     
 }
