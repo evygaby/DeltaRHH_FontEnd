@@ -1,28 +1,29 @@
+<div class="grid-container">
 <dx-card-view
     [dataSource]="orlas"
-    [cardMinWidth]="300"
-    cardsPerRow="auto"
+    [cardMinWidth]="100"
+    [height]="'100%'"
+    cardTemplate="CardTemplate"
   >
-    <dxo-card-view-paging [pageSize]="4"></dxo-card-view-paging>
+    <dxo-card-view-paging [pageSize]="24"></dxo-card-view-paging>
     <dxo-card-view-header-filter [visible]="true"></dxo-card-view-header-filter>
     <dxo-card-view-search-panel [visible]="true"></dxo-card-view-search-panel>
-    <dxo-card-view-card-cover
-      [imageExpr]="CEDULA"
-    ></dxo-card-view-card-cover>
-
-    <dxi-card-view-column
-      dataField="COMCCOSTO"
-    ></dxi-card-view-column>
     <dxi-card-view-column
       dataField="RAZONSOCIAL"
+      caption="Empleado"
     ></dxi-card-view-column>
-    <dxi-card-view-column
-      caption="Position"
-      dataField="NOMCRG"
-    ></dxi-card-view-column>
-    <dxi-card-view-column dataField="GRUPO_COSTO"></dxi-card-view-column>
-    <dxi-card-view-column dataField="EDAD"></dxi-card-view-column>
-    <dxi-card-view-column
-      dataField="SERVICIO"
-    ></dxi-card-view-column>
+    <dxi-card-view-column dataField="GRUPO_COSTO" caption="Centro de Costo"></dxi-card-view-column>
+    <div *dxTemplate="let model of 'CardTemplate'">
+      <ng-container *ngIf="model.card?.data as data">
+        <div style="display: flex;flex-direction: column;align-items: center;font-size: 8pt; padding:5px;">
+        <img src="{{ data.CEDULA }}" width="60%" />
+        <b>{{data.RAZONSOCIAL}}</b>
+        <a>{{data.FECNAC}}</a>
+        <a>{{data.EDAD}}</a>
+        <a>{{data.GRUPO_COSTO}}</a>
+        </div>
+      </ng-container>
+      
+    </div>
    </dx-card-view>
+   </div>
