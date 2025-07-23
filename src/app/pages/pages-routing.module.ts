@@ -9,6 +9,7 @@ import { EmpleadosComponent } from './empleados/empleados.component';
 import { CantonesComponent } from './cantones/cantones.component';
 import { PaisesComponent } from './paises/paises.component';
 import { ProvinciasComponent } from './provincias/provincias.component';
+import { OrlasComponent } from './Orlas/Orlas.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: "empleados",
     component: EmpleadosComponent
+  },
+  {
+    path: "Orlas",
+    component: OrlasComponent
   },
   {
     path: "empleadosdetalle",

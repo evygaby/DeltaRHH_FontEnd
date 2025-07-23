@@ -132,4 +132,8 @@ post(url:string,parametros: Parametros[]) {
     ConsultarCentros(usu:string,pass:string,idempresa:number):Observable<any> {
     return this.http.get(this.config.apiUrl+"Empleados/Centro?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
 }
+ OrlasPersonal(usu:string,pass:string,idempresa:number):Observable<any> {
+     var url= this.config.apiUrl+"VariosReportes/Orlas?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa
+      return this.http.get(this.config.apiUrl+"VariosReportes/Orlas?usu="+usu+"&pass="+pass+"&idempresa="+idempresa, httpOptions);
+  }
 }

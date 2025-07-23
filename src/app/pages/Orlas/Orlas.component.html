@@ -1,3 +1,28 @@
-<p>
-  Orlas works!
-</p>
+<dx-card-view
+    [dataSource]="orlas"
+    [cardMinWidth]="300"
+    cardsPerRow="auto"
+  >
+    <dxo-card-view-paging [pageSize]="4"></dxo-card-view-paging>
+    <dxo-card-view-header-filter [visible]="true"></dxo-card-view-header-filter>
+    <dxo-card-view-search-panel [visible]="true"></dxo-card-view-search-panel>
+    <dxo-card-view-card-cover
+      [imageExpr]="CEDULA"
+    ></dxo-card-view-card-cover>
+
+    <dxi-card-view-column
+      dataField="COMCCOSTO"
+    ></dxi-card-view-column>
+    <dxi-card-view-column
+      dataField="RAZONSOCIAL"
+    ></dxi-card-view-column>
+    <dxi-card-view-column
+      caption="Position"
+      dataField="NOMCRG"
+    ></dxi-card-view-column>
+    <dxi-card-view-column dataField="GRUPO_COSTO"></dxi-card-view-column>
+    <dxi-card-view-column dataField="EDAD"></dxi-card-view-column>
+    <dxi-card-view-column
+      dataField="SERVICIO"
+    ></dxi-card-view-column>
+   </dx-card-view>

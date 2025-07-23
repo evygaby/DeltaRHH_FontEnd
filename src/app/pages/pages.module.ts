@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -48,6 +48,8 @@ import { CantonesComponent } from './cantones/cantones.component';
 import { ProvinciasComponent } from './provincias/provincias.component';
 import { CurrencyInputDirective } from './infoempleado/currency-input.directive';
 import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirective';
+import { OrlasComponent } from './Orlas/Orlas.component';
+import { DxiColumnComponent } from 'devextreme-angular/ui/nested';
 
 
 
@@ -60,11 +62,12 @@ import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirect
     LoadingComponent,
     EmpleadosComponent,
     InfoempleadoComponent,
+    OrlasComponent,
     PaisesComponent,
     CantonesComponent,
-    ProvinciasComponent,
+    ProvinciasComponent
   ],
-   exports: [AutoFocusInvalidDirective],
+   exports: [AutoFocusInvalidDirective ],
   imports: [
     CommonModule,DxNumberBoxModule,
     FormsModule,DxCheckBoxModule, DxDateBoxModule,MatNativeDateModule,
@@ -81,6 +84,8 @@ import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirect
     DxTemplateModule,
     SharedModule,
     WidgetModule,
+    DxCardViewModule,
+    DxTreeMapModule,
     NgxUsefulSwiperModule,
     LightboxModule,
     DashboardsModule,
