@@ -385,24 +385,20 @@ if(value=='P'){
    
   }
   pais(event: Event) {
-  const value = (event.target as HTMLSelectElement).value;
-   this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,NOMPROV:any }) => p.CODPAIS==value);
-   if(this.provinciafiltrada.length>0){
+  this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,NOMPROV:any }) => p.CODPAIS==this.empleado.PAIS);
+  if(this.provinciafiltrada.length>0){
   this.empleado.PROVINCIA=this.provinciafiltrada[0].CODPROV
-   this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
-     if(this.cantonesfiltrada.length>0){
+  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
+  if(this.cantonesfiltrada.length>0){
   this.empleado.CUIDAD=this.cantonesfiltrada[0].CODCIUDAD
    }
   }
    else{
   this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV=="");
-   
    }
-  
     }
 provincia(event: Event) {
-  const value = (event.target as HTMLSelectElement).value;
-  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==value);
+  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA );
  
 }
 onSelectChange(event: Event) {

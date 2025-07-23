@@ -817,10 +817,10 @@
                     PAIS.invalid && (PAIS.touched || intentoEnvio)
                   "
                 >
-                  <option value=""></option>
+                  <option [ngValue]="null" disabled selected></option>
                   <option
                     *ngFor="let person of paises"
-                    value="{{ person.CODPAIS }}"
+                      [ngValue]="person.CODPAIS"
                   >
                     {{ person.NOMPAIS?.toUpperCase() }}
                   </option>
@@ -850,7 +850,7 @@
                 >
                   <option
                     *ngFor="let person of provinciafiltrada"
-                    value="{{ person.CODPROV }}"
+                   [ngValue]="person.CODPROV"  
                   >
                     {{ person.NOMPROV?.toUpperCase() }}
                   </option>
@@ -1006,20 +1006,15 @@
                 name="CODCCOSTO_MINIS"
                 required
                 #CODCCOSTO_MINIS="ngModel"
-                aria-label="Default select example"
                 [class.is-invalid]="
                   CODCCOSTO_MINIS.invalid &&
-                  (CODCCOSTO_MINIS.touched || intentoEnvio)
-                "
-              >
-                <option value=""></option>
-                <option
-                  *ngFor="let person of centrosmin"
-                  value="{{ person.CODCCOSTO }}"
-                >
+                  (CODCCOSTO_MINIS.touched || intentoEnvio)">
+                   <option Value="" disabled selected></option>
+                <option *ngFor="let person of centrosmin"  [ngValue]="person.CODCCOSTO">
                   {{ person.NOMCCOSTO }}
                 </option>
               </select>
+           
             </div>
             <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
               <label
@@ -1034,10 +1029,10 @@
                 name="NUMEXT"
                 aria-label="Default select example"
               >
-                <option value=""></option>
+                <option value="" ></option>
                 <option
                   *ngFor="let person of extensiones"
-                  value="{{ person.NUMEXT }}"
+                 [ngValue]="person.NUMEXT" 
                 >
                   {{ person.NUMEXT }} - {{ person.DSCEXT }}
                 </option>
@@ -1066,7 +1061,7 @@
               >
                 <option
                   *ngFor="let person of tipocontrato"
-                  value="{{ person.ID }}"
+                 [ngValue]="person.ID"
                 >
                   {{ person.Name }}
                 </option>
@@ -1091,9 +1086,7 @@
                 "
               >
                 <option
-                  *ngFor="let person of grupos"
-                  value="{{ person.CODCCOSTO }}"
-                >
+                  *ngFor="let person of grupos" [ngValue]="person.CODCCOSTO">
                   {{ person.NOMCCOSTO }}
                 </option>
               </select>
@@ -1121,7 +1114,7 @@
                 <option value=""></option>
                 <option
                   *ngFor="let person of jefas"
-                  value="{{ person.CODEMP }}"
+                 [ngValue]="person.CODEMP"  
                 >
                   {{ person.RAZONSOCIAL }}
                 </option>
