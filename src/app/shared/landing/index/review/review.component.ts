@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SwiperOptions } from 'swiper';
+
 
 import {clientLogoModel} from './review.module';
 import { ClientLogo } from './data';
@@ -38,11 +38,6 @@ export class ReviewComponent implements OnInit {
   /**
    * Swiper Responsive setting
    */
-   public review: SwiperOptions = {
-    initialSlide: 0,
-    slidesPerView: 1,
-    pagination: true,
-    navigation: true
-  };
+ 
 
 }

@@ -9,10 +9,8 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { NestableModule } from 'ngx-nestable';
 
 // Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
-import { InViewportModule } from '@thisissoon/angular-inviewport';
-import { ScrollSpyModule } from '@thisissoon/angular-scrollspy';
+
 
 // Load Icon
 import { defineElement } from 'lord-icon-element';
@@ -25,7 +23,6 @@ import { SweetalertsComponent } from './sweetalerts/sweetalerts.component';
 import { ScrollbarComponent } from './scrollbar/scrollbar.component';
 import { AnimationComponent } from './animation/animation.component';
 import { TourComponent } from './tour/tour.component';
-import { SwipersComponent } from './swiper/swiper.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { HighlightComponent } from './highlight/highlight.component';
 import { ScrollspyComponent } from './scrollspy/scrollspy.component';
@@ -37,7 +34,7 @@ import { ScrollspyComponent } from './scrollspy/scrollspy.component';
     ScrollbarComponent,
     AnimationComponent,
     TourComponent,
-    SwipersComponent,
+    
     RatingsComponent,
     HighlightComponent,
     ScrollspyComponent
@@ -47,12 +44,12 @@ import { ScrollspyComponent } from './scrollspy/scrollspy.component';
     NgbDropdownModule,
     NgbRatingModule,
     SimplebarAngularModule,
-    NestableModule,
+    
     AsvanceUiRoutingModule,
-    NgxUsefulSwiperModule,
+    
     SharedModule,
-    InViewportModule,
-    ScrollSpyModule.forRoot()
+    
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

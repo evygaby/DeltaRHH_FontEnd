@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ToastService } from './toast-service';
 
 import { circle, latLng, tileLayer } from 'leaflet';
-import { SwiperOptions } from 'swiper';
+
 
 import { BestSelling, TopSelling, RecentSelling, statData } from './data';
 import { ChartType } from './dashboard.model';
@@ -318,13 +318,6 @@ export class DashboardComponent implements OnInit {
   /**
  * Swiper Vertical  
    */
-  Vertical: SwiperOptions = {
-    pagination: { el: '.swiper-pagination', clickable: true },
-    direction: 'vertical',
-    slidesPerView: 2,
-    spaceBetween: 0,
-    mousewheel: true,
-  };
 
   /**
    * Recent Activity

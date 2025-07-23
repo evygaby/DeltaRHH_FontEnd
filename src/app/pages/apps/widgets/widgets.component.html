@@ -20,8 +20,8 @@
                 <div class="d-flex align-items-end justify-content-between mt-4">
                     <div>
                         <h4 class="fs-22 fw-semibold ff-secondary mb-4" [ngClass]=" { 'text-white': data.counterClass}">
-                            {{data.prefix}}<span [CountTo]="data.counter" class="counter-value" [from]="0"
-                                [duration]="data.decimals"></span>{{data.suffix}}</h4>
+                            {{data.prefix}}<span  class="counter-value"   
+                                ></span>{{data.suffix}}</h4>
                         <a href="javascript:void(0);" class="text-decoration-underline"
                             [ngClass]=" { 'text-white-50': data.captionClass}">{{data.caption}}</a>
                     </div>
@@ -50,8 +50,8 @@
                                     <i class="{{data.icon}} display-6 text-muted"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h2 class="mb-0"><span [CountTo]="data.counter" class="counter-value" [from]="0"
-                                            [duration]="data.decimals"></span></h2>
+                                    <h2 class="mb-0"><span  class="counter-value"   
+                                            ></span></h2>
                                 </div>
                             </div>
                         </div>
@@ -70,9 +70,9 @@
                     <div>
                         <p class="fw-medium text-{{data.labelClass}} mb-0">{{data.label}}</p>
                         <h2 class="mt-4 ff-secondary fw-semibold" [ngClass]=" { 'text-white': data.counterClass}"><span
-                                *ngFor="let user of data.subCounter"><span [CountTo]="user.counter"
-                                    class="counter-value" [from]="0"
-                                    [duration]="user.decimals"></span>{{user.suffix}}</span></h2>
+                                *ngFor="let user of data.subCounter"><span 
+                                    class="counter-value"   
+                                    ></span>{{user.suffix}}</span></h2>
                         <p class="mb-0 text-{{data.labelClass}}"><span class="badge {{data.badgeClass}} mb-0">
                                 <i class="{{data.badge}}"></i> {{data.percentage}}
                             </span> vs. previous month</p>
@@ -103,8 +103,8 @@
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <p class="text-uppercase fw-medium text-{{data.labelClass}} mb-3">{{data.label}}</p>
-                        <h4 class="fs-4 mb-3 {{data.counterClass}}"><span [CountTo]="data.counter" class="counter-value"
-                                [from]="0" [duration]="data.decimals"></span></h4>
+                        <h4 class="fs-4 mb-3 {{data.counterClass}}"><span  class="counter-value"
+                                  ></span></h4>
                         <p class="text-{{data.captionClass}} mb-0">{{data.caption}}</p>
                     </div>
                     <div class="flex-shrink-0 align-self-center">
@@ -749,8 +749,8 @@
                 <div class="row g-0 text-center">
                     <div class="col-6 col-sm-4">
                         <div class="p-3 border border-dashed border-start-0">
-                            <h5 class="mb-1"><span [CountTo]="854" class="counter-value" [from]="0"
-                                    [duration]="1"></span>
+                            <h5 class="mb-1"><span  class="counter-value"   
+                                      ></span>
                                 <span class="text-success ms-1 fs-13">49%</span>
 
                             </h5>
@@ -760,8 +760,8 @@
                     <!--end col-->
                     <div class="col-6 col-sm-4">
                         <div class="p-3 border border-dashed border-start-0">
-                            <h5 class="mb-1"><span [CountTo]="1278" class="counter-value" [from]="0"
-                                    [duration]="1"></span>
+                            <h5 class="mb-1"><span  class="counter-value"   
+                                      ></span>
                                 <span class="text-success ms-1 fs-13">60%<i
                                         class="ri-arrow-right-up-line ms-1 align-middle"></i></span>
                             </h5>
@@ -771,9 +771,9 @@
                     <!--end col-->
                     <div class="col-6 col-sm-4">
                         <div class="p-3 border border-dashed border-start-0 border-end-0">
-                            <h5 class="mb-1"><span [CountTo]="3" class="counter-value" [from]="0"
-                                    [duration]="1"></span>m <span [CountTo]="40" class="counter-value" [from]="0"
-                                    [duration]="1"></span>sec
+                            <h5 class="mb-1"><span  class="counter-value"   
+                                      ></span>m <span  class="counter-value"   
+                                      ></span>sec
                             </h5>
                             <p class="text-muted mb-0">Avg. Ses. Duration</p>
                         </div>
@@ -1039,24 +1039,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <!-- Swiper -->
-                <swiper [config]="Responsive">
-                    <div class="swiper-wrapper">
-                        <div *ngFor="let product of hotproducts" class="swiper-slide" style="overflow: hidden;">
-                            <div>
-                                <div class="bg-soft-info rounded">
-                                    <img src="{{product.image}}" alt="" style="max-height: 210px;max-width: auto;" />
-                                </div>
-                                <div class="pt-3">
-                                    <h5 class="text-secondary">${{product.price}}</h5>
-                                    <a href="javascript:void(0);">
-                                        <h6 class="fs-15 lh-base text-truncate mb-0">{{product.name}}</h6>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </swiper>
+         
             </div>
         </div>
     </div>
@@ -1360,7 +1343,7 @@
                                         <div class="flex-grow-1">
                                             <h5 class="fs-13 mb-1 text-truncate"><span
                                                     class="candidate-name">{{data.name}}</span> <span
-                                                    class="text-muted fw-normal">@{{data.insta}}</span></h5>
+                                                    class="text-muted fw-normal">{{data.insta}}</span></h5>
                                             <div class="d-none candidate-position">{{data.designation}}</div>
                                         </div>
                                     </a>

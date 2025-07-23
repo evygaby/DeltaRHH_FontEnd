@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Swiper Slider
-import { SwiperOptions } from 'swiper';
+
 
 import {clientLogoModel} from './client-logo.module';
 import { ClientLogo } from './data';
@@ -38,18 +38,6 @@ export class ClientLogoComponent implements OnInit {
   /**
    * Swiper Responsive setting
    */
-   public Responsive: SwiperOptions = {
-    slidesPerView: 1,
-    pagination: true,
-    mousewheel: true,
-    breakpoints:{
-      768:{
-        slidesPerView: 2, 
-      },
-      1200:{
-        slidesPerView: 4, 
-      }
-    }
-  };
+
 
 }

@@ -6,7 +6,7 @@ import { TitleBox1Model, TitleBox2Model, TitleBox3Model, TitleBox4Model, otherWi
 import { tileBoxs1, tileBoxs2, tileBoxs3, tileBoxs4, otherWidgets, widgetsActivities, widgetsTasks, tileBoxs5, hotproducts, candidate, bank } from './data';
 import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormArray, AbstractControl } from '@angular/forms';
 
-import { SwiperOptions } from 'swiper';
+
 
 @Component({
   selector: 'app-widgets',
@@ -670,18 +670,6 @@ export class WidgetsComponent implements OnInit {
   /**
      * Swiper Responsive setting
      */
-  public Responsive: SwiperOptions = {
-    // navigation: true,
-    spaceBetween: 25,
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-      },
-      1200: {
-        slidesPerView: 1.5,
-      }
-    }
-  };
 
   // open Candidate Detail
   opendetail(id: any) {

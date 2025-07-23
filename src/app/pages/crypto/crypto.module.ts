@@ -4,12 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule, NgbNavModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Counter
-import { CountToModule } from 'angular-count-to';
+
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
 
 // Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 
 // Apex Chart Package
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -20,7 +20,7 @@ import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 // NG2 Search Filter
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 // Component pages
 import { CryptoRoutingModule } from './crypto-routing.module';
@@ -63,14 +63,14 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgbTypeaheadModule,
     NgbNavModule,
     NgbDropdownModule,
-    CountToModule,
+    
     FlatpickrModule,
-    NgxUsefulSwiperModule,
+    
     NgApexchartsModule,
     DropzoneModule,
     CryptoRoutingModule,
     SharedModule,
-    Ng2SearchPipeModule
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

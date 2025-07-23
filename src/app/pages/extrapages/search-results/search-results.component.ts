@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Lightbox } from 'ngx-lightbox';
 
 // Swiper Slider
-import { SwiperOptions } from 'swiper';
+
 
 import { swiperModel, GalleryModel, NewsModel, VideoModel } from './search-results.model';
 import { swiper, gallery, news, video } from './data';
@@ -81,11 +81,6 @@ export class SearchResultsComponent implements OnInit {
    /**
    * Swiper Vertical  setting
    */
-    public Vertical: SwiperOptions = {
-      a11y: { enabled: true },
-      direction: 'vertical',
-      slidesPerView: 1,
-      pagination: true
-    };
+  
 
 }

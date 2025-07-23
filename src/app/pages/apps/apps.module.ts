@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionModule, NgbProgressbarModule, NgbNavModule, NgbPaginationModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 // search module
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 // Feather Icon
 import { FeatherModule } from 'angular-feather';
@@ -20,7 +20,7 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 // Ck Editer
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 // Counter
-import { CountToModule } from 'angular-count-to';
+
 // Apex Chart Package
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -69,8 +69,7 @@ import { ApikeyComponent } from './apikey/apikey.component';
 // Mask
 import { NgxMaskModule } from 'ngx-mask';
 
-// Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 
 @NgModule({
   declarations: [
@@ -97,13 +96,13 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     NgbNavModule,
     NgbPaginationModule,
     NgbCollapseModule,
-    Ng2SearchPipeModule,
+    
     FeatherModule.pick(allIcons),
     FullCalendarModule,
     FlatpickrModule.forRoot(),
     SimplebarAngularModule,
     CKEditorModule,
-    CountToModule,
+    
     NgApexchartsModule,
     LeafletModule,
     AppsRoutingModule,
@@ -116,7 +115,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     NgSelectModule,
     NgbTypeaheadModule,
     JobsModule,
-    NgxUsefulSwiperModule,
+    
     NgxMaskModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

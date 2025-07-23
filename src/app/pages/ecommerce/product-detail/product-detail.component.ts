@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { restApiService } from "../../../core/services/rest-api.service";
 
 // Swiper Slider
-import { SwiperOptions } from 'swiper';
+
 
 import { productModel, productList } from '../product.model';
 
@@ -52,13 +52,5 @@ export class ProductDetailComponent implements OnInit {
   /**
    * Swiper setting
    */
-  config: SwiperOptions = {
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    spaceBetween: 30
-  };
 
 }

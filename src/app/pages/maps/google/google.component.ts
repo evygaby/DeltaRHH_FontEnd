@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Inject, PLATFORM_ID } from '@angular/core';
 
-import { MapsAPILoader } from '@agm/core';
+
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -23,7 +23,7 @@ export class GoogleComponent implements OnInit {
   @ViewChild('streetviewMap', { static: true }) streetviewMap: any;
   @ViewChild('streetviewPano', { static: true }) streetviewPano: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any, private mapsAPILoader: MapsAPILoader) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: any) { }
 
   ngOnInit(): void {
     /**

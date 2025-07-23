@@ -7,7 +7,7 @@ import { GlobalComponent } from '../../../global-component';
 // Sweet Alert
 import Swal from 'sweetalert2';
 
-import { SwiperOptions } from 'swiper';
+
 
 import { ChartType, sellerDetailModel } from './seller-details.model';
 import { sellerDetailsService } from './seller-details.service';
@@ -332,11 +332,6 @@ export class SellerDetailsComponent {
   /**
  * Swiper Vertical  
    */
-  Vertical: SwiperOptions = {
-    pagination: { el: '.swiper-pagination', clickable: true },
-    direction: 'vertical',
-    slidesPerView: 2,
-    mousewheel: true,
-  };
+ 
 
 }

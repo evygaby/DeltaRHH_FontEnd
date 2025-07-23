@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Google Map
-import { AgmCoreModule } from '@agm/core';
+
 // Leaflet Map
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -19,9 +19,7 @@ import { LeafletComponent } from './leaflet/leaflet.component';
   ],
   imports: [
     CommonModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE'
-    }),
+ 
     LeafletModule,
     MapsRoutingModule,
     SharedModule

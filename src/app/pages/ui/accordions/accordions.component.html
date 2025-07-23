@@ -18,32 +18,7 @@
           <div class="card-body">
               <p class="text-muted">Use the <code>accordion</code> class to expand/collapse the accordion content.</p>
               <div class="live-preview">
-                <ngb-accordion #acc="ngbAccordion" activeIds="static-1" [closeOthers]="true">
-                  <ngb-panel id="static-1">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        How to create a group booking ?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        Although you probably won’t get into any legal trouble if you do it just once, why risk it? If you made your subscribers a promise, you should honor that. If not, you run the risk of a drastic increase in opt outs, which will only hurt you in the long run.
-                      </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="static-2">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        Why do we use it ?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        No charges are put in place by SlickText when subscribers join your text list. This does not mean however that charges 100% will not occur. Charges that may occur fall under part of the compliance statement stating "Message and Data rates may apply."
-                      </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="static-3">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        Where does it come from ?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        Now that you have a general idea of the amount of texts you will need per month, simply find a plan size that allows you to have this allotment, plus some extra for growth. Don't worry, there are no mistakes to be made here. You can always upgrade and downgrade.
-                      </ng-template>
-                  </ngb-panel>
-                </ngb-accordion>
+        
               </div>
               <div class="d-none code-view">
 <pre class="language-markup" style="height: 275px;">
@@ -105,32 +80,7 @@ Now that you have a general idea of the amount of texts you will need per month,
           <div class="card-body">
               <p class="text-muted">Use <code>accordion-flush</code> class to remove the default background-color, some borders, and some rounded corners to render accordions edge-to-edge with their parent container.</p>
               <div class="live-preview flush_accordion">
-                <ngb-accordion #acc="ngbAccordion" activeIds="static-1" [closeOthers]="true">
-                  <ngb-panel id="static-1">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        How do I set up my profile ?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        The renewal of your SlickText service happens on the anniversary of your original paid sign up date. Upgrading in the middle of your billing period will not change the billing date. Upgrading does however force an immediate, pro-rated charge to take place on your account.
-                      </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="static-2">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        What can I do with my project ?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        If you had signed up on a free account with Slicktext, then upgraded to a paid plan at a later date, your bill will renew based on the date you had upgraded to a paid plan. All invoices are able to be viewed under your plan options in your SlickText account.
-                      </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="static-3">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        Where can I go to edit voice settings
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        No, we cannot provide this information. Opting out from a list is an anonymous, private act. This prevents further harassment. Providing this information is considered bad practice, and further communication after they opt out would be considered against compliance.
-                      </ng-template>
-                  </ngb-panel>
-                </ngb-accordion>
+              
               </div>
               <div class="d-none code-view">
 <pre class="language-markup" style="height: 275px;">
@@ -194,89 +144,7 @@ data-bs-parent=&quot;#accordionFlushExample&quot;&gt;
           <div class="card-body">
               <p class="text-muted">Use <code>nesting-accordion</code> class to create a nesting accordion.</p>
               <div class="live-preview">
-                <ngb-accordion #acc="ngbAccordion" activeIds="static-1" [closeOthers]="true" class="custom-accordionwithicon accordion-border-box">
-                  <ngb-panel id="static-1">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        How Do I Add Contacts/Subscribers?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        <div class="accordion-body">
-                          This opt in method is perfect for those looking to integrate a different software such Shopify or Hubspot with Slicktext. For example, upon cashing out online, a subscriber may submit to have their mobile number to receive marketing messages. The API will pass this information from said software over to Slicktext via API integration.
-                          <div class="accordion nesting2-accordion custom-accordionwithicon accordion-border-box mt-3" id="accordionnesting2">
-                              <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" class="custom-accordionwithicon accordion-border-box">
-                                <ngb-panel id="static-5">
-                                    <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                                        How Do I Search For Contacts?
-                                    </ng-template>
-                                    <ng-template ngbPanelContent>
-                                      <div class="accordion-body">
-                                        When you are in need of finding a specific subscriber, you will want to use the help of SlickText's search navigation tool, located under the Contacts tab of your Slicktext account. Once here, you will have options to sort by, filter, and search your contacts.
-
-                                         <div class="accordion nesting2-accordion custom-accordionwithicon accordion-border-box mt-3" id="accordionnesting2">
-                                            <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" class="custom-accordionwithicon accordion-border-box">
-                                                <ngb-panel id="static-5">
-                                                    <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                                                        How do I reset my digital tide watch ?
-                                                    </ng-template>
-                                                    <ng-template ngbPanelContent>
-                                                    <div class="accordion-body">
-                                                        Opting out a subscriber will allow SlickText to maintain the history of the subscriber as it pertains to the textword you are opting them out of. If this user was to text to join again, the initial text they are met with will be a "welcome back" message instead of the auto reply.
-                                                    </div>
-                                                    </ng-template>
-                                                </ngb-panel>
-                                            </ngb-accordion>
-                                        </div>
-                                      </div>
-                                    </ng-template>
-                                </ngb-panel>
-                                <ngb-panel id="static-6">
-                                  <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                                    How Do I Delete a Contact From My List?
-                                  </ng-template>
-                                  <ng-template ngbPanelContent>
-                                    <div class="accordion-body">
-                                      Opting out a subscriber will allow SlickText to maintain the history of the subscriber as it pertains to the textword you are opting them out of. If this user was to text to join again, the initial text they are met with will be a "welcome back" message instead of the auto reply.
-                                    </div>
-                                  </ng-template>
-                              </ngb-panel>
-                              </ngb-accordion>
-                          </div>
-                        </div>
-                      </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="static-2">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        How Does Personalization Work?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        <div class="accordion-body">
-                          Personalization allows you to provide a personal touch to your outbound text marketing campaigns. SlickText uses merge tags as placeholders that are replaced with contact-specific information when a text message is sent. These merge tags may also be known as personalization fields.
-                          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" class="custom-accordionwithicon accordion-border-box">
-                            <ngb-panel id="static-11">
-                                <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                                    Howe does temperature impact my watch?
-                                </ng-template>
-                                <ng-template ngbPanelContent>
-                                  <div class="accordion-body">
-                                    Opting out a subscriber will allow SlickText to maintain the history of the subscriber as it pertains to the textword you are opting them out of. If this user was to text to join again, the initial text they are met with will be a "welcome back" message instead of the auto reply.
-                                  </div>
-                                </ng-template>
-                            </ngb-panel>
-                          </ngb-accordion>
-                        </div>
-                      </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="static-3">
-                      <ng-template ngbPanelTitle class="accordion-header border-0 bg-transparent">
-                        What Happens When I Run Out of Messages?
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        <div class="accordion-body">
-                          When you run out of messages, you will not be able to send any outbound campaigns. This would include any scheduled messages, drip campaigns, and birthday messages. However, we will continue to deliver your auto-reply messages to allow your subscriber list to continue to grow.
-                        </div>
-                      </ng-template>
-                  </ngb-panel>
-                </ngb-accordion>
+     
               </div>
               <div class="d-none code-view">
 <pre class="language-markup" style="height: 275px;">

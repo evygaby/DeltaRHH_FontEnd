@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Counter
-import { CountToModule } from 'angular-count-to';
+
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
 // Simple Bar
@@ -35,7 +35,7 @@ import {DatePipe} from '@angular/common';
     NgbTypeaheadModule,
     NgbDropdownModule,
     NgbTooltipModule,
-    CountToModule,
+    
     FlatpickrModule,
     SimplebarAngularModule,
     TicketsRoutingModule,

@@ -48,7 +48,7 @@
 
 <div class="row row-cols-xxl-5 row-cols-lg-3 row-cols-md-2 row-cols-1">
   <div class="col">
-    <ngb-accordion #acc="ngbAccordion" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
+    <ngb-accordion #acc="" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
       <ngb-panel id="lead-1">
 
         <ng-template ngbPanelTitle>
@@ -59,7 +59,7 @@
           </a>
         </ng-template>
         <ng-template ngbPanelContent>
-          <ngb-accordion #acc="ngbAccordion" activeIds="static-3" [closeOthers]="true">
+          <ngb-accordion  activeIds="static-3" [closeOthers]="true">
             <ngb-panel id="static-1">
               <ng-template ngbPanelTitle>
                 <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
@@ -136,7 +136,7 @@
   <!--end col-->
 
   <div class="col">
-    <ngb-accordion #acc="ngbAccordion" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
+    <ngb-accordion #acc=""  class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
       <ngb-panel id="lead-1">
         <ng-template ngbPanelTitle>
           <a class="card-header w-100 bg-soft-success p-3 text-start d-block" data-bs-toggle="collapse" role="button"
@@ -146,7 +146,7 @@
           </a>
         </ng-template>
         <ng-template ngbPanelContent>
-          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+          <ngb-accordion #acc="" [closeOthers]="true">
             <ngb-panel id="static-1">
               <ng-template ngbPanelTitle>
                 <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
@@ -223,215 +223,17 @@
   <!--end col-->
 
   <div class="col">
-    <ngb-accordion #acc="ngbAccordion" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
-      <ngb-panel id="lead-1">
-        <ng-template ngbPanelTitle>
-          <a class="card-header w-100 bg-soft-warning p-3 text-start d-block" data-bs-toggle="collapse" role="button"
-            aria-expanded="false" aria-controls="needsIdentified">
-            <h5 class="card-title text-uppercase mb-1 fs-14">Needs Identified</h5>
-            <p class="text-muted mb-0">$708,200 <span class="fw-medium">7 Deals</span></p>
-          </a>
-        </ng-template>
-        <ng-template ngbPanelContent>
-          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-            <ngb-panel id="static-1">
-              <ng-template ngbPanelTitle>
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified1">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-9.jpg" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Art Studio Design</h6>
-                    <p class="text-muted mb-0">$147.5k - 24 Sep, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-2">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified2">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Billing Page Bug</h6>
-                    <p class="text-muted mb-0">$15.8k - 17 Dec, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-3">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified3">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/brands/dribbble.png" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Food Selection Platform</h6>
-                    <p class="text-muted mb-0">$72.5k - 04 Jan, 2022</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-4">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified4">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Skote React Development</h6>
-                    <p class="text-muted mb-0">$89.8 - 21 Nov, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-5">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified5">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Velzon - Admin Dashboard</h6>
-                    <p class="text-muted mb-0">$126.7k - 30 Dec, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-6">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified6">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/companies/img-6.png" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Wood Elements Design</h6>
-                    <p class="text-muted mb-0">$120.2k - 24 Nov, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-7">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="needsIdentified7">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">PayPal SEO audit</h6>
-                    <p class="text-muted mb-0">$135.7k - 23 Nov, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-          </ngb-accordion>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
+    
   </div>
   <!--end col-->
 
   <div class="col">
-    <ngb-accordion #acc="ngbAccordion" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
-      <ngb-panel id="lead-1">
-        <ng-template ngbPanelTitle>
-          <a class="card-header w-100 bg-soft-info p-3 text-start d-block" data-bs-toggle="collapse" role="button"
-            aria-expanded="false" aria-controls="meetingArranged">
-            <h5 class="card-title text-uppercase mb-1 fs-14">Meeting Arranged</h5>
-            <p class="text-muted mb-0">$44,900 <span class="fw-medium">3 Deals</span></p>
-          </a>
-        </ng-template>
-        <ng-template ngbPanelContent>
-          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-            <ngb-panel id="static-1">
-              <ng-template ngbPanelTitle>
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="meetingArranged1">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/companies/img-5.png" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">SASS app workflow diagram</h6>
-                    <p class="text-muted mb-0">$17.8k - 01 Jan, 2022</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-2">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="meetingArranged2">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">Uber new brand system</h6>
-                    <p class="text-muted mb-0">$24.5k - 22 Dec, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-3">
-              <ng-template ngbPanelTitle class="accordion-header">
-                <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" href="javascript:void(0);"
-                  role="button" aria-expanded="false" aria-controls="meetingArranged3">
-                  <div class="flex-shrink-0">
-                    <img src="assets/images/companies/img-8.png" alt="" class="avatar-xs rounded-circle" />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-13 mb-1">TripAdvisor</h6>
-                    <p class="text-muted mb-0">$2.6k - 12 Dec, 2021</p>
-                  </div>
-                </a>
-              </ng-template>
-              <ng-template ngbPanelContent>
-                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-              </ng-template>
-            </ngb-panel>
-          </ngb-accordion>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
+   
   </div>
   <!--end col-->
 
   <div class="col">
-    <ngb-accordion #acc="ngbAccordion" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
+    <ngb-accordion #acc="" class="kanban-accordion" activeIds="lead-1" [closeOthers]="true">
       <ngb-panel id="lead-1">
         <ng-template ngbPanelTitle>
           <a class="card-header w-100 bg-soft-secondary p-3 text-start d-block" data-bs-toggle="collapse" role="button"
@@ -441,7 +243,7 @@
           </a>
         </ng-template>
         <ng-template ngbPanelContent>
-          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+          <ngb-accordion #acc="" [closeOthers]="true">
             <ngb-panel id="static-1">
               <ng-template ngbPanelTitle>
                 <a class="d-flex align-items-center text-start" data-bs-toggle="collapse" role="button"

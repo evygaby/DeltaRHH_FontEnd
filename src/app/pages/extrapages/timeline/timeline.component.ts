@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // Swiper Slider
-import { SwiperOptions } from 'swiper';
+
 
 @Component({
   selector: 'app-timeline',

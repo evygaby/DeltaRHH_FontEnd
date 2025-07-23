@@ -61,24 +61,24 @@
                                     <div class="row g-0 text-center">
                                         <div class="col-6 col-sm-4">
                                             <div class="p-3 border border-dashed border-start-0">
-                                                <h5 class="mb-1"><span [CountTo]=36.48 class="counter-value" [from]="0"
-                                                        [duration]="1"></span>k</h5>
+                                                <h5 class="mb-1"><span class="counter-value"   
+                                                          ></span>k</h5>
                                                 <p class="text-muted mb-0">Aetworks</p>
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-6 col-sm-4">
                                             <div class="p-3 border border-dashed border-start-0">
-                                                <h5 class="mb-1"><span [CountTo]=92.54 class="counter-value" [from]="0"
-                                                        [duration]="1"></span>k</h5>
+                                                <h5 class="mb-1"><span class="counter-value"   
+                                                          ></span>k</h5>
                                                 <p class="text-muted mb-0">Auction</p>
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-6 col-sm-4">
                                             <div class="p-3 border border-dashed border-end-0">
-                                                <h5 class="mb-1"><span [CountTo]=8.62 class="counter-value" [from]="0"
-                                                        [duration]="1"></span>k</h5>
+                                                <h5 class="mb-1"><span  class="counter-value"   
+                                                          ></span>k</h5>
                                                 <p class="text-muted mb-0">Creators</p>
                                             </div>
                                         </div>
@@ -229,7 +229,7 @@
                                         <a href="javascript:void(0);" class="stretched-link">
                                             <h6 class="fs-14 mb-1">Herbert Stokes</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@herbert10</p>
+                                        <p class="mb-0 text-muted">herbert10</p>
                                     </div>
                                     <div>
                                         <h6>174.36 ETH</h6>
@@ -244,7 +244,7 @@
                                         <a href="javascript:void(0);">
                                             <h6 class="fs-14 mb-1">Nancy Martino</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@nancyMt</p>
+                                        <p class="mb-0 text-muted">nancyMt</p>
                                     </div>
                                     <div>
                                         <h6>346.47 ETH</h6>
@@ -259,7 +259,7 @@
                                         <a href="javascript:void(0);">
                                             <h6 class="fs-14 mb-1">Timothy Smith</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@timothy</p>
+                                        <p class="mb-0 text-muted">timothy</p>
                                     </div>
                                     <div>
                                         <h6>349.08 ETH</h6>
@@ -274,7 +274,7 @@
                                         <a href="javascript:void(0);">
                                             <h6 class="fs-14 mb-1">Glen Matney</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@matney10</p>
+                                        <p class="mb-0 text-muted">matney10</p>
                                     </div>
                                     <div>
                                         <h6>852.34 ETH</h6>
@@ -289,7 +289,7 @@
                                         <a href="javascript:void(0);">
                                             <h6 class="fs-14 mb-1">Michael Morris</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@michael</p>
+                                        <p class="mb-0 text-muted">michael</p>
                                     </div>
                                     <div>
                                         <h6>4.071 ETH</h6>
@@ -304,7 +304,7 @@
                                         <a href="javascript:void(0);">
                                             <h6 class="fs-14 mb-1">Alexis Clarke</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@alexis_30</p>
+                                        <p class="mb-0 text-muted">alexis_30</p>
                                     </div>
                                     <div>
                                         <h6>30.749 ETH</h6>
@@ -319,7 +319,7 @@
                                         <a href="javascript:void(0);">
                                             <h6 class="fs-14 mb-1">Timothy Smith</h6>
                                         </a>
-                                        <p class="mb-0 text-muted">@timothy</p>
+                                        <p class="mb-0 text-muted">timothy</p>
                                     </div>
                                     <div>
                                         <h6>349.08 ETH</h6>
@@ -342,40 +342,7 @@
             <div class="d-flex pt-2 mb-n5">
                 <h5 class="card-title fs-18 mb-0">Featured NFTs Artworks</h5>
             </div>
-            <swiper [config]="Responsive">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" *ngFor="let data of featuredData">
-                        <div class="card explore-box card-animate rounded">
-                            <!-- <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                                <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
-                            </div> -->
-                            <div class="explore-place-bid-img">
-                                <img src="{{data.img}}" alt="" class="img-fluid card-img-top explore-img" />
-                                <div class="bg-overlay"></div>
-                                <div class="place-bid-btn">
-                                    <a href="javascript:void(0);" class="btn btn-success"><i
-                                            class="ri-auction-fill align-bottom me-1"></i> Place Bid</a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    {{data.likes}} </p>
-                                <h5 class="mb-1"><a routerLink="/marletplace/item-details">{{data.title}}</a></h5>
-                                <p class="text-muted mb-0">{{data.category}}</p>
-                            </div>
-                            <div class="card-footer border-top border-top-dashed">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 fs-14">
-                                        <i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Highest: <span
-                                            class="fw-medium">{{data.highest}}</span>
-                                    </div>
-                                    <h5 class="flex-shrink-0 fs-14 text-primary mb-0">{{data.price}}</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </swiper>
+      
         </div>
     </div>
     <!--end col-->
@@ -722,30 +689,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <swiper [config]="collection">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let data of topCollectionData">
-                            <div class="dash-collection overflow-hidden rounded-top position-relative">
-                                <img src="{{data.img}}" alt="" height="220" class="object-cover w-100" />
-                                <div
-                                    class="content position-absolute bottom-0 m-2 p-2 start-0 end-0 rounded d-flex align-items-center">
-                                    <div class="flex-grow-1">
-                                        <a href="javascript:void(0);">
-                                            <h5 class="text-white fs-16 mb-1">{{data.category}}</h5>
-                                        </a>
-                                        <p class="text-white-75 mb-0">{{data.items}} Items</p>
-                                    </div>
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title bg-white rounded-circle">
-                                            <a href="javascript:void(0);" class="link-success"><i
-                                                    class="ri-arrow-right-line"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </swiper>
+            
                 <!--end swiper-->
             </div>
         </div>
@@ -757,37 +701,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <swiper [config]="collection">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let data of popularData">
-                            <div class="d-flex">
-                                <div class="flex-shink-0">
-                                    <img src="{{data.img}}" alt="" class="avatar-sm object-cover rounded">
-                                </div>
-                                <div class="ms-3 flex-grow-1">
-                                    <a routerLink="/pages/profile">
-                                        <h5 class="mb-1">{{data.author}}</h5>
-                                    </a>
-                                    <p class="text-muted mb-0"><i class="mdi mdi-ethereum text-primary fs-14"></i>
-                                        {{data.price}}</p>
-                                </div>
-                                <div>
-                                    <div class="dropdown float-end" ngbDropdown>
-                                        <button class="btn btn-ghost-primary btn-icon dropdown arrow-none" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
-                                            <i class="ri-more-fill align-middle fs-16"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">View</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Share</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Report</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </swiper>
+        
                 <!--end swiper-->
             </div>
         </div>

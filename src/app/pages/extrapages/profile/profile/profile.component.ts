@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UntypedFormBuilder, UntypedFormGroup, FormArray, Validators } from '@angular/forms';
 
 // Swiper Slider
-import { SwiperOptions } from 'swiper';
+
 
 import { TokenStorageService } from '../../../../core/services/token-storage.service';
 

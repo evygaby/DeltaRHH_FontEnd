@@ -11,7 +11,7 @@ import { DndModule } from 'ngx-drag-drop';
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
 // Counter
-import { CountToModule } from 'angular-count-to';
+
 
 // Sorting page
 import { NgbdListViewSortableHeader } from './../tasks/list-view/list-view-sortable.directive';
@@ -47,7 +47,7 @@ import { DetailsComponent } from './details/details.component';
     SimplebarAngularModule,
     DndModule,
     FlatpickrModule,
-    CountToModule,
+    
     TasksRoutingModule,
     SharedModule
   ],

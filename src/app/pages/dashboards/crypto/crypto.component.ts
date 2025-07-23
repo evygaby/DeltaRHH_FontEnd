@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SwiperOptions } from 'swiper';
+
 
 import { statData, BitcoinChart, litecoinChart, EatherreumChart, BinanceChart, DashChart, TetherChart, NeoChart, Currencies, TopPerformers, NewsFeed } from './data';
 
@@ -460,17 +460,5 @@ export class CryptoComponent implements OnInit {
   /**
    * Swiper setting
    */
-  public config: SwiperOptions = {
-    spaceBetween: 25,
-    slidesPerView: 5,
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-      },
-      1080: {
-        slidesPerView: 5,
-      }
-    }
-  };
 
 }

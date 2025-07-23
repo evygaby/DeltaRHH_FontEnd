@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgbTooltipModule, NgbProgressbarModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { CountToModule } from 'angular-count-to';
+
 // Feather Icon
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
@@ -56,7 +56,7 @@ import { NftStatComponent } from './nft/nft-stat/nft-stat.component';
     NgbTooltipModule,
     NgbProgressbarModule,
     NgbDropdownModule,
-    CountToModule,
+  
     FeatherModule.pick(allIcons),
     NgApexchartsModule,
   ],

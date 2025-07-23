@@ -8,14 +8,14 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { CountToModule } from 'angular-count-to';
+
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimplebarAngularModule } from 'simplebar-angular';
 
 // Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 
 import { LightboxModule } from 'ngx-lightbox';
 
@@ -49,7 +49,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
 import { CurrencyInputDirective } from './infoempleado/currency-input.directive';
 import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirective';
 import { OrlasComponent } from './Orlas/Orlas.component';
-import { DxiColumnComponent } from 'devextreme-angular/ui/nested';
+
 
 
 
@@ -74,7 +74,7 @@ import { DxiColumnComponent } from 'devextreme-angular/ui/nested';
     NgbToastModule,DxTextAreaModule,
     NgbProgressbarModule,DropzoneModule,NgbDatepickerModule,
     FlatpickrModule.forRoot(),
-    CountToModule,ReactiveFormsModule,
+    ReactiveFormsModule,
     NgApexchartsModule,NgbNavModule,
     LeafletModule,
     NgbDropdownModule,NgSelectModule,DxBoxModule,
@@ -86,7 +86,7 @@ import { DxiColumnComponent } from 'devextreme-angular/ui/nested';
     WidgetModule,
     DxCardViewModule,
     DxTreeMapModule,
-    NgxUsefulSwiperModule,
+    
     LightboxModule,
     DashboardsModule,
     AppsModule,DxDataGridModule,

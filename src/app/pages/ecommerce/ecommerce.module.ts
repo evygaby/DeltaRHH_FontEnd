@@ -12,7 +12,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 // Simple bar
 import { SimplebarAngularModule } from 'simplebar-angular';
 // Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 
 // Ck Editer
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -25,11 +25,11 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 // Ng Select
 import { NgSelectModule } from '@ng-select/ng-select';
 // Wizard
-import { ArchwizardModule } from 'angular-archwizard';
+
 // Apex Chart Package
 import { NgApexchartsModule } from 'ng-apexcharts';
 // Count
-import { CountToModule } from 'angular-count-to';
+
 
 // Load Icon
 import { defineElement } from 'lord-icon-element';
@@ -84,14 +84,14 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgbTooltipModule,
     NgxSliderModule,
     SimplebarAngularModule,
-    NgxUsefulSwiperModule,
+    
     CKEditorModule,
     DropzoneModule,
     FlatpickrModule.forRoot(),
     NgSelectModule,
-    ArchwizardModule,
+    
     NgApexchartsModule,
-    CountToModule,
+    
     EcommerceRoutingModule,
     SharedModule,
     NgxMaskModule.forRoot()

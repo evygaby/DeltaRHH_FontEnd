@@ -9,7 +9,7 @@
               <div class="row gx-lg-5">
                   <div class="col-xl-4 col-md-8 mx-auto">
                       <div *ngIf="!products._id" class="product-img-slider sticky-side-div">
-                        <swiper [config]="config" >
+                    
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide" *ngFor="let i of productDetail[0].images">
                                   <img src="{{i}}" alt="" class="img-fluid d-block" />
@@ -17,7 +17,7 @@
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
-                        </swiper>
+                      
                       </div>
                       <div *ngIf="products._id" class="product-img-slider sticky-side-div">
                           <div class="swiper-slide" >

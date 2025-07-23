@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbNavModule, NgbDropdownModule, NgbAccordionModule, NgbTooltipModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 // Select Droup down
 import { NgSelectModule } from '@ng-select/ng-select';
 // Flatpicker
@@ -15,7 +15,7 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 
 // Ng Search 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 // Load Icon
 import { defineElement } from 'lord-icon-element';
@@ -61,14 +61,13 @@ import { TermsConditionComponent } from './terms-condition/terms-condition.compo
     NgbAccordionModule,
     NgbTooltipModule,
     NgbPaginationModule,
-    NgxUsefulSwiperModule,
+    
     NgSelectModule,
     FlatpickrModule,
     ExtraPagesRoutingModule,
     SharedModule,
     FeatherModule.pick(allIcons),
-    Ng2SearchPipeModule
-  ],
+      ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ExtraspagesModule { 

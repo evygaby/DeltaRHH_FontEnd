@@ -15,7 +15,7 @@ import { NgxMaskModule } from 'ngx-mask';
 // Ngx Sliders
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 //Wizard
-import { ArchwizardModule } from 'angular-archwizard';
+
 // Ck Editer
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 // Drop Zone
@@ -78,7 +78,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ColorPickerModule,
     NgxMaskModule.forRoot(),
     NgxSliderModule,
-    ArchwizardModule,
+    
     CKEditorModule,
     AutocompleteLibModule,
     FormRoutingModule,

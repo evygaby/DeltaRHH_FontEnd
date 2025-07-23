@@ -1,8 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-// search module
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,7 +59,7 @@ if (environment.defaultauth === 'firebase') {
     AppRoutingModule,CommonModule ,
     LayoutsModule,
     PagesModule,
-    Ng2SearchPipeModule,DxButtonModule,
+    DxButtonModule,
     DxRadioGroupModule,
     DxSelectBoxModule,
     DxNumberBoxModule,

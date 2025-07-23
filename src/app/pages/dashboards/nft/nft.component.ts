@@ -3,7 +3,7 @@ import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { circle, latLng, tileLayer } from 'leaflet';
 
-import { SwiperOptions } from 'swiper';
+
 
 import { statData, featuredData, recentData, topCollectionData, popularData } from './data';
 import { featuredModel, recentModel, topCollectionModel, popularModel } from './nft.model';
@@ -153,29 +153,11 @@ export class NftComponent implements OnInit {
     /**
      * Swiper Responsive setting
      */
-    public Responsive: SwiperOptions = {
-        slidesPerView: 1,
-        loop: true,
-        navigation: true,
-        spaceBetween: 25,
-        breakpoints: {
-            768: {
-                slidesPerView: 2,
-            },
-            1200: {
-                slidesPerView: 3,
-            }
-        }
-    };
 
     /**
      * Top CollectionSwiper Responsive setting
      */
-    public collection: SwiperOptions = {
-        slidesPerView: 1,
-        loop: true,
-        spaceBetween: 10
-    };
+   
 
     /**
     * Market Place Chart

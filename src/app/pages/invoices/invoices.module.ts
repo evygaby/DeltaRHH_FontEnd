@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Counter
-import { CountToModule } from 'angular-count-to';
+
 
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -39,7 +39,7 @@ import {DatePipe} from '@angular/common';
     NgbPaginationModule,
     NgbTypeaheadModule,
     NgbDropdownModule,
-    CountToModule,
+    
     FlatpickrModule,
     FeatherModule.pick(allIcons),
     InvoicesRoutingModule,

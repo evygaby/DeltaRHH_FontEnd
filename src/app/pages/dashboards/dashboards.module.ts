@@ -9,13 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Feather Icon
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { CountToModule } from 'angular-count-to';
+
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { SimplebarAngularModule } from 'simplebar-angular';
 // Apex Chart Package
 import { NgApexchartsModule } from 'ng-apexcharts';
 // Swiper Slider
-import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -48,13 +48,13 @@ import { JobComponent } from './job/job.component';
     CommonModule,
     NgbToastModule,
     FeatherModule.pick(allIcons),
-    CountToModule,
+    
     LeafletModule,
     NgbDropdownModule,
     NgbNavModule,
     SimplebarAngularModule,
     NgApexchartsModule,
-    NgxUsefulSwiperModule,
+    
     FlatpickrModule.forRoot(),
     DashboardsRoutingModule,
     SharedModule,

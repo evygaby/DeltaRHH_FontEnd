@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SwiperOptions } from 'swiper';
+
 
 import {clientLogoModel} from './categories.model';
 import { ClientLogo } from './data';
@@ -37,23 +37,7 @@ export class CategoriesComponent implements OnInit {
   /**
    * Swiper Responsive setting
    */
-   public Responsive: SwiperOptions = {
-    slidesPerView: 1,
-     pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    // mousewheel: true,
-    navigation: true,
-    spaceBetween: 25,
-    breakpoints:{
-      768:{
-        slidesPerView: 2, 
-      },
-      1200:{
-        slidesPerView: 4, 
-      }
-    }
-  };
 
+
+  
 }

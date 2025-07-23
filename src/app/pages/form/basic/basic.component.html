@@ -64,7 +64,7 @@
                           <div>
                               <label for="iconInput" class="form-label">Input with Icon</label>
                               <div class="form-icon">
-                                  <input type="email" class="form-control form-control-icon" id="iconInput" placeholder="example@gmail.com">
+                                  <input type="email" class="form-control form-control-icon" id="iconInput" placeholder="example .com">
                                   <i class="ri-mail-unread-line"></i>
                               </div>
                           </div>
@@ -73,7 +73,7 @@
                           <div>
                               <label for="iconrightInput" class="form-label">Input with Icon Right</label>
                               <div class="form-icon right">
-                                  <input type="email" class="form-control form-control-icon" id="iconrightInput" placeholder="example@gmail.com">
+                                  <input type="email" class="form-control form-control-icon" id="iconrightInput" placeholder="example .com">
                                   <i class="ri-mail-unread-line"></i>
                               </div>
                           </div>
@@ -199,7 +199,7 @@
 &lt;div&gt;
 &lt;label for=&quot;iconInput&quot; class=&quot;form-label&quot;&gt;Input with Icon&lt;/label&gt;
 &lt;div class=&quot;form-icon&quot;&gt;
-&lt;input type=&quot;email&quot; class=&quot;form-control form-control-icon&quot; id=&quot;iconInput&quot; placeholder=&quot;example@gmail.com&quot;&gt;
+&lt;input type=&quot;email&quot; class=&quot;form-control form-control-icon&quot; id=&quot;iconInput&quot; placeholder=&quot;example .com&quot;&gt;
 &lt;i class=&quot;ri-mail-unread-line&quot;&gt;&lt;/i&gt;
 &lt;/div&gt;
 &lt;/div&gt;</code>
@@ -208,7 +208,7 @@
 &lt;div&gt;
 &lt;label for=&quot;iconrightInput&quot; class=&quot;form-label&quot;&gt;Input with Icon Right&lt;/label&gt;
 &lt;div class=&quot;form-icon right&quot;&gt;
-&lt;input type=&quot;email&quot; class=&quot;form-control form-control-icon&quot; id=&quot;iconrightInput&quot; placeholder=&quot;example@gmail.com&quot;&gt;
+&lt;input type=&quot;email&quot; class=&quot;form-control form-control-icon&quot; id=&quot;iconrightInput&quot; placeholder=&quot;example .com&quot;&gt;
 &lt;i class=&quot;ri-mail-unread-line&quot;&gt;&lt;/i&gt;
 &lt;/div&gt;
 &lt;/div&gt;</code>
@@ -454,14 +454,14 @@ Must be 8-20 characters long.
                       <div class="row g-3">
                           <div class="col-lg-6">
                               <div class="input-group">
-                                  <span class="input-group-text" id="basic-addon1">@</span>
+                                  <span class="input-group-text" id="basic-addon1"></span>
                                   <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                               </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="input-group">
                                   <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                  <span class="input-group-text" id="basic-addon2">@example.com</span>
+                                  <span class="input-group-text" id="basic-addon2">.com</span>
                               </div>
                           </div>
                           <div class="col-lg-12">
@@ -474,7 +474,7 @@ Must be 8-20 characters long.
                           <div class="col-lg-12">
                               <div class="input-group">
                                   <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-                                  <span class="input-group-text">@</span>
+                                  <span class="input-group-text"></span>
                                   <input type="text" class="form-control" placeholder="Server" aria-label="Server">
                               </div>
                           </div>
@@ -498,7 +498,7 @@ Must be 8-20 characters long.
                       <h5 class="fs-15">Wrapping</h5>
                       <p class="text-muted">Input groups wrap by default via <code>flex-wrap: wrap</code> in order to accommodate custom form field validation within an input group. You may disable this with <code>flex-nowrap</code> class.</p>
                       <div class="input-group flex-nowrap">
-                          <span class="input-group-text" id="addon-wrapping">@</span>
+                          <span class="input-group-text" id="addon-wrapping"></span>
                           <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
                       </div>
                   </div>
@@ -506,12 +506,12 @@ Must be 8-20 characters long.
               <div class="d-none code-view">
 <pre class="language-markup" style="height: 275px;"><code>&lt;!-- Basic example --&gt;
 &lt;div class=&quot;input-group&quot;&gt;
-&lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon1&quot;&gt;@&lt;/span&gt;
+&lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon1&quot;&gt;&lt;/span&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot; aria-label=&quot;Username&quot; aria-describedby=&quot;basic-addon1&quot;&gt;
 &lt;/div&gt;</code>
 <code>&lt;div class=&quot;input-group&quot;&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Recipient's username&quot; aria-label=&quot;Recipient's username&quot; aria-describedby=&quot;basic-addon2&quot;&gt;
-&lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon2&quot;&gt;@example.com&lt;/span&gt;
+&lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon2&quot;&gt;.com&lt;/span&gt;
 &lt;/div&gt;</code>
 <code>&lt;div class=&quot;input-group&quot;&gt;
 &lt;span class=&quot;input-group-text&quot;&gt;$&lt;/span&gt;
@@ -520,7 +520,7 @@ Must be 8-20 characters long.
 &lt;/div&gt;</code>
 <code>&lt;div class=&quot;input-group&quot;&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot; aria-label=&quot;Username&quot;&gt;
-&lt;span class=&quot;input-group-text&quot;&gt;@&lt;/span&gt;
+&lt;span class=&quot;input-group-text&quot;&gt;&lt;/span&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Server&quot; aria-label=&quot;Server&quot;&gt;
 &lt;/div&gt;</code>
 <code>&lt;div class=&quot;input-group&quot;&gt;
@@ -535,7 +535,7 @@ Must be 8-20 characters long.
 
 <code>&lt;!-- Wrapping --&gt;
 &lt;div class=&quot;input-group flex-nowrap&quot;&gt;
-&lt;span class=&quot;input-group-text&quot; id=&quot;addon-wrapping&quot;&gt;@&lt;/span&gt;
+&lt;span class=&quot;input-group-text&quot; id=&quot;addon-wrapping&quot;&gt;&lt;/span&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot; aria-label=&quot;Username&quot; aria-describedby=&quot;addon-wrapping&quot;&gt;
 &lt;/div&gt;</code></pre>
               </div>

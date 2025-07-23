@@ -26,7 +26,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Total Jobs</p>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-0">
-                                        <span [CountTo]="36894" class="counter-value" [from]="0" [duration]="1"></span>
+                                        <span  class="counter-value"      ></span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0">
@@ -65,7 +65,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Apply Jobs</p>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-0">
-                                        <span [CountTo]="28410" class="counter-value" [from]="0" [duration]="1"></span>
+                                        <span  class="counter-value"      ></span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0">
@@ -101,7 +101,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3">New Jobs</p>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-0">
-                                        <span [CountTo]="4305" class="counter-value" [from]="0" [duration]="1"></span>
+                                        <span  class="counter-value"      ></span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0">
@@ -138,7 +138,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Interview</p>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-0">
-                                        <span [CountTo]="5021" class="counter-value" [from]="0" [duration]="1"></span>
+                                        <span  class="counter-value"      ></span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0">
@@ -173,7 +173,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Hired</p>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-0">
-                                        <span [CountTo]="3948" class="counter-value" [from]="0" [duration]="1"></span>
+                                        <span class="counter-value"      ></span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0">
@@ -210,7 +210,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3">Rejected</p>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-0">
-                                        <span [CountTo]="1340" class="counter-value" [from]="0" [duration]="1"></span>
+                                        <span  class="counter-value"      ></span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0">
@@ -500,7 +500,7 @@
                         <div class="p-3 border border-dashed border-start-0">
                             <h5 class="mb-1">
                                 <!-- <span class="counter-value" data-target="3364">0</span> -->
-                                <span [CountTo]="3364" class="counter-value" [from]="0" [duration]="1"></span>
+                                <span class="counter-value"      ></span>
                             </h5>
                             <p class="text-muted mb-0">New Applications</p>
                         </div>
@@ -509,7 +509,7 @@
                     <div class="col-6 col-sm-3">
                         <div class="p-3 border border-dashed border-start-0">
                             <h5 class="mb-1">
-                                <span [CountTo]="2804" class="counter-value" [from]="0" [duration]="1"></span>
+                                <span  class="counter-value"      ></span>
                             </h5>
                             <p class="text-muted mb-0">Interview</p>
                         </div>
@@ -518,7 +518,7 @@
                     <div class="col-6 col-sm-3">
                         <div class="p-3 border border-dashed border-start-0">
                             <h5 class="mb-1">
-                                <span [CountTo]="2402" class="counter-value" [from]="0" [duration]="1"></span>
+                                <span  class="counter-value"      ></span>
                             </h5>
                             <p class="text-muted mb-0">Hired</p>
                         </div>
@@ -527,7 +527,7 @@
                     <div class="col-6 col-sm-3">
                         <div class="p-3 border border-dashed border-start-0 border-end-0">
                             <h5 class="mb-1 text-success">
-                                <span [CountTo]="8" class="counter-value" [from]="0" [duration]="1"></span>k
+                                <span class="counter-value"      ></span>k
                             </h5>
                             <p class="text-muted mb-0">Total Applications</p>
                         </div>
@@ -584,7 +584,7 @@
                                         <div class="flex-grow-1">
                                             <h5 class="fs-13 mb-1 text-truncate"><span
                                                     class="candidate-name">{{people.name}}</span>
-                                                <span class="text-muted fw-normal"> @{{people.insta}}</span>
+                                                <span class="text-muted fw-normal"> {{people.insta}}</span>
                                             </h5>
                                             <div class="d-none candidate-position">{{people.designation}}</div>
                                         </div>
@@ -700,29 +700,7 @@
                                     <th class="gridjs-th sort" data-sort="payment">Job Type</th>
                                 </tr>
                             </thead>
-                            <tbody class="gridjs-tbody">
-                                <tr class="gridjs-tr" *ngFor="let data of recomendedjobs" id="o_{{data._id}}">
-                                    <td class="gridjs-td"><a routerLink="/ecommerce/order-details">
-                                            <ngb-highlight [result]="data.position"></ngb-highlight>
-                                        </a></td>
-                                    <td class="gridjs-td">
-                                        <ngb-highlight [result]="data.c_name"></ngb-highlight>
-                                    </td>
-                                    <td class="gridjs-td">
-                                        <ngb-highlight [result]="data.location"></ngb-highlight>
-                                    </td>
-                                    <td class="gridjs-td">
-                                        <ngb-highlight [result]="data.salary"></ngb-highlight>
-                                    </td>
-                                    <td class="gridjs-td">
-                                        <ngb-highlight [result]="data.experience">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td class="gridjs-td">
-                                        <ngb-highlight [result]="data.job_type"></ngb-highlight>
-                                    </td>
-                                </tr>
-                            </tbody>
+                          
                         </table>
                     </div>
                     <div class="gridjs-footer">
