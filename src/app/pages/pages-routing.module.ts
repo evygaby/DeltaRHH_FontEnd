@@ -10,6 +10,8 @@ import { CantonesComponent } from './cantones/cantones.component';
 import { PaisesComponent } from './paises/paises.component';
 import { ProvinciasComponent } from './provincias/provincias.component';
 import { OrlasComponent } from './Orlas/Orlas.component';
+import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
+import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,14 @@ const routes: Routes = [
   {
     path: "Orlas",
     component: OrlasComponent
+  },
+{
+path: "CumpleaniosPersonal",
+    component: CumpleaniosPersonalComponent
+  },
+  {
+  path: "NumeroAlumnas",
+    component: NumeroAlumnasComponent
   },
   {
     path: "empleadosdetalle",

@@ -1,0 +1,25 @@
+<div class="grid-container">
+  <dx-data-grid id="gridContainer" [dataSource]="Cumpleanios" keyExpr="CODEMP" [showBorders]="true" [height]="'100%'">
+
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-paging [pageSize]="50"> </dxo-paging>
+    <dxo-pager [visible]="true" [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 25, 50, 100, 200]"></dxo-pager>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+     <dxi-column dataField="FECNAC" caption="Mes"  [calculateGroupValue]="getMonth"
+     [calculateCellValue]="getMonth" [width]="'125px'" 
+      [showWhenGrouped]="true"></dxi-column> 
+    <dxi-column dataField="NOMGRUPOCCOSTO" caption="Centro de Costo" [width]="'170px'"></dxi-column>
+    <dxi-column dataField="DIA" [width]="'75px'" caption="Día"></dxi-column>
+    <dxi-column dataField="RAZONSOCIAL" caption="Nombre"></dxi-column>
+    <dxi-column dataField="TLF1" [width]="'120px'" caption="Teléfono"></dxi-column>
+    <dxi-column dataField="TLF2" [width]="'120px'" caption="Celular"></dxi-column>
+    <dxi-column dataField="DIRECCION" caption="Dirección"></dxi-column>
+    <dxo-summary>
+      <dxi-group-item column="RAZONSOCIAL" summaryType="count" displayFormat="Total {0}">
+      </dxi-group-item>
+    </dxo-summary>
+  </dx-data-grid>
+</div>

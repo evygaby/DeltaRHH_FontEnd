@@ -14,7 +14,6 @@ import { GlobalComponent } from 'src/app/global-component';
 export class OrlasComponent implements OnInit {
 user!: User;
 orlas!:any;
-CEDULA!: string|((data: any) => string);
   constructor(private servicios:EventService,private router: Router,private loading: LoadingService,private cacheService: CacheService,) 
   { 
      this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
@@ -23,7 +22,7 @@ this.servicios
       .OrlasPersonal(
         this.user.Nombre!,
         this.user.password!,
-        3
+        this.user.ID_EMPRESA!
       )
       .subscribe({
         next: (data: any) => {
@@ -39,7 +38,7 @@ this.servicios
 
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+  
 
 }

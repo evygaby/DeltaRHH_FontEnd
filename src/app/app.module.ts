@@ -21,7 +21,7 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 // Language
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { DxButtonModule, DxDataGridModule, DxNumberBoxModule, DxRadioGroupModule, DxSelectBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule, DxListModule, DxNumberBoxModule, DxRadioGroupModule, DxSelectBoxModule } from 'devextreme-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionService } from './core/services/configuracion.service';
@@ -63,6 +63,7 @@ if (environment.defaultauth === 'firebase') {
     DxRadioGroupModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
+    DxListModule,
   ],
   providers: [  {
     provide: APP_INITIALIZER,

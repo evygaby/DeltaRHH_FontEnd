@@ -1,0 +1,37 @@
+  <div style="display: flex; flex-direction:column; width: 350px;">
+  <div class="dx-field">
+    <div class="dx-field-label">Periodo Lectivo</div>
+    <div class="dx-field-value">
+      <dx-select-box
+        displayExpr="PER_PERIODO"
+        valueExpr="PER_PERIODO"
+        [dataSource]="PeriodoLectivo"
+        [inputAttr]="{ 'aria-label': 'PER_PERIODO' }"
+         [value]="PeriodoSelect"
+      ></dx-select-box></div>
+  </div> 
+ <div class="dx-field">
+    <div class="dx-field-label">Sección</div>
+    <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+
+  <dx-list
+      [dataSource]="Secciones"
+      [showSelectionControls]="true"
+      [selectionMode]="'multiple'"
+      displayExpr="TEXTO"
+      valueExpr="VALOR"
+      [(selectedItems)]="seleccionadas"
+    ></dx-list></div>
+  </div>
+ <div class="dx-field">
+  <div class="dx-field-label">Tipo de Vista</div>
+    <div class="dx-field-value" >
+<dx-select-box
+        displayExpr="TEXTO"
+        valueExpr="VALOR"
+        [dataSource]="Vista"
+        [inputAttr]="{ 'aria-label': 'VALOR' }"
+         [value]="valorSeleccionado"
+      ></dx-select-box></div>
+  </div>
+  </div>

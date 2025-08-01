@@ -1,5 +1,5 @@
 import { ConfiguracionService } from 'src/app/core/services/configuracion.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { Parametros } from './parametros';
 import { NubeFactura } from '../models/factura';
 import { Certificado } from '../models/certificado';
 import { EMP } from '../models/emp';
+import { S } from '@fullcalendar/core/internal-common';
 
 interface Event {
     type: string;
@@ -100,6 +101,7 @@ post(url:string,parametros: Parametros[]) {
    return  this.http.post<Certificado>(this.config.apiUrl+ 'Archivos/UploadCertificado',formData)
   
     }
+     
     guardarempleado(empleado:EMP,usu:string,pass:string){
         const valor=JSON.stringify(empleado)
          console.log(valor)
@@ -132,8 +134,24 @@ post(url:string,parametros: Parametros[]) {
     ConsultarCentros(usu:string,pass:string,idempresa:number):Observable<any> {
     return this.http.get(this.config.apiUrl+"Empleados/Centro?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa, httpOptions);
 }
- OrlasPersonal(usu:string,pass:string,idempresa:number):Observable<any> {
-     var url= this.config.apiUrl+"VariosReportes/Orlas?usu="+usu+"&contrasena="+pass+"&idempresa="+idempresa
+  ListaPeriodosLectivos(usu:string,pass:string):Observable<any> {
+      return this.http.get(this.config.apiUrl+"VariosReportes/ListaPeriodo?usu="+usu+"&pass="+pass, httpOptions);
+  }
+  SeccionesAcademicas(usu:string,pass:string,idempresa:number,periodo:string):Observable<any> {
+    var s=this.config.apiUrl+"VariosReportes/ListaSecciones?usu="+usu+"&pass="+pass+"&idempresa="+idempresa+"&periodo"+periodo
+      return this.http.get(this.config.apiUrl+"VariosReportes/ListaSecciones?usu="+usu+"&pass="+pass+"&idempresa="+idempresa+"&periodo="+periodo, httpOptions);
+  }
+  OrlasPersonal(usu:string,pass:string,idempresa:number):Observable<any> {
       return this.http.get(this.config.apiUrl+"VariosReportes/Orlas?usu="+usu+"&pass="+pass+"&idempresa="+idempresa, httpOptions);
+  }
+  CumpleaniosPersonal(usu:string,pass:string,idempresa:number):Observable<any> {
+      return this.http.get(this.config.apiUrl+"VariosReportes/Cumpleanios?usu="+usu+"&pass="+pass+"&idempresa="+idempresa, httpOptions);
+  }
+  NumeroAlumnos(usu:string,pass:string,periodo:string,seccion:string[],paralelo:string,tipoRep:string):Observable<any> {
+    let params = new HttpParams();
+    seccion.forEach(valor => {
+    params = params.append('valores', valor); // valores[]=x si backend espera array
+      });
+    return this.http.get(this.config.apiUrl+"VariosReportes/NumAlumnos/api/checklist?usu="+usu+"&pass="+pass+"&periodo=" + periodo + "&niveles="+{ params }+"&paralelo="+paralelo+"&tipoRep="+tipoRep, httpOptions);
   }
 }

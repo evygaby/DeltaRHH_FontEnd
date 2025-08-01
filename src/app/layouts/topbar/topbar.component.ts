@@ -77,23 +77,24 @@ export class TopbarComponent implements OnInit {
       GlobalComponent.CURRENT_USER,
       JSON.stringify(this.user)
     );
-    this.eventService
-      .Consultarempleados(
-        this.user.Nombre!,
-        this.user.password!,
-        this.user.ID_EMPRESA!
-      )
-      .subscribe((data) => {
-        try {
-          this.cacheService.clear("empleados");
-          this.cacheService.set("empleados","empleados",new Date(), data);
-          this.loading.closeSpinner()
-          // this.eventService.sendData(data.Result);
-        } catch (error) {
-          console.error(error);
-          // maneja el error como prefieras aquí
-        }
-      });
+    window.location.reload();
+    // this.eventService
+    //   .Consultarempleados(
+    //     this.user.Nombre!,
+    //     this.user.password!,
+    //     this.user.ID_EMPRESA!
+    //   )
+    //   .subscribe((data) => {
+    //     try {
+    //       this.cacheService.clear("empleados");
+    //       this.cacheService.set("empleados","empleados",new Date(), data);
+    //       this.loading.closeSpinner()
+    //       // this.eventService.sendData(data.Result);
+    //     } catch (error) {
+    //       console.error(error);
+    //       // maneja el error como prefieras aquí
+    //     }
+    //   });
   }
 
   getData(page: string): void {
@@ -105,16 +106,13 @@ export class TopbarComponent implements OnInit {
         .Consultarempresa(this.user.Nombre!, this.user.password!)
         .subscribe((data) => {
           try {
-            this.empresas = data;
-            this.selectedPeople = this.empresas[0].ID_EMPRESA;
-            this.user.ID_EMPRESA = this.empresas[0].ID_EMPRESA;
-            localStorage.setItem(
-              GlobalComponent.CURRENT_USER,
-              JSON.stringify(this.user)
-            );
             this.user = JSON.parse(
               localStorage.getItem(GlobalComponent.CURRENT_USER)!
             );
+            this.empresas = data;
+            this.selectedPeople = this.user.ID_EMPRESA;
+            
+            
             this.cacheService.clear(page);
             this.cacheService.set(page,page,new Date(), data);
           } catch (error) {

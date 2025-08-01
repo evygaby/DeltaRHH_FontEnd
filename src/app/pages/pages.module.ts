@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -49,6 +49,8 @@ import { ProvinciasComponent } from './provincias/provincias.component';
 import { CurrencyInputDirective } from './infoempleado/currency-input.directive';
 import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirective';
 import { OrlasComponent } from './Orlas/Orlas.component';
+import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
+import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
 
 
 
@@ -65,7 +67,9 @@ import { OrlasComponent } from './Orlas/Orlas.component';
     OrlasComponent,
     PaisesComponent,
     CantonesComponent,
-    ProvinciasComponent
+    ProvinciasComponent,
+    NumeroAlumnasComponent,
+    CumpleaniosPersonalComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [
@@ -86,7 +90,7 @@ import { OrlasComponent } from './Orlas/Orlas.component';
     WidgetModule,
     DxCardViewModule,
     DxTreeMapModule,
-    
+    DxListModule,
     LightboxModule,
     DashboardsModule,
     AppsModule,DxDataGridModule,
