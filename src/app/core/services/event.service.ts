@@ -147,11 +147,28 @@ post(url:string,parametros: Parametros[]) {
   CumpleaniosPersonal(usu:string,pass:string,idempresa:number):Observable<any> {
       return this.http.get(this.config.apiUrl+"VariosReportes/Cumpleanios?usu="+usu+"&pass="+pass+"&idempresa="+idempresa, httpOptions);
   }
-  NumeroAlumnos(usu:string,pass:string,periodo:string,seccion:string[],paralelo:string,tipoRep:string):Observable<any> {
-    let params = new HttpParams();
-    seccion.forEach(valor => {
-    params = params.append('valores', valor); // valores[]=x si backend espera array
-      });
-    return this.http.get(this.config.apiUrl+"VariosReportes/NumAlumnos/api/checklist?usu="+usu+"&pass="+pass+"&periodo=" + periodo + "&niveles="+{ params }+"&paralelo="+paralelo+"&tipoRep="+tipoRep, httpOptions);
+  NumeroAlumnos(usu:string,pass:string,periodo:string,seccion:{ VALOR: string; TEXTO: string }[],paralelo:string,tipoRep:string):Observable<any> {
+    // let params = new HttpParams();
+    // seccion.forEach(valor => {
+    // params = params.append('valores', valor); // valores[]=x si backend espera array
+    //   });
+    // var s=this.config.apiUrl+"VariosReportes/NumAlumnos/api/checklist?usu="+usu+"&pass="+pass+"&periodo=" + periodo + "&niveles="+{ params }+"&paralelo="+paralelo+"&tipoRep="+tipoRep
+    // var x=this.http.get('/api/checklist', { params });
+    // return this.http.get(this.config.apiUrl+"VariosReportes/NumAlumnos/api/checklist?usu="+usu+"&pass="+pass+"&periodo=" + periodo + "&niveles="+{ params }+"&paralelo="+paralelo+"&tipoRep="+tipoRep, httpOptions);
+     let params = new HttpParams()
+    .set('usu', usu)
+    .set('pass', pass)
+    .set('periodo', periodo)
+    .set('paralelo', paralelo)
+    .set('tipoRep', tipoRep);
+
+  // Agregar cada valor del array "seccion" como múltiples parámetros 'niveles'
+  seccion.forEach(item  => {
+    params = params.append('niveles', item.VALOR);
+  });
+
+  const url = this.config.apiUrl + "VariosReportes/NumAlumnos/api/checklist";
+
+  return this.http.get(url, { params });
   }
 }

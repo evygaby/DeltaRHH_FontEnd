@@ -17,7 +17,7 @@ export class NumeroAlumnasComponent implements OnInit {
   Secciones: any;
   Vista: any;
   seleccionadas: any;
-  valorSeleccionado: string="R";
+  valorSeleccionado: string="D";
   PeriodoSelect: string = '';
   user!: User;
   Datos: any;
@@ -28,13 +28,12 @@ export class NumeroAlumnasComponent implements OnInit {
       { VALOR: 'R', TEXTO: 'Ver Resumen' },
       { VALOR: 'D', TEXTO: 'Ver Detalle' }
     ];
-    this.valorSeleccionado = "R";
+    this.valorSeleccionado = "D";
   }
 
   ngOnInit() {
      this.cargaInicial();
-     this.valorSeleccionado = "R";
-     this.CargaGrid();
+     this.valorSeleccionado = "D";
   }
   cargaInicial(){
     forkJoin({
@@ -65,6 +64,7 @@ export class NumeroAlumnasComponent implements OnInit {
           this.Secciones = seccionesData;
           this.seleccionadas = [...this.Secciones];
           this.loading.closeSpinner();
+          this.CargaGrid();
         },
         error: (error:any) => {
           this.loading.closeSpinner();
@@ -78,7 +78,17 @@ export class NumeroAlumnasComponent implements OnInit {
     }
   });
   }
+  selectPeriodo({ value }: { value?: string }) {
+    if (value !== undefined) {
+      this.PeriodoSelect =  value;
+     }
+     this.CargaGrid();
+  }
+  CambioSeccion(e: any) {
 
+    this.seleccionadas = e.component.option('selectedItems');
+     this.CargaGrid();
+  }
   CargarSeccionesAcademicas() {
     this.servicios
       .SeccionesAcademicas(
@@ -105,7 +115,7 @@ export class NumeroAlumnasComponent implements OnInit {
         this.user.password!, 
         this.PeriodoSelect!, 
         this.seleccionadas!,
-        "",
+        'null',
         this.valorSeleccionado
       )
       .subscribe({
@@ -120,4 +130,9 @@ export class NumeroAlumnasComponent implements OnInit {
         },
       });
   }
+  getOrden = (row: any) => {
+    //var x =row.NIVEL.toString.split("*")(0);
+  return parseInt(row.NIV_CODNIVEL);
+};
+
 }
