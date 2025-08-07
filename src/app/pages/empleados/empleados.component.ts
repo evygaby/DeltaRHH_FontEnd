@@ -73,6 +73,7 @@ export class EmpleadosComponent {
           this.cacheService.set(page,page,new Date(), data);
         } catch (error) {
           console.error(error);
+          this.loading.closeSpinner()
           // maneja el error como prefieras aquí
         }
       });

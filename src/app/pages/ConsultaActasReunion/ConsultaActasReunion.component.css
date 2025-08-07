@@ -1,0 +1,27 @@
+.horizontal-field {
+  display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.horizontal-field .label {
+  width: 120px; /* o lo que necesites */
+  font-weight: bold;
+}
+
+.horizontal-field .dx-field-value {
+  flex: 1;
+}
+.Contiene{
+    display: flex;
+    height: 65px;
+    flex-direction: column;
+    align-items: center;
+    margin: 4px;
+    justify-content: space-between;
+}
+.Control{
+  width: 100%;
+}

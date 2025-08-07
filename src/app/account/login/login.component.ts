@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
  this.loading.showSpinner2("Solicitando accesos")
     // Login Api
-    this.authenticationService.login(this.f['usuario'].value,this.f['password'].value)  .subscribe({
+    this.authenticationService.login(this.f['usuario'].value.toUpperCase(),this.f['password'].value)  .subscribe({
       next: (user2:any) => {
        if(user2.usuarioLogueado.CODEMP !=0){
         this.user=new User

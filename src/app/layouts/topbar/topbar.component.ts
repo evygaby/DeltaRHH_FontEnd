@@ -72,7 +72,7 @@ export class TopbarComponent implements OnInit {
   onChange(event: any) {
     this.loading.showSpinner2("Cargando")
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
-    this.user.ID_EMPRESA = event.ID_EMPRESA;
+    this.user.ID_EMPRESA = event.NUM_INSTITU;
     localStorage.setItem(
       GlobalComponent.CURRENT_USER,
       JSON.stringify(this.user)

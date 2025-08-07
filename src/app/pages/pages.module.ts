@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -51,6 +51,7 @@ import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirect
 import { OrlasComponent } from './Orlas/Orlas.component';
 import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
 import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
+import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
 
 
 
@@ -69,7 +70,8 @@ import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component'
     CantonesComponent,
     ProvinciasComponent,
     NumeroAlumnasComponent,
-    CumpleaniosPersonalComponent
+    CumpleaniosPersonalComponent,
+    ConsultaActasReunionComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [
@@ -94,7 +96,7 @@ import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component'
     LightboxModule,
     DashboardsModule,
     AppsModule,DxDataGridModule,
-    EcommerceModule
+    EcommerceModule,DxDateRangeBoxModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
