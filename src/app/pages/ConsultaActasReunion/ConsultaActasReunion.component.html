@@ -3,10 +3,10 @@
     <div class="dx-field horizontal-field">
       <div class="Contiene" style="width: 20%;">
         <div class="label">Periodo Lectivo</div>
-        <div class="Control" >
+        <div class="Control">
           <dx-select-box displayExpr="PER_PERIODO" valueExpr="PER_PERIODO" [dataSource]="PeriodoLectivo"
             [inputAttr]="{ 'aria-label': 'PER_PERIODO' }" [value]="PeriodoSelect"
-            (onValueChanged)="selectPeriodo($event)" ></dx-select-box>
+            (onValueChanged)="selectPeriodo($event)"></dx-select-box>
         </div>
       </div>
       <div class="Contiene" style="width: 40%;">
@@ -18,8 +18,9 @@
       </div>
       <div class="Contiene" style="width: 40%;">
         <div class="label">Búsqueda</div>
-       <div class="Control">
-          <dx-text-box [showClearButton]="true" [(value)]="filtro" [inputAttr]="{ 'aria-label': 'Name' }" (onValueChanged)="onNombreChanged($event)">
+        <div class="Control">
+          <dx-text-box [showClearButton]="true" [(value)]="filtro" [inputAttr]="{ 'aria-label': 'Name' }"
+            (onValueChanged)="onNombreChanged($event)">
           </dx-text-box>
         </div>
       </div>
@@ -28,18 +29,22 @@
   <div>
     <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'">
       <dxo-paging [pageSize]="100"></dxo-paging>
- <dxi-column dataField="SEC_CABRG" caption="ID" [visible]="false"></dxi-column>
-  <dxi-column dataField="FECHAREU" [width]="'100px'" caption="Fecha"  [showWhenGrouped]="true" ></dxi-column>
-  <dxi-column dataField="HORARIO" [width]="'100px'" caption="Horario"></dxi-column>
-  <dxi-column dataField="ESTADOAPROB" [width]="'100px'" caption="Estado"></dxi-column>
-  <dxi-column dataField="ASUNTO" caption="Tema"></dxi-column>
-  <dxi-column dataField="LUGAR" caption="Lugar"></dxi-column>
-  <dxi-column dataField="ADJUNTO"   caption="Adjunto" [encodeHtml]="false">
-    <ng-template let-data="data" dxTemplate="cell">
-      <div [innerHTML]="data.ADJUNTO"></div>
-    </ng-template>
-  </dxi-column>
- 
+      <dxi-column type="buttons" [width]="80" caption="Acción">
+
+        <dxi-button hint="Ver" icon="find" [onClick]="VerActa"></dxi-button>
+      </dxi-column>
+      <dxi-column dataField="SEC_CABRG" caption="ID" [visible]="false"></dxi-column>
+      <dxi-column dataField="FECHAREU" [width]="'100px'" caption="Fecha" [showWhenGrouped]="true"></dxi-column>
+      <dxi-column dataField="HORARIO" [width]="'100px'" caption="Horario"></dxi-column>
+      <dxi-column dataField="ESTADOAPROB" [width]="'100px'" caption="Estado"></dxi-column>
+      <dxi-column dataField="ASUNTO" caption="Tema"></dxi-column>
+      <dxi-column dataField="LUGAR" caption="Lugar"></dxi-column>
+      <dxi-column dataField="ADJUNTO" caption="Adjunto" [encodeHtml]="false">
+        <ng-template let-data="data" dxTemplate="cell">
+          <div [innerHTML]="data.ADJUNTO"></div>
+        </ng-template>
+      </dxi-column>
+
     </dx-data-grid>
   </div>
 </div>

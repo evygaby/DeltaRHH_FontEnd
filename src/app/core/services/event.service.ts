@@ -147,6 +147,9 @@ export class EventService {
   CumpleaniosPersonal(usu: string, pass: string, idempresa: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "VariosReportes/Cumpleanios?usu=" + usu + "&pass=" + pass + "&idempresa=" + idempresa, httpOptions);
   }
+  ConsultaActasIndividual(usu: string, pass: string, periodo: string,Codigo:number): Observable<any> {
+    return this.http.get(this.config.apiUrl + "VariosReportes/ActadeReunion?usu=" + usu + "&pass=" + pass + "&periodo=" + periodo + "&codigo=" + Codigo, httpOptions);
+  }
   ConsultaActas(usu: string, pass: string, periodo: string, codemp: number, desde?: Date, hasta?: Date, filtro?: string): Observable<any> {
     let params = new HttpParams();
     if (desde) {
