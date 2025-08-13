@@ -16,3 +16,4 @@ declare module 'devextreme-cldr-data/*' {
     const value: any;
     export default value;
 }
+declare module 'html-to-pdfmake';

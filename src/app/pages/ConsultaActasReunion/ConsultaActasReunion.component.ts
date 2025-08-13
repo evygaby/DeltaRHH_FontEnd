@@ -10,11 +10,16 @@ import pdfMake from 'src/app/core/services/pdfmake-wrapper'; // Ajusta la ruta
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Columns } from 'angular-feather/icons';
 import { DomSanitizer } from '@angular/platform-browser';
+import htmlToPdfmake from 'html-to-pdfmake';
 const msInDay = 1000 * 60 * 60 * 24;
 const now = new Date();
 interface Asistente {
   OBSERVACION: string;
   RAZONSOCIAL: string;
+}
+interface Adjunto {
+  NOMBREARCHIVO: string;
+  URL: string;
 }
 const initialValue: [Date, Date] = [
   new Date(now.getTime() - msInDay * 3),
@@ -157,7 +162,9 @@ export class ConsultaActasReunionComponent implements OnInit {
   async generatePdf(Codigo: Number) {
     this.ConsultaActaIndividual(Codigo);
     let base64logo: any;
+    let piePaginaLogo: any;
     base64logo = await this.getBase64ImageFromURL('assets/images/siempre_familia.jpg');
+    piePaginaLogo = await this.getBase64ImageFromURL('assets/images/piePagina.png');
     const ahora = new Date();
     const fechaHoraTexto = ahora.toLocaleString('es-EC', {
       year: 'numeric',
@@ -167,16 +174,32 @@ export class ConsultaActasReunionComponent implements OnInit {
       minute: '2-digit',
       second: '2-digit',
     });
-    const cabecera = this.Acta[0]?.[0];
-    const asistentes: Asistente[] = this.Acta[1];
-    const orden = this.Acta[2]?.[0];
-
-    const fecha = new Date(cabecera.FECHA).toLocaleString('es-EC', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
     try {
+      const cabecera = this.Acta[0]?.[0] ?? {};
+      const asistentes: Asistente[] = this.Acta[1] ?? [];
+      const orden = this.Acta[2]?.[0];
+      const adjuntos: Adjunto[] = this.Acta[3] ?? [];
+      // Crear la tabla
+      const adjuntosList: any[] = [];
+
+      // Agregar filas dinámicamente
+      (adjuntos || []).forEach(a => {
+        adjuntosList.push([
+          { text: a.NOMBREARCHIVO, link: a.URL, color: '#000', decoration: 'underline' }
+        ]);
+      });
+      // Si no hay adjuntos, puedes opcionalmente agregar un mensaje
+      if (adjuntosList.length === 0) {
+        adjuntosList.push([{ text: 'No hay documentos adjuntos', italics: true, color: '#555' }]);
+      }
+
+
+      const fecha = new Date(cabecera.FECHA).toLocaleString('es-EC', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+
       const docDefinition: TDocumentDefinitions = {
         content: [
           {
@@ -234,7 +257,6 @@ export class ConsultaActasReunionComponent implements OnInit {
               { text: "Ubicación: ", bold: true }, // negrita solo aquí
               { text: cabecera.LUGAR, bold: false } // texto normal
             ],
-            fontSize: 10,
             bold: false,
             alignment: 'left',
             margin: [0, 5, 0, 0], // ajusta verticalmente el texto si quieres
@@ -247,7 +269,6 @@ export class ConsultaActasReunionComponent implements OnInit {
                   { text: 'Fecha: ', bold: true },
                   { text: fecha, bold: false }
                 ],
-                fontSize: 10,
                 alignment: 'left',
                 margin: [0, 5, 0, 0]
               },
@@ -257,7 +278,6 @@ export class ConsultaActasReunionComponent implements OnInit {
                   { text: 'Hora: ', bold: true },
                   { text: cabecera.HORAINI + " - " + cabecera.HORAFIN, bold: false }
                 ],
-                fontSize: 10,
                 alignment: 'left',
                 margin: [0, 5, 0, 0]
               }
@@ -281,9 +301,10 @@ export class ConsultaActasReunionComponent implements OnInit {
               ]
             },
             margin: [0, 5, 0, 0],
-            fontSize: 9,
             layout: {
               paddingLeft: () => 0,
+              paddingBottom: () => 0,
+              paddingTop: () => 0,
               hLineWidth: function (i, node) {
                 // Solo dibuja la línea inferior del encabezado
                 return i === 1 ? 1.5 : 0;
@@ -298,7 +319,6 @@ export class ConsultaActasReunionComponent implements OnInit {
           },
           {
             text: 'Orden del Día',
-            fontSize: 9,
             bold: true,
             alignment: 'left',
             margin: [0, 5, 0, 0], // ajusta verticalmente el texto si quieres
@@ -315,10 +335,144 @@ export class ConsultaActasReunionComponent implements OnInit {
               }
             ]
           },
-         // { text: this.htmlToPdfmake(orden.ORDENDIA) },
+          ...(orden.ORDENDIA ? htmlToPdfmake(orden.ORDENDIA) : []),
+          {
+            text: 'Desarrollo',
+            bold: true,
+            alignment: 'left',
+            margin: [0, 5, 0, 0], // ajusta verticalmente el texto si quieres
+          }, {
+            canvas: [
+              {
+                type: 'line',
+                x1: 0,           // desde el borde izquierdo
+                y1: 0,
+                x2: 515,         // ancho del contenido (A4 ~ 515pt)
+                y2: 0,
+                lineWidth: 1.5,
+                lineColor: '#1279C0'
+              }
+            ]
+          },
+          ...(orden.DESARROLLO ? htmlToPdfmake(orden.DESARROLLO) : []),
+          {
+            text: 'Acuerdos / Compromisos',
+            bold: true,
+            alignment: 'left',
+            margin: [0, 5, 0, 0], // ajusta verticalmente el texto si quieres
+          }, {
+            canvas: [
+              {
+                type: 'line',
+                x1: 0,           // desde el borde izquierdo
+                y1: 0,
+                x2: 515,         // ancho del contenido (A4 ~ 515pt)
+                y2: 0,
+                lineWidth: 1.5,
+                lineColor: '#1279C0'
+              }
+            ]
+          },
+          ...(orden.ACUERDOS ? htmlToPdfmake(orden.ACUERDOS) : []),
+          {
+            text: 'Documentos Adjuntos',
+            bold: true,
+            alignment: 'left',
+            margin: [0, 5, 0, 0], // ajusta verticalmente el texto si quieres
+          }, {
+            canvas: [
+              {
+                type: 'line',
+                x1: 0,           // desde el borde izquierdo
+                y1: 0,
+                x2: 515,         // ancho del contenido (A4 ~ 515pt)
+                y2: 0,
+                lineWidth: 1.5,
+                lineColor: '#1279C0'
+              }
+            ]
+          },
+          {
+            table: {
+              headerRows: 0,
+              widths: ['*'], // ajusta el número y tamaño de columnas
+              body: adjuntosList
+            },
+            margin: [0, 5, 0, 0],
+            layout: {
+              paddingLeft: () => 0,
+              paddingBottom: () => 0,
+              paddingTop: () => 0,
+              hLineWidth: function (i, node) {
+                // Solo dibuja la línea inferior del encabezado
+                return i === 0 ? 0 : 0;
+              },
+              vLineWidth: function () {
+                return 0; // Sin líneas verticales
+              },
+            }
+          }
+        ],
+        defaultStyle: {
+          fontSize: 9  // <- tamaño de fuente predeterminado en puntos
+        },
+        footer: function (currentPage, pageCount) {
+          return {
+            margin: [40, 0, 40, 0], // márgenes más pequeños
+            columns: [
+              {
+                image: piePaginaLogo,
+                width: 90,
+                height: 30,
+                margin: [0, 0, 10, 0]
+              },
+              {
+                width: '*',
+                stack: [
+                  {
+                    text: `Página ${currentPage} de ${pageCount}`,
+                    alignment: 'center',
+                    fontSize: 6.5,
+                    margin: [0, 0, 0, 2]
+                  },
+                  {
+                    canvas: [
+                      {
+                        type: 'line',
+                        x1: 0,
+                        y1: 0,
+                        x2: 415,
+                        y2: 0,
+                        lineWidth: 1.5,
+                        lineColor: '#AA1F22'
+                      }
+                    ],
+                    margin: [0, 0, 0, 3]
+                  },
+                  {
+                    text: 'Km 12.5 vía Samborondón',
+                    alignment: 'center',
+                    fontSize: 6.5,
+                    margin: [0, 0, 0, 1]
+                  },
+                  {
+                    text: 'Telfs: (5934) 2 590720 -5001072 5001073',
+                    alignment: 'center',
+                    fontSize: 6.5,
+                    margin: [0, 0, 0, 1]
+                  },
+                  {
+                    text: 'www.uedelta.k12.ec',
+                    alignment: 'center',
+                    fontSize: 6.5,
+                    margin: [0, 0, 0, 0]
+                  }
+                ]
+              }
+            ]
+          };
+        }
 
-
-        ]
       };
 
       pdfMake.createPdf(docDefinition).open();

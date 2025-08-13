@@ -3,7 +3,6 @@
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import { vfs } from 'pdfmake/build/vfs_fonts';
 
-
 (pdfMake as any).vfs = vfs;
 
 export default pdfMake;
