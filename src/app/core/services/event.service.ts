@@ -194,4 +194,20 @@ export class EventService {
 
     return this.http.get(url, { params });
   }
+  ConsultaCapacitaciones(usu: string, pass: string, empresa: number,desde?:Date,hasta?:Date): Observable<any> {
+    let params = new HttpParams();
+    if (desde) {
+      params = params.set('desde', desde.toISOString());
+    }
+    if (hasta) {
+      params = params.set('hasta', hasta.toISOString());
+    }
+    params = params
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/ConsultaCapacitaciones";
+
+    return this.http.get(url, { params });
+  }
 }

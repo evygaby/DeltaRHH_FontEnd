@@ -1,0 +1,53 @@
+::ng-deep .dx-pivotgrid .dx-pivotgrid-area td {
+    color: #959595;
+    font-size: 7pt !important;
+    padding: 3px 10px;
+}
+
+::ng-deep  .dx-pivotgrid .dx-area-field-content, .dx-pivotgrid .dx-column-indicators {
+   font-size: 7pt !important;
+   padding: 3px 10px !important;
+}
+
+::ng-deep .dx-pivotgrid-fields-container .dx-area-field.dx-area-box {
+    background-color: #fff;
+    margin-bottom: 4px;
+    border: 1px solid #ddd;
+    padding: 1px 1px;
+}
+
+::ng-deep .dx-pivotgrid .dx-pivotgrid-fields-area-head .dx-empty-area-text {
+    white-space: nowrap;
+    padding: 1px 0;
+    border: 1px solid transparent;
+    color: #525252;
+    font-size: 7pt;
+}
+
+::ng-deep .dx-pivotgrid .dx-column-header .dx-pivotgrid-toolbar .dx-button, .dx-pivotgrid .dx-filter-header .dx-pivotgrid-toolbar .dx-button {
+    margin-top: 2px !important;
+}
+.grid-container {
+  width: 100%;
+  height: 78vh; /* o 100% del padre si estás en layout con divs */
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 3px 0px; /* opcional */
+}
+
+.horizontal-field {
+  display: flex;
+    align-items: center;
+    /* margin-bottom: 10px; */
+    justify-content: space-between;
+    width: 100%;
+}
+
+.horizontal-field .label {
+  width: 120px; /* o lo que necesites */
+  font-weight: bold;
+}
+
+.horizontal-field .dx-field-value {
+  flex: 1;
+}

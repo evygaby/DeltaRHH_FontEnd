@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
     // Login Api
     this.authenticationService.login(this.f['usuario'].value.toUpperCase(),this.f['password'].value)  .subscribe({
       next: (user2:any) => {
-       if(user2.usuarioLogueado.CODEMP !=0){
+       if(user2.usuarioLogueado?.CODEMP > 0){
         this.user=new User
        this.user.Codigo=user2.usuarioLogueado.CODEMP
        this.user.ID_EMPRESA=user2.usuarioLogueado.ID_EMPRESA

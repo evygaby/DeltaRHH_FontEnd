@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -52,6 +52,7 @@ import { OrlasComponent } from './Orlas/Orlas.component';
 import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
 import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
 import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
+import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
 
 
 
@@ -71,7 +72,8 @@ import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaAc
     ProvinciasComponent,
     NumeroAlumnasComponent,
     CumpleaniosPersonalComponent,
-    ConsultaActasReunionComponent
+    ConsultaActasReunionComponent,
+    ListaCapacitacionesComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [
@@ -96,7 +98,8 @@ import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaAc
     LightboxModule,
     DashboardsModule,
     AppsModule,DxDataGridModule,
-    EcommerceModule,DxDateRangeBoxModule
+    EcommerceModule,DxDateRangeBoxModule,DxPivotGridModule,
+  DxToolbarModule,DxButtonModule  ,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

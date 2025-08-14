@@ -13,6 +13,7 @@ import { OrlasComponent } from './Orlas/Orlas.component';
 import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
 import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
 import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
+import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: "ConsultaActasReunion",
     component: ConsultaActasReunionComponent
+  },
+{
+    path: "ListaCapacitaciones",
+    component: ListaCapacitacionesComponent
   },
 
   {
