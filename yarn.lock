@@ -5153,10 +5153,10 @@ detect-passive-events@^2.0.3:
   dependencies:
     detect-it "^4.0.1"
 
-devexpress-diagram@2.2.18:
-  version "2.2.18"
-  resolved "https://registry.npmjs.org/devexpress-diagram/-/devexpress-diagram-2.2.18.tgz"
-  integrity sha512-zHWkrBbGDBbMBgK4fFsNlaMzcngf1DrTvbs0IHNHfBSsIDrNy8t3BXRgrLXWgFr8UCsYpkYx2aHGZ6kvsN/kWg==
+devexpress-diagram@2.2.19:
+  version "2.2.19"
+  resolved "https://registry.npmjs.org/devexpress-diagram/-/devexpress-diagram-2.2.19.tgz"
+  integrity sha512-obmeIqphCGJ9WQuWYCDc0cNB5gIZHc+NS5UNXFhuHZwnOUaKtruCTfE/YIxXEHSD7Arc2pkfodeIa2cDtUo9lw==
   dependencies:
     "@devexpress/utils" "^1.4.3"
     es6-object-assign "^1.1.0"
@@ -5210,14 +5210,14 @@ devextreme-schematics@*:
     "@angular-devkit/schematics" "^17.2.1"
     "@schematics/angular" "^17.2.1"
 
-devextreme@^25.1.3, devextreme@>=18.1.0, devextreme@25.1.3:
-  version "25.1.3"
-  resolved "https://registry.npmjs.org/devextreme/-/devextreme-25.1.3.tgz"
-  integrity sha512-72J3vL+QbQWEfUTzNuPTEsyN/+Nnb4jI/BwymcUHcBUKKp4vf3m72KviteHxutobblcfzvZmxLQCEvn01T/EqA==
+devextreme@^25.1.4, devextreme@>=18.1.0, devextreme@25.1.3:
+  version "25.1.4"
+  resolved "https://registry.npmjs.org/devextreme/-/devextreme-25.1.4.tgz"
+  integrity sha512-b4NAdZWf8j3pRTPdMmntiRtEVlrsDXHw16Qi+aOzoY9CRLwqf2nPfhdRcQmbY5RRyTfSc48GLfQ34L0l7sso7w==
   dependencies:
     "@babel/runtime" "^7.12.1"
     "@preact/signals-core" "^1.8.0"
-    devexpress-diagram "2.2.18"
+    devexpress-diagram "2.2.19"
     devexpress-gantt "4.1.62"
     devextreme-quill "1.7.3"
     inferno "^8.2.3"

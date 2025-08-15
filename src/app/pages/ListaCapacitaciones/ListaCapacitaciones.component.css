@@ -39,7 +39,7 @@
   display: flex;
     align-items: center;
     /* margin-bottom: 10px; */
-    justify-content: space-between;
+    justify-content: space-flex-start;
     width: 100%;
 }
 
@@ -50,4 +50,14 @@
 
 .horizontal-field .dx-field-value {
   flex: 1;
+}
+
+.Cab{
+  display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.toolbar-buttons{
+  display: flex;
+  justify-content: space-evenly;
 }

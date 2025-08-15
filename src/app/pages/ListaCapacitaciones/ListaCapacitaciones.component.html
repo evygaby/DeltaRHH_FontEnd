@@ -1,25 +1,33 @@
 <div>
-  <div class="horizontal-field" style="width: 60%;">
-    <div class="label">Rango de Fechas</div>
-    <div class="Control">
-      <dx-date-range-box [startDate]="fechaDesde!" displayFormat="'MMMM/yyyy" [endDate]="fechaHasta!"
-        (onValueChanged)="currentValueChanged($event)">
-        <dx-date-range-box-picker>
-          <dx-date-box type="date" displayFormat="MMMM yyyy" pickerType="calendar">
-            <dx-calendar [zoomLevel]="'year'" [minZoomLevel]="'year'" [maxZoomLevel]="'decade'">
-            </dx-calendar>
-          </dx-date-box>
-        </dx-date-range-box-picker>
-      </dx-date-range-box>
+  <div class="Cab">
+    <div class="horizontal-field" style="width: 50%;">
+      <div class="label">Rango de Fechas</div>
+      <div class="Control">
+        <dx-date-range-box [startDate]="fechaDesde!" displayFormat="'MMMM/yyyy" [endDate]="fechaHasta!"
+          (onValueChanged)="currentValueChanged($event)">
+          <dx-date-range-box-picker>
+            <dx-date-box type="date" displayFormat="MMMM yyyy" pickerType="calendar">
+              <dx-calendar [zoomLevel]="'year'" [minZoomLevel]="'year'" [maxZoomLevel]="'decade'">
+              </dx-calendar>
+            </dx-date-box>
+          </dx-date-range-box-picker>
+        </dx-date-range-box>
+      </div>
+    </div>
+    <div class="toolbar-buttons"  style="width: 50%;">
+      <dx-button icon="exportxlsx" type="export" text="Exportar Xlsx" (onClick)="exportToExcel()">
+      </dx-button>
+      <dx-button icon="plus" type="expand" text="Expandir todo" (onClick)="expandAll()">
+      </dx-button>
+      <dx-button icon="minus" type="collapse" text="Colapsar todo" (onClick)="collapseAll()">
+      </dx-button>
     </div>
   </div>
   <div class="grid-container">
-    <dx-pivot-grid id="pivotgrid" [dataSource]="pivotGridDataSource" [showBorders]="true" [allowSortingBySummary]="true"
+    <dx-pivot-grid #pivotgrid [dataSource]="pivotGridDataSource" [showBorders]="true" [allowSortingBySummary]="true"
       [allowFiltering]="false" [showRowGrandTotals]="true" [showColumnGrandTotals]="false" [showRowTotals]="false"
-      [showColumnTotals]="false" [fieldPanel]="{ visible: false }" [allowExpandAll]="true" [showToolbar]="true"
+      [showColumnTotals]="false" [showToolbar]="true" [fieldPanel]="{ visible: false }" [allowExpandAll]="true"
       (onToolbarPreparing)="onToolbarPreparing($event)" [height]="'100%'">
-      <dxo-export [enabled]="true"></dxo-export>
-      <dxo-field-chooser [enabled]="true" [height]="400"></dxo-field-chooser>
       <dxo-scrolling mode="virtual"></dxo-scrolling>
     </dx-pivot-grid>
   </div>

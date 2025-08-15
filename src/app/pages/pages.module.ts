@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -53,6 +53,7 @@ import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosP
 import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
 import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
 import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -99,7 +100,7 @@ import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacit
     DashboardsModule,
     AppsModule,DxDataGridModule,
     EcommerceModule,DxDateRangeBoxModule,DxPivotGridModule,
-  DxToolbarModule,DxButtonModule  ,
+  DxToolbarModule,DxButtonModule  ,DxPivotGridFieldChooserModule ,DxScrollViewModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

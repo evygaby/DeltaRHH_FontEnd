@@ -6,11 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LayoutsModule} from "./layouts/layouts.module";
+import { LayoutsModule } from "./layouts/layouts.module";
 import { PagesModule } from "./pages/pages.module";
 
 // Auth
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { initFirebaseBackend } from './authUtils';
@@ -21,11 +21,11 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 // Language
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { DxButtonModule, DxDataGridModule, DxDateRangeBoxModule, DxListModule, DxNumberBoxModule, DxRadioGroupModule, DxSelectBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule, DxDateRangeBoxModule, DxListModule, DxNumberBoxModule, DxPivotGridFieldChooserModule, DxPivotGridModule, DxRadioGroupModule, DxScrollViewModule, DxSelectBoxModule, DxToolbarModule } from 'devextreme-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionService } from './core/services/configuracion.service';
-import {  CurrencyInputDirective } from './pages/infoempleado/currency-input.directive';
+import { CurrencyInputDirective } from './pages/infoempleado/currency-input.directive';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -42,7 +42,7 @@ if (environment.defaultauth === 'firebase') {
 
 @NgModule({
   declarations: [
-    AppComponent 
+    AppComponent
   ],
   imports: [
     TranslateModule.forRoot({
@@ -54,9 +54,9 @@ if (environment.defaultauth === 'firebase') {
       }
     }),
     BrowserAnimationsModule,
-    HttpClientModule,NgxSpinnerModule,
+    HttpClientModule, NgxSpinnerModule,
     BrowserModule,
-    AppRoutingModule,CommonModule ,
+    AppRoutingModule, CommonModule,
     LayoutsModule,
     PagesModule,
     DxButtonModule,
@@ -64,18 +64,20 @@ if (environment.defaultauth === 'firebase') {
     DxSelectBoxModule,
     DxNumberBoxModule,
     DxListModule,
-    DxDateRangeBoxModule,
+    DxDateRangeBoxModule, DxPivotGridModule,
+    DxPivotGridFieldChooserModule, DxToolbarModule,
+    DxScrollViewModule,
   ],
-  providers: [  {
+  providers: [{
     provide: APP_INITIALIZER,
     useFactory: initApp,
     deps: [ConfiguracionService],
     multi: true, // importante: permite múltiples inicializadores
-      },
+  },
 
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

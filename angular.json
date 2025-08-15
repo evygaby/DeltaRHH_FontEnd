@@ -157,7 +157,7 @@
               "src/assets"
             ],
             "styles": [
-           
+           "node_modules/devextreme/dist/css/dx.light.css",
               "src/styles.scss"
             ],
             "scripts": [ "node_modules/file-saver/dist/FileSaver.min.js"]
