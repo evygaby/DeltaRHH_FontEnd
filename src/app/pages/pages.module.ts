@@ -55,10 +55,7 @@ import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaAc
 import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEmpleados.component';
-
-
-
-
+import { JefesAreaComponent } from './JefesArea/JefesArea.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +72,7 @@ import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEm
     NumeroAlumnasComponent,
     CumpleaniosPersonalComponent,
     ConsultaActasReunionComponent,
-    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent
+    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent,JefesAreaComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [

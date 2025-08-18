@@ -219,4 +219,13 @@ export class EventService {
     const url = this.config.apiUrl + "VariosReportes/DatosExcel";
     return this.http.get(url, { params });
   }
+  JefesArea(usu: string, pass: string, empresa: number): Observable<any> {
+    let params = new HttpParams();
+    params = params
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/JefasArea";
+    return this.http.get(url, { params });
+  }
 }

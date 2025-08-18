@@ -1,99 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import * as FileSaver from 'file-saver';
-import * as ExcelJS from 'exceljs';
-import { User } from 'src/app/core/models/auth.models';
 import { Router } from '@angular/router';
+import * as FileSaver from 'file-saver';
+import { User } from 'src/app/core/models/auth.models';
 import { CacheService } from 'src/app/core/services/cache.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { GlobalComponent } from 'src/app/global-component';
-import { ColumnResizeMode } from 'devextreme/ui/data_grid';
+import * as ExcelJS from 'exceljs';
 @Component({
-  selector: 'app-ListaDatosEmpleados',
-  templateUrl: './ListaDatosEmpleados.component.html',
-  styleUrls: ['./ListaDatosEmpleados.component.css']
+  selector: 'app-JefesArea',
+  templateUrl: './JefesArea.component.html',
+  styleUrls: ['./JefesArea.component.css']
 })
-export class ListaDatosEmpleadosComponent implements OnInit {
+export class JefesAreaComponent implements OnInit {
   user!: User;
   Datos: any;
-  SiNo: any;
-  TipoSeguro: any;
-  TipoCta: any;
-  TipoVivienda: any;
-  Tenencia: any;
-  TiempoHabita: any;
-  MaterialParedes: any;
-  MaterialPiso: any;
-  columnResizingMode: ColumnResizeMode = 'nextColumn';
-  searchEnabled = true;
-  editorOptions = { placeholder: 'Search column' };
-  allowSelectAll = true;
-  selectByClick = true;
-  recursive = true;
-  columnChooserModes = [{
-    key: 'dragAndDrop',
-    name: 'Drag and drop',
-  }, {
-    key: 'select',
-    name: 'Select',
-  }];
   constructor(private servicios: EventService, private router: Router, private loading: LoadingService, private cacheService: CacheService,) {
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Consultando")
-    this.SiNo = [
-      { VALOR: 'S', TEXTO: 'SI' },
-      { VALOR: 'N', TEXTO: ' ' }
-    ];
-    this.TipoSeguro = [
-      { VALOR: 'P', TEXTO: 'PERSONAL' },
-      { VALOR: 'E', TEXTO: 'EMPRESARIAL' }
-    ]; 
-    this.TipoCta = [
-      { VALOR: 'A', TEXTO: 'AHORRO' },
-      { VALOR: 'C', TEXTO: 'CORRIENTE' }
-    ];
-    this.TipoVivienda = [
-      { VALOR: 'C', TEXTO: 'CASA' },
-      { VALOR: 'D', TEXTO: 'DEPARTAMENTO' },
-      { VALOR: 'V', TEXTO: 'VILLA' }
-    ];
-    this.Tenencia = [
-      { VALOR: 'P', TEXTO: 'PROPIA' },
-      { VALOR: 'A', TEXTO: 'ALQUILADA' },
-      { VALOR: 'R', TEXTO: 'PRESTADA' }
-    ];
-    this.TiempoHabita = [
-      { VALOR: '1', TEXTO: 'MENOS DE 1 AÑO' },
-      { VALOR: '1-5', TEXTO: 'DE 1 A 5 AÑOS' },
-      { VALOR: '6-15', TEXTO: 'DE 6 A 15 AÑOS' },
-      { VALOR: '16-20', TEXTO: 'DE 16 A 20 AÑOS' },
-      { VALOR: '20', TEXTO: 'MÁS DE 20 AÑOS' },
-    ];
-    this.MaterialParedes = [
-      { VALOR: 'C', TEXTO: 'CEMENTO' },
-      { VALOR: 'L', TEXTO: 'LADRILLO' },
-      { VALOR: 'P', TEXTO: 'PIEDRA' },
-      { VALOR: 'A', TEXTO: 'ADOBE' },
-      { VALOR: 'M', TEXTO: 'MADERA' },
-      { VALOR: 'S', TEXTO: 'PLÁSTICO' },
-    ];
-    this.MaterialPiso = [
-      { VALOR: 'M', TEXTO: 'MADERA' },
-      { VALOR: 'T', TEXTO: 'TIERRA' },
-      { VALOR: 'C', TEXTO: 'CERÁMICA/PORCELANATO' },
-      { VALOR: 'MR', TEXTO: 'MÁRMOL' },
-      { VALOR: 'CM', TEXTO: 'CEMENTO' },
-      { VALOR: 'G', TEXTO: 'GRANITO' },
-    ];
-    this.CargarDatos();
+    this.CargaGrid();
   }
-  CargarDatos() {
+  CargaGrid() {
     this.servicios
-      .ListaDatosEMP(
+      .JefesArea(
         this.user.Nombre!,
         this.user.password!,
-        this.user.ID_EMPRESA!
-      )
+        this.user.ID_EMPRESA!)
       .subscribe({
         next: (data: any) => {
           this.Datos = data;
@@ -108,7 +40,7 @@ export class ListaDatosEmpleadosComponent implements OnInit {
   }
   ngOnInit() {
   }
-  getBase64ImageFromURL(url: string): Promise<string> {
+ getBase64ImageFromURL(url: string): Promise<string> {
     return new Promise((resolve, reject) => {
       let img = new Image();
       img.crossOrigin = 'Anonymous';
@@ -161,12 +93,12 @@ export class ListaDatosEmpleadosComponent implements OnInit {
         minute: '2-digit',
         second: '2-digit',
       });
-      worksheet.mergeCells('A1:F1');
+      worksheet.mergeCells('A1:C1');
       worksheet.getCell('A1').value = 'Fecha de emisión: ' + fechaHoraTexto;
       worksheet.getCell('A1').font = { size: 8, bold: false };
       worksheet.getCell('A1').alignment = { horizontal: 'right' };
 
-      worksheet.mergeCells('A2:F2');
+      worksheet.mergeCells('A2:C2');
       if (this.user.ID_EMPRESA == 3) {
         worksheet.getCell('A2').value = 'Unidad Educativa Bilingüe Delta';
       }
@@ -178,8 +110,8 @@ export class ListaDatosEmpleadosComponent implements OnInit {
 
 
 
-      worksheet.mergeCells('A3:F3');
-      worksheet.getCell('A3').value = 'Lista de Datos';
+      worksheet.mergeCells('A3:C3');
+      worksheet.getCell('A3').value = 'Jefas de Área';
       worksheet.getCell('A3').font = { size: 12, bold: true };
       worksheet.getCell('A3').alignment = { vertical: 'middle', horizontal: 'center' };
 
@@ -218,7 +150,7 @@ export class ListaDatosEmpleadosComponent implements OnInit {
       }).then(() => {
         // Guardar archivo
         workbook.xlsx.writeBuffer().then((buffer: BlobPart) => {
-          FileSaver.saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Numero_estudiantes.xlsx');
+          FileSaver.saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Jefas_de_area.xlsx');
         });
       });
 

@@ -15,6 +15,7 @@ import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component'
 import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
 import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
 import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEmpleados.component';
+import { JefesAreaComponent } from './JefesArea/JefesArea.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,10 @@ const routes: Routes = [
 {
     path: "ListaDatosEmpleados",
     component: ListaDatosEmpleadosComponent
+  },
+  {
+    path: "JefesArea",
+    component: JefesAreaComponent
   },
   {
     path: "empleadosdetalle",

@@ -1,0 +1,9 @@
+<dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
+      (onExporting)="exportarConCabecera($event)">
+      <dxo-paging [pageSize]="100"></dxo-paging>
+      <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
+      <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
+      <dxi-column dataField="AREA" [width]="'350px'"  caption="Área"></dxi-column>
+      <dxi-column dataField="PROFEELEM" [width]="'400px'" caption="Elemental/Media"></dxi-column>
+      <dxi-column dataField="PROFESUP" [width]="'400px'" caption="Superior/Bachillerato"></dxi-column>
+    </dx-data-grid>
