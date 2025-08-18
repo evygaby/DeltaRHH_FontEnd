@@ -14,6 +14,7 @@ import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosP
 import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
 import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
 import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
+import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEmpleados.component';
 
 
 const routes: Routes = [
@@ -46,11 +47,14 @@ const routes: Routes = [
     path: "ConsultaActasReunion",
     component: ConsultaActasReunionComponent
   },
-{
+  {
     path: "ListaCapacitaciones",
     component: ListaCapacitacionesComponent
   },
-
+{
+    path: "ListaDatosEmpleados",
+    component: ListaDatosEmpleadosComponent
+  },
   {
     path: "empleadosdetalle",
     component: InfoempleadoComponent

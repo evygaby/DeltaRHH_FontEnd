@@ -54,6 +54,7 @@ import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component'
 import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
 import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEmpleados.component';
 
 
 
@@ -74,7 +75,7 @@ import { BrowserModule } from '@angular/platform-browser';
     NumeroAlumnasComponent,
     CumpleaniosPersonalComponent,
     ConsultaActasReunionComponent,
-    ListaCapacitacionesComponent
+    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [

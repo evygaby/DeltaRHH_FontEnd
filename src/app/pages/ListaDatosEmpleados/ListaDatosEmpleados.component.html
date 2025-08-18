@@ -1,0 +1,170 @@
+<div style="height: 85vh;">
+  <dx-data-grid id="gridContainer" [fontSize]="'8pt'" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true"
+    [height]="'100%'" (onExporting)="exportarConCabecera($event)" [columnMinWidth]="100" [columnAutoWidth]="true"
+    [columnResizingMode]="columnResizingMode">
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-pager [visible]="true" [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true"
+      [allowedPageSizes]="[ 50, 100,200]"></dxo-pager>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+    <dxo-column-chooser height="340px" #columnChooser [enabled]="true" [mode]="columnChooserModes[1].key">
+      <dxo-position my="right top" at="right bottom" of=".dx-datagrid-column-chooser-button"></dxo-position>
+      <dxo-search [enabled]="searchEnabled" [editorOptions]="editorOptions"></dxo-search>
+      <dxo-selection [allowSelectAll]="allowSelectAll" [selectByClick]="selectByClick"
+        [recursive]="recursive"></dxo-selection>
+    </dxo-column-chooser>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
+    <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+    <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
+    <dxi-column dataField="NOMGRUPOCCOSTO" caption="Grupo CCosto" [groupIndex]="0"></dxi-column>
+    <dxi-column dataField="RANK" [fixed]="true" caption="#"></dxi-column>
+    <dxi-column dataField="CODEMP" [fixed]="true" caption="Código"></dxi-column>
+    <dxi-column dataField="NOMBRE_EMP" [fixed]="true" [allowHiding]="false" caption="Nombre"></dxi-column>
+    <dxi-column dataField="CENTRO_COSTO" caption="CCosto"></dxi-column>
+    <dxi-column dataField="SECCION" caption="Sección"></dxi-column>
+    <dxi-column dataField="NRO_CEDULA" caption="Cédula"></dxi-column>
+    <dxi-column dataField="FECHA_NACIMIENTO" caption="F Nacimiento"></dxi-column>
+    <dxi-column dataField="FECHA_CORTA" caption="F Nac"></dxi-column>
+    <dxi-column dataField="EDAD" caption="Edad" [width]="'50px'"></dxi-column>
+    <dxi-column dataField="SEXO" caption="Sexo"></dxi-column>
+    <dxi-column dataField="ESTADO_CIVIL" caption="Est Civil"></dxi-column>
+    <dxi-column dataField="APELLIDO_CASADA" caption="Apellido Casada"></dxi-column>
+    <dxi-column dataField="DIRECCION" caption="Domicilio"></dxi-column>
+    <dxi-column dataField="FONO1" caption="Teléfono1"></dxi-column>
+    <dxi-column dataField="FONO2" caption="Teléfono2"></dxi-column>
+    <dxi-column dataField="MAIL" caption="Email"></dxi-column>
+    <dxi-column dataField="EMAILPERSONAL" caption="Email Personal"></dxi-column>
+    <dxi-column dataField="TITULO" caption="Título"></dxi-column>
+    <dxi-column dataField="NIVEL" caption="Nivel de Educación"></dxi-column>
+    <dxi-column dataField="TITULO_2" caption="Carrera/Título"></dxi-column>
+    <dxi-column dataField="ESTADOESTUDIO" caption="EstadoEstudio"></dxi-column>
+    <dxi-column dataField="ANIOGRADUAPREVISTA" caption="AñoGradua"></dxi-column>
+    <dxi-column dataField="INSTITUTO" caption="Institución"></dxi-column>
+    <dxi-column dataField="FECHA_INGRESO" caption="F.Ingreso"></dxi-column>
+    <dxi-column dataField="FEC_AIESS" caption="F.Afiliación"></dxi-column>
+    <dxi-column dataField="ANTIGUEDAD" caption="Antigüedad"></dxi-column>
+    <dxi-column dataField="TIPO_CONTRATO" caption="TipoContrato"></dxi-column>
+    <dxi-column dataField="SUELDO" caption="Sueldo"></dxi-column>
+    <dxi-column dataField="IESS" caption="IESS"></dxi-column>
+    <dxi-column dataField="OTRAS_ACTIVIDADES" caption="Otras Actividades"></dxi-column>
+    <dxi-column dataField="GRUPO_MINISTERIO" caption="Grupo Ministerio"></dxi-column>
+    <dxi-column dataField="LIDERAZGO" caption="Liderazgo"></dxi-column>
+    <dxi-column dataField="SEGURO" caption="Seguro"></dxi-column>
+    <dxi-column dataField="CIUDAD" caption="Ciudad"></dxi-column>
+    <dxi-column dataField="PROVINCIA" caption="Provincia"></dxi-column>
+    <dxi-column dataField="PRIMER_NOMBRE" caption="PrimerNombre"></dxi-column>
+    <dxi-column dataField="SEGUNDO_NOMBRE" caption="SegundoNombre"></dxi-column>
+    <dxi-column dataField="APELLIDO_PAT" caption="ApellidoPaterno"></dxi-column>
+    <dxi-column dataField="APELLIDO_MAT" caption="ApellidoMaterno"></dxi-column>
+    <dxi-column dataField="NUMHIJOS" caption="N.Hijos"></dxi-column>
+    <dxi-column dataField="DISCAPACIDAD" caption="Discapacidad">
+      <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="PORC_DISCAPACIDAD" caption="% Discapacidad"></dxi-column>
+    <dxi-column dataField="COND_DISCAPACIDAD" caption="AplicaSustituto">
+      <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="DOCUMENTO" caption="DocDiscapacidad"></dxi-column>
+    <dxi-column dataField="TIPO_CUENTA" caption="T.Cuenta">
+      <dxo-lookup [dataSource]="TipoCta" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="CTABCO" caption="NumCuenta"></dxi-column>
+    <dxi-column dataField="TIPO_SEGURO" caption="Tipo de Seguro">
+      <dxo-lookup [dataSource]="TipoSeguro" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="PRACTICA_DEPORTES" caption="Deportes">
+      <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="INDIQUE_DEPORTE" caption="Deportes Practicado"></dxi-column>
+    <dxi-column dataField="CUAL_OTRA_ACTIVIDAD" caption="Otras Actividades"></dxi-column>
+    <dxi-column dataField="OTRAS_ACTIVIDADES" caption="Practica Actividades"></dxi-column>
+    <dxi-column caption="Se traslada en">
+      <dxi-column dataField="TRASLADO_EXPRESO" caption="Expreso">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_TAXI" caption="Taxi">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_VEHICULO_PROP" caption="V. Propio">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_VEHICULO_FAM" caption="V. Familiar">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_BUS" caption="Bus">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_MOTO" caption="Moto">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_BICI" caption="Bicicleta">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TRASLADO_CAMINA" caption="Caminando">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+    </dxi-column>
+    <dxi-column dataField="ES_EMPRENDEDOR" caption="Es Emprendedor">
+      <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="EXPLIQUE_EMPRENDIMIENTO" caption="Emprendimiento"></dxi-column>
+    <dxi-column caption="Datos de la vivienda">
+      <dxi-column dataField="TIPO_VIVIENDA" caption="Tipo">
+        <dxo-lookup [dataSource]="TipoVivienda" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TENENCIA_VIVIENDA" caption="Tenencia">
+        <dxo-lookup [dataSource]="Tenencia" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="TIEMPO_VIVIENDA" caption="Tiempo que habita">
+        <dxo-lookup [dataSource]="TiempoHabita" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="MATERIAL_PAREDES" caption="MaterialParedes">
+        <dxo-lookup [dataSource]="MaterialParedes" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="MATERIAL_PISO" caption="MaterialPiso">
+        <dxo-lookup [dataSource]="MaterialPiso" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+    </dxi-column>
+    <dxi-column caption="Servicios Básicos">
+      <dxi-column dataField="SB_ENERGIA" caption="Energía">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="SB_AGUA" caption="Agua">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="SB_ALCANTARILLADO" caption="Alcantarillado">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="SB_TELEFONO" caption="Teléfono">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="SB_INTERNET" caption="Internet">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+    </dxi-column>
+    <dxi-column caption="Antecedentes Visuales">
+      <dxi-column dataField="VISUALES_MIOPIA" caption="Miopía">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="VISUALES_HIPERMETROPIA" caption="Hipermetropía">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="Otros" caption="VISUALES_OTROS"></dxi-column>
+    </dxi-column>
+    <dxi-column dataField="AUDITIVOS" caption="Ant. Auditivos"></dxi-column>
+    <dxi-column caption="En caso de emergencia acude a">
+      <dxi-column dataField="ACUDE_MSP" caption="MSP">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="ACUDE_IESS" caption="IESS">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="ACUDE_PRIVADOS" caption="Privados">
+        <dxo-lookup [dataSource]="SiNo" displayExpr="TEXTO" valueExpr="VALOR"></dxo-lookup>
+      </dxi-column>
+    </dxi-column>
+  </dx-data-grid>
+</div>

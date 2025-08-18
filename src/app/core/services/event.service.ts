@@ -147,7 +147,7 @@ export class EventService {
   CumpleaniosPersonal(usu: string, pass: string, idempresa: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "VariosReportes/Cumpleanios?usu=" + usu + "&pass=" + pass + "&idempresa=" + idempresa, httpOptions);
   }
-  ConsultaActasIndividual(usu: string, pass: string, periodo: string,Codigo:number): Observable<any> {
+  ConsultaActasIndividual(usu: string, pass: string, periodo: string, Codigo: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "VariosReportes/ActadeReunion?usu=" + usu + "&pass=" + pass + "&periodo=" + periodo + "&codigo=" + Codigo, httpOptions);
   }
   ConsultaActas(usu: string, pass: string, periodo: string, codemp: number, desde?: Date, hasta?: Date, filtro?: string): Observable<any> {
@@ -194,7 +194,7 @@ export class EventService {
 
     return this.http.get(url, { params });
   }
-  ConsultaCapacitaciones(usu: string, pass: string, empresa: number,desde?:Date,hasta?:Date): Observable<any> {
+  ConsultaCapacitaciones(usu: string, pass: string, empresa: number, desde?: Date, hasta?: Date): Observable<any> {
     let params = new HttpParams();
     if (desde) {
       params = params.set('desde', desde.toISOString());
@@ -208,6 +208,15 @@ export class EventService {
       .set('empresa', empresa);
     const url = this.config.apiUrl + "VariosReportes/ConsultaCapacitaciones";
 
+    return this.http.get(url, { params });
+  }
+  ListaDatosEMP(usu: string, pass: string, empresa: number): Observable<any> {
+    let params = new HttpParams();
+    params = params
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/DatosExcel";
     return this.http.get(url, { params });
   }
 }

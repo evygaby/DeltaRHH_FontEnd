@@ -1,32 +1,23 @@
-  <div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;">
+<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;">
   <div style="display: flex; flex-direction:column; width:31% ; min-width: 325px;">
-  <div class="dx-field">
-    <div class="dx-field-label">Periodo Lectivo</div>
-    <div class="dx-field-value">
-      <dx-select-box
-        displayExpr="PER_PERIODO"
-        valueExpr="PER_PERIODO"
-        [dataSource]="PeriodoLectivo"
-        [inputAttr]="{ 'aria-label': 'PER_PERIODO' }"
-         [value]="PeriodoSelect"
-          (onValueChanged)="selectPeriodo($event)"
-      ></dx-select-box></div>
-  </div> 
- <div class="dx-field">
-    <div class="dx-field-label">Sección</div>
-    <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+    <div class="dx-field">
+      <div class="dx-field-label">Periodo Lectivo</div>
+      <div class="dx-field-value">
+        <dx-select-box displayExpr="PER_PERIODO" valueExpr="PER_PERIODO" [dataSource]="PeriodoLectivo"
+          [inputAttr]="{ 'aria-label': 'PER_PERIODO' }" [value]="PeriodoSelect"
+          (onValueChanged)="selectPeriodo($event)"></dx-select-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Sección</div>
+      <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
 
-  <dx-list
-      [dataSource]="Secciones"
-      [showSelectionControls]="true"
-      [selectionMode]="'multiple'"
-      displayExpr="TEXTO"
-      valueExpr="VALOR"
-      [(selectedItems)]="seleccionadas"
-      (onSelectionChanged)="CambioSeccion($event)"
-    ></dx-list></div>
-  </div>
- <!-- <div class="dx-field">
+        <dx-list [dataSource]="Secciones" [showSelectionControls]="true" [selectionMode]="'multiple'"
+          displayExpr="TEXTO" valueExpr="VALOR" [(selectedItems)]="seleccionadas"
+          (onSelectionChanged)="CambioSeccion($event)"></dx-list>
+      </div>
+    </div>
+    <!-- <div class="dx-field">
   <div class="dx-field-label">Tipo de Vista</div>
     <div class="dx-field-value" >
 <dx-select-box
@@ -38,70 +29,39 @@
       ></dx-select-box></div>
   </div> -->
   </div>
-  <div  style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 85vh;">
+  <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 85vh;">
     <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
-    (onExporting)="exportarConCabecera($event)">
+      (onExporting)="exportarConCabecera($event)">
       <dxo-paging [pageSize]="100"></dxo-paging>
-<dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
-<dxi-toolbar-item name="exportButton" location="before" ></dxi-toolbar-item>
- <dxi-column dataField="NIV_CODNIVEL" caption="IDNivel" [visible]="true" [groupIndex]="0" [calculateSortValue]="getOrden"></dxi-column>
-  <dxi-column dataField="CURSO" caption="Nivel"  [showWhenGrouped]="true" ></dxi-column>
-  <dxi-column dataField="PARALELO" [width]="'80px'" caption="Paralelo"></dxi-column>
-  <dxi-column dataField="NUMTOTALNINAS" [width]="'60px'" caption="#Niñas"></dxi-column>
-  <dxi-column dataField="NUMTOTALNINOS" [width]="'60px'" caption="#Niños"></dxi-column>
-  <dxi-column dataField="NUMTOTAL" [width]="'60px'" caption="Total"></dxi-column>
-  <dxi-column dataField="NUMVISITANTES" [width]="'80px'" caption="Visitantes"></dxi-column>
-  <dxo-summary>
-    <dxi-group-item
-      column="NUMTOTALNINAS"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-group-item>
-  <dxi-group-item
-      column="NUMTOTALNINOS"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-group-item>
-  <dxi-group-item
-      column="NUMTOTAL"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-group-item>
-  <dxi-group-item
-      column="NUMVISITANTES"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-group-item>
-  <!-- sumatotal -->
-  <dxi-total-item
-      column="NUMTOTALNINAS"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-total-item>
-  <dxi-total-item
-      column="NUMTOTALNINOS"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-total-item>
-  <dxi-total-item
-      column="NUMTOTAL"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-total-item>
-  <dxi-total-item
-      column="NUMVISITANTES"
-      summaryType="sum"
-      displayFormat="{0}"
-      [showInGroupFooter]="true"
-    ></dxi-total-item>
-  </dxo-summary>
+      <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
+      <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
+      <dxi-column dataField="NIV_CODNIVEL" caption="IDNivel" [visible]="true" [groupIndex]="0"
+        [calculateSortValue]="getOrden"></dxi-column>
+      <dxi-column dataField="CURSO" caption="Nivel" [showWhenGrouped]="true"></dxi-column>
+      <dxi-column dataField="PARALELO" [width]="'80px'" caption="Paralelo"></dxi-column>
+      <dxi-column dataField="NUMTOTALNINAS" [width]="'60px'" caption="#Niñas"></dxi-column>
+      <dxi-column dataField="NUMTOTALNINOS" [width]="'60px'" caption="#Niños"></dxi-column>
+      <dxi-column dataField="NUMTOTAL" [width]="'60px'" caption="Total"></dxi-column>
+      <dxi-column dataField="NUMVISITANTES" [width]="'80px'" caption="Visitantes"></dxi-column>
+      <dxo-summary>
+        <dxi-group-item column="NUMTOTALNINAS" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-group-item>
+        <dxi-group-item column="NUMTOTALNINOS" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-group-item>
+        <dxi-group-item column="NUMTOTAL" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-group-item>
+        <dxi-group-item column="NUMVISITANTES" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-group-item>
+        <!-- sumatotal -->
+        <dxi-total-item column="NUMTOTALNINAS" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-total-item>
+        <dxi-total-item column="NUMTOTALNINOS" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-total-item>
+        <dxi-total-item column="NUMTOTAL" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-total-item>
+        <dxi-total-item column="NUMVISITANTES" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-total-item>
+      </dxo-summary>
     </dx-data-grid>
   </div>
-  </div>
+</div>
