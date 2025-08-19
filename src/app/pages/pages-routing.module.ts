@@ -1,21 +1,22 @@
-import { InfoempleadoComponent } from './infoempleado/infoempleado.component';
+import { InfoempleadoComponent } from './Mantenimientos/infoempleado/infoempleado.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Component pages
 import { DashboardComponent } from "./dashboards/dashboard/dashboard.component";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { EmpleadosComponent } from './empleados/empleados.component';
-import { CantonesComponent } from './cantones/cantones.component';
-import { PaisesComponent } from './paises/paises.component';
-import { ProvinciasComponent } from './provincias/provincias.component';
-import { OrlasComponent } from './Orlas/Orlas.component';
-import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
-import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
-import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
-import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
-import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEmpleados.component';
-import { JefesAreaComponent } from './JefesArea/JefesArea.component';
+import { EmpleadosComponent } from './Mantenimientos/empleados/empleados.component';
+import { CantonesComponent } from './Mantenimientos/cantones/cantones.component';
+import { PaisesComponent } from './Mantenimientos/paises/paises.component';
+import { ProvinciasComponent } from './Mantenimientos/provincias/provincias.component';
+import { OrlasComponent } from './Reportes/Orlas/Orlas.component';
+import { CumpleaniosPersonalComponent } from './Reportes/CumpleaniosPersonal/CumpleaniosPersonal.component';
+import { NumeroAlumnasComponent } from './ConsultasAcademicas/NumeroAlumnas/NumeroAlumnas.component';
+import { ConsultaActasReunionComponent } from './Reportes/ConsultaActasReunion/ConsultaActasReunion.component';
+import { ListaCapacitacionesComponent } from './Reportes/ListaCapacitaciones/ListaCapacitaciones.component';
+import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/ListaDatosEmpleados.component';
+import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
+import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: "JefesArea",
     component: JefesAreaComponent
+  },
+  {
+    path: "PegPreceptora",
+    component: PegPreceptoraComponent
   },
   {
     path: "empleadosdetalle",

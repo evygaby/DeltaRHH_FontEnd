@@ -1,0 +1,55 @@
+<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;">
+  <div style="display: flex; flex-direction:column; width:31% ; min-width: 325px;">
+    <div class="dx-field">
+      <div class="dx-field-label">Periodo Lectivo</div>
+      <div class="dx-field-value">
+        <dx-select-box displayExpr="PER_PERIODO" valueExpr="PER_PERIODO" [dataSource]="PeriodoLectivo"
+          [inputAttr]="{ 'aria-label': 'PER_PERIODO' }" [value]="PeriodoSelect"
+          (onValueChanged)="selectPeriodo($event)"></dx-select-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Sección</div>
+      <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+
+        <dx-list [dataSource]="Secciones" [showSelectionControls]="true" [selectionMode]="'multiple'"
+          displayExpr="TEXTO" valueExpr="VALOR" [(selectedItems)]="seleccionadas"
+          (onSelectionChanged)="CambioSeccion($event)"></dx-list>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 85vh;">
+    <dx-tab-panel [deferRendering]="false" [animationEnabled]="true" [selectedIndex]="0" [height]="'100%'">
+      <dxi-item title="PEG - Preceptora">
+        <ng-template dxTemplate="item">
+          <dx-data-grid id="gridContainer" [dataSource]="Pegs" [showBorders]="true" [showRowLines]="true"
+            [height]="'100%'">
+            <dxo-paging [pageSize]="400"></dxo-paging>
+            <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
+            <dxi-column dataField="CURSO" caption="Curso" [visible]="true" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="NOMBREPEG" caption="PEG"></dxi-column>
+            <dxi-column dataField="PRECEPTORA" caption="Preceptora"></dxi-column>
+            <dxi-column dataField="NUMALUMNAS" caption="#Alumnas"></dxi-column>
+            <dxo-summary>
+              <dxi-group-item column="NUMALUMNAS" summaryType="sum" displayFormat="Total: {0}"
+                [showInGroupFooter]="true"></dxi-group-item>
+            </dxo-summary>
+          </dx-data-grid>
+        </ng-template></dxi-item>
+      <dxi-item title="Preceptoras">
+        <ng-template dxTemplate="item">
+          <dx-data-grid id="gridContainer2" [dataSource]="Preceptoras" [showBorders]="true" [showRowLines]="true"
+            [height]="'100%'">
+            <dxo-paging [pageSize]="400"></dxo-paging>
+             <dxi-column dataField="NOMBREPRECEPTORA" caption="Preceptora" [visible]="true" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="CURSO" caption="Curso"></dxi-column>
+            <dxi-column dataField="NUMALUMNAS" caption="#Alumnas"></dxi-column>
+            <dxo-summary>
+              <dxi-group-item column="NUMALUMNAS" summaryType="sum" displayFormat="Total: {0}"
+                [showInGroupFooter]="true"></dxi-group-item>
+            </dxo-summary> 
+          </dx-data-grid>
+        </ng-template></dxi-item>
+      </dx-tab-panel>
+  </div>
+</div>

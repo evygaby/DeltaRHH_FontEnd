@@ -33,29 +33,30 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { LoadingComponent } from './loading/loading.component';
 
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
-import { EmpleadosComponent } from './empleados/empleados.component';
-import { InfoempleadoComponent } from './infoempleado/infoempleado.component';
+import { EmpleadosComponent } from './Mantenimientos/empleados/empleados.component';
+import { InfoempleadoComponent } from './Mantenimientos/infoempleado/infoempleado.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PaisesComponent } from './paises/paises.component';
-import { CantonesComponent } from './cantones/cantones.component';
-import { ProvinciasComponent } from './provincias/provincias.component';
-import { CurrencyInputDirective } from './infoempleado/currency-input.directive';
-import { AutoFocusInvalidDirective } from './infoempleado/AutoFocusInvalidDirective';
-import { OrlasComponent } from './Orlas/Orlas.component';
-import { CumpleaniosPersonalComponent } from './CumpleaniosPersonal/CumpleaniosPersonal.component';
-import { NumeroAlumnasComponent } from './NumeroAlumnas/NumeroAlumnas.component';
-import { ConsultaActasReunionComponent } from './ConsultaActasReunion/ConsultaActasReunion.component';
-import { ListaCapacitacionesComponent } from './ListaCapacitaciones/ListaCapacitaciones.component';
+import { PaisesComponent } from './Mantenimientos/paises/paises.component';
+import { CantonesComponent } from './Mantenimientos/cantones/cantones.component';
+import { ProvinciasComponent } from './Mantenimientos/provincias/provincias.component';
+import { CurrencyInputDirective } from './Mantenimientos/infoempleado/currency-input.directive';
+import { AutoFocusInvalidDirective } from './Mantenimientos/infoempleado/AutoFocusInvalidDirective';
+import { OrlasComponent } from './Reportes/Orlas/Orlas.component';
+import { CumpleaniosPersonalComponent } from './Reportes/CumpleaniosPersonal/CumpleaniosPersonal.component';
+import { NumeroAlumnasComponent } from './ConsultasAcademicas/NumeroAlumnas/NumeroAlumnas.component';
+import { ConsultaActasReunionComponent } from './Reportes/ConsultaActasReunion/ConsultaActasReunion.component';
+import { ListaCapacitacionesComponent } from './Reportes/ListaCapacitaciones/ListaCapacitaciones.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { ListaDatosEmpleadosComponent } from './ListaDatosEmpleados/ListaDatosEmpleados.component';
-import { JefesAreaComponent } from './JefesArea/JefesArea.component';
+import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/ListaDatosEmpleados.component';
+import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
+import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { JefesAreaComponent } from './JefesArea/JefesArea.component';
     NumeroAlumnasComponent,
     CumpleaniosPersonalComponent,
     ConsultaActasReunionComponent,
-    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent,JefesAreaComponent
+    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent,JefesAreaComponent,PegPreceptoraComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [
@@ -98,7 +99,7 @@ import { JefesAreaComponent } from './JefesArea/JefesArea.component';
     DashboardsModule,
     AppsModule,DxDataGridModule,
     EcommerceModule,DxDateRangeBoxModule,DxPivotGridModule,
-  DxToolbarModule,DxButtonModule  ,DxPivotGridFieldChooserModule ,DxScrollViewModule,
+  DxToolbarModule,DxButtonModule  ,DxPivotGridFieldChooserModule ,DxScrollViewModule,DxTabPanelModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

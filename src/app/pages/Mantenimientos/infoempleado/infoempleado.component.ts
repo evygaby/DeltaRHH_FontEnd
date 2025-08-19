@@ -1,11 +1,12 @@
-import { OfflineComponent } from './../../account/auth/errors/offline/offline.component';
+import { OfflineComponent } from './../../../account/auth/errors/offline/offline.component';
 import { filter } from 'rxjs/operators';
-import { estado } from './../../core/services/configuracion.service';
+import { estado } from './../../../core/services/configuracion.service';
 // import { Messages } from 'devextreme/localization/messages/de.json';
-import { FamiliarDiscapicidad } from "./../../core/models/emp";
+import { FamiliarDiscapicidad } from "./../../../core/models/emp";
 import { Component, inject, Output, Pipe, PipeTransform, ViewEncapsulation } from "@angular/core";
 import { EventService } from "src/app/core/services/event.service";
-import { EmpleadosComponent } from "../empleados/empleados.component";
+
+import { EmpleadosComponent } from "./../empleados/empleados.component";
 import { EMP } from "src/app/core/models/emp";
 import { User } from "src/app/core/models/auth.models";
 import { GlobalComponent } from "src/app/global-component";
