@@ -31,17 +31,17 @@ export class InfoempleadoComponent implements PipeTransform {
   empleados: EMP[] = [];
   URB: string = '';
   data!: any;
-  CALLE_PRIN!: any;
-  CALLE_SEC!: any;
+  CALLE_PRIN: string = '';
+  CALLE_SEC: string = '';
   grupos!: any;
   fotoencuesta!: any;
   dresidencial!: any;
   PLA_CODCNTA!: any;
-  mz!: any;
-  KM!: any;
-  NO_CASA!: any;
-  COND!: any;
-  via!: any;
+  mz: string = '';
+  KM: string = '';
+  NO_CASA: string = '';
+  COND: string = '';
+  via: string = '';
   referencia!: any;
   colegios!: any;
   user!: User;
@@ -77,7 +77,8 @@ Bancos!: any;cargos!: any;
   sueldos!: any;
    estudios!: any;
   TIPO_VI!: any;
-  NO_DEPA!: any;condicion!: any;intentoEnvio = false;tipodocumento!: any;titulos!: any;
+  NO_DEPA: string="";
+  condicion!: any;intentoEnvio = false;tipodocumento!: any;titulos!: any;
   sino!: any;esRequerido = false;estadocivil!: any;
 seccionfiltrada!: any;provinciafiltrada!: any;cantonesfiltrada!: any;isnumerico!:boolean
   tipocuenta!: any;capacitaciones: any;titulosacademicos!: any;
@@ -433,9 +434,12 @@ if(cantidadActivos>1){
 }
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Guardando");
+    this.empleado.USRACTUALIZA=this.user.Nombre
     this.empleado.LIC_MATERNIDAD="N"
     this.empleado.LIC_ENFERMEDAD="N"
     this.empleado.ID_EMPRESA = this.user.ID_EMPRESA!;
+     this.empleado.ID_INSTITUCION=this.user.NOMBRECOMPAÑIA
+
     this.empleado.DIRECCION_CSV =
       this.URB +
       "," +
@@ -513,6 +517,8 @@ if(cantidadActivos>1){
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.loading.showSpinner2("Actualizando");
     this.empleado.ID_EMPRESA = this.user.ID_EMPRESA!;
+      this.empleado.USRACTUALIZA=this.user.Nombre
+      this.empleado.ID_INSTITUCION=this.user.NOMBRECOMPAÑIA
 if( this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefined,undefined')){
 
 }else{

@@ -3,6 +3,7 @@ export class User {
   Nombre?: string;
   password?: string;
   RAZONSOCIAL?: string;
+  NOMBRECOMPAÑIA?: string;
   MAIL?: string;
   ID_EMPRESA?: number;
   Codigo?: number;

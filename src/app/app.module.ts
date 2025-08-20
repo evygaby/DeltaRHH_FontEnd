@@ -34,6 +34,7 @@ export function initApp(configService: ConfiguracionService) {
   return () => configService.getConfig(); // <- Angular espera esta promesa
 }
 
+
 if (environment.defaultauth === 'firebase') {
   initFirebaseBackend(environment.firebaseConfig);
 } else {
