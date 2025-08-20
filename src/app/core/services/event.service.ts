@@ -251,4 +251,21 @@ export class EventService {
 
     return this.http.get(url, { params });
   }
+  PEGPreceptoras(usu: string, pass: string, periodo: string, seccion: { VALOR: string; TEXTO: string }[],empresa:number,MostrarPeg:string,MostrarPreceptora:string): Observable<Blob> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('periodo', periodo)
+      .set('idEmpresa',empresa)
+      .set('mostrarPeg',MostrarPeg)
+      .set('mostrarPreceptora',MostrarPreceptora);
+    // Agregar cada valor del array "seccion" como múltiples parámetros 'niveles'
+    seccion.forEach(item => {
+      params = params.append('niveles', item.VALOR);
+    });
+
+    const url = this.config.apiUrl + "ImpresionReportes/rptPegPreceptora/checklist";
+
+    return this.http.get(url, { params: params, responseType: 'blob' });
+  }
 }

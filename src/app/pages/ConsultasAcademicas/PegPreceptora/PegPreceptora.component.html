@@ -17,18 +17,58 @@
           (onSelectionChanged)="CambioSeccion($event)"></dx-list>
       </div>
     </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Mostrar PEGs</div>
+      <div class="dx-field-value">
+        <dx-check-box [(value)]="MostrarPeg" [elementAttr]="{ 'aria-label': 'Mostrar PEGs' }"></dx-check-box>
+      </div>
+
+
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Mostrar Preceptoras</div>
+      <div class="dx-field-value">
+        <dx-check-box [(value)]="MostrarPreceptora"
+          [elementAttr]="{ 'aria-label': 'Mostrar Preceptoras' }"></dx-check-box>
+      </div>
+
+
+    </div>
+    <div class="dx-field">
+      <dx-button icon="exportxlsx" type="export" text="Exportar Xlsx" (onClick)="descargarEXCEL()">
+      </dx-button>
+    </div>
   </div>
   <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 85vh;">
-    <dx-tab-panel [deferRendering]="false" [animationEnabled]="true" [selectedIndex]="0" [height]="'100%'">
-      <dxi-item title="PEG - Preceptora">
+    <dx-tab-panel [deferRendering]="false" [animationEnabled]="true" [height]="'100%'"
+      [selectedIndex]="tabSeleccionada">
+      <dxi-item title="PEG - Preceptora" [visible]="MostrarPeg">
         <ng-template dxTemplate="item">
-          <dx-data-grid id="gridContainer" [dataSource]="Pegs" [showBorders]="true" [showRowLines]="true"
+          <dx-data-grid #gridContainer [dataSource]="Pegs" [showBorders]="true" [showRowLines]="true"
             [height]="'100%'">
             <dxo-paging [pageSize]="400"></dxo-paging>
-            <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
-            <dxi-column dataField="CURSO" caption="Curso" [visible]="true" [groupIndex]="0"></dxi-column>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+            <dxi-column dataField="NIV_CODNIVEL" [visible]="false"></dxi-column>
+            <dxi-column dataField="CURSO" caption="Curso" [groupIndex]="0" [sortOrder]="'asc'">
+              <dxo-sorting mode="custom" [customCompare]="customSortNivel"></dxo-sorting>
+            </dxi-column>
             <dxi-column dataField="NOMBREPEG" caption="PEG"></dxi-column>
             <dxi-column dataField="PRECEPTORA" caption="Preceptora"></dxi-column>
+            <dxi-column dataField="NUMALUMNAS" caption="#Alumnas" [width]="'80px'"></dxi-column>
+            <dxo-summary>
+              <dxi-group-item column="NUMALUMNAS" summaryType="sum" displayFormat="Total: {0}"
+                [showInGroupFooter]="true"></dxi-group-item>
+            </dxo-summary>
+          </dx-data-grid>
+        </ng-template></dxi-item>
+      <dxi-item title="Preceptoras" [visible]="MostrarPreceptora">
+        <ng-template dxTemplate="item">
+          <dx-data-grid id="gridContainer2" [dataSource]="Preceptoras" [showBorders]="true" [showRowLines]="true"
+            [height]="'100%'">
+            <dxo-paging [pageSize]="400"></dxo-paging>
+            <dxi-column dataField="NOMBREPRECEPTORA" caption="Preceptora" [visible]="true"
+              [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="CURSO" caption="Curso"></dxi-column>
             <dxi-column dataField="NUMALUMNAS" caption="#Alumnas"></dxi-column>
             <dxo-summary>
               <dxi-group-item column="NUMALUMNAS" summaryType="sum" displayFormat="Total: {0}"
@@ -36,20 +76,6 @@
             </dxo-summary>
           </dx-data-grid>
         </ng-template></dxi-item>
-      <dxi-item title="Preceptoras">
-        <ng-template dxTemplate="item">
-          <dx-data-grid id="gridContainer2" [dataSource]="Preceptoras" [showBorders]="true" [showRowLines]="true"
-            [height]="'100%'">
-            <dxo-paging [pageSize]="400"></dxo-paging>
-             <dxi-column dataField="NOMBREPRECEPTORA" caption="Preceptora" [visible]="true" [groupIndex]="0"></dxi-column>
-            <dxi-column dataField="CURSO" caption="Curso"></dxi-column>
-            <dxi-column dataField="NUMALUMNAS" caption="#Alumnas"></dxi-column>
-            <dxo-summary>
-              <dxi-group-item column="NUMALUMNAS" summaryType="sum" displayFormat="Total: {0}"
-                [showInGroupFooter]="true"></dxi-group-item>
-            </dxo-summary> 
-          </dx-data-grid>
-        </ng-template></dxi-item>
-      </dx-tab-panel>
+    </dx-tab-panel>
   </div>
 </div>

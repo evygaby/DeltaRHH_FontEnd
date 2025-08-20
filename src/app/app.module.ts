@@ -25,7 +25,7 @@ import { DxButtonModule, DxDataGridModule, DxDateRangeBoxModule, DxListModule, D
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionService } from './core/services/configuracion.service';
-import { CurrencyInputDirective } from './pages/infoempleado/currency-input.directive';
+import { CurrencyInputDirective } from './pages/Mantenimientos/infoempleado/currency-input.directive';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
