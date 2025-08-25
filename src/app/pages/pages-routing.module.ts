@@ -17,6 +17,9 @@ import { ListaCapacitacionesComponent } from './Reportes/ListaCapacitaciones/Lis
 import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/ListaDatosEmpleados.component';
 import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
 import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
+import { ComparaRolesComponent } from './Roles/ComparaRoles/ComparaRoles.component';
+import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDatos.component';
+import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
 
 
 const routes: Routes = [
@@ -68,6 +71,18 @@ const routes: Routes = [
   {
     path: "empleadosdetalle",
     component: InfoempleadoComponent
+  },
+  {
+    path: "ComparaRoles",
+    component: ComparaRolesComponent
+  },
+  {
+    path: "ActualizaDatos",
+    component: ActualizaDatosComponent
+  },
+    {
+    path: "TitulosEmp",
+    component: TitulosEmpComponent
   },
   {
     path: "paises",

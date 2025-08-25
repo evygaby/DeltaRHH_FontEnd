@@ -1,0 +1,15 @@
+<div style="height: 85vh;">
+  <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'">
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxi-column type="buttons" [width]="80" caption="Acción">
+      <dxi-button hint="Ver" icon="pdffile" [onClick]="descargarReporte"></dxi-button>
+      <dxi-button hint="Abrir Formulario" icon="floppy" [onClick]="openUrl"></dxi-button>
+    </dxi-column>
+    <dxi-column dataField="NOMGRUPOCCOSTO" caption="Centro de Costo" [groupIndex]="0"></dxi-column>
+    <dxi-column dataField="RAZONSOCIAL" caption="Empleado" sortOrder="asc"></dxi-column>
+    <dxi-column dataField="FECHA" caption="Ult. Actualización" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
+  </dx-data-grid>
+</div>

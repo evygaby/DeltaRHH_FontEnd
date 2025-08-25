@@ -251,14 +251,14 @@ export class EventService {
 
     return this.http.get(url, { params });
   }
-  PEGPreceptoras(usu: string, pass: string, periodo: string, seccion: { VALOR: string; TEXTO: string }[],empresa:number,MostrarPeg:string,MostrarPreceptora:string): Observable<Blob> {
+  PEGPreceptoras(usu: string, pass: string, periodo: string, seccion: { VALOR: string; TEXTO: string }[], empresa: number, MostrarPeg: string, MostrarPreceptora: string): Observable<Blob> {
     let params = new HttpParams()
       .set('usu', usu)
       .set('pass', pass)
       .set('periodo', periodo)
-      .set('idEmpresa',empresa)
-      .set('mostrarPeg',MostrarPeg)
-      .set('mostrarPreceptora',MostrarPreceptora);
+      .set('idEmpresa', empresa)
+      .set('mostrarPeg', MostrarPeg)
+      .set('mostrarPreceptora', MostrarPreceptora);
     // Agregar cada valor del array "seccion" como múltiples parámetros 'niveles'
     seccion.forEach(item => {
       params = params.append('niveles', item.VALOR);
@@ -267,5 +267,47 @@ export class EventService {
     const url = this.config.apiUrl + "ImpresionReportes/rptPegPreceptora/checklist";
 
     return this.http.get(url, { params: params, responseType: 'blob' });
+  }
+  ComparaRoles(usu: string, pass: string, empresa: number, desde?: Date, hasta?: Date): Observable<any> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    if (desde) {
+      params = params.set('desde', desde.toISOString());
+    }
+    if (hasta) {
+      params = params.set('hasta', hasta.toISOString());
+    }
+
+    const url = this.config.apiUrl + "VariosReportes/ComparativoRoles";
+
+    return this.http.get(url, { params });
+  }
+  ActualizaDatos(usu: string, pass: string, empresa: number,): Observable<any> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/ListaActualizaDatos";
+    return this.http.get(url, { params });
+  }
+  DocActualizaDatos(usu: string, pass: string, empleado: number): Observable<Blob> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('codigo', empleado)
+
+    const url = this.config.apiUrl + "ImpresionReportes/DocActualizaDatos";
+
+    return this.http.get(url, { params: params, responseType: 'blob' });
+  }
+  ListaTitulos(usu: string, pass: string, empresa: number,): Observable<any> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/ListaTitulos";
+    return this.http.get(url, { params });
   }
 }

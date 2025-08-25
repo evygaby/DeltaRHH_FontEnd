@@ -57,6 +57,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/ListaDatosEmpleados.component';
 import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
 import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
+import { ComparaRolesComponent } from './Roles/ComparaRoles/ComparaRoles.component';
+import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDatos.component';
+import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,12 @@ import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegP
     NumeroAlumnasComponent,
     CumpleaniosPersonalComponent,
     ConsultaActasReunionComponent,
-    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent,JefesAreaComponent,PegPreceptoraComponent
+    ListaCapacitacionesComponent,
+    ListaDatosEmpleadosComponent,
+    JefesAreaComponent,
+    PegPreceptoraComponent,
+    ComparaRolesComponent,
+    ActualizaDatosComponent,TitulosEmpComponent
   ],
    exports: [AutoFocusInvalidDirective ],
   imports: [

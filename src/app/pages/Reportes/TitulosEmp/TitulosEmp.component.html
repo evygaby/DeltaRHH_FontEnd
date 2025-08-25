@@ -1,0 +1,26 @@
+<div style="height: 85vh;">
+  <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
+  [allowColumnResizing]="true" columnResizingMode="widget"  (onExporting)="exportarConCabecera($event)" >
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
+    <dxo-column-chooser height="340px" #columnChooser [enabled]="true" [mode]="columnChooserModes[1].key">
+      <dxo-position my="right top" at="right bottom" of=".dx-datagrid-column-chooser-button"></dxo-position>
+      <dxo-search [enabled]="searchEnabled" [editorOptions]="editorOptions"></dxo-search>
+    </dxo-column-chooser>
+    <dxi-column dataField="GRUPO_COSTO" caption="Grupo de Centro de Costo" [groupIndex]="0"></dxi-column>
+    <dxi-column dataField="CENTRO_COSTO" caption="Centro de Costo" [groupIndex]="1"></dxi-column>
+    <dxi-column dataField="NOMBRE" caption="Empleado" [groupIndex]="2" sortOrder="asc"></dxi-column>
+    <dxi-column dataField="TITULO" caption="Título"></dxi-column>
+    <dxi-column dataField="NIVEL" caption="Nivel"></dxi-column>
+    <dxi-column dataField="ESTADOESTUDIO" caption="Estado"></dxi-column>
+    <dxi-column dataField="INSTITUCION" caption="Institución"></dxi-column>
+   <dxi-column dataField="ENVIO_MINISTERIO_BOOL" caption="Principal" [width]="80" dataType="boolean">
+  <ng-template dxTemplate="cell" let-cellData="cellData">
+    <dx-check-box [value]="cellData.value" [readOnly]="true"></dx-check-box>
+  </ng-template>
+</dxi-column>
+  </dx-data-grid>
+</div>

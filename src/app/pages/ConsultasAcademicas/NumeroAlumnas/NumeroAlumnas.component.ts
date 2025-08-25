@@ -38,49 +38,11 @@ export class NumeroAlumnasComponent implements OnInit {
     this.CargarPeriodo();
     this.valorSeleccionado = "D";
   }
-  // cargaInicial(){
-  //   forkJoin({
-  //   periodos: this.servicios.ListaPeriodosLectivos(
-  //     this.user.Nombre!,
-  //     this.user.password!
-  //   ),
-  //   secciones: this.servicios.SeccionesAcademicas(
-  //     this.user.Nombre!,
-  //     this.user.password!,
-  //     this.user.ID_EMPRESA!,
-  //     "5/5"// este lo llenamos luego con el periodo recibido
-  //   )
-  // }).subscribe({
-  //   next: ({ periodos, secciones }) => {
-  //     // Asignar periodos
-  //     this.PeriodoLectivo = periodos;
-  //     this.PeriodoSelect = this.PeriodoLectivo[0].PER_PERIODO;
-
-  //     // Volver a cargar secciones ahora con periodo correcto
-  //     this.servicios.SeccionesAcademicas(
-  //       this.user.Nombre!,
-  //       this.user.password!,
-  //       this.user.ID_EMPRESA!,
-  //       this.PeriodoSelect!
-  //     ).subscribe({
-  //       next: (seccionesData: any) => {
-  //         this.Secciones = seccionesData;
-  //         this.seleccionadas = [...this.Secciones];
-  //         this.loading.closeSpinner();
-  //         this.CargaGrid();
-  //       },
-  //       error: (error:any) => {
-  //         this.loading.closeSpinner();
-  //         this.loading.showMensajeError(error.message);
-  //       }
-  //     });
-  //   },
-  //   error: (error:any) => {
-  //     this.loading.closeSpinner();
-  //     this.loading.showMensajeError(error.message);
-  //   }
-  // });
-  // }
+  calculateGroupValue(this: any, rowData: any) {
+  const nivel = rowData.NIV_CODNIVEL ?? 99999; // fallback
+    const curso = rowData.CURSO ?? '';
+    return nivel.toString().padStart(6, '0') + '::' + curso + ";" + curso;
+  }
   selectPeriodo({ value }: { value?: string }) {
     if (value !== undefined) {
       this.PeriodoSelect = value;

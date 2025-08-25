@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
   constructor(   private titleService: Title, private loading: LoadingService, private router: Router,
   ) {
     this.initGlobalize();
-     Globalize.locale("es");
+     Globalize.locale("es-EC");
     titleService.setTitle(this.title);
   }
 

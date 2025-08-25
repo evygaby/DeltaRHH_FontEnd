@@ -40,15 +40,11 @@ export class PegPreceptoraComponent implements OnInit {
     this.CargarPeriodo();
   }
 
-  customSortNivel = (a: string, b: string): number => {
-    const nivelMap: Record<string, number> = {};
-    this.Pegs.forEach(p => nivelMap[p.CURSO] = p.NIV_CODNIVEL);
-
-    const nivelA = nivelMap[a] ?? 0;
-    const nivelB = nivelMap[b] ?? 0;
-
-    return nivelA - nivelB;
-  };
+calculateGroupValue(this: any, rowData: any) {
+  const nivel = rowData.NIV_CODNIVEL ?? 99999; // fallback
+    const curso = rowData.CURSO ?? '';
+    return nivel.toString().padStart(6, '0') + '::' + curso + ";" + curso;
+  }
   selectPeriodo({ value }: { value?: string }) {
     if (value !== undefined) {
       this.PeriodoSelect = value;
@@ -112,11 +108,7 @@ export class PegPreceptoraComponent implements OnInit {
       .subscribe({
         next: (data: Peg[]) => {
           this.Pegs = data;
-          setTimeout(() => {
-            if (this.gridContainer) {
-              this.gridContainer.instance.refresh();
-            }
-          }, 0);
+          //this.Pegs = data.sort((a, b) => a.NIV_CODNIVEL - b.NIV_CODNIVEL);
           //this.loading.closeSpinner();
           this.CargaGridPreceptoras();
           //this.loading.showMensajesuccess("Actualizado con éxito");
