@@ -156,7 +156,7 @@ export class DistributivoMaestrasComponent implements OnInit {
         next: (data: any) => {
           this.Datos = data;
           this.loading.closeSpinner();
-          this.Datos.forEach((d:any) => d.cargo = d.cargo.replace(/\\n/g, '\n'));
+          //this.Datos.forEach((d:any) => d.cargo = d.cargo.replace(/\\n/g, '\n'));
           this.Datos.sort((a: any, b: any) => {
             if (a.DOCENTE !== b.DOCENTE) return a.DOCENTE.localeCompare(b.DOCENTE);
             if (a.MATERIA !== b.MATERIA) return a.MATERIA.localeCompare(b.MATERIA);
