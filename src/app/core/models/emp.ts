@@ -77,7 +77,8 @@ export class EMP {
         ID_EMPRESA?: number=0;
         TIPO_DOCUMENTO?: string="";
         OBSERVACION?: string="";
-        CODIGO_IESS?: string="";
+        CODIGO_IESS?: number|undefined;
+       
         DISCAPACIDAD?: string="";
         CUIDAD?: string="";
         DISCAPACIDAD1?: boolean;
