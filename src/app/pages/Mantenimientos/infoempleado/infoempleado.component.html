@@ -781,12 +781,14 @@
                   class="col-sm-12"
                   >Fecha Nacimiento</label
                 >
+                
                 <input
                   class="form-control form-control-sm"
                   [(ngModel)]="empleado.FECNAC"
                   name="FECNAC"
                   #FECNAC="ngModel"
                   type="text"
+                  [altInput]="false"
                   required
                   mwlFlatpickr
                   [convertModelValue]="true"
@@ -1367,6 +1369,8 @@
       <!-- codigo IEES -->
       <div class="row" style="padding-right: 0px; padding-left: 0px">
         <div class="col-sm-6">
+
+
           <div class="row align-items-start">
             <div class="col-sm-8" style="padding-right: 0px; padding-left: 0px">
               <label
@@ -1384,14 +1388,10 @@
                 #CODIGO_IESS="ngModel"
                 aria-label="Default select example"
                 [class.is-invalid]="
-                  CODIGO_IESS.invalid && (CODIGO_IESS.touched || intentoEnvio)
-                "
-              >
-                <option value=""></option>
+                  CODIGO_IESS.invalid && (CODIGO_IESS.touched || intentoEnvio)" >
+                 <option value="">-- Seleccione --</option>
                 <option
-                  *ngFor="let person of iess"
-                  value="{{ person.CODIGO_IESS }}"
-                >
+                  *ngFor="let person of iess" [ngValue]="person.CODIGO_IESS">
                   {{ person.CODIGO_IESS }} - {{ person.CARGO_ACTIVIDAD }}
                 </option>
               </select>
