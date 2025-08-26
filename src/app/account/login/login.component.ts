@@ -35,29 +35,29 @@ export class LoginComponent implements OnInit {
   fieldTextType!: boolean;
   error = '';
   returnUrl!: string;
-  user!:User
-  menu!:MenuItem;
+  user!: User
+  menu!: MenuItem;
   toast!: false;
 
   // set the current year
   year: number = new Date().getFullYear();
 
-  constructor(private formBuilder: UntypedFormBuilder,private authenticationService: AuthenticationService,private router: Router,
-    private loading: LoadingService,private eventService: EventService,private authFackservice: AuthfakeauthenticationService,private route: ActivatedRoute,public toastService: ToastService) {
-      // redirect to home if already logged in
-      if (this.authenticationService.currentUserValue) {
-        this.router.navigate(['/']);
-      }
-     }
+  constructor(private formBuilder: UntypedFormBuilder, private authenticationService: AuthenticationService, private router: Router,
+    private loading: LoadingService, private eventService: EventService, private authFackservice: AuthfakeauthenticationService, private route: ActivatedRoute, public toastService: ToastService) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit(): void {
-    if(localStorage.getItem('currentUser')) {
+    if (localStorage.getItem('currentUser')) {
       this.router.navigate(['/']);
     }
     /**
      * Form Validatyion
      */
-     this.loginForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       ruc: ['', [Validators.required]],
       password: ['', [Validators.required]],
       usuario: ['', [Validators.required]],
@@ -72,37 +72,53 @@ export class LoginComponent implements OnInit {
   /**
    * Form submit
    */
-   onSubmit() {
+  onSubmit() {
     this.submitted = true;
- this.loading.showSpinner2("Solicitando accesos")
+    this.loading.showSpinner2("Solicitando accesos")
     // Login Api
-    this.authenticationService.login(this.f['usuario'].value.toUpperCase(),this.f['password'].value)  .subscribe({
-      next: (user2:any) => {
-       if(user2.usuarioLogueado?.CODEMP > 0){
-        this.user=new User
-       this.user.Codigo=user2.usuarioLogueado.CODEMP
-       this.user.ID_EMPRESA=user2.usuarioLogueado.ID_EMPRESA
-       this.user.RAZONSOCIAL=user2.usuarioLogueado.RAZONSOCIAL  
-       this.user.MAIL=user2.usuarioLogueado.MAIL
-       this.user.usu_adm=user2.usuarioLogueado.USU_RRHH
-       this.loading.closeSpinner();
-       this.user.password=this.f['password'].value
-       this.user.Nombre=this.f['usuario'].value
-       this.menu= new MenuItem
-       this.menu=user2.Menu
-       //this.menu.label=user2.Menu.name
-       //this.menu.link=user2.Menu.url
-       //this.menu.subItems=user2.Menu.children
-       localStorage.setItem('toast', 'true');
-       localStorage.setItem(GlobalComponent.CURRENT_USER, JSON.stringify(this.user));
-       localStorage.setItem(GlobalComponent.Menu, JSON.stringify(this.menu));
-      //  // localStorage.setItem('token', data.token);
-      this.router.navigate(['/']);
-       } else {
-        this.loading.closeSpinner();
-        this.toastService.show("Usuario o contraseña incorrectos", { classname: 'bg-danger text-white', delay: 15000 });
-      }
- 
+    this.authenticationService.login(this.f['usuario'].value.toUpperCase(), this.f['password'].value).subscribe({
+      next: (user2: any) => {
+        if (user2.usuarioLogueado?.CODEMP > 0) {
+          this.user = new User
+          this.user.Codigo = user2.usuarioLogueado.CODEMP
+          this.user.ID_EMPRESA = user2.usuarioLogueado.ID_EMPRESA
+          this.user.RAZONSOCIAL = user2.usuarioLogueado.RAZONSOCIAL
+          this.user.MAIL = user2.usuarioLogueado.MAIL
+          this.user.usu_adm = user2.usuarioLogueado.USU_RRHH
+          this.loading.closeSpinner();
+          this.user.password = this.f['password'].value
+          this.user.Nombre = this.f['usuario'].value
+          this.menu = new MenuItem
+          this.menu = user2.Menu
+
+          const sortRecursive = (items: any) => {
+            items.sort((a: any, b: any) => {
+              // prioridad para "MENUITEMS.MENU.TEXT"
+              if (a.label === "MENUITEMS.MENU.TEXT") return -1;
+              if (b.label === "MENUITEMS.MENU.TEXT") return 1;
+              // orden normal alfabético
+              return a.label.localeCompare(b.label, "es", { sensitivity: "base" });
+            });
+            items.forEach((item: any) => {
+              if (item.subItems && item.subItems.length > 0) {
+                sortRecursive(item.subItems); // recursión para hijos
+              }
+            });
+          };
+          sortRecursive(this.menu);
+          //this.menu.label=user2.Menu.name
+          //this.menu.link=user2.Menu.url
+          //this.menu.subItems=user2.Menu.children
+          localStorage.setItem('toast', 'true');
+          localStorage.setItem(GlobalComponent.CURRENT_USER, JSON.stringify(this.user));
+          localStorage.setItem(GlobalComponent.Menu, JSON.stringify(this.menu));
+          //  // localStorage.setItem('token', data.token);
+          this.router.navigate(['/']);
+        } else {
+          this.loading.closeSpinner();
+          this.toastService.show("Usuario o contraseña incorrectos", { classname: 'bg-danger text-white', delay: 15000 });
+        }
+
       },
       error: (error: HttpErrorResponse) => {
         this.loading.closeSpinner();
@@ -110,17 +126,17 @@ export class LoginComponent implements OnInit {
       }
     });
 
-     
-     
-      // if(data != null){
-      //   localStorage.setItem('toast', 'true');
-      //   localStorage.setItem('currentUser', JSON.stringify(data));
-      //  // localStorage.setItem('token', data.token);
-      //   this.router.navigate(['/']);
-      // } else {
-      //   this.toastService.show("Usuario o contraseña incorrectos", { classname: 'bg-danger text-white', delay: 15000 });
-      // }
-  //  });
+
+
+    // if(data != null){
+    //   localStorage.setItem('toast', 'true');
+    //   localStorage.setItem('currentUser', JSON.stringify(data));
+    //  // localStorage.setItem('token', data.token);
+    //   this.router.navigate(['/']);
+    // } else {
+    //   this.toastService.show("Usuario o contraseña incorrectos", { classname: 'bg-danger text-white', delay: 15000 });
+    // }
+    //  });
 
     // stop here if form is invalid
     // if (this.loginForm.invalid) {
@@ -147,7 +163,7 @@ export class LoginComponent implements OnInit {
   /**
    * Password Hide/Show
    */
-   toggleFieldTextType() {
+  toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
 

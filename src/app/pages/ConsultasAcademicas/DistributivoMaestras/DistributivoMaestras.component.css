@@ -1,12 +1,20 @@
 ::ng-deep .dx-datagrid{  
     font-size: 8pt;
 } 
+
+::ng-deep .dx-list-item-content {
+    font-size: 8pt !important;
+}
+.dx-datagrid .dx-data-row .dx-datagrid-cell {
+  white-space: pre-line !important; /* respeta \n */
+}
 .dx-field {
     margin: 0 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    font-size: 8pt !important;
 }
 .dx-field-label {
     float: left;
@@ -21,4 +29,8 @@
 }
 .dx-field-value {
    width: 100% !important;
+   font-size: 8pt !important;
+}
+input, button, select, optgroup, textarea {
+    font-size: 8pt !important;
 }
