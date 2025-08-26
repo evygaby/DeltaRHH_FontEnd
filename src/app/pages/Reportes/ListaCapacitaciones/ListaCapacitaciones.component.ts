@@ -14,9 +14,7 @@ import { Workbook } from 'exceljs';
 import { exportPivotGrid } from 'devextreme/excel_exporter';
 import { DxPivotGridComponent } from 'devextreme-angular';
 const now = new Date();
-// Primer día del año
 const iDesde = new Date(now.getFullYear(), 0, 1); // Enero es 0
-// Último día del mes actual
 const iHasta = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 // día 0 del siguiente mes → último día del mes actual
 const initialValue: [Date, Date] = [iDesde, iHasta];

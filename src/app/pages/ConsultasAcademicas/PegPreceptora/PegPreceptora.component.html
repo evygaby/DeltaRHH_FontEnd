@@ -45,12 +45,18 @@
       <dxi-item title="PEG - Preceptora" [visible]="MostrarPeg">
         <ng-template dxTemplate="item">
           <dx-data-grid #gridContainer [dataSource]="Pegs" [showBorders]="true" [showRowLines]="true"
-            [height]="'100%'">
+            [sorting]="{ mode: 'multiple' }" [groupPanel]="{ visible: true }" [height]="'100%'">
             <dxo-paging [pageSize]="400"></dxo-paging>
             <dxo-sorting mode="multiple"></dxo-sorting>
-            <dxi-column dataField="NIV_CODNIVEL" [visible]="false"></dxi-column>
-            <dxi-column dataField="CURSO" caption="Curso" [groupIndex]="0" [sortOrder]="'asc'">
-              <dxo-sorting mode="custom" [customCompare]="customSortNivel"></dxo-sorting>
+            <dxi-column dataField="CURSO" caption="Curso" [groupIndex]="1" [calculateGroupValue]="calculateGroupValue"
+              groupCellTemplate="groupCellTemplate">
+            </dxi-column>
+            <div *dxTemplate="let data of 'groupCellTemplate'">
+              <div>
+                {{data.column.caption}}: {{data.value.split(";")[1]}}
+              </div>
+            </div>
+            <dxi-column dataField="NIV_CODNIVEL" [visible]="false" [showInColumnChooser]="false">
             </dxi-column>
             <dxi-column dataField="NOMBREPEG" caption="PEG"></dxi-column>
             <dxi-column dataField="PRECEPTORA" caption="Preceptora"></dxi-column>

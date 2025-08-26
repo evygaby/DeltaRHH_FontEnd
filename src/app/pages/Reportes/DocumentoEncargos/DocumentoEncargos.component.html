@@ -1,0 +1,12 @@
+<div style="height: 85vh;">
+  <dx-button
+    icon="pdffile" type="success" (onClick)="generarAsignacion()"
+></dx-button>
+  <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
+  [allowColumnResizing]="true" columnResizingMode="widget"  >
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+  </dx-data-grid>
+</div>

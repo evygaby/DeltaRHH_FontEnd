@@ -35,9 +35,14 @@
       <dxo-paging [pageSize]="100"></dxo-paging>
       <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
       <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
-      <dxi-column dataField="NIV_CODNIVEL" caption="IDNivel" [visible]="true" [groupIndex]="0"
-        [calculateSortValue]="getOrden"></dxi-column>
-      <dxi-column dataField="CURSO" caption="Nivel" [showWhenGrouped]="true"></dxi-column>
+      <dxi-column dataField="CURSO" caption="Curso" [groupIndex]="1" [calculateGroupValue]="calculateGroupValue" 
+              groupCellTemplate="groupCellTemplate"  [showWhenGrouped]="true">
+            </dxi-column>
+            <div *dxTemplate="let data of 'groupCellTemplate'">
+              <div>
+                {{data.column.caption}}: {{data.value.split(";")[1]}}
+              </div>
+            </div>
       <dxi-column dataField="PARALELO" [width]="'80px'" caption="Paralelo"></dxi-column>
       <dxi-column dataField="NUMTOTALNINAS" [width]="'60px'" caption="#Niñas"></dxi-column>
       <dxi-column dataField="NUMTOTALNINOS" [width]="'60px'" caption="#Niños"></dxi-column>

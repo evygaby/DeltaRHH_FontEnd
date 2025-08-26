@@ -1,0 +1,4 @@
+::ng-deep .dx-datagrid-search-panel {
+  width: 300px !important; /* el ancho deseado */
+  margin: 0 auto; /* opcional, centrado */
+}

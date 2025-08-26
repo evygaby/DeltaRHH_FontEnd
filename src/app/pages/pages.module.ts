@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule,DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -57,11 +57,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/ListaDatosEmpleados.component';
 import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
 import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
+import { ComparaRolesComponent } from './Roles/ComparaRoles/ComparaRoles.component';
+import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDatos.component';
+import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
+import { DocumentoEncargosComponent } from './Reportes/DocumentoEncargos/DocumentoEncargos.component';
+import { DistributivoMaestrasComponent } from './ConsultasAcademicas/DistributivoMaestras/DistributivoMaestras.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    ToastsContainer,CurrencyInputDirective,AutoFocusInvalidDirective,
+    ToastsContainer, CurrencyInputDirective, AutoFocusInvalidDirective,
     UsuarioComponent,
     LoadingComponent,
     EmpleadosComponent,
@@ -73,21 +78,26 @@ import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegP
     NumeroAlumnasComponent,
     CumpleaniosPersonalComponent,
     ConsultaActasReunionComponent,
-    ListaCapacitacionesComponent,ListaDatosEmpleadosComponent,JefesAreaComponent,PegPreceptoraComponent
+    ListaCapacitacionesComponent,
+    ListaDatosEmpleadosComponent,
+    JefesAreaComponent,
+    PegPreceptoraComponent,
+    ComparaRolesComponent,
+    ActualizaDatosComponent, TitulosEmpComponent, DocumentoEncargosComponent, DistributivoMaestrasComponent
   ],
-   exports: [AutoFocusInvalidDirective ],
+  exports: [AutoFocusInvalidDirective],
   imports: [
-    CommonModule,DxNumberBoxModule,
-    FormsModule,DxCheckBoxModule, DxDateBoxModule,MatNativeDateModule,
-    NgbToastModule,DxTextAreaModule,
-    NgbProgressbarModule,DropzoneModule,NgbDatepickerModule,
+    CommonModule, DxNumberBoxModule,
+    FormsModule, DxCheckBoxModule, DxDateBoxModule, MatNativeDateModule,
+    NgbToastModule, DxTextAreaModule,
+    NgbProgressbarModule, DropzoneModule, NgbDatepickerModule,
     FlatpickrModule.forRoot(),
     ReactiveFormsModule,
-    NgApexchartsModule,NgbNavModule,
+    NgApexchartsModule, NgbNavModule,
     LeafletModule,
-    NgbDropdownModule,NgSelectModule,DxBoxModule,
+    NgbDropdownModule, NgSelectModule, DxBoxModule,
     SimplebarAngularModule,
-    PagesRoutingModule,DxSelectBoxModule,
+    PagesRoutingModule, DxSelectBoxModule,
     DxTextBoxModule,
     DxTemplateModule,
     SharedModule,
@@ -97,13 +107,13 @@ import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegP
     DxListModule,
     LightboxModule,
     DashboardsModule,
-    AppsModule,DxDataGridModule,
-    EcommerceModule,DxDateRangeBoxModule,DxPivotGridModule,
-  DxToolbarModule,DxButtonModule  ,DxPivotGridFieldChooserModule ,DxScrollViewModule,DxTabPanelModule,
+    AppsModule, DxDataGridModule,
+    EcommerceModule, DxDateRangeBoxModule, DxPivotGridModule,
+    DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PagesModule { 
+export class PagesModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

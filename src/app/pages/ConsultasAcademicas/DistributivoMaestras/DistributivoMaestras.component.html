@@ -1,0 +1,58 @@
+<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;">
+  <div style="display: flex; flex-direction:column; width:20% ; min-width: 200px;">
+    <div class="dx-field">
+      <div class="dx-field-label">Periodo Lectivo</div>
+      <div class="dx-field-value">
+        <dx-select-box displayExpr="PER_PERIODO" valueExpr="PER_PERIODO" [dataSource]="PeriodoLectivo"
+          [inputAttr]="{ 'aria-label': 'PER_PERIODO' }" [value]="PeriodoSelect"
+          (onValueChanged)="selectPeriodo($event)"></dx-select-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Sección</div>
+      <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+
+        <dx-list [dataSource]="Secciones" [showSelectionControls]="true" [selectionMode]="'multiple'"
+          displayExpr="TEXTO" valueExpr="VALOR" [(selectedItems)]="seleccionadas"
+          (onSelectionChanged)="CambioSeccion($event)"></dx-list>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction:column; width:79% ; min-width: 325px; height: 85vh;">
+    <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
+      [rowAlternationEnabled]="true"
+  (onCellPrepared)="onCellPrepared($event)" [columnAutoWidth]="true"
+  [columnResizingMode]="'widget'">
+      <dxo-paging [pageSize]="500"></dxo-paging>
+      <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
+      <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
+      <dxi-column dataField="DOCENTE" caption="Maestra" [wordWrapEnabled]="true" width="200"></dxi-column>
+      <dxi-column dataField="MATERIA" caption="Materia" [wordWrapEnabled]="true" width="200"></dxi-column>
+      <dxi-column dataField="CURSODESC" caption="Curso"></dxi-column>
+      <dxi-column dataField="NUMHORAS" caption="# Horas"></dxi-column>
+      <dxi-column dataField="HORASCLASE_NUM" caption="T. Horas"></dxi-column>
+      <dxi-column dataField="NUM_ALUMNAS" caption="#Alumnas"></dxi-column>
+      <dxi-column dataField="TOTAL_ALUMNAS" caption="T. Alumnas"></dxi-column>
+      <dxi-column dataField="CARGOS" caption="Encargos"></dxi-column>
+       <dxo-summary>
+        <dxi-group-item column="NUMHORAS" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-group-item>
+        <dxi-group-item column="NUM_ALUMNAS" summaryType="sum" displayFormat="{0}"
+          [showInGroupFooter]="true"></dxi-group-item>
+      </dxo-summary> 
+    </dx-data-grid>
+  </div>
+</div>
+
+
+<!-- 
+<dx-data-grid
+  [dataSource]="dataSource"
+  [showBorders]="true"
+  [rowAlternationEnabled]="true"
+  (onCellPrepared)="onCellPrepared($event)"
+>
+  <dxi-column dataField="category"></dxi-column>
+  <dxi-column dataField="product"></dxi-column>
+  <dxi-column dataField="quantity"></dxi-column>
+</dx-data-grid> -->
