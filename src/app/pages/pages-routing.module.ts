@@ -20,6 +20,8 @@ import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegP
 import { ComparaRolesComponent } from './Roles/ComparaRoles/ComparaRoles.component';
 import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDatos.component';
 import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
+import { DocumentoEncargosComponent } from './Reportes/DocumentoEncargos/DocumentoEncargos.component';
+import { DistributivoMaestrasComponent } from './ConsultasAcademicas/DistributivoMaestras/DistributivoMaestras.component';
 
 
 const routes: Routes = [
@@ -83,6 +85,14 @@ const routes: Routes = [
     {
     path: "TitulosEmp",
     component: TitulosEmpComponent
+  },
+  {
+    path: "DocumentoEncargos",
+    component: DocumentoEncargosComponent
+  },
+   {
+    path: "DistributivoMaestras",
+    component: DistributivoMaestrasComponent
   },
   {
     path: "paises",

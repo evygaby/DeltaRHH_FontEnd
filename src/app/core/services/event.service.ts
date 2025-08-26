@@ -8,7 +8,7 @@ import { Parametros } from './parametros';
 import { NubeFactura } from '../models/factura';
 import { Certificado } from '../models/certificado';
 import { EMP } from '../models/emp';
-import { S } from '@fullcalendar/core/internal-common';
+//import { S } from 'node_modules/@fullcalendar/core/internal-common';
 
 interface Event {
   type: string;
@@ -308,6 +308,28 @@ export class EventService {
       .set('pass', pass)
       .set('empresa', empresa);
     const url = this.config.apiUrl + "VariosReportes/ListaTitulos";
+    return this.http.get(url, { params });
+  }
+  ListaEncargos(usu: string, pass: string, empresa: number,): Observable<any> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/ListaEncargos";
+    return this.http.get(url, { params });
+  }
+  Distributivo(usu: string, pass: string, periodo: string, seccion: { VALOR: string; TEXTO: string }[]): Observable<any> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('periodo', periodo);
+   // Agregar cada valor del array "seccion" como múltiples parámetros 'niveles'
+    seccion.forEach(item => {
+      params = params.append('niveles', item.VALOR);
+    });
+
+    const url = this.config.apiUrl + "VariosReportes/DistributivoMaestras/api/checklist";
+
     return this.http.get(url, { params });
   }
 }

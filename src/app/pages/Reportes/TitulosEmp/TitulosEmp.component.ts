@@ -10,7 +10,7 @@ import * as FileSaver from 'file-saver';
 import * as ExcelJS from 'exceljs';
 @Component({
   selector: 'app-TitulosEmp',
-  templateUrl: './TitulosEmp.component.html',
+  templateUrl: './TitulosEmp.component.html', 
   styleUrls: ['./TitulosEmp.component.css']
 })
 export class TitulosEmpComponent implements OnInit {
