@@ -47,7 +47,7 @@ export class InfoempleadoComponent implements PipeTransform {
   user!: User;
   result!: string;
   paises!: any;
-  cantones!: any;
+  ciudades!: any;
   centrosmin!: any;
   maxLength = null;
   height = 90;
@@ -80,7 +80,7 @@ Bancos!: any;cargos!: any;
   NO_DEPA: string="";
   condicion!: any;intentoEnvio = false;tipodocumento!: any;titulos!: any;
   sino!: any;esRequerido = false;estadocivil!: any;
-seccionfiltrada!: any;provinciafiltrada!: any;cantonesfiltrada!: any;isnumerico!:boolean
+seccionfiltrada!: any;provinciafiltrada!: any;cuidadesfiltrada!: any;isnumerico!:boolean
   tipocuenta!: any;capacitaciones: any;titulosacademicos!: any;
     GCENTROCOSTO!: any;motivosalida!: any;tipodiscapcidad!: any;finalArray: Output[] = [];
     miFormulario: FormGroup;
@@ -151,9 +151,9 @@ seccionfiltrada!: any;provinciafiltrada!: any;cantonesfiltrada!: any;isnumerico!
         if (data.clase == "pais") {
           this.paises = data.data;
         }
-        if (data.clase == "cantones") {
-          this.cantones = data.data;
-          this.cantonesfiltrada= data.data;
+        if (data.clase == "ciudades") {
+          this.ciudades = data.data;
+          this.cuidadesfiltrada= data.data;
         }
         if (data.clase == "zonas") {
           this.zonas = data.data;
@@ -192,9 +192,9 @@ this.router.navigate(['/empleados']);
       
       this.condicion="Guardar"
       this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
-    if(this.cantones!= undefined)
+    if(this.ciudades!= undefined)
 {
-   this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
+   this.cuidadesfiltrada= this.ciudades.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
     
 }   
 if(this.provincias!= undefined)
@@ -390,17 +390,17 @@ if(value=='P'){
   this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,NOMPROV:any }) => p.CODPAIS==this.empleado.PAIS);
   if(this.provinciafiltrada.length>0){
   this.empleado.PROVINCIA=this.provinciafiltrada[0].CODPROV
-  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
-  if(this.cantonesfiltrada.length>0){
-  this.empleado.CUIDAD=this.cantonesfiltrada[0].CODCIUDAD
+  this.cuidadesfiltrada= this.ciudades.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA);
+  if(this.cuidadesfiltrada.length>0){
+  this.empleado.CUIDAD=this.cuidadesfiltrada[0].CODCIUDAD
    }
   }
    else{
-  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV=="");
+  this.cuidadesfiltrada= this.ciudades.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV=="");
    }
     }
 provincia(event: Event) {
-  this.cantonesfiltrada= this.cantones.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA );
+  this.cuidadesfiltrada= this.ciudades.filter((p: { CODPROV:any, CODCANTON: any,NOMCANTON:any }) => p.CODPROV==this.empleado.PROVINCIA );
  
 }
 onSelectChange(event: Event) {
@@ -752,7 +752,7 @@ return `$${Number(e.value).toFixed(2)}`;
           this.tipocuenta=data.tipo
           this.extensiones=data.ext
           this.seguros=data.seg
-          this.cantones = data.a;
+          this.ciudades = data.a;
           this.paises = data.b;
           this.provincias = data.c;
           this.zonas = data.z;
@@ -822,7 +822,7 @@ return `$${Number(e.value).toFixed(2)}`;
             data.c
           );this.cacheService.set("bancos", "bancos", new Date(), data.bancos);
           this.cacheService.set("cachedDatapa", "pais", new Date(), data.b);
-          this.cacheService.set("cachedDataca", "cantones", new Date(), data.a);
+          this.cacheService.set("cachedDataca", "ciudades", new Date(), data.a);
           this.cacheService.set("zonas", "zonas", new Date(), data.z);
           this.cacheService.set(
             "centrosmin",
