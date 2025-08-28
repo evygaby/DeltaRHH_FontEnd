@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule, DxFileUploaderModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -62,6 +62,8 @@ import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDato
 import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
 import { DocumentoEncargosComponent } from './Reportes/DocumentoEncargos/DocumentoEncargos.component';
 import { DistributivoMaestrasComponent } from './ConsultasAcademicas/DistributivoMaestras/DistributivoMaestras.component';
+import { ComparaIESSComponent } from './Procesos/ComparaIESS/ComparaIESS.component';
+import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldos.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,12 @@ import { DistributivoMaestrasComponent } from './ConsultasAcademicas/Distributiv
     JefesAreaComponent,
     PegPreceptoraComponent,
     ComparaRolesComponent,
-    ActualizaDatosComponent, TitulosEmpComponent, DocumentoEncargosComponent, DistributivoMaestrasComponent
+    ActualizaDatosComponent, 
+    TitulosEmpComponent, 
+    DocumentoEncargosComponent, 
+    DistributivoMaestrasComponent,
+    ComparaIESSComponent,
+    PrestamoSaldosComponent,
   ],
   exports: [AutoFocusInvalidDirective],
   imports: [
@@ -97,7 +104,8 @@ import { DistributivoMaestrasComponent } from './ConsultasAcademicas/Distributiv
     LeafletModule,
     NgbDropdownModule, NgSelectModule, DxBoxModule,
     SimplebarAngularModule,
-    PagesRoutingModule, DxSelectBoxModule,
+    PagesRoutingModule, 
+    DxSelectBoxModule,
     DxTextBoxModule,
     DxTemplateModule,
     SharedModule,
@@ -107,9 +115,17 @@ import { DistributivoMaestrasComponent } from './ConsultasAcademicas/Distributiv
     DxListModule,
     LightboxModule,
     DashboardsModule,
-    AppsModule, DxDataGridModule,
-    EcommerceModule, DxDateRangeBoxModule, DxPivotGridModule,
-    DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule,
+    AppsModule, 
+    DxDataGridModule,
+    EcommerceModule, 
+    DxDateRangeBoxModule, 
+    DxPivotGridModule,
+    DxFileUploaderModule,
+    DxToolbarModule, 
+    DxButtonModule, 
+    DxPivotGridFieldChooserModule, 
+    DxScrollViewModule, 
+    DxTabPanelModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -22,6 +22,8 @@ import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDato
 import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
 import { DocumentoEncargosComponent } from './Reportes/DocumentoEncargos/DocumentoEncargos.component';
 import { DistributivoMaestrasComponent } from './ConsultasAcademicas/DistributivoMaestras/DistributivoMaestras.component';
+import { ComparaIESSComponent } from './Procesos/ComparaIESS/ComparaIESS.component';
+import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldos.component';
 
 
 const routes: Routes = [
@@ -93,6 +95,14 @@ const routes: Routes = [
    {
     path: "DistributivoMaestras",
     component: DistributivoMaestrasComponent
+  },
+  {
+    path: "ComparaIESS",
+    component: ComparaIESSComponent
+  },
+   {
+    path: "PrestamoSaldos",
+    component: PrestamoSaldosComponent
   },
   {
     path: "paises",

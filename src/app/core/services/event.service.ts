@@ -8,6 +8,7 @@ import { Parametros } from './parametros';
 import { NubeFactura } from '../models/factura';
 import { Certificado } from '../models/certificado';
 import { EMP } from '../models/emp';
+import { bo } from '@fullcalendar/core/internal-common';
 //import { S } from 'node_modules/@fullcalendar/core/internal-common';
 
 interface Event {
@@ -119,8 +120,6 @@ export class EventService {
   Consultarempleados(usu: string, pass: string, idempresa: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/Get?usu=" + usu + "&contrasena=" + pass + "&idempresa=" + idempresa, httpOptions);
   }
-
-
   ConsultarGcentrocosto(usu: string, pass: string): Observable<any> {
     const link = this.config.apiUrl + "Empleados/GCENTROCOSTO?usu=" + usu + "&contrasena=" + pass
     return this.http.get(this.config.apiUrl + "Empleados/GCENTROCOSTO?usu=" + usu + "&contrasena=" + pass, httpOptions);
@@ -323,7 +322,7 @@ export class EventService {
       .set('usu', usu)
       .set('pass', pass)
       .set('periodo', periodo);
-   // Agregar cada valor del array "seccion" como múltiples parámetros 'niveles'
+    // Agregar cada valor del array "seccion" como múltiples parámetros 'niveles'
     seccion.forEach(item => {
       params = params.append('niveles', item.VALOR);
     });
@@ -331,5 +330,12 @@ export class EventService {
     const url = this.config.apiUrl + "VariosReportes/DistributivoMaestras/api/checklist";
 
     return this.http.get(url, { params });
+  }
+  CompararIESS(usu: string, pass: string, empresa: number, data: FormData, Fecha?: Date,) {
+    // Agregar Fecha solo si existe
+    let f = Fecha ? Fecha.toISOString() : "";
+//this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+Fecha , data)
+    //const url = this.config.apiUrl + "VariosReportes/CompareData/compare-data";
+    return this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+f+"&empresa="+empresa , data);
   }
 }

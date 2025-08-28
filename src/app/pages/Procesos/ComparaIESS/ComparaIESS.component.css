@@ -1,0 +1,28 @@
+::ng-deep #fileuploader-container {
+  border: 1px solid #d3d3d3;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+::ng-deep .dx-fileuploader-input-wrapper {
+    padding: 7px 0;
+    border: 3px dashed transparent;
+    display: flex;
+    flex-direction: column;
+}
+::ng-deep .dx-datagrid .dx-header-row .dx-datagrid-text-content {
+   display: flex;
+  align-items: center;   /* centra verticalmente */
+  justify-content: center; /* opcional, centra horizontalmente */
+  height: 100%;
+}
+::ng-deep .dx-datagrid-headers {
+    color: #333;
+    font-weight: 600;
+    touch-action: pinch-zoom
+}
+
+::ng-deep .dx-datagrid-headers .dx-datagrid-table .dx-row>td {
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
