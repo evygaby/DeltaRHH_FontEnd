@@ -58,12 +58,13 @@ import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/Lis
 import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
 import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
 import { ComparaRolesComponent } from './Roles/ComparaRoles/ComparaRoles.component';
-import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDatos.component';
+import { ActualizaDatosComponent } from './Procesos/ActualizaDatos/ActualizaDatos.component';
 import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
 import { DocumentoEncargosComponent } from './Reportes/DocumentoEncargos/DocumentoEncargos.component';
 import { DistributivoMaestrasComponent } from './ConsultasAcademicas/DistributivoMaestras/DistributivoMaestras.component';
 import { ComparaIESSComponent } from './Procesos/ComparaIESS/ComparaIESS.component';
 import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldos.component';
+import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,7 @@ import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldo
     DocumentoEncargosComponent, 
     DistributivoMaestrasComponent,
     ComparaIESSComponent,
-    PrestamoSaldosComponent,
+    PrestamoSaldosComponent,VisorRolesComponent,
   ],
   exports: [AutoFocusInvalidDirective],
   imports: [

@@ -18,12 +18,15 @@ import { ListaDatosEmpleadosComponent } from './Reportes/ListaDatosEmpleados/Lis
 import { JefesAreaComponent } from './ConsultasAcademicas/JefesArea/JefesArea.component';
 import { PegPreceptoraComponent } from './ConsultasAcademicas/PegPreceptora/PegPreceptora.component';
 import { ComparaRolesComponent } from './Roles/ComparaRoles/ComparaRoles.component';
-import { ActualizaDatosComponent } from './Reportes/ActualizaDatos/ActualizaDatos.component';
+import { ActualizaDatosComponent } from './Procesos/ActualizaDatos/ActualizaDatos.component';
 import { TitulosEmpComponent } from './Reportes/TitulosEmp/TitulosEmp.component';
 import { DocumentoEncargosComponent } from './Reportes/DocumentoEncargos/DocumentoEncargos.component';
 import { DistributivoMaestrasComponent } from './ConsultasAcademicas/DistributivoMaestras/DistributivoMaestras.component';
 import { ComparaIESSComponent } from './Procesos/ComparaIESS/ComparaIESS.component';
 import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldos.component';
+import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
+import { MenuGuard } from '../guards/menu.guard';
+import { HomeComponent } from './Home/Home.component';
 
 
 const routes: Routes = [
@@ -35,139 +38,42 @@ const routes: Routes = [
     path: "usuario",
     component: UsuarioComponent
   },
-  {
-    path: "empleados",
-    component: EmpleadosComponent
-  },
-  {
-    path: "Orlas",
-    component: OrlasComponent
-  },
-  {
-    path: "CumpleaniosPersonal",
-    component: CumpleaniosPersonalComponent
-  },
-  {
-    path: "NumeroAlumnas",
-    component: NumeroAlumnasComponent
-  },
+  {path: "Home", component: HomeComponent},
 
-  {
-    path: "ConsultaActasReunion",
-    component: ConsultaActasReunionComponent
-  },
-  {
-    path: "ListaCapacitaciones",
-    component: ListaCapacitacionesComponent
-  },
-{
-    path: "ListaDatosEmpleados",
-    component: ListaDatosEmpleadosComponent
-  },
-  {
-    path: "JefesArea",
-    component: JefesAreaComponent
-  },
-  {
-    path: "PegPreceptora",
-    component: PegPreceptoraComponent
-  },
-  {
-    path: "empleadosdetalle",
-    component: InfoempleadoComponent
-  },
-  {
-    path: "ComparaRoles",
-    component: ComparaRolesComponent
-  },
-  {
-    path: "ActualizaDatos",
-    component: ActualizaDatosComponent
-  },
-    {
-    path: "TitulosEmp",
-    component: TitulosEmpComponent
-  },
-  {
-    path: "DocumentoEncargos",
-    component: DocumentoEncargosComponent
-  },
-   {
-    path: "DistributivoMaestras",
-    component: DistributivoMaestrasComponent
-  },
-  {
-    path: "ComparaIESS",
-    component: ComparaIESSComponent
-  },
-   {
-    path: "PrestamoSaldos",
-    component: PrestamoSaldosComponent
-  },
-  {
-    path: "paises",
-    component: PaisesComponent
-  },
-  {
-    path: "provincias",
-    component: ProvinciasComponent
-  },
-  {
-    path: "cantones",
-    component: CantonesComponent
-  },
-  {
-    path: '', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
-  },
-  {
-    path: 'apps', loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule)
-  },
-  {
-    path: 'ecommerce', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule)
-  },
-  {
-    path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule)
-  },
-  {
-    path: 'tasks', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)
-  },
-  {
-    path: 'crm', loadChildren: () => import('./crm/crm.module').then(m => m.CrmModule)
-  },
-  {
-    path: 'crypto', loadChildren: () => import('./crypto/crypto.module').then(m => m.CryptoModule)
-  },
-  {
-    path: 'invoices', loadChildren: () => import('./invoices/invoices.module').then(m => m.InvoicesModule)
-  },
-  {
-    path: 'tickets', loadChildren: () => import('./tickets/tickets.module').then(m => m.TicketsModule)
-  },
-  {
-    path: 'pages', loadChildren: () => import('./extrapages/extraspages.module').then(m => m.ExtraspagesModule)
-  },
-  { path: 'ui', loadChildren: () => import('./ui/ui.module').then(m => m.UiModule) },
-  {
-    path: 'advance-ui', loadChildren: () => import('./advance-ui/advance-ui.module').then(m => m.AdvanceUiModule)
-  },
-  {
-    path: 'forms', loadChildren: () => import('./form/form.module').then(m => m.FormModule)
-  },
-  {
-    path: 'tables', loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule)
-  },
-  {
-    path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
-  },
-  {
-    path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule)
-  },
-  {
-    path: 'maps', loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule)
-  },
-  {
-    path: 'marletplace', loadChildren: () => import('./nft-marketplace/nft-marketplace.module').then(m => m.NftMarketplaceModule)
-  },
+  ///////////ACADEMICO
+  {path: "DistributivoMaestras", component: DistributivoMaestrasComponent, canActivate: [MenuGuard]},
+  {path: "JefesArea", component: JefesAreaComponent, canActivate: [MenuGuard]},
+  {path: "NumeroAlumnas", component: NumeroAlumnasComponent, canActivate: [MenuGuard]},
+  {path: "PegPreceptora", component: PegPreceptoraComponent, canActivate: [MenuGuard]},
+
+  ///////////MANTENIMIENTOS
+  {path: "cantones", component: CantonesComponent, canActivate: [MenuGuard]},
+  {path: "empleados", component: EmpleadosComponent, canActivate: [MenuGuard]},
+  {path: "empleadosdetalle", component: InfoempleadoComponent, canActivate: [MenuGuard]},
+  {path: "paises", component: PaisesComponent, canActivate: [MenuGuard]},
+  {path: "provincias", component: ProvinciasComponent, canActivate: [MenuGuard]},
+
+  ///////////PROCESOS DE ROL
+  {path: "ComparaRoles", component: ComparaRolesComponent, canActivate: [MenuGuard]},
+  {path: "VisorRoles", component: VisorRolesComponent, canActivate: [MenuGuard]},
+
+  ///////////PROCESOS
+  {path: "ActualizaDatos", component: ActualizaDatosComponent, canActivate: [MenuGuard]},
+  {path: "ComparaIESS", component: ComparaIESSComponent, canActivate: [MenuGuard]},
+
+  ///////////REPORTES
+  {path: "ConsultaActasReunion", component: ConsultaActasReunionComponent, canActivate: [MenuGuard]},
+  {path: "ListaCapacitaciones", component: ListaCapacitacionesComponent, canActivate: [MenuGuard]},
+  {path: "Orlas", component: OrlasComponent, canActivate: [MenuGuard]},
+  {path: "CumpleaniosPersonal", component: CumpleaniosPersonalComponent, canActivate: [MenuGuard]},
+  {path: "PrestamoSaldos", component: PrestamoSaldosComponent, canActivate: [MenuGuard]},
+  {path: "DocumentoEncargos", component: DocumentoEncargosComponent, canActivate: [MenuGuard]},
+  {path: "ListaDatosEmpleados", component: ListaDatosEmpleadosComponent, canActivate: [MenuGuard]},
+  {path: "TitulosEmp", component: TitulosEmpComponent, canActivate: [MenuGuard]},
+  
+  {path: 'pages', loadChildren: () => import('./extrapages/extraspages.module').then(m => m.ExtraspagesModule)},
+  // fallback por si ponen una ruta que no existe
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

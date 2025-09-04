@@ -1,0 +1,11 @@
+.dx-field {
+    margin: 0 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+.dx-field-label {
+    width: 80%;
+}
+.dx-field-value{
+    width: 95% !important;
+}

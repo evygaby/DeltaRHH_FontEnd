@@ -1,0 +1,19 @@
+.dx-field {
+    margin: 0 0 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.dx-field-label {
+    float: left;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333;
+    cursor: default;
+    padding: 8px 15px 9px 0;
+}
+::ng-deep .dx-datagrid .dx-data-row .dx-datagrid-text-content {
+  white-space: normal;   /* Permite que el texto haga wrap */
+}

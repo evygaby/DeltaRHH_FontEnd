@@ -130,6 +130,9 @@ export class EventService {
   Consultarempresa(usu: string, pass: string): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/EMPRESAS?usu=" + usu + "&contrasena=" + pass, httpOptions);
   }
+    FechaProceso(usu: string, pass: string,empresa: number): Observable<any> {
+    return this.http.get(this.config.apiUrl + "VariosReportes/FechaProceso?usu=" + usu + "&contrasena=" + pass +"empresa=" + empresa, httpOptions);
+  }
   ConsultarCentros(usu: string, pass: string, idempresa: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/Centro?usu=" + usu + "&contrasena=" + pass + "&idempresa=" + idempresa, httpOptions);
   }
@@ -337,5 +340,43 @@ export class EventService {
 //this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+Fecha , data)
     //const url = this.config.apiUrl + "VariosReportes/CompareData/compare-data";
     return this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+f+"&empresa="+empresa , data);
+  }
+   Prestamos(usu: string, pass: string, empresa: number,saldo:number, desde?: Date, hasta?: Date): Observable<any> {
+    let params = new HttpParams();
+    if (desde) {
+      params = params.set('desde', desde.toISOString());
+    }
+    if (hasta) {
+      params = params.set('hasta', hasta.toISOString());
+    }
+    if (saldo>=0) {
+      params = params.set('saldo', saldo);
+    }
+    params = params
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "VariosReportes/Prestamos";
+    var s = this.http.get(url, { params });
+    return this.http.get(url, { params });
+  }
+  ImprimePrestamos(usu: string, pass: string, empresa: number,saldo?:number, desde?: Date, hasta?: Date): Observable<Blob> {
+    let params = new HttpParams();
+    if (desde) {
+      params = params.set('desde', desde.toISOString());
+    }
+    if (hasta) {
+      params = params.set('hasta', hasta.toISOString());
+    }
+    if (saldo) {
+      params = params.set('saldo', saldo);
+    }
+    params = params
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    const url = this.config.apiUrl + "ImpresionReportes/Prestamos";
+
+    return this.http.get(url, { params: params, responseType: 'blob' });
   }
 }

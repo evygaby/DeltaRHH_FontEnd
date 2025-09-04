@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(GlobalComponent.CURRENT_USER, JSON.stringify(this.user));
           localStorage.setItem(GlobalComponent.Menu, JSON.stringify(this.menu));
           //  // localStorage.setItem('token', data.token);
-          this.router.navigate(['/']);
+          this.router.navigate(['/Home']);
         } else {
           this.loading.closeSpinner();
           this.toastService.show("Usuario o contraseña incorrectos", { classname: 'bg-danger text-white', delay: 15000 });

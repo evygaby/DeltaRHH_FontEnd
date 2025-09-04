@@ -200,7 +200,7 @@ export class TopbarComponent implements OnInit {
   changeMode(mode: string) {
     this.mode = mode;
     this.eventService.broadcast("changeMode", mode);
-
+   mode="dark";
     switch (mode) {
       case "light":
         document.body.setAttribute("data-layout-mode", "light");
