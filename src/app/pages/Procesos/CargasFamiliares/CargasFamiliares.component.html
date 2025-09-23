@@ -1,3 +1,30 @@
-<p>
-  CargasFamiliares works!
-</p>
+<div style="height: 85vh;">
+  <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'" [rowAlternationEnabled]="true"
+  [editing]="{
+    mode: 'batch',
+    allowUpdating: true
+  }">
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxi-column dataField="RAZONSOCIAL" [fixed]="true" caption="Empleado"></dxi-column>
+    <dxi-column dataField="CARGAS_FAMILIARES" caption="#Cargas" [width]="'70px'"></dxi-column>
+    <dxi-column caption="Gastos" >
+       <dxi-column dataField="GASTO_VIVIENDA" caption="Vivienda" dataType="number" [width]="'80px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+      <dxi-column dataField="GASTO_EDUC" caption="Educación" dataType="number" [width]="'80px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+      <dxi-column dataField="GASTO_SALUD" caption="Salud" dataType="number" [width]="'80px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+      <dxi-column dataField="GASTO_VESTIMENTA" caption="Vestimenta" dataType="number" [width]="'90px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+      <dxi-column dataField="GASTO_ALIMENTA" caption="Alimentación" dataType="number" [width]="'85px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+      <dxi-column dataField="GASTO_TURISMO" caption="Turismo" dataType="number" [width]="'80px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+    </dxi-column>
+    <dxi-column dataField="GASTOS" caption="Total de Gastos" dataType="number" [width]="'120px'"
+      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+  </dx-data-grid>
+</div>

@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
           this.user.RAZONSOCIAL = user2.usuarioLogueado.RAZONSOCIAL
           this.user.MAIL = user2.usuarioLogueado.MAIL
           this.user.usu_adm = user2.usuarioLogueado.USU_RRHH
+          this.user.fecha_proceso=user2.usuarioLogueado.FECHA_PROCESO 
           this.loading.closeSpinner();
           this.user.password = this.f['password'].value
           this.user.Nombre = this.f['usuario'].value

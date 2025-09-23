@@ -9,4 +9,5 @@ export class User {
   Codigo?: number;
   token?: string;
   usu_adm?:string;
+  fecha_proceso?:Date;
 }

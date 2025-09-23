@@ -96,7 +96,7 @@ export class DocumentoEncargosComponent implements OnInit {
         .join(', ');
       content.push(
         {
-          text: 'Daule, ' + this.formatFecha(new Date()),
+          text: 'Daule, 5 de mayo de 2025', //+ this.formatFecha(new Date()),
           fontSize: 11,
           bold: false,
           alignment: 'left',
@@ -122,10 +122,10 @@ export class DocumentoEncargosComponent implements OnInit {
             { text: persona.RAZONSOCIAL, bold: true },
             ' con C.I. ',
             { text: persona.NUMCEDULA, bold: true },
-            ' acepto el (los) encargo(s) temporal asignados por COPECE - ' + Colegio + ' consistente en: ',
+            ' acepto el (los) encargo(s) temporal(es) asignados por COPECE - ' + Colegio + ' consistente en: ',
             { text: listaEncargos.trim(), bold: true },
-            '; comprometiéndome a cumplir con las responsabilidades y actividades inherentes a dichas funciones temporales.\n', '\n',
-            'Por el desempeño de este(os) encargo(s) temporal, recibiré condicionalmente el pago correspondiente durante los diez meses de clases establecidos en el cronograma de actividades del Ministerio de Educación:',
+            '; comprometiéndome a cumplir con las responsabilidades y actividades inherentes a dichas funciones temporales, durante el año lectivo.\n', '\n',
+            'Por el desempeño de este(os) encargo(s) temporal(es), recibiré condicionalmente el pago correspondiente durante los diez meses de clases establecidos en el cronograma de actividades del Ministerio de Educación:',
           ], alignment: 'justify',
         },
         '\n', '\n', '\n',
@@ -135,7 +135,7 @@ export class DocumentoEncargosComponent implements OnInit {
             body: [
               [
                 { text: 'Descripción del Encargo Temporal', style: 'tableHeader' },
-                { text: 'Ingreso variable', style: 'tableHeader' }
+                { text: 'Ingreso variable 2025', style: 'tableHeader' }
               ],
               ...encargos.map((e: any) => [
                 e.ENCARGO,
@@ -156,7 +156,7 @@ export class DocumentoEncargosComponent implements OnInit {
           margin: [20, 0, 20, 0]
         },
         '\n\n',
-        { text: 'Atentamente,\n\n\n_________________________________________', margin: [0, 20, 0, 0] },
+        { text: 'Atentamente,\n\n\n\n\n_________________________________________', margin: [0, 20, 0, 0] },
         { text: persona.RAZONSOCIAL, bold: true },
         { text: `C.I. ${persona.NUMCEDULA}` },
         // 👇 salto de página para la siguiente persona

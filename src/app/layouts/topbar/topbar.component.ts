@@ -21,6 +21,7 @@ import { User } from "src/app/core/models/auth.models";
 import { GlobalComponent } from "src/app/global-component";
 import { Subscription } from "rxjs";
 import { CacheService } from "src/app/core/services/cache.service";
+import { DataRowOutlet } from '@angular/cdk/table';
 
 @Component({
   selector: "app-topbar",
@@ -44,6 +45,7 @@ export class TopbarComponent implements OnInit {
   cookieValue: any;
   userData: any;
   user!: User;
+  FechaProceso: any;
   private cacheSubscription!: Subscription;
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -59,11 +61,11 @@ export class TopbarComponent implements OnInit {
     private TokenStorageService: TokenStorageService
   ) {
     this.cacheSubscription = this.cacheService.cache$.subscribe((data) => {
-      if(data!=null){
-      if(data.clase=="empresas" ){
-        this.empresas = data.data;
+      if (data != null) {
+        if (data.clase == "empresas") {
+          this.empresas = data.data;
+        }
       }
-    }
     });
 
     this.getData("empresas");
@@ -73,29 +75,29 @@ export class TopbarComponent implements OnInit {
     this.loading.showSpinner2("Cargando")
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
     this.user.ID_EMPRESA = event.NUM_INSTITU;
-    this.user.NOMBRECOMPAÑIA=event.ID_INSTITUCION 
+    this.user.NOMBRECOMPAÑIA = event.ID_INSTITUCION
+
+    this.eventService
+      .FechaProceso(this.user.Nombre!, this.user.password!, this.user.ID_EMPRESA!)
+      .subscribe({
+        next: (data) => {
+          try {
+            this.user.fecha_proceso = data.FECHA;
+          } catch (error) {
+          } finally {
+            this.loading.closeSpinner();
+          }
+        },
+        error: (err) => {
+          console.error(err);
+          this.loading.closeSpinner();
+        }
+      });
     localStorage.setItem(
       GlobalComponent.CURRENT_USER,
       JSON.stringify(this.user)
     );
     window.location.reload();
-    // this.eventService
-    //   .Consultarempleados(
-    //     this.user.Nombre!,
-    //     this.user.password!,
-    //     this.user.ID_EMPRESA!
-    //   )
-    //   .subscribe((data) => {
-    //     try {
-    //       this.cacheService.clear("empleados");
-    //       this.cacheService.set("empleados","empleados",new Date(), data);
-    //       this.loading.closeSpinner()
-    //       // this.eventService.sendData(data.Result);
-    //     } catch (error) {
-    //       console.error(error);
-    //       // maneja el error como prefieras aquí
-    //     }
-    //   });
   }
 
   getData(page: string): void {
@@ -112,16 +114,16 @@ export class TopbarComponent implements OnInit {
             );
             this.empresas = data;
             this.selectedPeople = this.user.ID_EMPRESA;
-            
-            
+
+
             this.cacheService.clear(page);
-            this.cacheService.set(page,page,new Date(), data);
+            this.cacheService.set(page, page, new Date(), data);
           } catch (error) {
             console.error(error);
             // maneja el error como prefieras aquí
           }
         });
-    } 
+    }
   }
   ngOnInit(): void {
     this.userData = this.TokenStorageService.getUser();
@@ -200,7 +202,7 @@ export class TopbarComponent implements OnInit {
   changeMode(mode: string) {
     this.mode = mode;
     this.eventService.broadcast("changeMode", mode);
-   mode="dark";
+    mode = "dark";
     switch (mode) {
       case "light":
         document.body.setAttribute("data-layout-mode", "light");
@@ -240,7 +242,7 @@ export class TopbarComponent implements OnInit {
     this.languageService.setLanguage(lang);
   }
 
-  oncheckboxchange(evnt: any) {}
+  oncheckboxchange(evnt: any) { }
 
   /**
    * Logout the user
@@ -278,9 +280,9 @@ export class TopbarComponent implements OnInit {
     this.cart_length = this.cart_length - 1;
     this.total > 1
       ? ((document.getElementById("empty-cart") as HTMLElement).style.display =
-          "none")
+        "none")
       : ((document.getElementById("empty-cart") as HTMLElement).style.display =
-          "block");
+        "block");
     document.getElementById("item_" + id)?.remove();
   }
 

@@ -65,6 +65,7 @@ import { DistributivoMaestrasComponent } from './ConsultasAcademicas/Distributiv
 import { ComparaIESSComponent } from './Procesos/ComparaIESS/ComparaIESS.component';
 import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldos.component';
 import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
+import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFamiliares.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
     DocumentoEncargosComponent, 
     DistributivoMaestrasComponent,
     ComparaIESSComponent,
-    PrestamoSaldosComponent,VisorRolesComponent,
+    PrestamoSaldosComponent,VisorRolesComponent,CargasFamiliaresComponent,
   ],
   exports: [AutoFocusInvalidDirective],
   imports: [

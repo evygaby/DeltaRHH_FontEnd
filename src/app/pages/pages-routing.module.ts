@@ -27,6 +27,7 @@ import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldo
 import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
 import { MenuGuard } from '../guards/menu.guard';
 import { HomeComponent } from './Home/Home.component';
+import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFamiliares.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,7 @@ const routes: Routes = [
   ///////////PROCESOS
   {path: "ActualizaDatos", component: ActualizaDatosComponent, canActivate: [MenuGuard]},
   {path: "ComparaIESS", component: ComparaIESSComponent, canActivate: [MenuGuard]},
+  {path: "CargasFamiliares", component: CargasFamiliaresComponent, canActivate: [MenuGuard]},
 
   ///////////REPORTES
   {path: "ConsultaActasReunion", component: ConsultaActasReunionComponent, canActivate: [MenuGuard]},
