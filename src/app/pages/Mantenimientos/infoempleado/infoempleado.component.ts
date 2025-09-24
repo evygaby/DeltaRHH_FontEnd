@@ -53,6 +53,7 @@ export class InfoempleadoComponent implements PipeTransform {
   height = 90;
   iess!: any;
   autoResizeEnabled!: boolean;
+  visiblejubilado: boolean=true;
   Depa!: any;
   ListaCargos!: any;
   Secciones!: any;
@@ -261,6 +262,9 @@ this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,N
     this.fotoencuesta=this.empleado.NUMCEDULA
     this.foto=this.config.apiUrlFoto+ this.fotoencuesta+ ".jpg"
     this.empleados = this.servicios.miObjetoaray;
+    if(this.empleado.TIPCONTRATO=='J'){
+      this.visiblejubilado=false
+    }
     this.employeesDataSource = new DataSource({
       store: this.empleado.FamiliarCargas,
       sort: "CODEMP",
@@ -328,7 +332,16 @@ if(e.newData.CARGO_PRINCIPAL ='S'){
 
   console.log('Antes de guardar cambios:', e.oldData, '→', e.newData);
 }
+onSelectChangetipo(event: Event){
+  const value = (event.target as HTMLSelectElement).value;
+  if(value=='5: J'){
+this.visiblejubilado=false
+  }else{
+    this.visiblejubilado=true
+  }
 
+
+}
 
 onSelectChangecedula(event: Event){
   const value = (event.target as HTMLSelectElement).value;

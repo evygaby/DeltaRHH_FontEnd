@@ -132,7 +132,7 @@ export class EventService {
   }
    
   ConsultarCentros(usu: string, pass: string, idempresa: number): Observable<any> {
-    return this.http.get(this.config.apiUrl + "Empleados/Centro?usu=" + usu + "&pass=" + pass + "&idempresa=" + idempresa, httpOptions);
+    return this.http.get(this.config.apiUrl + "Empleados/Centro?usu=" + usu + "&contrasena=" + pass + "&idempresa=" + idempresa, httpOptions);
   }
   ListaPeriodosLectivos(usu: string, pass: string): Observable<any> {
     return this.http.get(this.config.apiUrl + "VariosReportes/ListaPeriodo?usu=" + usu + "&pass=" + pass, httpOptions);

@@ -994,7 +994,7 @@
               />
             </div>
           </div>
-          <div class="row align-items-start">
+          <div [hidden]="!visiblejubilado" class="row align-items-start">
             <div class="col-sm-6" style="padding-right: 0px; padding-left: 0px">
               <label
                 for="colFormLabelSm"
@@ -1052,7 +1052,7 @@
               >
               <select
                 class="form-control form-control-sm"
-                [(ngModel)]="empleado.TIPCONTRATO"
+                [(ngModel)]="empleado.TIPCONTRATO" (change)="onSelectChangetipo($event)"
                 name="TIPCONTRATO"
                 required
                 #TIPCONTRATO="ngModel"
@@ -1069,7 +1069,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
+            <div [hidden]="!visiblejubilado" class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
               <label
                 for="colFormLabelSm"
                 style="font-size: 9px"
@@ -1093,7 +1093,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-sm-5" style="padding-right: 0px; padding-left: 0px">
+            <div [hidden]="!visiblejubilado" class="col-sm-5" style="padding-right: 0px; padding-left: 0px">
               <label
                 for="colFormLabelSm"
                 style="font-size: 9px"
@@ -1155,8 +1155,8 @@
                 <dxi-validation-rule type="required"></dxi-validation-rule>
                 <dxo-lookup
                   [dataSource]="empresas"
-                  displayExpr="CODIGO"
-                  valueExpr="ID_EMPRESA"
+                  displayExpr="ID_INSTITUCION"
+                  valueExpr="NUM_INSTITU"
                 ></dxo-lookup>
               </dxi-column>
               <dxi-column
@@ -1450,11 +1450,9 @@
                 name="MOTIVO_SALIDA"
                 aria-label="Default select example"
               >
+               <option value=""></option>
                 <option
-                  *ngFor="let person of motivosalida"
-                  value="{{ person.ID }}"
-                >
-                  {{ person.Name }}
+                  *ngFor="let person of motivosalida" value="{{ person.ID }}">{{ person.Name }}
                 </option>
               </select>
             </div>
