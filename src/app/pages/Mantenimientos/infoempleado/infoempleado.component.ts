@@ -190,7 +190,36 @@ this.router.navigate(['/empleados']);
     this.empleado.TIPO_DOCUMENTO='C'
     this.empleado.SEGURO='NO'
     }else{
-      
+           const observables = {
+        a: this.servicios.get(
+          "Empleados/Sueldos?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password+
+            "&codemp=" +
+            Number.parseInt( this.empleado.CODEMP!)
+        ),
+         ca: this.servicios.get(
+          "Empleados/capacitaciones?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password+
+            "&cedula=" +
+            this.empleado.NUMCEDULA!
+        )
+      };
+      const combined = combineLatest(observables);
+      combined.subscribe({
+        next: (data: any) => {
+        this.capacitaciones=data.ca
+          this.sueldos=data.a
+          this.loading.closeSpinner()
+        },
+        error: (error: any) => {
+           this.loading.closeSpinner()
+            this.loading.showMensajeError(error.message);
+        },
+      });  
       this.condicion="Guardar"
       this.Razon=this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
     if(this.ciudades!= undefined)
@@ -218,47 +247,10 @@ this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,N
      }
      if(this.empleado.CODEMP!=undefined){
       this.loading.showSpinner2("Consultando")
-     const observables = {
-        a: this.servicios.get(
-          "Empleados/Sueldos?usu=" +
-            this.user.Nombre +
-            "&contrasena=" +
-            this.user.password+
-            "&codemp=" +
-            Number.parseInt( this.empleado.CODEMP!)
-        ),
-         ca: this.servicios.get(
-          "Empleados/capacitaciones?usu=" +
-            this.user.Nombre +
-            "&contrasena=" +
-            this.user.password+
-            "&cedula=" +
-            this.empleado.NUMCEDULA!
-        ),
-        b: this.servicios.get(
-          "Empleados/GCENTROCOSTO2?usu=" +
-            this.user.Nombre +
-            "&contrasena=" +
-            this.user.password
-        ),
-      
-      };
-      const combined = combineLatest(observables);
-      combined.subscribe({
-        next: (data: any) => {
-        this.capacitaciones=data.ca
-          this.sueldos=data.a
-           this.GCENTROCOSTO=data.b
-          this.loading.closeSpinner()
-        },
-        error: (error: any) => {
-           this.loading.closeSpinner()
-            this.loading.showMensajeError(error.message);
-        },
-      });    
-      }
+
     }
-    
+     
+      }
     this.fotoencuesta=this.empleado.NUMCEDULA
     this.foto=this.config.apiUrlFoto+ this.fotoencuesta+ ".jpg"
     this.empleados = this.servicios.miObjetoaray;
@@ -304,9 +296,32 @@ this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,N
       // this.NO_DEPA = this.data[6];
     
   }
+        const observables = {    
+        b: this.servicios.get(
+          "Empleados/GCENTROCOSTO2?usu=" +
+            this.user.Nombre +
+            "&contrasena=" +
+            this.user.password
+        ),
+      
+      };
+      const combined = combineLatest(observables);
+      combined.subscribe({
+        next: (data: any) => {
+           this.GCENTROCOSTO=data.b
+          this.loading.closeSpinner()
+        },
+        error: (error: any) => {
+           this.loading.closeSpinner()
+            this.loading.showMensajeError(error.message);
+        },
+      });  
   }
 
-
+searchContains(term: string, item: any): boolean {
+  return item.CODIGO_IESS.toLowerCase().includes(term.toLowerCase()) || 
+         item.CARGO_ACTIVIDAD.toLowerCase().includes(term.toLowerCase());
+}
   onEditorPreparing(e: any) {
   if (e.parentType === 'dataRow' && e.dataField === 'CODDEP') {
     e.editorOptions.onValueChanged = (args: any) => {
@@ -443,6 +458,11 @@ onSelectChange(event: Event) {
 const cantidadActivos = this.empleado.Departamentos!.filter(u=> u.CARGO_PRINCIPAL=='S').length;
 if(cantidadActivos>1){
   this.loading.showMensajeError("Cargo principal solo debe de ser uno");
+  return
+}
+const cantidadcentros = this.empleado.CentroCosto?.length || 0;
+if(cantidadcentros==0){
+  this.loading.showMensajeError("Debe elegir un centro");
   return
 }
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);

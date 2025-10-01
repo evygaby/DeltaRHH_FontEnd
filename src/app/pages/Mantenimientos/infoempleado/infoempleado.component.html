@@ -1380,21 +1380,21 @@
                 >Codigo IEES</label
               >
               
-              <select
-                class="form-control form-control-sm"
-                [(ngModel)]="empleado.CODIGO_IESS"
-                name="CODIGO_IESS"
-                required
-                #CODIGO_IESS="ngModel"
-                aria-label="Default select example"
-                [class.is-invalid]="
-                  CODIGO_IESS.invalid && (CODIGO_IESS.touched || intentoEnvio)" >
-                 <option value="">-- Seleccione --</option>
-                <option
-                  *ngFor="let person of iess" [ngValue]="person.CODIGO_IESS">
-                  {{ person.CODIGO_IESS }} - {{ person.CARGO_ACTIVIDAD }}
-                </option>
-              </select>
+<ng-select
+  [items]="iess"
+  bindLabel="CARGO_ACTIVIDAD"  
+  bindValue="CODIGO_IESS"  
+  [(ngModel)]="empleado.CODIGO_IESS"
+  placeholder="Seleccione una opción"
+  [searchable]="true"
+  [clearable]="true"
+  >  <!-- Usamos una función personalizada de búsqueda -->
+  <ng-template ng-option-tmp let-item="item">
+    {{ item.CODIGO_IESS }} - {{ item.CARGO_ACTIVIDAD }}
+  </ng-template>
+</ng-select>
+
+
             </div>
 
             <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px">
