@@ -3,7 +3,7 @@
   [editing]="{
     mode: 'batch',
     allowUpdating: true
-  }">
+  }"  (onSaving)="onSaving($event)">
     <dxo-paging [pageSize]="100"></dxo-paging>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
