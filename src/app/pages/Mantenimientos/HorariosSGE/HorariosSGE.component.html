@@ -9,22 +9,9 @@
     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
     <dxo-search-panel [visible]="true"></dxo-search-panel>
     <dxi-column dataField="RAZONSOCIAL" [fixed]="true" caption="Empleado"></dxi-column>
-    <dxi-column dataField="CARGAS_FAMILIARES" caption="#Cargas" [width]="'70px'"></dxi-column>
-    <dxi-column caption="Gastos" >
-       <dxi-column dataField="GASTO_VIVIENDA" caption="Vivienda" dataType="number" [width]="'80px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
-      <dxi-column dataField="GASTO_EDUC" caption="Educación" dataType="number" [width]="'80px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
-      <dxi-column dataField="GASTO_SALUD" caption="Salud" dataType="number" [width]="'80px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
-      <dxi-column dataField="GASTO_VESTIMENTA" caption="Vestimenta" dataType="number" [width]="'90px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
-      <dxi-column dataField="GASTO_ALIMENTA" caption="Alimentación" dataType="number" [width]="'85px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
-      <dxi-column dataField="GASTO_TURISMO" caption="Turismo" dataType="number" [width]="'80px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
-    </dxi-column>
-    <dxi-column dataField="GASTOS" caption="Total de Gastos" dataType="number" [width]="'120px'"
-      [format]="{ type: 'currency', currency: 'USD' , precision: 2}"></dxi-column>
+    <dxi-column dataField="HOR_DIA" caption="#Día" [width]="'70px'"></dxi-column>
+       <dxi-column dataField="HOR_ENTRADA" caption="H. Entrada" dataType="number" [width]="'80px'"></dxi-column>
+      <dxi-column dataField="HOR_SALIDA" caption="H. Salida" dataType="number" [width]="'80px'"></dxi-column>
+      <dxi-column dataField="HOR_REFERENCIA" caption="Salud" dataType="number"></dxi-column>
   </dx-data-grid>
 </div>
