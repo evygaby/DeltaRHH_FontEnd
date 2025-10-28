@@ -92,8 +92,9 @@
   // form
   --#{$prefix}input-bg: #{$white};
   --#{$prefix}input-border: #{$gray-400};
-  --#{$prefix}input-focus-border: #{tint-color($component-active-bg, 50%)};
+  --#{$prefix}input-focus-border: #{shade-color($component-active-bg, 50%)};
   --#{$prefix}input-disabled-bg: #{$gray-200};
+  --#{$prefix}input-focus-shadow: 0 0 0 3px color-mix(in srgb, var(--#{$prefix}input-focus-border) 40%, transparent);
 
   // input-group-addon
   --#{$prefix}input-group-addon-bg: #{$gray-200};
