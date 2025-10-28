@@ -1,0 +1,41 @@
+::ng-deep .dx-datagrid-text-content{
+    text-overflow: clip;
+    text-wrap: auto !important;
+    text-align: center !important;
+}
+
+::ng-deep .celda-diferente {
+  background-color: #ffe6e6 !important;
+  color: #dd9898 !important;
+  font-weight: 600;
+}
+::ng-deep .flecha-arriba {
+  position: relative;
+  color: #155724 !important;
+  background-color: #d4edda !important;
+  font-weight: 600;
+}
+
+::ng-deep .flecha-arriba::after {
+  content: " ▲";
+  color: #28a745; /* verde */
+  font-size: 14px;
+}
+
+::ng-deep .flecha-abajo {
+  position: relative;
+  color: #721c24 !important;
+  background-color: #f8d7da !important;
+  font-weight: 600;
+}
+
+::ng-deep .flecha-abajo::after {
+  content: " ▼";
+  color: #dc3545; /* rojo */
+  font-size: 14px;
+}
+
+::ng-deep .sin-cambio {
+  color: #555;
+  background-color: #f5f5f5 !important;
+}

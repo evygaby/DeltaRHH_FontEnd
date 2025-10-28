@@ -284,6 +284,19 @@ export class EventService {
 
     return this.http.get(url, { params });
   }
+  ComparaMensualRoles(usu: string, pass: string, empresa: number, fecha?: Date): Observable<any> {
+    let params = new HttpParams()
+      .set('usu', usu)
+      .set('pass', pass)
+      .set('empresa', empresa);
+    if (fecha) {
+      params = params.set('fecha', fecha.toISOString());
+    }
+
+    const url = this.config.apiUrl + "Rol/ComparativoRolesMensual";
+
+    return this.http.get(url, { params });
+  }
   ActualizaDatos(usu: string, pass: string, empresa: number,): Observable<any> {
     let params = new HttpParams()
       .set('usu', usu)

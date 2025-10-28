@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule, DxFileUploaderModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule, DxFileUploaderModule, DxPopupModule } from 'devextreme-angular';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -66,6 +66,8 @@ import { ComparaIESSComponent } from './Procesos/ComparaIESS/ComparaIESS.compone
 import { PrestamoSaldosComponent } from './Reportes/PrestamoSaldos/PrestamoSaldos.component';
 import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
 import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFamiliares.component';
+import { HorariosSGEComponent } from './Mantenimientos/HorariosSGE/HorariosSGE.component';
+import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.component';
 
 @NgModule({
   declarations: [
@@ -87,12 +89,16 @@ import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFam
     JefesAreaComponent,
     PegPreceptoraComponent,
     ComparaRolesComponent,
-    ActualizaDatosComponent, 
-    TitulosEmpComponent, 
-    DocumentoEncargosComponent, 
+    ComparaMensualComponent,
+    ActualizaDatosComponent,
+    TitulosEmpComponent,
+    DocumentoEncargosComponent,
     DistributivoMaestrasComponent,
     ComparaIESSComponent,
-    PrestamoSaldosComponent,VisorRolesComponent,CargasFamiliaresComponent,
+    PrestamoSaldosComponent, 
+    VisorRolesComponent, 
+    CargasFamiliaresComponent, 
+    HorariosSGEComponent,
   ],
   exports: [AutoFocusInvalidDirective],
   imports: [
@@ -106,7 +112,7 @@ import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFam
     LeafletModule,
     NgbDropdownModule, NgSelectModule, DxBoxModule,
     SimplebarAngularModule,
-    PagesRoutingModule, 
+    PagesRoutingModule,
     DxSelectBoxModule,
     DxTextBoxModule,
     DxTemplateModule,
@@ -117,17 +123,17 @@ import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFam
     DxListModule,
     LightboxModule,
     DashboardsModule,
-    AppsModule, 
+    AppsModule,
     DxDataGridModule,
-    EcommerceModule, 
-    DxDateRangeBoxModule, 
+    EcommerceModule,
+    DxDateRangeBoxModule,
     DxPivotGridModule,
     DxFileUploaderModule,
-    DxToolbarModule, 
-    DxButtonModule, 
-    DxPivotGridFieldChooserModule, 
-    DxScrollViewModule, 
-    DxTabPanelModule,
+    DxToolbarModule,
+    DxButtonModule,
+    DxPivotGridFieldChooserModule,
+    DxScrollViewModule,
+    DxTabPanelModule, DxPopupModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
