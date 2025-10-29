@@ -33,7 +33,7 @@ import { DashboardsModule } from "./dashboards/dashboards.module";
 import { AppsModule } from "./apps/apps.module";
 import { EcommerceModule } from "./ecommerce/ecommerce.module";
 import { UsuarioComponent } from './usuario/usuario.component';
-import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule, DxFileUploaderModule, DxPopupModule, DxFormModule, DxValidatorModule } from 'devextreme-angular';
+import { DxBoxModule, DxCardViewModule, DxCheckBoxModule, DxListModule, DxDataGridModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxTreeMapModule, DxDateRangeBoxModule, DxPivotGridModule, DxToolbarModule, DxButtonModule, DxPivotGridFieldChooserModule, DxScrollViewModule, DxTabPanelModule, DxFileUploaderModule, DxPopupModule, DxFormModule, DxValidatorModule  } from 'devextreme-angular';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { LoadingComponent } from './loading/loading.component';
@@ -132,7 +132,7 @@ import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.c
     DxButtonModule,
     DxPivotGridFieldChooserModule,
     DxScrollViewModule,
-    DxTabPanelModule, DxPopupModule, DxFormModule, DxValidatorModule,
+    DxTabPanelModule, DxPopupModule, DxFormModule, DxValidatorModule,DxDateBoxModule ,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

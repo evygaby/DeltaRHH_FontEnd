@@ -5,60 +5,56 @@
       <span class="text-muted small">Administre los horarios directamente en la grilla.</span>
     </div>
     <div class="card-body p-0">
-      <dx-data-grid
-        [dataSource]="Datos"
-        [keyExpr]="['CODEMP', 'HOR_DIA']"
-        [showBorders]="true"
-        [columnAutoWidth]="true"
-        [rowAlternationEnabled]="true">
+      <dx-data-grid [dataSource]="Datos" [keyExpr]="['CODEMP', 'HOR_DIA']" [showBorders]="true" [columnAutoWidth]="true"
+        [rowAlternationEnabled]="true" [grouping]="{ autoExpandAll: false }"  (onSaving)="onSaving($event)">
 
-        <dxo-editing
-          mode="row"
-          [allowUpdating]="true"
-          [useIcons]="true">
+        <dxo-editing mode="batch" [allowUpdating]="true" [useIcons]="true" [confirmDelete]="false">
+          <dxo-texts saveAllChanges="Guardar cambios" cancelAllChanges="Descartar cambios" editRow="Editar"></dxo-texts>
         </dxo-editing>
 
-        <dxo-search-panel
-          [visible]="true"
-          [width]="260"
-          placeholder="Buscar en todos los campos">
-        </dxo-search-panel>
+        <dxo-toolbar>
+          <dxi-item name="saveButton"></dxi-item>
+          <dxi-item name="revertButton"></dxi-item>
+          <dxi-item name="searchPanel"></dxi-item>
+        </dxo-toolbar>
 
+        <dxo-search-panel [visible]="true" [width]="260" placeholder="Buscar en todos los campos"></dxo-search-panel>
         <dxo-filter-row [visible]="true" [applyFilter]="'auto'"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-        <dxi-column dataField="CODEMP" caption="Código" dataType="number" [width]="100" [read-only]="true">
+        <dxi-column dataField="CODEMP" caption="Código" dataType="number" [width]="100"
+          [allowEditing]="false"></dxi-column>
+
+        <dxi-column dataField="RAZONSOCIAL" caption="Nombres" [groupIndex]="0" [allowEditing]="false"></dxi-column>
+
+        <dxi-column dataField="HOR_DIA" caption="Día" [allowEditing]="false">
+          <dxo-lookup [dataSource]="dayOptions" displayExpr="text" valueExpr="value"></dxo-lookup>
         </dxi-column>
 
-        <dxi-column dataField="RAZONSOCIAL" caption="Razón social" [groupIndex]="0">
-        </dxi-column>
-
-        <dxi-column dataField="HOR_DIA" caption="Día">
-          <dxo-lookup
-            [dataSource]="dayOptions"
-            displayExpr="text"
-            valueExpr="value">
-          </dxo-lookup>
-        </dxi-column>
-
-        <dxi-column dataField="HOR_ENTRADA" caption="Entrada" alignment="center">
+        <!-- ENTRADA -->
+        <dxi-column dataField="HOR_ENTRADA" caption="Entrada" alignment="center" dataType="datetime" format="HH:mm"
+          [editorType]="'dxDateBox'" [calculateCellValue]="calcHoraEntrada" [setCellValue]="setHoraEntrada">
           <dxi-validation-rule type="required" message="La hora de entrada es obligatoria."></dxi-validation-rule>
-          <dxo-editor-options mask="00:00" maskInvalidMessage="Ingrese una hora válida (HH:mm)."></dxo-editor-options>
+          <dxo-editor-options type="time" displayFormat="HH:mm" [useMaskBehavior]="true" [showClearButton]="true"
+            [openOnFieldClick]="true" pickerType="rollers">
+          </dxo-editor-options>
         </dxi-column>
 
-        <dxi-column dataField="HOR_SALIDA" caption="Salida" alignment="center">
+        <!-- SALIDA -->
+        <dxi-column dataField="HOR_SALIDA" caption="Salida" alignment="center" dataType="datetime" format="HH:mm"
+          [editorType]="'dxDateBox'" [calculateCellValue]="calcHoraSalida" [setCellValue]="setHoraSalida">
           <dxi-validation-rule type="required" message="La hora de salida es obligatoria."></dxi-validation-rule>
-          <dxo-editor-options mask="00:00" maskInvalidMessage="Ingrese una hora válida (HH:mm)."></dxo-editor-options>
+          <dxo-editor-options type="time" displayFormat="HH:mm" [useMaskBehavior]="true" [showClearButton]="true"
+            [openOnFieldClick]="true" pickerType="rollers">
+          </dxo-editor-options>
         </dxi-column>
 
         <dxi-column dataField="HOR_REFERENCIA" caption="Referencia" [minWidth]="200">
-          <dxi-validation-rule type="required" message="La referencia es obligatoria."></dxi-validation-rule>
-          <dxi-validation-rule type="stringLength" [max]="150" message="Máximo 150 caracteres."></dxi-validation-rule>
-          <dxo-editor-options [maxLength]="150"></dxo-editor-options>
         </dxi-column>
 
         <dxo-paging [pageSize]="10"></dxo-paging>
         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+
       </dx-data-grid>
     </div>
   </div>
