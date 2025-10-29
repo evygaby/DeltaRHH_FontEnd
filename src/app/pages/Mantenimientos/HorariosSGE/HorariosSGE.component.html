@@ -1,17 +1,65 @@
-<div style="height: 85vh;">
-  <dx-data-grid id="gridContainer"  [showBorders]="true" [showRowLines]="true" [height]="'100%'" [rowAlternationEnabled]="true"
-  [editing]="{
-    mode: 'batch',
-    allowUpdating: true
-  }" >
-    <dxo-paging [pageSize]="100"></dxo-paging>
-    <dxo-group-panel [visible]="true"></dxo-group-panel>
-    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-    <dxo-search-panel [visible]="true"></dxo-search-panel>
-    <dxi-column dataField="RAZONSOCIAL" [fixed]="true" caption="Empleado"></dxi-column>
-    <dxi-column dataField="HOR_DIA" caption="#Día" [width]="'70px'"></dxi-column>
-       <dxi-column dataField="HOR_ENTRADA" caption="H. Entrada" dataType="number" [width]="'80px'"></dxi-column>
-      <dxi-column dataField="HOR_SALIDA" caption="H. Salida" dataType="number" [width]="'80px'"></dxi-column>
-      <dxi-column dataField="HOR_REFERENCIA" caption="Salud" dataType="number"></dxi-column>
-  </dx-data-grid>
+<div class="horarios-container container-fluid">
+  <div class="card horarios-card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <h5 class="mb-0">Gestión de horarios</h5>
+      <span class="text-muted small">Administre los horarios directamente en la grilla.</span>
+    </div>
+    <div class="card-body p-0">
+      <dx-data-grid
+        [dataSource]="Datos"
+        [keyExpr]="['CODEMP', 'HOR_DIA']"
+        [showBorders]="true"
+        [columnAutoWidth]="true"
+        [rowAlternationEnabled]="true">
+
+        <dxo-editing
+          mode="row"
+          [allowUpdating]="true"
+          [useIcons]="true">
+        </dxo-editing>
+
+        <dxo-search-panel
+          [visible]="true"
+          [width]="260"
+          placeholder="Buscar en todos los campos">
+        </dxo-search-panel>
+
+        <dxo-filter-row [visible]="true" [applyFilter]="'auto'"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+        <dxi-column dataField="CODEMP" caption="Código" dataType="number" [width]="100" [read-only]="true">
+        </dxi-column>
+
+        <dxi-column dataField="RAZONSOCIAL" caption="Razón social" [groupIndex]="0">
+        </dxi-column>
+
+        <dxi-column dataField="HOR_DIA" caption="Día">
+          <dxo-lookup
+            [dataSource]="dayOptions"
+            displayExpr="text"
+            valueExpr="value">
+          </dxo-lookup>
+        </dxi-column>
+
+        <dxi-column dataField="HOR_ENTRADA" caption="Entrada" alignment="center">
+          <dxi-validation-rule type="required" message="La hora de entrada es obligatoria."></dxi-validation-rule>
+          <dxo-editor-options mask="00:00" maskInvalidMessage="Ingrese una hora válida (HH:mm)."></dxo-editor-options>
+        </dxi-column>
+
+        <dxi-column dataField="HOR_SALIDA" caption="Salida" alignment="center">
+          <dxi-validation-rule type="required" message="La hora de salida es obligatoria."></dxi-validation-rule>
+          <dxo-editor-options mask="00:00" maskInvalidMessage="Ingrese una hora válida (HH:mm)."></dxo-editor-options>
+        </dxi-column>
+
+        <dxi-column dataField="HOR_REFERENCIA" caption="Referencia" [minWidth]="200">
+          <dxi-validation-rule type="required" message="La referencia es obligatoria."></dxi-validation-rule>
+          <dxi-validation-rule type="stringLength" [max]="150" message="Máximo 150 caracteres."></dxi-validation-rule>
+          <dxo-editor-options [maxLength]="150"></dxo-editor-options>
+        </dxi-column>
+
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+      </dx-data-grid>
+    </div>
+  </div>
 </div>

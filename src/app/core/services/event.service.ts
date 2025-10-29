@@ -398,4 +398,12 @@ export class EventService {
 
   return this.http.get(this.config.apiUrl + "VariosReportes/FechaProceso", { params });
   }
+  HorariosSGE(usu: string, pass: string,empresa: number): Observable<any> {
+    const params = new HttpParams()
+    .set("usu", usu)
+    .set("pass", pass)
+    .set("idempresa", empresa.toString());
+
+  return this.http.get(this.config.apiUrl + "HorariosSGE/DatosHorarios", { params });
+  }
 }
