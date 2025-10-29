@@ -61,63 +61,103 @@ export class HorariosSGEComponent implements OnInit {
     if (!d || !t) return null;
     const [Y, M, D] = d.split('-').map(Number);
     const [h, m, s] = t.split(':').map(Number);
+    if ([Y, M, D, h, m].some((n) => Number.isNaN(n))) {
+      return null;
+    }
     return new Date(Y, (M - 1), D, h ?? 0, m ?? 0, s ?? 0, 0);
   }
 
-  // Mantiene la fecha y cambia solo la hora
-  private mergeTimeKeepDate(datePart: Date, timePart: Date): Date {
-    const out = new Date(datePart);
-    out.setHours(timePart.getHours(), timePart.getMinutes(), timePart.getSeconds() || 0, 0);
-    return out;
+  // Convierte cadenas "HH:mm" o ISO a un Date que solo preserva la hora
+  private parseHourValue(value?: string | null): Date | null {
+    if (!value) return null;
+
+    let hours: number | null = null;
+    let minutes: number | null = null;
+    let seconds: number | null = null;
+
+    if (value.includes('T')) {
+      const parsed = this.parseIsoLocal(value);
+      if (!parsed) {
+        return null;
+      }
+      hours = parsed.getHours();
+      minutes = parsed.getMinutes();
+      seconds = parsed.getSeconds();
+    } else {
+      const [h, m = '0', s = '0'] = value.split(':');
+      hours = Number(h);
+      minutes = Number(m);
+      seconds = Number(s);
+      if ([hours, minutes, seconds].some((n) => Number.isNaN(n))) {
+        return null;
+      }
+    }
+
+    const date = new Date();
+    date.setHours(hours ?? 0, minutes ?? 0, seconds ?? 0, 0);
+    return date;
   }
 
-  // Devuelve "YYYY-MM-DDTHH:mm:ss" local (sin 'Z')
-  private toIsoLocal(date: Date): string {
+  // Devuelve una cadena HH:mm a partir de un Date
+  private toHourString(date: Date): string {
     const pad = (n: number) => String(n).padStart(2, '0');
-    const Y = date.getFullYear();
-    const M = pad(date.getMonth() + 1);
-    const D = pad(date.getDate());
-    const h = pad(date.getHours());
-    const m = pad(date.getMinutes());
-    const s = pad(date.getSeconds());
-    return `${Y}-${M}-${D}T${h}:${m}:${s}`;
+    return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
 
   /** ========= ENTRADA ========= */
-  // Lo que el grid muestra/usa internamente (Date) a partir del string ISO
-  calcHoraEntrada = (row: any): Date | null => this.parseIsoLocal(row?.HOR_ENTRADA);
+  // Lo que el grid muestra/usa internamente (Date) a partir del valor almacenado
+  calcHoraEntrada = (row: any): Date | null => this.parseHourValue(row?.HOR_ENTRADA);
 
   // Cómo guardar el cambio (value es un Date del dxDateBox "time")
-  setHoraEntrada = (newData: any, value: Date | null, currentRowData: any) => {
+  setHoraEntrada = (newData: any, value: Date | null) => {
     if (!value) { newData.HOR_ENTRADA = null; return; }
-    const base = this.parseIsoLocal(currentRowData?.HOR_ENTRADA) ?? new Date();
-    const merged = this.mergeTimeKeepDate(base, value);
-    newData.HOR_ENTRADA = this.toIsoLocal(merged);
+    newData.HOR_ENTRADA = this.toHourString(value);
   };
 
   /** ========= SALIDA ========= */
-  calcHoraSalida = (row: any): Date | null => this.parseIsoLocal(row?.HOR_SALIDA);
+  calcHoraSalida = (row: any): Date | null => this.parseHourValue(row?.HOR_SALIDA);
 
-  setHoraSalida = (newData: any, value: Date | null, currentRowData: any) => {
+  setHoraSalida = (newData: any, value: Date | null) => {
     if (!value) { newData.HOR_SALIDA = null; return; }
-    const base = this.parseIsoLocal(currentRowData?.HOR_SALIDA) ?? new Date();
-    const merged = this.mergeTimeKeepDate(base, value);
-    newData.HOR_SALIDA = this.toIsoLocal(merged);
+    newData.HOR_SALIDA = this.toHourString(value);
   };
   onSaving(e: any) {
     this.loading.showSpinner2("Actualizando Datos")
     e.cancel = true; // cancel default save (lo manejamos manualmente)
     // const cambios = e.changes;
     const cambios = e.changes.map((c: any) => {
+      const hasField = (obj: any, field: string) => obj && Object.prototype.hasOwnProperty.call(obj, field);
+      const normalizeTime = (field: string, value: any) => {
+        if ((field === 'HOR_ENTRADA' || field === 'HOR_SALIDA') && typeof value === 'string') {
+          const parsed = this.parseHourValue(value);
+          if (parsed) {
+            return this.toHourString(parsed);
+          }
+        }
+        return value;
+      };
+      const getValue = (field: string) => {
+        let candidate: any;
+        if (hasField(c.data, field)) {
+          candidate = c.data[field];
+        }
+        if (!hasField(c.data, field) && hasField(c.oldData, field)) {
+          candidate = c.oldData[field];
+        }
+        if (!hasField(c.data, field) && !hasField(c.oldData, field)) {
+          candidate = c.key?.[field];
+        }
+        return normalizeTime(field, candidate);
+      };
       return {
         key: c.key?.CODEMP ?? null,
         data: {
-          CODEMP: c.data?.CODEMP ?? c.key?.CODEMP,   // si existe CODEMP en data úsalo, sino la key
-          RAZONSOCIAL: c.key?.RAZONSOCIAL,
-          HOR_DIA: c.key?.HOR_DIA,
-          HOR_ENTRADA: c.data?.HOR_ENTRADA ?? c.key.HOR_ENTRADA,
-          HOR_SALIDA: c.data?.HOR_SALIDA ?? c.key?.HOR_SALIDA,
-          HOR_REFERENCIA: c.data?.HOR_REFERENCIA ?? c.key?.HOR_REFERENCIA
+          CODEMP: getValue('CODEMP'),   // si existe CODEMP en data úsalo, sino la key
+          RAZONSOCIAL: getValue('RAZONSOCIAL'),
+          HOR_DIA: getValue('HOR_DIA'),
+          HOR_ENTRADA: getValue('HOR_ENTRADA'),
+          HOR_SALIDA: getValue('HOR_SALIDA'),
+          HOR_REFERENCIA: getValue('HOR_REFERENCIA')
         }
       };
     });
