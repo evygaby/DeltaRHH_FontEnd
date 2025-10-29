@@ -28,6 +28,8 @@ import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
 import { MenuGuard } from '../guards/menu.guard';
 import { HomeComponent } from './Home/Home.component';
 import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFamiliares.component';
+import { HorariosSGEComponent } from './Mantenimientos/HorariosSGE/HorariosSGE.component';
+import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.component';
 
 
 const routes: Routes = [
@@ -51,11 +53,14 @@ const routes: Routes = [
   {path: "cantones", component: CantonesComponent, canActivate: [MenuGuard]},
   {path: "empleados", component: EmpleadosComponent, canActivate: [MenuGuard]},
   {path: "empleadosdetalle", component: InfoempleadoComponent, canActivate: [MenuGuard]},
+  {path: "HorariosSGE", component: HorariosSGEComponent, canActivate: [MenuGuard]},
   {path: "paises", component: PaisesComponent, canActivate: [MenuGuard]},
   {path: "provincias", component: ProvinciasComponent, canActivate: [MenuGuard]},
 
+
   ///////////PROCESOS DE ROL
   {path: "ComparaRoles", component: ComparaRolesComponent, canActivate: [MenuGuard]},
+  {path: "ComparaMensual", component: ComparaMensualComponent, canActivate: [MenuGuard]},
   {path: "VisorRoles", component: VisorRolesComponent, canActivate: [MenuGuard]},
 
   ///////////PROCESOS

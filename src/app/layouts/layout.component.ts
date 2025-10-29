@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { EventService } from '../core/services/event.service';
 import {
   LAYOUT_VERTICAL, LAYOUT_HORIZONTAL, LAYOUT_TWOCOLUMN, LAYOUT_MODE, LAYOUT_WIDTH,
@@ -15,17 +15,19 @@ import {
 /**
  * Layout Component
  */
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy {
 
-  layoutType!: string;
+  layoutType: string = LAYOUT_VERTICAL;
+  private changeLayoutSubscription?: Subscription;
 
-  constructor(private eventService: EventService) { }
+  constructor(private readonly  eventService: EventService) { }
+  ngOnDestroy(): void {
+    this.changeLayoutSubscription?.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.layoutType = LAYOUT_VERTICAL;
-
      // listen to event and change the layout, theme, etc
-     this.eventService.subscribe('changeLayout', (layout) => {
+    this.changeLayoutSubscription = this.eventService.subscribe('changeLayout', (layout: string) => {
       this.layoutType = layout;
     });
     
@@ -34,21 +36,21 @@ export class LayoutComponent implements OnInit {
   /**
   * Check if the vertical layout is requested
   */
-   isVerticalLayoutRequested() {
+   isVerticalLayoutRequested(): boolean {
     return this.layoutType === LAYOUT_VERTICAL;
   }
 
   /**
    * Check if the horizontal layout is requested
    */
-   isHorizontalLayoutRequested() {
+   isHorizontalLayoutRequested(): boolean {
     return this.layoutType === LAYOUT_HORIZONTAL;
   }
 
   /**
    * Check if the horizontal layout is requested
    */
-   isTwoColumnLayoutRequested() {
+   isTwoColumnLayoutRequested(): boolean {
     return this.layoutType === LAYOUT_TWOCOLUMN;
   }
 

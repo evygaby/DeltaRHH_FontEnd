@@ -208,11 +208,11 @@ const tipocontrato: opciones[] = [
     Name: "ROL",
   },
   {
-    ID: "E",
+    ID: "V",
     Name: "EVENTUAL",
   },
   {
-    ID: "V",
+    ID: "E",
     Name: "PASANTE",
   },
   {
