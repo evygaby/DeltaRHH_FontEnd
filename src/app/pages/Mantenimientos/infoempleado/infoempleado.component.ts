@@ -362,7 +362,7 @@ searchContains(term: string, item: any): boolean {
 }
 enviarmail(){
 const email: EmailRequest = {
-  to: 'hhgeovanny@gmail.com',
+  to: this.empleado.MAIL!,
   subject: 'Actualización de Datos',
   isHtml: true,
   usu: this.user.Nombre!,
