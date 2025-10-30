@@ -9,6 +9,7 @@ import { NubeFactura } from '../models/factura';
 import { Certificado } from '../models/certificado';
 import { EMP } from '../models/emp';
 import { bo } from '@fullcalendar/core/internal-common';
+import { EmailRequest } from '../models/EmailRequest';
 //import { S } from 'node_modules/@fullcalendar/core/internal-common';
 
 interface Event {
@@ -117,6 +118,11 @@ export class EventService {
     return this.http.put<any>(this.config.apiUrl + 'Empleados/Put?usu=' + usu + "&contrasena=" + pass, JSON.stringify(empleado), { headers: header })
 
   }
+   enviarmail(request: EmailRequest) {
+    const header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.config.apiUrl + 'Email/SendEmail', JSON.stringify(request), { headers: header })
+
+  }
   Consultarempleados(usu: string, pass: string, idempresa: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/Get?usu=" + usu + "&contrasena=" + pass + "&idempresa=" + idempresa, httpOptions);
   }
@@ -130,7 +136,12 @@ export class EventService {
   Consultarempresa(usu: string, pass: string): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/EMPRESAS?usu=" + usu + "&contrasena=" + pass, httpOptions);
   }
-   
+     Consultardocumento(usu: string, pass: string, idempresa: number, fecha: string,codemp:number): Observable<any> {
+    return this.http.get(
+      this.config.apiUrl  +
+        "ImpresionReportes/CrearRolIndividual?usu=" + usu + "&pass=" + pass + "&empresa=" + idempresa+ "&fecha=" + fecha +"&codemp="+codemp , { responseType: 'blob' });
+  }
+
   ConsultarCentros(usu: string, pass: string, idempresa: number): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/Centro?usu=" + usu + "&contrasena=" + pass + "&idempresa=" + idempresa, httpOptions);
   }

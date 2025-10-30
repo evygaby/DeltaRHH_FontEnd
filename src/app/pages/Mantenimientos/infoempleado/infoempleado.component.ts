@@ -1,3 +1,4 @@
+import { data } from './../../charts/Apexcharts/area/area.component';
 import { OfflineComponent } from './../../../account/auth/errors/offline/offline.component';
 import { filter } from 'rxjs/operators';
 import { estado } from './../../../core/services/configuracion.service';
@@ -19,6 +20,10 @@ import { Spanish } from "flatpickr/dist/l10n/es";
 import { LoadingService } from "src/app/core/services/loading.service";
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { EmailRequest } from 'src/app/core/models/EmailRequest';
+import { number } from 'echarts';
 @Component({
   selector: "app-infoempleado",
   templateUrl: "./infoempleado.component.html",
@@ -37,6 +42,7 @@ export class InfoempleadoComponent implements PipeTransform {
   fotoencuesta!: any;
   dresidencial!: any;
   PLA_CODCNTA!: any;
+  mostrarBoton = false;
   mz: string = '';
   KM: string = '';
   NO_CASA: string = '';
@@ -48,7 +54,11 @@ export class InfoempleadoComponent implements PipeTransform {
   result!: string;
   paises!: any;
   ciudades!: any;
-  centrosmin!: any;
+  centrosmin!: any;  pdfSrc: string ="";
+  base64Only: string = '';
+  xmlSrc :string ="";
+  iframeSrc!: SafeResourceUrl;
+  fileName = 'documento.pdf';  
   maxLength = null;
   height = 90;
   iess!: any;
@@ -60,7 +70,7 @@ export class InfoempleadoComponent implements PipeTransform {
 tipocuentas!: any;
   provincias!: any;
   Razon !: any;
-  empresas!: any;
+  empresas!: any; 
   employeesDataSource!: DataSource;
   generos!: any;
   carga!: any;
@@ -72,7 +82,7 @@ tipocuentas!: any;
   familia!: any;
   foto!:any
 Bancos!: any;cargos!: any;
-  descapacidades!: DataSource;
+  descapacidades!: DataSource;  popupVisible = false;
   tipocontrato!: any;
   catastroficas!: any;
   sueldos!: any;
@@ -92,7 +102,7 @@ seccionfiltrada!: any;provinciafiltrada!: any;cuidadesfiltrada!: any;isnumerico!
   private servicios = inject(EventService);
   private config = inject(ConfiguracionService);
   private loading = inject(LoadingService);
-  constructor(private fb: FormBuilder,private cacheService: CacheService,private router: Router) {
+  constructor(private fb: FormBuilder,private cacheService: CacheService,private router: Router,private sanitizer: DomSanitizer) {
 
 
     this.miFormulario = this.fb.group({
@@ -175,6 +185,22 @@ seccionfiltrada!: any;provinciafiltrada!: any;cuidadesfiltrada!: any;isnumerico!
     });
     this.getData("info");
     this.empleado = this.servicios.miObjeto;
+    
+
+const fecha = new Date(this.empleado.FECHAACTUALIZA!); // Ejemplo de fecha
+    const hoy = new Date();
+
+// Calculamos la diferencia en milisegundos
+const diferenciaMs = hoy.getTime() - fecha.getTime();
+
+// Convertimos la diferencia a años
+const diferenciaAnios = diferenciaMs / (1000 * 60 * 60 * 24 * 365);
+
+if (diferenciaAnios > 1 || this.empleado.FECHAACTUALIZA=="") {
+ this.mostrarBoton = true;
+} else {
+  console.log('La fecha es menor o igual a un año');
+}
     if(this.empleado.esnuevo==undefined){
 this.router.navigate(['/empleados']);
     }
@@ -334,7 +360,30 @@ searchContains(term: string, item: any): boolean {
     };
   }
 }
+enviarmail(){
+const email: EmailRequest = {
+  to: 'hhgeovanny@gmail.com',
+  subject: 'Actualización de Datos',
+  isHtml: true,
+  usu: this.user.Nombre!,
+  pass: this.user.password!,
+  codemp:Number(this.empleado.CODEMP!),
+  idempresa: this.user.ID_EMPRESA!
+};
+this.loading.showSpinner2("Consultando")
+    this.servicios
+  .enviarmail(email).subscribe({
+      next: (data: any) => {
+        this.popupVisible=true
+this.loading.showMensajesuccess(data.message)
+        this.loading.closeSpinner()
+      },
+      error: (err) => this.loading.showMensajesuccess(err.message)
+    });
 
+
+
+}
 onRowUpdating(e: any) {
 if(e.newData.CARGO_PRINCIPAL ='S'){
   this.empleado.Departamentos?.forEach((value, index, array) => {
@@ -450,6 +499,32 @@ onSelectChange(event: Event) {
   (ev:any){
     this.empleado.RAZONSOCIAL= this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
   }
+ onCloneIconClick = (e: DxDataGridTypes.ColumnButtonClickEvent) => {
+   this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
+ this.loading.showSpinner2("Consultando")
+    this.servicios
+  .Consultardocumento(this.user.Nombre!,this.user.password!,this.user.ID_EMPRESA!, e.row?.data.FECHA,e.row?.data.CODEMP).subscribe({
+      next: (data: Blob) => {
+        this.popupVisible=true
+        // const blob = new Blob([data], { type: 'application/pdf' });
+        // const url = window.URL.createObjectURL(blob);
+
+        // const a = document.createElement('a');
+        // a.href = url;
+        // a.download = 'Rol.pdf';
+        // a.click();
+
+        // // Limpieza
+        // window.URL.revokeObjectURL(url);
+         const blob = new Blob([data], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        this.loading.closeSpinner()
+      },
+      error: (err) => console.error('Error al descargar PDF', err)
+    });
+  
+}
   cambiarsegundo
   (ev:any){
     this.empleado.RAZONSOCIAL=    this.empleado.APELLIDO_PAT+" "+this.empleado.APELLIDO_MAT+" "+this.empleado.PRIMER_NOMBRE+" "+this.empleado.SEGUNDO_NOMBRE
@@ -623,6 +698,9 @@ if( this.empleado.DIRECCION_CSV?.includes(',undefined,undefined,undefined,undefi
         error: (error: any) => {
           this.loading.closeSpinner();
           this.loading.showMensajeError(error.message);
+          if(error.message.includes("deuda")){
+            this.empleado.ACTIVO ="S"
+          }
         },
       });
   }

@@ -27,3 +27,45 @@ input.flatpickr-input.is-invalid + .form-control.is-invalid {
   overflow: auto;
   padding: 10px; /* opcional */
 }
+/* Contenedor general */
+.custom-ngselect .ng-select-container {
+  border: 1px solid #ced4da !important;
+  border-radius: 8px !important;
+  min-height: 34px !important;
+  height: 34px !important;
+  background-color: #fafafa !important;
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  padding: 0 8px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover */
+.custom-ngselect .ng-select-container:hover {
+  border-color: #86b7fe !important;
+  box-shadow: 0 0 4px rgba(13, 110, 253, 0.25) !important;
+}
+
+/* Focus */
+.custom-ngselect .ng-select-container.ng-select-focused {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.4) !important;
+  background-color: #fff !important;
+}
+
+/* Opciones del dropdown */
+.custom-ngselect .ng-dropdown-panel {
+  border-radius: 8px !important;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-ngselect .ng-option {
+  padding: 6px 10px !important;
+  font-size: 0.9rem !important;
+}
+
+.custom-ngselect .ng-option:hover {
+  background-color: #f1f1f1 !important;
+}
