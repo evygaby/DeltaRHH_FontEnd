@@ -132,6 +132,10 @@ seccionfiltrada!: any;provinciafiltrada!: any;cuidadesfiltrada!: any;isnumerico!
         }
         if (data.clase == "iess") {
           this.iess = data.data;
+                 this.iess = this.iess.map((item: {CARGO_ACTIVIDAD:any, CODIGO_IESS: any; }) => ({
+  CARGO_ACTIVIDAD:item.CARGO_ACTIVIDAD,
+  CODIGO_IESS: Number(item.CODIGO_IESS) // Asegurarse de que todos sean números
+}));
         }
         if (data.clase == "cuenta") {
           this.PLA_CODCNTA = data.data;
@@ -185,7 +189,7 @@ seccionfiltrada!: any;provinciafiltrada!: any;cuidadesfiltrada!: any;isnumerico!
     });
     this.getData("info");
     this.empleado = this.servicios.miObjeto;
-    
+     console.log(this.empleado.CODIGO_IESS);
 
 const fecha = new Date(this.empleado.FECHAACTUALIZA!); // Ejemplo de fecha
     const hoy = new Date();
@@ -342,8 +346,11 @@ this.provinciafiltrada= this.provincias.filter((p: { CODPAIS:any, CODPROV: any,N
             this.loading.showMensajeError(error.message);
         },
       });  
+     
   }
-
+trackByFn(index:any, item:any) {
+  return item.CODIGO_IESS; // o alguna propiedad única
+}
 searchContains(term: string, item: any): boolean {
   return item.CODIGO_IESS.toLowerCase().includes(term.toLowerCase()) || 
          item.CARGO_ACTIVIDAD.toLowerCase().includes(term.toLowerCase());
@@ -859,6 +866,10 @@ return `$${Number(e.value).toFixed(2)}`;
       combined.subscribe({
         next: (data: any) => {
            this.iess=data.iess
+                  this.iess = this.iess.map((item: {CARGO_ACTIVIDAD:any, CODIGO_IESS: any; }) => ({
+  CARGO_ACTIVIDAD:item.CARGO_ACTIVIDAD,
+  CODIGO_IESS: Number(item.CODIGO_IESS) // Asegurarse de que todos sean números
+}));
           this.PLA_CODCNTA=data.cuen
           this.tipocuenta=data.tipo
           this.extensiones=data.ext
@@ -946,6 +957,7 @@ return `$${Number(e.value).toFixed(2)}`;
           this.loading.showMensajeError(error.message);
         },
       });
+
     }
     if (!cachedDataempresa) {
       this.user = JSON.parse(

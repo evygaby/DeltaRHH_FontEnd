@@ -1423,16 +1423,18 @@ container=".dx-viewport"
                 class="col-sm-12"
                 >Codigo IEES</label
               >
-              
+             
 <ng-select
   [items]="iess"
   bindLabel="CARGO_ACTIVIDAD"  
   bindValue="CODIGO_IESS"  
   [(ngModel)]="empleado.CODIGO_IESS"
   placeholder="Seleccione una opción"
-  [searchable]="true"
+  [searchable]="true" [trackBy]="trackByFn"
   [clearable]="true"
-  class="custom-ngselect"
+  name="CODIGO_IESS"
+  id="CODIGO_IESS"
+
   >  <!-- Usamos una función personalizada de búsqueda -->
   <ng-template ng-option-tmp let-item="item">
     {{ item.CODIGO_IESS }} - {{ item.CARGO_ACTIVIDAD }}
