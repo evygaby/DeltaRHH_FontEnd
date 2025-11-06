@@ -54,6 +54,67 @@ export class HorariosSGEComponent implements OnInit {
         },
       });
   }
+
+  //------------------------PARA EL CONTROL
+
+  onHoraEntradaChanged(e: any, cellInfo: any): void {
+    const original = this.toDate(cellInfo.value);   // datetime actual
+    const time = this.toDate(e.value);          // hora elegida en el editor
+
+    const merged = this.mergeTimeKeepDate(original, time);
+    cellInfo.setValue(merged);                      // actualiza la celda
+  }
+  onHoraSalidaChanged(e: any, cellInfo: any): void {
+    const original = this.toDate(cellInfo.data.HOR_SALIDA || cellInfo.value || new Date());
+    const time = this.toDate(e.value);
+
+    const merged = this.mergeTimeKeepDate(original, time);
+    cellInfo.setValue(merged); // actualiza HOR_SALIDA en la fila
+  }
+  // --- VALIDACIONES ---
+  validateHoraSalida = (e: any): boolean => {
+    const row = e.data || {};
+    const entradaRaw = row.HOR_ENTRADA;
+    const salidaRaw = e.value ?? row.HOR_SALIDA;
+
+    // Si falta alguno, dejamos que actúen las reglas "required"
+    if (!entradaRaw || !salidaRaw) {
+      return true;
+    }
+
+    const entrada = this.toDate(entradaRaw);
+    const salida = this.toDate(salidaRaw);
+
+    return salida.getTime() > entrada.getTime();
+  }
+
+  /** Convierte lo que venga (string | number | Date | null) a Date */
+  private toDate(value: any): Date {
+    if (!value) {
+      return new Date(); // o alguna fecha por defecto que uses
+    }
+
+    if (value instanceof Date) {
+      return value;
+    }
+
+    return new Date(value);
+  }
+
+  /** Mantiene la fecha de originalDate y cambia solo la hora por la de newTime */
+  private mergeTimeKeepDate(originalDate: Date, newTime: Date): Date {
+    const result = new Date(originalDate);
+    result.setHours(newTime.getHours(), newTime.getMinutes(), 0, 0);
+    return result;
+  }
+
+  ///-------------
+
+
+
+
+
+
   // Convierte "YYYY-MM-DDTHH:mm:ss" (sin zona) a Date local
   private parseIsoLocal(iso?: string | null): Date | null {
     if (!iso) return null;
@@ -122,12 +183,18 @@ export class HorariosSGEComponent implements OnInit {
     newData.HOR_SALIDA = this.toHourString(value);
   };
   onSaving(e: any) {
-    this.loading.showSpinner2("Actualizando Datos")
-    e.cancel = true; // cancel default save (lo manejamos manualmente)
-    // const cambios = e.changes;
+    this.loading.showSpinner2("Actualizando Datos");
+
+    // Cancelamos el guardado por defecto, lo manejamos manualmente
+    e.cancel = true;
+
     const cambios = e.changes.map((c: any) => {
-      const hasField = (obj: any, field: string) => obj && Object.prototype.hasOwnProperty.call(obj, field);
+
+      const hasField = (obj: any, field: string) =>
+        obj && Object.prototype.hasOwnProperty.call(obj, field);
+
       const normalizeTime = (field: string, value: any) => {
+        // Normalizas solo las horas si vienen como string
         if ((field === 'HOR_ENTRADA' || field === 'HOR_SALIDA') && typeof value === 'string') {
           const parsed = this.parseHourValue(value);
           if (parsed) {
@@ -136,23 +203,40 @@ export class HorariosSGEComponent implements OnInit {
         }
         return value;
       };
+
+      // 🔎 Buscamos el registro original en el datasource por la clave
+      const originalFromDs = this.Datos.find((row: any) =>
+        row.CODEMP === (c.key?.CODEMP ?? c.data?.CODEMP ?? c.oldData?.CODEMP) &&
+        row.HOR_DIA === (c.key?.HOR_DIA ?? c.data?.HOR_DIA ?? c.oldData?.HOR_DIA)
+      ) || {};
+
       const getValue = (field: string) => {
         let candidate: any;
+
+        // 1) Si viene en data (modificado en esta edición), usar ese
         if (hasField(c.data, field)) {
           candidate = c.data[field];
-        }
-        if (!hasField(c.data, field) && hasField(c.oldData, field)) {
+
+          // 2) Si no viene en data pero sí en oldData (valor previo que DevExtreme mantiene)
+        } else if (hasField(c.oldData, field)) {
           candidate = c.oldData[field];
+
+          // 3) Si tampoco está en oldData, usamos el valor original del datasource
+        } else if (hasField(originalFromDs, field)) {
+          candidate = originalFromDs[field];
+
+          // 4) Último recurso: la key (para campos clave como CODEMP, HOR_DIA)
+        } else if (hasField(c.key, field)) {
+          candidate = c.key[field];
         }
-        if (!hasField(c.data, field) && !hasField(c.oldData, field)) {
-          candidate = c.key?.[field];
-        }
+
         return normalizeTime(field, candidate);
       };
+
       return {
         key: c.key?.CODEMP ?? null,
         data: {
-          CODEMP: getValue('CODEMP'),   // si existe CODEMP en data úsalo, sino la key
+          CODEMP: getValue('CODEMP'),
           RAZONSOCIAL: getValue('RAZONSOCIAL'),
           HOR_DIA: getValue('HOR_DIA'),
           HOR_ENTRADA: getValue('HOR_ENTRADA'),
@@ -161,15 +245,30 @@ export class HorariosSGEComponent implements OnInit {
         }
       };
     });
-    const url = this.config.apiUrl + "HorariosSGE/Batch/batch?usu=" + this.user.Nombre + "&pass=" + this.user.password + "&id_empresa="+ this.user.ID_EMPRESA;
+
+    const url = this.config.apiUrl
+      + "HorariosSGE/Batch/batch?usu=" + this.user.Nombre
+      + "&pass=" + this.user.password
+      + "&id_empresa=" + this.user.ID_EMPRESA;
+
     if (cambios.length) {
       this.http.post(url, cambios).subscribe({
-        next: () => { this.CargarDatos(); this.loading.closeSpinner(); },
+        next: () => {
+          this.CargarDatos();
+          this.loading.closeSpinner();
+          // 🔄 Refrescar visualmente la grilla
+          e.component.cancelEditData();
+          e.component.refresh();
+
+          this.loading.showMensajesuccess("Datos actualizados correctamente");
+        },
         error: (error: any) => {
           this.loading.closeSpinner();
           this.loading.showMensajeError(error.message);
         },
       });
+    } else {
+      this.loading.closeSpinner();
     }
   }
 }
