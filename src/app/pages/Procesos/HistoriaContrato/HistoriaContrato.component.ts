@@ -1,15 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { EmpAntiguedad } from 'src/app/core/models/antiguedadEmp';
 import { User } from 'src/app/core/models/auth.models';
-import { CacheService } from 'src/app/core/services/cache.service';
-import { ConfiguracionService } from 'src/app/core/services/configuracion.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { ProcesosService } from 'src/app/core/services/Procesos.service';
 import { GlobalComponent } from 'src/app/global-component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-HistoriaContrato',
@@ -19,7 +14,7 @@ import { GlobalComponent } from 'src/app/global-component';
 export class HistoriaContratoComponent implements OnInit {
   user!: User;
   Datos: any;
-  Empleados: any;
+  Empleados: { NUMCEDULA: string; RAZONSOCIAL: string }[] = [];
   anio: number = 0;
   Colegios: any;
   trol: any;
@@ -37,10 +32,8 @@ export class HistoriaContratoComponent implements OnInit {
     'No renovación de contrato'
   ];
 
-  constructor(private http: HttpClient, private config: ConfiguracionService, private servicios: EventService, private router: Router, private loading: LoadingService, private cacheService: CacheService, private sanitizer: DomSanitizer,) {
+  constructor(private servicios: EventService, private loading: LoadingService) {
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
-    this.CargarListaEmpleados();
-    this.loading.showSpinner2("Consultando")
     this.Colegios = [
       { VALOR: 3, TEXTO: 'Delta' },
       { VALOR: 4, TEXTO: 'Presco' }
@@ -63,84 +56,97 @@ export class HistoriaContratoComponent implements OnInit {
     ];
   }
   ngOnInit() {
-    this.CargarDatos();
+    this.loading.showSpinner2("Consultando")
+    this.cargarDatosIniciales();
   }
-  CargarListaEmpleados() {
-    //  const fech = this.user.fecha_proceso!;
-    //this.anio=fech.getFullYear();
-    this.servicios
-      .ListaxCedulaSinEmpresa(
+  private cargarDatosIniciales(): void {
+    forkJoin({
+      empleados: this.servicios.ListaxCedulaSinEmpresa(
+        this.user.Nombre!,
+        this.user.password!
+      ),
+      contratos: this.servicios.ListaAntiguedadEmpresa(
         this.user.Nombre!,
         this.user.password!
       )
-      .subscribe({
-        next: (data: any) => {
-          this.Empleados = data;
-          this.buildDetalleSalidas();
-          this.loading.closeSpinner();
-          //this.loading.showMensajesuccess("Actualizado con éxito");
-        },
-        error: (error: any) => {
-          this.loading.closeSpinner();
-          this.loading.showMensajeError(error.message);
-        },
-      });
+    }).subscribe({
+      next: ({ empleados, contratos }) => {
+        this.Empleados = this.buildEmpleadoLookup(empleados);
+        this.Datos = this.mapearContratosConNombre(contratos, this.Empleados);
+        this.buildDetalleSalidas(this.Datos);
+        this.loading.closeSpinner();
+      },
+      error: (error: any) => {
+        this.loading.closeSpinner();
+        this.loading.showMensajeError(error.message);
+      }
+    });
   }
-  CargarDatos() {
-    //  const fech = this.user.fecha_proceso!;
-    //this.anio=fech.getFullYear();
+
+  private recargarContratos(): void {
     this.servicios
       .ListaAntiguedadEmpresa(
         this.user.Nombre!,
         this.user.password!
       )
       .subscribe({
-        next: (data: any) => {
-          // Agregamos un campo NOMBRE para buscar por él
-        this.Datos = data.map((row: any) => {
-          let nombre = '';
-          if (this.Empleados) {
-            const emp = this.Empleados.find((x: any) =>
-              String(x.NUMCEDULA) === String(row.IDENTIFICACION)
-            );
-            if (emp) {
-              nombre = emp.RAZONSOCIAL;
-            }
-          }
-          return {
-            ...row,
-            NOMBRE: nombre      // 👈 campo extra para búsqueda
-          };
-        });
-          this.loading.closeSpinner();
-          //this.loading.showMensajesuccess("Actualizado con éxito");
+        next: (contratos: any[]) => {
+          this.Datos = this.mapearContratosConNombre(contratos, this.Empleados);
+          this.buildDetalleSalidas(this.Datos);
         },
         error: (error: any) => {
-          this.loading.closeSpinner();
           this.loading.showMensajeError(error.message);
-        },
-      });
-  }
-  private buildDetalleSalidas() {
-    const set = new Set<string>();
-
-    // 1) Agregamos la lista base
-    this.DetalleSalidasBase.forEach(v => set.add(v));
-
-    // 2) Agregamos DISTINCT de la columna DETALLE_TERM
-    if (this.Datos) {
-      this.Datos.forEach((row: any) => {
-        const val = row.DETALLE_TERM;
-        if (val != null) {
-          const s = String(val).trim();
-          if (s) {
-            set.add(s);
-          }
         }
       });
+  }
+
+  private buildEmpleadoLookup(empleados: any): { NUMCEDULA: string; RAZONSOCIAL: string }[] {
+    if (!Array.isArray(empleados)) {
+      return [];
     }
 
-    // 3) Convertimos a array (opcional: orden alfabético)
+    return empleados
+      .map((emp: any) => ({
+        NUMCEDULA: String(emp?.NUMCEDULA ?? ''),
+        RAZONSOCIAL: String(emp?.RAZONSOCIAL ?? '').trim()
+      }))
+      .filter((emp: { NUMCEDULA: string; RAZONSOCIAL: string }) => !!emp.NUMCEDULA);
+  }
+
+  private mapearContratosConNombre(
+    contratos: any[],
+    empleados: { NUMCEDULA: string; RAZONSOCIAL: string }[]
+  ): any[] {
+    if (!Array.isArray(contratos)) {
+      return [];
+    }
+
+    return contratos.map((row: any) => {
+      const cedula = String(row?.IDENTIFICACION ?? '');
+      const empleado = empleados.find((x: any) => x.NUMCEDULA === cedula);
+
+      return {
+        ...row,
+        NOMBRE: empleado?.RAZONSOCIAL ?? ''
+      };
+    });
+  }
+
+  private buildDetalleSalidas(data: any[]) {
+    const set = new Set<string>();
+
+    this.DetalleSalidasBase.forEach(v => set.add(v));
+
+    (data ?? []).forEach((row: any) => {
+      const val = row?.DETALLE_TERM;
+      if (val != null) {
+        const s = String(val).trim();
+        if (s) {
+          set.add(s);
+        }
+      }
+    });
+
     this.DetalleSalidas = Array.from(set).sort((a, b) => a.localeCompare(b));
   }
   
@@ -152,7 +158,7 @@ export class HistoriaContratoComponent implements OnInit {
     // IDENTIFICACION viene en el rowData (cédula)
     const cedula = String(rowData.IDENTIFICACION);
 
-    const emp = this.Empleados.find((x: any) => String(x.NUMCEDULA) === cedula);
+    const emp = this.Empleados.find((x) => x.NUMCEDULA === cedula);
     // Devuelve el nombre, que es lo que queremos para ordenar / agrupar
     return emp ? emp.RAZONSOCIAL : '';
   };
@@ -239,6 +245,7 @@ export class HistoriaContratoComponent implements OnInit {
       .subscribe({
         next: () => {
           this.loading.showMensajesuccess('Contrato actualizado correctamente');
+          this.recargarContratos();
         },
         error: (err: any) => {
           this.loading.showMensajeError('Error al guardar: ' + err.message);
@@ -259,7 +266,7 @@ export class HistoriaContratoComponent implements OnInit {
           this.loading.showMensajesuccess('Contrato insertado correctamente');
 
           // 🔹 Recargar los datos
-          this.CargarDatos();
+          this.recargarContratos();
 
           // 🔹 Cerrar el popup de edición
           e.component.cancelEditData();
@@ -287,7 +294,7 @@ export class HistoriaContratoComponent implements OnInit {
       .subscribe({
         next: () => {
           this.loading.showMensajesuccess('Contrato eliminado correctamente');
-          this.CargarDatos(); // recargar la grilla
+          this.recargarContratos(); // recargar la grilla
         },
         error: (err: any) => {
           this.loading.showMensajeError('Error al eliminar: ' + err.message);
