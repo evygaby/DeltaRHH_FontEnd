@@ -30,6 +30,7 @@ import { HomeComponent } from './Home/Home.component';
 import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFamiliares.component';
 import { HorariosSGEComponent } from './Mantenimientos/HorariosSGE/HorariosSGE.component';
 import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.component';
+import { HistoriaContratoComponent } from './Procesos/HistoriaContrato/HistoriaContrato.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
   {path: "ActualizaDatos", component: ActualizaDatosComponent, canActivate: [MenuGuard]},
   {path: "ComparaIESS", component: ComparaIESSComponent, canActivate: [MenuGuard]},
   {path: "CargasFamiliares", component: CargasFamiliaresComponent, canActivate: [MenuGuard]},
+  {path: "HistoriaContrato", component: HistoriaContratoComponent, canActivate: [MenuGuard]},
 
   ///////////REPORTES
   {path: "ConsultaActasReunion", component: ConsultaActasReunionComponent, canActivate: [MenuGuard]},

@@ -67,6 +67,7 @@ import { VisorRolesComponent } from './Roles/VisorRoles/VisorRoles.component';
 import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFamiliares.component';
 import { HorariosSGEComponent } from './Mantenimientos/HorariosSGE/HorariosSGE.component';
 import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.component';
+import { HistoriaContratoComponent } from './Procesos/HistoriaContrato/HistoriaContrato.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,7 @@ import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.c
     PrestamoSaldosComponent, 
     VisorRolesComponent, 
     CargasFamiliaresComponent, 
-    HorariosSGEComponent,
+    HorariosSGEComponent,HistoriaContratoComponent
   ],
   exports: [AutoFocusInvalidDirective],
   imports: [
@@ -132,7 +133,7 @@ import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.c
     DxButtonModule,
     DxPivotGridFieldChooserModule,
     DxScrollViewModule,
-    DxTabPanelModule, DxPopupModule, DxFormModule, DxValidatorModule,DxDateBoxModule ,
+    DxTabPanelModule, DxPopupModule, DxFormModule, DxValidatorModule,DxDateBoxModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

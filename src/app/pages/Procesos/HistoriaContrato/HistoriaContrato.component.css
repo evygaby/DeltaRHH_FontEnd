@@ -1,0 +1,30 @@
+::ng-deep .dx-datagrid-content .dx-datagrid-table .dx-row .dx-command-expand {
+    padding: 0;
+    width: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    z-index: 3;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    color: transparent;
+}
+/* Evitar truncar texto en celdas y filas de grupo */
+::ng-deep /* Solo las filas normales muestran todo el texto */
+.dx-datagrid-rowsview .dx-data-row td {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
+  height: auto !important;
+  line-height: 1.4em;
+  word-break: break-word;
+}
+
+/* Mantener las filas de grupo compactas (con elipsis o truncadas si es necesario) */
+::ng-deep .dx-datagrid-group-row td {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  height: 32px !important; /* puedes ajustar */
+  line-height: 32px;
+}
