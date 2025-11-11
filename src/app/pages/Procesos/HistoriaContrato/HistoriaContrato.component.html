@@ -26,13 +26,25 @@
     <dxo-paging [pageSize]="100"></dxo-paging>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="false" [searchVisibleColumnsOnly]="false" [searchExpr]="[
-    'NOMBRE'
-  ]">
+    <dxo-search-panel
+      [visible]="true"
+      [highlightCaseSensitive]="false"
+      [searchVisibleColumnsOnly]="false"
+      [searchExpr]="['NOMBRE', 'IDENTIFICACION']"
+    >
     </dxo-search-panel>
     <dxi-column dataField="IDENTIFICACION" [fixed]="true" caption="Empleado" [groupIndex]="0" [sortOrder]="'asc'"
       [calculateSortValue]="empleadoSortValue" [calculateGroupValue]="empleadoSortValue" sortMode="displayText">
-      <dxo-lookup [dataSource]="Empleados" valueExpr="NUMCEDULA" displayExpr="RAZONSOCIAL">
+      <dxo-lookup
+        [dataSource]="Empleados"
+        valueExpr="NUMCEDULA"
+        displayExpr="RAZONSOCIAL"
+        [searchEnabled]="true"
+        searchMode="contains"
+        [searchExpr]="['RAZONSOCIAL', 'NUMCEDULA', 'NORMALIZED']"
+        [minSearchLength]="0"
+        [showDataBeforeSearch]="true"
+      >
       </dxo-lookup>
     </dxi-column>
     <dxi-column dataField="NOMBRE" [visible]="true" [allowSearch]="true">
