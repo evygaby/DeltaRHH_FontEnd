@@ -118,7 +118,7 @@ export class EventService {
     return this.http.put<any>(this.config.apiUrl + 'Empleados/Put?usu=' + usu + "&contrasena=" + pass, JSON.stringify(empleado), { headers: header })
 
   }
-   enviarmail(request: EmailRequest) {
+  enviarmail(request: EmailRequest) {
     const header = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(this.config.apiUrl + 'Email/SendEmail', JSON.stringify(request), { headers: header })
 
@@ -136,10 +136,10 @@ export class EventService {
   Consultarempresa(usu: string, pass: string): Observable<any> {
     return this.http.get(this.config.apiUrl + "Empleados/EMPRESAS?usu=" + usu + "&contrasena=" + pass, httpOptions);
   }
-     Consultardocumento(usu: string, pass: string, idempresa: number, fecha: string,codemp:number): Observable<any> {
+  Consultardocumento(usu: string, pass: string, idempresa: number, fecha: string, codemp: number): Observable<any> {
     return this.http.get(
-      this.config.apiUrl  +
-        "ImpresionReportes/CrearRolIndividual?usu=" + usu + "&pass=" + pass + "&empresa=" + idempresa+ "&fecha=" + fecha +"&codemp="+codemp , { responseType: 'blob' });
+      this.config.apiUrl +
+      "ImpresionReportes/CrearRolIndividual?usu=" + usu + "&pass=" + pass + "&empresa=" + idempresa + "&fecha=" + fecha + "&codemp=" + codemp, { responseType: 'blob' });
   }
 
   ConsultarCentros(usu: string, pass: string, idempresa: number): Observable<any> {
@@ -359,11 +359,11 @@ export class EventService {
   CompararIESS(usu: string, pass: string, empresa: number, data: FormData, Fecha?: Date,) {
     // Agregar Fecha solo si existe
     let f = Fecha ? Fecha.toISOString() : "";
-//this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+Fecha , data)
+    //this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+Fecha , data)
     //const url = this.config.apiUrl + "VariosReportes/CompareData/compare-data";
-    return this.http.post(this.config.apiUrl+"VariosReportes/CompareData?usu="+usu+"&pass="+pass+"&Fecha="+f+"&empresa="+empresa , data);
+    return this.http.post(this.config.apiUrl + "VariosReportes/CompareData?usu=" + usu + "&pass=" + pass + "&Fecha=" + f + "&empresa=" + empresa, data);
   }
-   Prestamos(usu: string, pass: string, empresa: number,saldo:number, desde?: Date, hasta?: Date): Observable<any> {
+  Prestamos(usu: string, pass: string, empresa: number, saldo: number, desde?: Date, hasta?: Date): Observable<any> {
     let params = new HttpParams();
     if (desde) {
       params = params.set('desde', desde.toISOString());
@@ -371,7 +371,7 @@ export class EventService {
     if (hasta) {
       params = params.set('hasta', hasta.toISOString());
     }
-    if (saldo>=0) {
+    if (saldo >= 0) {
       params = params.set('saldo', saldo);
     }
     params = params
@@ -382,7 +382,7 @@ export class EventService {
     var s = this.http.get(url, { params });
     return this.http.get(url, { params });
   }
-  ImprimePrestamos(usu: string, pass: string, empresa: number,saldo?:number, desde?: Date, hasta?: Date): Observable<Blob> {
+  ImprimePrestamos(usu: string, pass: string, empresa: number, saldo?: number, desde?: Date, hasta?: Date): Observable<Blob> {
     let params = new HttpParams();
     if (desde) {
       params = params.set('desde', desde.toISOString());
@@ -401,20 +401,53 @@ export class EventService {
 
     return this.http.get(url, { params: params, responseType: 'blob' });
   }
-   FechaProceso(usu: string, pass: string,empresa: number): Observable<any> {
+  FechaProceso(usu: string, pass: string, empresa: number): Observable<any> {
     const params = new HttpParams()
-    .set("usu", usu)
-    .set("pass", pass)
-    .set("empresa", empresa.toString());
+      .set("usu", usu)
+      .set("pass", pass)
+      .set("empresa", empresa.toString());
 
-  return this.http.get(this.config.apiUrl + "VariosReportes/FechaProceso", { params });
+    return this.http.get(this.config.apiUrl + "VariosReportes/FechaProceso", { params });
   }
-  HorariosSGE(usu: string, pass: string,empresa: number): Observable<any> {
+  HorariosSGE(usu: string, pass: string, empresa: number): Observable<any> {
     const params = new HttpParams()
-    .set("usu", usu)
-    .set("pass", pass)
-    .set("idempresa", empresa.toString());
+      .set("usu", usu)
+      .set("pass", pass)
+      .set("idempresa", empresa.toString());
 
-  return this.http.get(this.config.apiUrl + "HorariosSGE/DatosHorarios", { params });
+    return this.http.get(this.config.apiUrl + "HorariosSGE/DatosHorarios", { params });
+  }
+  ListaxCedulaSinEmpresa(usu: string, pass: string): Observable<any> {
+    const params = new HttpParams()
+      .set("usu", usu)
+      .set("pass", pass)
+
+    return this.http.get(this.config.apiUrl + "VariosReportes/ListaEmpleadosCedulasinEmpresa", { params });
+  }
+  ListaAntiguedadEmpresa(usu: string, pass: string): Observable<any> {
+    const params = new HttpParams()
+      .set("usu", usu)
+      .set("pass", pass)
+
+    return this.http.get(this.config.apiUrl + "Antiguedad/DatosContratos", { params });
+  }
+  ActualizarContrato(usuario: string, clave: string, datos: any) {
+    const params = new HttpParams()
+      .set("usu", usuario)
+      .set("pass", clave)
+    return this.http.post(this.config.apiUrl + "Antiguedad/Update", datos, { params });
+  }
+  InsertarContrato(usuario: string, clave: string, datos: any) {
+    const params = new HttpParams()
+      .set("usu", usuario)
+      .set("pass", clave)
+    return this.http.post(this.config.apiUrl + "Antiguedad/Insert", datos, { params });
+  }
+  DeleteContrato(usuario: string, clave: string, idContrato: number) {
+    const params = new HttpParams()
+      .set("usu", usuario)
+      .set("pass", clave)
+      .set("idContrato", idContrato)
+    return this.http.post(this.config.apiUrl + "Antiguedad/Delete", null,{ params });
   }
 }

@@ -1,0 +1,71 @@
+<div style="height: 85vh;">
+  <dx-data-grid id="gridContainer" [keyExpr]="['ID_CONTRATO']" [dataSource]="Datos" [showBorders]="true"
+    [showRowLines]="true" [height]="'100%'" [width]="'100%'" (onEditorPreparing)="onEditorPreparing($event)"
+    (onCellPrepared)="onCellPrepared($event)" (onRowUpdating)="onRowUpdating($event)" 
+    (onRowInserting)="onRowInserting($event)" (onRowRemoving)="onRowRemoving($event)">
+    <!-- ✅ CONFIGURACIÓN DE EDICIÓN -->
+    <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true" [useIcons]="true">
+
+      <!-- Popup que se abre al editar -->
+      <dxo-popup title="Edición de contrato" [showTitle]="true" [width]="700" [height]="450">
+      </dxo-popup>
+
+      <!-- Formulario dentro del popup -->
+      <dxo-form [colCount]="2">
+        <dxi-item dataField="IDENTIFICACION" [colSpan]="2"></dxi-item>
+        <dxi-item dataField="ID_EMPRESA"></dxi-item>
+        <dxi-item dataField="TIPCONTRATO"></dxi-item>
+        <dxi-item dataField="FECHA_DESDE"></dxi-item>
+        <dxi-item dataField="FECHA_HASTA"></dxi-item>
+        <dxi-item dataField="TERM_CONTRATO"></dxi-item>
+        <dxi-item dataField="DETALLE_TERM"></dxi-item>
+        <dxi-item dataField="OBSERVACION" [colSpan]="2"></dxi-item>
+      </dxo-form>
+    </dxo-editing>
+
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-search-panel
+      [visible]="true"
+      [highlightCaseSensitive]="false"
+      [searchVisibleColumnsOnly]="false"
+      [searchExpr]="['NOMBRE', 'IDENTIFICACION']"
+    >
+    </dxo-search-panel>
+    <dxi-column dataField="IDENTIFICACION" [fixed]="true" caption="Empleado" [groupIndex]="0" [sortOrder]="'asc'"
+      [calculateSortValue]="empleadoSortValue" [calculateGroupValue]="empleadoSortValue" sortMode="displayText">
+      <dxo-lookup
+        [dataSource]="Empleados"
+        valueExpr="NUMCEDULA"
+        displayExpr="RAZONSOCIAL"
+        [searchEnabled]="true"
+        searchMode="contains"
+        [searchExpr]="['RAZONSOCIAL', 'NUMCEDULA', 'NORMALIZED']"
+        [minSearchLength]="0"
+        [showDataBeforeSearch]="true"
+      >
+      </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="NOMBRE" [visible]="true" [allowSearch]="true">
+    </dxi-column>
+    <dxi-column dataField="ANTIGUEDAD" caption="Antiguedad" [allowEditing]="false" [width]="'200px'"
+      [visible]="false"></dxi-column>
+    <dxi-column dataField="ID_EMPRESA" caption="Empresa" dataType="number" [width]="'80px'">
+      <dxo-lookup [dataSource]="Colegios" valueExpr="VALOR" displayExpr="TEXTO">
+      </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="TIPCONTRATO" caption="Tipo de Contrato" [width]="'85px'">
+      <dxo-lookup [dataSource]="trol" valueExpr="VALOR" displayExpr="TEXTO">
+      </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="FECHA_DESDE" caption="Desde" dataType="date" [width]="'100px'"></dxi-column>
+    <dxi-column dataField="FECHA_HASTA" caption="Hasta" dataType="date" [width]="'100px'"></dxi-column>
+    <dxi-column dataField="TERM_CONTRATO" caption="Motivo Salida" [width]="'120px'">
+      <dxo-lookup [dataSource]="MotivosSalida" valueExpr="VALOR" displayExpr="TEXTO">
+      </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="DETALLE_TERM" caption="Detalle Salida" [width]="'200px'"></dxi-column>
+    <dxi-column dataField="OBSERVACION" caption="Observación" [width]="'90px'"></dxi-column>
+  </dx-data-grid>
+</div>
