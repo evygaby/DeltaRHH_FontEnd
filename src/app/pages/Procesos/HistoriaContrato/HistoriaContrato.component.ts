@@ -6,6 +6,12 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { GlobalComponent } from 'src/app/global-component';
 import { forkJoin } from 'rxjs';
 
+type EmpleadoLookup = {
+  NUMCEDULA: string;
+  RAZONSOCIAL: string;
+  NORMALIZED: string;
+};
+
 @Component({
   selector: 'app-HistoriaContrato',
   templateUrl: './HistoriaContrato.component.html',
@@ -100,22 +106,48 @@ export class HistoriaContratoComponent implements OnInit {
       });
   }
 
-  private buildEmpleadoLookup(empleados: any): { NUMCEDULA: string; RAZONSOCIAL: string }[] {
+  private normalizeText(value: string): string {
+    if (!value) {
+      return '';
+    }
+
+    return value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  }
+
+  private buildEmpleadoLookup(empleados: any): EmpleadoLookup[] {
     if (!Array.isArray(empleados)) {
       return [];
     }
+
+    const seenCedulas = new Set<string>();
 
     return empleados
       .map((emp: any) => ({
         NUMCEDULA: String(emp?.NUMCEDULA ?? ''),
         RAZONSOCIAL: String(emp?.RAZONSOCIAL ?? '').trim()
       }))
-      .filter((emp: { NUMCEDULA: string; RAZONSOCIAL: string }) => !!emp.NUMCEDULA);
+      .filter((emp: { NUMCEDULA: string; RAZONSOCIAL: string }) => !!emp.NUMCEDULA)
+      .map((emp) => ({
+        ...emp,
+        NORMALIZED: this.normalizeText(emp.RAZONSOCIAL)
+      }))
+      .filter((emp) => {
+        if (seenCedulas.has(emp.NUMCEDULA)) {
+          return false;
+        }
+
+        seenCedulas.add(emp.NUMCEDULA);
+        return true;
+      })
+      .sort((a, b) => a.RAZONSOCIAL.localeCompare(b.RAZONSOCIAL));
   }
 
   private mapearContratosConNombre(
     contratos: any[],
-    empleados: { NUMCEDULA: string; RAZONSOCIAL: string }[]
+    empleados: EmpleadoLookup[]
   ): any[] {
     if (!Array.isArray(contratos)) {
       return [];
@@ -124,10 +156,12 @@ export class HistoriaContratoComponent implements OnInit {
     return contratos.map((row: any) => {
       const cedula = String(row?.IDENTIFICACION ?? '');
       const empleado = empleados.find((x: any) => x.NUMCEDULA === cedula);
+      const nombre = empleado?.RAZONSOCIAL ?? '';
 
       return {
         ...row,
-        NOMBRE: empleado?.RAZONSOCIAL ?? ''
+        NOMBRE: nombre,
+        NOMBRE_NORMALIZED: this.normalizeText(nombre)
       };
     });
   }
@@ -189,6 +223,14 @@ export class HistoriaContratoComponent implements OnInit {
     // Solo nos interesa en filas de datos
     if (e.parentType !== 'dataRow') {
       return;
+    }
+
+    if (e.dataField === 'IDENTIFICACION') {
+      e.editorOptions.searchEnabled = true;
+      e.editorOptions.searchExpr = ['RAZONSOCIAL', 'NUMCEDULA', 'NORMALIZED'];
+      e.editorOptions.searchMode = 'contains';
+      e.editorOptions.minSearchLength = 0;
+      e.editorOptions.showDataBeforeSearch = true;
     }
 
     // Columna Detalle Salida
