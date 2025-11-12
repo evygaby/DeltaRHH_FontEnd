@@ -91,7 +91,7 @@ $twocolumn-menu-item-active-bg-dark:              var(--#{$prefix}twocolumn-menu
 $twocolumn-menu-item-color-gradient:              rgba($white, 0.6);
 
 // Topbar - (Default Light)
-$header-height:                                    50px;
+$header-height:                                    35px;
 $header-bg:                                       var(--#{$prefix}header-bg);
 $header-item-color:                               var(--#{$prefix}header-item-color);
 
@@ -109,7 +109,7 @@ $topbar-user-bg: var(--#{$prefix}topbar-user-bg);
 $topbar-user-bg-dark: var(--#{$prefix}topbar-user-bg-dark);
 
 // Footer
-$footer-height: 40px;
+$footer-height: 25px;
 $footer-bg: var(--#{$prefix}footer-bg);
 $footer-color: var(--#{$prefix}footer-color);
 

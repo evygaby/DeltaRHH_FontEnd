@@ -1,8 +1,11 @@
+<h5 class="mb-0">Historial de Contratos (No se separa por empresa)</h5>
 <div style="height: 85vh;">
   <dx-data-grid id="gridContainer" [keyExpr]="['ID_CONTRATO']" [dataSource]="Datos" [showBorders]="true"
     [showRowLines]="true" [height]="'100%'" [width]="'100%'" (onEditorPreparing)="onEditorPreparing($event)"
-    (onCellPrepared)="onCellPrepared($event)" (onRowUpdating)="onRowUpdating($event)" 
+    (onCellPrepared)="onCellPrepared($event)" (onRowUpdating)="onRowUpdating($event)"
     (onRowInserting)="onRowInserting($event)" (onRowRemoving)="onRowRemoving($event)">
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
     <!-- ✅ CONFIGURACIÓN DE EDICIÓN -->
     <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true" [useIcons]="true">
 
@@ -26,16 +29,13 @@
     <dxo-paging [pageSize]="100"></dxo-paging>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="false" [searchVisibleColumnsOnly]="false" [searchExpr]="[
-    'NOMBRE'
-  ]">
-    </dxo-search-panel>
+
     <dxi-column dataField="IDENTIFICACION" [fixed]="true" caption="Empleado" [groupIndex]="0" [sortOrder]="'asc'"
       [calculateSortValue]="empleadoSortValue" [calculateGroupValue]="empleadoSortValue" sortMode="displayText">
       <dxo-lookup [dataSource]="Empleados" valueExpr="NUMCEDULA" displayExpr="RAZONSOCIAL">
       </dxo-lookup>
     </dxi-column>
-    <dxi-column dataField="NOMBRE" [visible]="true" [allowSearch]="true">
+    <dxi-column dataField="NOMBRE" [visible]="true" [allowSearch]="true" [width]="'200px'">
     </dxi-column>
     <dxi-column dataField="ANTIGUEDAD" caption="Antiguedad" [allowEditing]="false" [width]="'200px'"
       [visible]="false"></dxi-column>
@@ -43,7 +43,7 @@
       <dxo-lookup [dataSource]="Colegios" valueExpr="VALOR" displayExpr="TEXTO">
       </dxo-lookup>
     </dxi-column>
-    <dxi-column dataField="TIPCONTRATO" caption="Tipo de Contrato" [width]="'85px'">
+    <dxi-column dataField="TIPCONTRATO" caption="TContrato" [width]="'85px'">
       <dxo-lookup [dataSource]="trol" valueExpr="VALOR" displayExpr="TEXTO">
       </dxo-lookup>
     </dxi-column>

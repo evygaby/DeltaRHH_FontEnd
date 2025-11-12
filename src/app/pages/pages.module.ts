@@ -133,7 +133,7 @@ import { HistoriaContratoComponent } from './Procesos/HistoriaContrato/HistoriaC
     DxButtonModule,
     DxPivotGridFieldChooserModule,
     DxScrollViewModule,
-    DxTabPanelModule, DxPopupModule, DxFormModule, DxValidatorModule,DxDateBoxModule 
+    DxTabPanelModule, DxPopupModule, DxFormModule, DxValidatorModule,DxDateBoxModule ,DxTemplateModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

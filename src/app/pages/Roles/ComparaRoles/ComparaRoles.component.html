@@ -1,20 +1,24 @@
+<h5 class="mb-0">Comparación de Roles</h5>
 <div>
   <div class="Cab">
     <div class="horizontal-field" style="width: 50%;">
       <div class="label">Rango de Fechas</div>
       <div class="Control">
-        <dx-date-range-box [startDate]="fechaDesde!" displayFormat="'MMMM/yyyy" [endDate]="fechaHasta!"
-          (onValueChanged)="currentValueChanged($event)">
+        <dx-date-range-box [startDate]="fechaDesde ?? null" [endDate]="fechaHasta ?? null" displayFormat="MMMM yyyy"
+          [showClearButton]="true" (onValueChanged)="currentValueChanged($event)">
+
           <dx-date-range-box-picker>
-            <dx-date-box type="date" displayFormat="MMMM yyyy" pickerType="calendar">
-              <dx-calendar [zoomLevel]="'year'" [minZoomLevel]="'year'" [maxZoomLevel]="'decade'">
-              </dx-calendar>
+            <dx-date-box type="date" pickerType="calendar" displayFormat="MMMM yyyy" [calendarOptions]="{
+        zoomLevel: 'year',
+        maxZoomLevel: 'year',
+        minZoomLevel: 'decade'
+      }">
             </dx-date-box>
           </dx-date-range-box-picker>
         </dx-date-range-box>
       </div>
     </div>
-    <div class="toolbar-buttons"  style="width: 50%;">
+    <div class="toolbar-buttons" style="width: 50%;">
       <dx-button icon="exportxlsx" type="export" text="Exportar Xlsx" (onClick)="exportToExcel()">
       </dx-button>
       <dx-button icon="plus" type="expand" text="Expandir todo" (onClick)="expandAll()">
@@ -29,12 +33,8 @@
       [showColumnTotals]="false" [showToolbar]="true" [fieldPanel]="{ visible: false }" [allowExpandAll]="true"
       [height]="'100%'">
       <dxo-scrolling mode="virtual"></dxo-scrolling>
-      <dxo-field-chooser
-    [applyChangesMode]="'onDemand'"
-    [allowSearch]="true"
-    [enabled]="true"
-  >
-  </dxo-field-chooser>
+      <dxo-field-chooser [applyChangesMode]="'onDemand'" [allowSearch]="true" [enabled]="true">
+      </dxo-field-chooser>
     </dx-pivot-grid>
   </div>
 </div>

@@ -1,147 +1,78 @@
-<div class="horarios-container container-fluid">
-  <div class="card horarios-card">
-    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
-      <h5 class="mb-0">Gestión de horarios</h5>
-      <span class="text-muted small">Administre los horarios directamente en la grilla.</span>
-    </div>
+<h5 class="mb-0">Gestión de horarios</h5>
+<dx-data-grid [dataSource]="Datos" [keyExpr]="['CODEMP', 'HOR_DIA']" [showBorders]="true" [columnAutoWidth]="true"
+  [rowAlternationEnabled]="true" [grouping]="{ autoExpandAll: false }" (onSaving)="onSaving($event)" [height]="'87vh'">
+  <dxo-editing mode="batch" [allowUpdating]="true" [useIcons]="true" [confirmDelete]="false">
+    <dxo-texts saveAllChanges="Guardar cambios" cancelAllChanges="Descartar cambios" editRow="Editar">
+    </dxo-texts>
+  </dxo-editing>
+  <dxo-toolbar>
+    <dxi-item name="saveButton"></dxi-item>
+    <dxi-item name="revertButton"></dxi-item>
+    <dxi-item name="searchPanel"></dxi-item>
+  </dxo-toolbar>
 
-    <div class="card-body p-0">
-      <dx-data-grid
-        [dataSource]="Datos"
-        [keyExpr]="['CODEMP', 'HOR_DIA']"
-        [showBorders]="true"
-        [columnAutoWidth]="true"
-        [rowAlternationEnabled]="true"
-        [grouping]="{ autoExpandAll: false }"
-        (onSaving)="onSaving($event)"
-      >
+  <dxo-search-panel [visible]="true" [width]="260" placeholder="Buscar en todos los campos"></dxo-search-panel>
+  <dxo-filter-row [visible]="true" [applyFilter]="'auto'"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-        <dxo-editing mode="batch" [allowUpdating]="true" [useIcons]="true" [confirmDelete]="false">
-          <dxo-texts
-            saveAllChanges="Guardar cambios"
-            cancelAllChanges="Descartar cambios"
-            editRow="Editar">
-          </dxo-texts>
-        </dxo-editing>
+  <dxi-column dataField="CODEMP" caption="Código" dataType="number" [width]="100" [allowEditing]="false">
+  </dxi-column>
 
-        <dxo-toolbar>
-          <dxi-item name="saveButton"></dxi-item>
-          <dxi-item name="revertButton"></dxi-item>
-          <dxi-item name="searchPanel"></dxi-item>
-        </dxo-toolbar>
+  <dxi-column dataField="RAZONSOCIAL" caption="Nombres" [groupIndex]="0" [allowEditing]="false">
+  </dxi-column>
 
-        <dxo-search-panel [visible]="true" [width]="260" placeholder="Buscar en todos los campos"></dxo-search-panel>
-        <dxo-filter-row [visible]="true" [applyFilter]="'auto'"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
+  <dxi-column dataField="HOR_DIA" caption="Día" [allowEditing]="false">
+    <dxo-lookup [dataSource]="dayOptions" displayExpr="text" valueExpr="value">
+    </dxo-lookup>
+  </dxi-column>
 
-        <dxi-column
-          dataField="CODEMP"
-          caption="Código"
-          dataType="number"
-          [width]="100"
-          [allowEditing]="false">
-        </dxi-column>
+  <!-- ENTRADA -->
+  <dxi-column dataField="HOR_ENTRADA" caption="Entrada" alignment="center" dataType="datetime" cellTemplate="horaCell"
+    editCellTemplate="horaEditor">
 
-        <dxi-column
-          dataField="RAZONSOCIAL"
-          caption="Nombres"
-          [groupIndex]="0"
-          [allowEditing]="false">
-        </dxi-column>
+    <dxi-validation-rule type="required" message="La hora de entrada es obligatoria.">
+    </dxi-validation-rule>
 
-        <dxi-column
-          dataField="HOR_DIA"
-          caption="Día"
-          [allowEditing]="false">
-          <dxo-lookup
-            [dataSource]="dayOptions"
-            displayExpr="text"
-            valueExpr="value">
-          </dxo-lookup>
-        </dxi-column>
+  </dxi-column>
 
-        <!-- ENTRADA -->
-        <dxi-column
-          dataField="HOR_ENTRADA"
-          caption="Entrada"
-          alignment="center"
-          dataType="datetime"
-          cellTemplate="horaCell"
-          editCellTemplate="horaEditor">
-
-          <dxi-validation-rule
-            type="required"
-            message="La hora de entrada es obligatoria.">
-          </dxi-validation-rule>
-
-        </dxi-column>
-
-        <div *dxTemplate="let cellInfo of 'horaCell'">
-          {{ cellInfo.value ? (cellInfo.value | date:'HH:mm') : '' }}
-        </div>
-
-        <div *dxTemplate="let cellInfo of 'horaEditor'">
-          <dx-date-box
-            [value]="cellInfo.value"
-            type="time"
-            displayFormat="HH:mm"
-            [useMaskBehavior]="true"
-            [inputAttr]="{ 'aria-label': 'Hora entrada' }"
-            (onValueChanged)="onHoraEntradaChanged($event, cellInfo)">
-          </dx-date-box>
-        </div>
-
-        <!-- SALIDA -->
-        <dxi-column
-          dataField="HOR_SALIDA"
-          caption="Salida"
-          alignment="center"
-          dataType="datetime"
-          cellTemplate="horaSalidaCell"
-          editCellTemplate="horaSalidaEditor">
-
-          <dxi-validation-rule
-            type="required"
-            message="La hora de salida es obligatoria.">
-          </dxi-validation-rule>
-
-          <dxi-validation-rule
-            type="custom"
-            [validationCallback]="validateHoraSalida"
-            message="La hora de salida debe ser mayor que la hora de entrada.">
-          </dxi-validation-rule>
-
-        </dxi-column>
-
-        <div *dxTemplate="let cellInfo of 'horaSalidaCell'">
-          {{ cellInfo.value ? (cellInfo.value | date:'HH:mm') : '' }}
-        </div>
-
-        <div *dxTemplate="let cellInfo of 'horaSalidaEditor'">
-          <dx-date-box
-            [value]="cellInfo.value"
-            type="time"
-            displayFormat="HH:mm"
-            [useMaskBehavior]="true"
-            [inputAttr]="{ 'aria-label': 'Hora salida' }"
-            (onValueChanged)="onHoraSalidaChanged($event, cellInfo)">
-          </dx-date-box>
-        </div>
-
-        <dxi-column
-          dataField="HOR_REFERENCIA"
-          caption="Referencia"
-          [minWidth]="200">
-        </dxi-column>
-
-        <dxo-paging [pageSize]="10"></dxo-paging>
-        <dxo-pager
-          [showPageSizeSelector]="true"
-          [allowedPageSizes]="[5, 10, 20]"
-          [showInfo]="true">
-        </dxo-pager>
-
-      </dx-data-grid>
-    </div>
+  <div *dxTemplate="let cellInfo of 'horaCell'">
+    {{ cellInfo.value ? (cellInfo.value | date:'HH:mm') : '' }}
   </div>
-</div>
+
+  <div *dxTemplate="let cellInfo of 'horaEditor'">
+    <dx-date-box [value]="cellInfo.value" type="time" displayFormat="HH:mm" [useMaskBehavior]="true"
+      [inputAttr]="{ 'aria-label': 'Hora entrada' }" (onValueChanged)="onHoraEntradaChanged($event, cellInfo)">
+    </dx-date-box>
+  </div>
+
+  <!-- SALIDA -->
+  <dxi-column dataField="HOR_SALIDA" caption="Salida" alignment="center" dataType="datetime"
+    cellTemplate="horaSalidaCell" editCellTemplate="horaSalidaEditor">
+
+    <dxi-validation-rule type="required" message="La hora de salida es obligatoria.">
+    </dxi-validation-rule>
+
+    <dxi-validation-rule type="custom" [validationCallback]="validateHoraSalida"
+      message="La hora de salida debe ser mayor que la hora de entrada.">
+    </dxi-validation-rule>
+
+  </dxi-column>
+
+  <div *dxTemplate="let cellInfo of 'horaSalidaCell'">
+    {{ cellInfo.value ? (cellInfo.value | date:'HH:mm') : '' }}
+  </div>
+
+  <div *dxTemplate="let cellInfo of 'horaSalidaEditor'">
+    <dx-date-box [value]="cellInfo.value" type="time" displayFormat="HH:mm" [useMaskBehavior]="true"
+      [inputAttr]="{ 'aria-label': 'Hora salida' }" (onValueChanged)="onHoraSalidaChanged($event, cellInfo)">
+    </dx-date-box>
+  </div>
+
+  <dxi-column dataField="HOR_REFERENCIA" caption="Referencia" [minWidth]="200">
+  </dxi-column>
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+  </dxo-pager>
+
+</dx-data-grid>

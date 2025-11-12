@@ -62,7 +62,7 @@ export class ComparaMensualComponent implements OnInit {
   }
   onToolbarPreparing(e: any) {
     e.toolbarOptions.items.unshift(
-      {
+      { 
         location: 'before',
         widget: 'dxDateBox',
         options: {

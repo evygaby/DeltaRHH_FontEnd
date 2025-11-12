@@ -26,8 +26,8 @@ export class PrestamoSaldosComponent implements OnInit {
   Saldo: any;
   SaldoSelect:any;
   currentValue: [Date, Date] = initialValue;
-  fechaDesde: Date | undefined = undefined;//new Date(new Date().getFullYear(), 0, 1);
-  fechaHasta: Date | undefined = undefined;//new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+  fechaDesde: Date | null = null;//new Date(new Date().getFullYear(), 0, 1);
+  fechaHasta: Date | null = null;//new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
   constructor(private servicios: EventService, private router: Router, private loading: LoadingService, private cacheService: CacheService, private sanitizer: DomSanitizer,) {
 
     this.user = JSON.parse(localStorage.getItem(GlobalComponent.CURRENT_USER)!);
@@ -59,8 +59,8 @@ onSaldoChange(e: any) {
   }
   else
   {
-    this.fechaDesde=undefined;
-    this.fechaHasta=undefined;
+    this.fechaDesde=null;
+    this.fechaHasta=null;
   }
  this.CargarDatos();
 }
@@ -72,8 +72,8 @@ onSaldoChange(e: any) {
         this.user.password!,
         this.user.ID_EMPRESA!,
         this.SaldoSelect,
-        this.fechaDesde,
-        this.fechaHasta
+        this.fechaDesde!,
+        this.fechaHasta!
       )
       .subscribe({
         next: (data: any) => {
@@ -91,13 +91,16 @@ onSaldoChange(e: any) {
     try {
       this.loading.showSpinner2("Descargando")
 
-      this.servicios.ImprimePrestamos(this.user.Nombre!,
-        this.user.password!,
-        this.user.ID_EMPRESA!,
-        this.Saldo!,
-        this.fechaDesde,
-        this.fechaHasta)
-        .subscribe(blob => {
+      this.servicios.ImprimePrestamos(
+        this.user.Nombre ?? '',
+        this.user.password ?? '',
+        this.user.ID_EMPRESA ?? 0,
+        this.SaldoSelect ?? -1,
+        this.fechaDesde ?? undefined,
+        this.fechaHasta ?? undefined
+      )
+       .subscribe(
+        (blob: Blob) => {
           const url = window.URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;

@@ -1,13 +1,12 @@
-<div style="height: 85vh;">
+<h5 class="mb-0">Gastos y Cargas Familiares</h5>
+<div style="height: 87vh;">
   <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'" [rowAlternationEnabled]="true"
   [editing]="{
     mode: 'batch',
     allowUpdating: true
   }"  (onSaving)="onSaving($event)">
     <dxo-paging [pageSize]="100"></dxo-paging>
-    <dxo-group-panel [visible]="true"></dxo-group-panel>
-    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-search-panel [visible]="true" [width]="'300px'"></dxo-search-panel>
     <dxi-column dataField="RAZONSOCIAL" [fixed]="true" caption="Empleado" [allowEditing]="false"></dxi-column>
     <dxi-column dataField="CARGAS_FAMILIARES" caption="#Cargas" [width]="'70px'"></dxi-column>
     <dxi-column caption="Gastos" >

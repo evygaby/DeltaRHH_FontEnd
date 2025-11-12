@@ -1,5 +1,6 @@
-<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;">
-  <div style="display: flex; flex-direction:column; width:31% ; min-width: 325px;">
+<h5 class="mb-0">PEGs y Preceptoras por curso</h5>
+<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;height: 85vh;">
+  <div style="display: flex; flex-direction:column; width:31% ; min-width: 325px;margin-top: 85px;">
     <div class="dx-field">
       <div class="dx-field-label">Periodo Lectivo</div>
       <div class="dx-field-value">
@@ -39,7 +40,7 @@
       </dx-button>
     </div>
   </div>
-  <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 85vh;">
+  <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 100%;">
     <dx-tab-panel [deferRendering]="false" [animationEnabled]="true" [height]="'100%'"
       [selectedIndex]="tabSeleccionada">
       <dxi-item title="PEG - Preceptora" [visible]="MostrarPeg">

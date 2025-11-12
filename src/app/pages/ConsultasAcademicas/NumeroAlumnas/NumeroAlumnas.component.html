@@ -1,5 +1,6 @@
-<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between;">
-  <div style="display: flex; flex-direction:column; width:31% ; min-width: 325px;">
+<h5 class="mb-0">Número de Alumnos por curso</h5>
+<div style="display: flex; flex-direction:row; width:100% ; min-width: 325px;justify-content: space-between; height: 84vh;">
+  <div style="display: flex; flex-direction:column; width:31% ; min-width: 325px;margin-top: 45px;">
     <div class="dx-field">
       <div class="dx-field-label">Periodo Lectivo</div>
       <div class="dx-field-value">
@@ -10,7 +11,7 @@
     </div>
     <div class="dx-field">
       <div class="dx-field-label">Sección</div>
-      <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+      <div class="dx-field-value" style="border: 1px solid #ccc; border-radius: 5px; padding: 5px; height: 100%;">
 
         <dx-list [dataSource]="Secciones" [showSelectionControls]="true" [selectionMode]="'multiple'"
           displayExpr="TEXTO" valueExpr="VALOR" [(selectedItems)]="seleccionadas"
@@ -29,20 +30,20 @@
       ></dx-select-box></div>
   </div> -->
   </div>
-  <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px; height: 85vh;">
+  <div style="display: flex; flex-direction:column; width:65% ; min-width: 325px;">
     <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
       (onExporting)="exportarConCabecera($event)">
       <dxo-paging [pageSize]="100"></dxo-paging>
       <dxo-export [enabled]="true" [fileName]="'Reporte'" [allowExportSelectedData]="false"></dxo-export>
       <dxi-toolbar-item name="exportButton" location="before"></dxi-toolbar-item>
-      <dxi-column dataField="CURSO" caption="Curso" [groupIndex]="1" [calculateGroupValue]="calculateGroupValue" 
-              groupCellTemplate="groupCellTemplate"  [showWhenGrouped]="true">
-            </dxi-column>
-            <div *dxTemplate="let data of 'groupCellTemplate'">
-              <div>
-                {{data.column.caption}}: {{data.value.split(";")[1]}}
-              </div>
-            </div>
+      <dxi-column dataField="CURSO" caption="Curso" [groupIndex]="1" [calculateGroupValue]="calculateGroupValue"
+        groupCellTemplate="groupCellTemplate" [showWhenGrouped]="true">
+      </dxi-column>
+      <div *dxTemplate="let data of 'groupCellTemplate'">
+        <div>
+          {{data.column.caption}}: {{data.value.split(";")[1]}}
+        </div>
+      </div>
       <dxi-column dataField="PARALELO" [width]="'80px'" caption="Paralelo"></dxi-column>
       <dxi-column dataField="NUMTOTALNINAS" [width]="'60px'" caption="#Niñas"></dxi-column>
       <dxi-column dataField="NUMTOTALNINOS" [width]="'60px'" caption="#Niños"></dxi-column>

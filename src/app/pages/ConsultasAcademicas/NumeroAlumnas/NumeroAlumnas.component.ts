@@ -46,6 +46,7 @@ export class NumeroAlumnasComponent implements OnInit {
   selectPeriodo({ value }: { value?: string }) {
     if (value !== undefined) {
       this.PeriodoSelect = value;
+       this.CargaGrid();
     }
   }
   CambioSeccion(e: any) {

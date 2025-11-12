@@ -1,9 +1,12 @@
+<h5 class="mb-0">Comparar pagos del IESS</h5>
 <div style="display: flex;justify-content: space-between;">
   <div style="width: 20%;min-width: 220px;">
     <dx-date-box type="date" [showClearButton]="true" [useMaskBehavior]="true" displayFormat="MMMM yyyy"
-      pickerType="calendar" [inputAttr]="{ 'aria-label': 'Date' }" [(value)]="Fecha">
-      <dx-calendar [zoomLevel]="'year'" [minZoomLevel]="'year'" [maxZoomLevel]="'decade'">
-      </dx-calendar>
+      pickerType="calendar" [inputAttr]="{ 'aria-label': 'Date' }" [(value)]="Fecha" [calendarOptions]="{
+    zoomLevel: 'year',      
+    maxZoomLevel: 'year',  
+    minZoomLevel: 'decade'  
+  }">
     </dx-date-box>
     <div id="fileuploader-container">
       <dx-file-uploader selectButtonText="Seleccionar Excel" labelText="O arrastra un archivo aquí..."
