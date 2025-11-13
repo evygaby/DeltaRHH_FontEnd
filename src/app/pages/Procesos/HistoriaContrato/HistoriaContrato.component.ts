@@ -20,7 +20,7 @@ type EmpleadoLookup = {
 export class HistoriaContratoComponent implements OnInit {
   user!: User;
   Datos: any;
-  Empleados: { NUMCEDULA: string; RAZONSOCIAL: string }[] = [];
+  Empleados: EmpleadoLookup[] = [];
   anio: number = 0;
   Colegios: any;
   trol: any;
