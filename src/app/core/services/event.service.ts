@@ -448,6 +448,16 @@ export class EventService {
       .set("usu", usuario)
       .set("pass", clave)
       .set("idContrato", idContrato)
-    return this.http.post(this.config.apiUrl + "Antiguedad/Delete", null,{ params });
+    return this.http.post(this.config.apiUrl + "Antiguedad/Delete", null, { params });
+  }
+  AcumulacionDecimos(usu: string, pass: string, idEmpresa: number, fecha: Date): Observable<any> {
+    const params = new HttpParams()
+      .set("usu", usu)
+      .set("pass", pass)
+      .set("empresa", idEmpresa)
+      .set("fecha", fecha.toISOString())
+      console.log(this.config.apiUrl + "Rol/ObtenerDecimos", { params });
+    return this.http.get(this.config.apiUrl + "Rol/ObtenerDecimos", { params });
+    
   }
 }

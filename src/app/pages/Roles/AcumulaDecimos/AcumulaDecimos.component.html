@@ -1,3 +1,19 @@
-<p>
-  AcumulaDecimos works!
-</p>
+<h5 class="mb-0">Asignación de Pago mensual de Décimo 13° y 14 ° </h5>
+<div style="height: 85vh;">
+  <dx-data-grid id="gridContainer" [dataSource]="Datos" [showBorders]="true" [showRowLines]="true" [height]="'100%'"
+    [rowAlternationEnabled]="true" (onToolbarPreparing)="onToolbarPreparing($event)">
+    <dxo-paging [pageSize]="100"></dxo-paging>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxi-column dataField="RAZONSOCIAL" caption="Empleado"></dxi-column>
+    <dxi-column dataField="DECIMO_TERCERO_BOOL" caption="Décimo Tercero" [width]="150" dataType="boolean">
+      <ng-template dxTemplate="cell" let-cellData="cellData">
+        <dx-check-box [value]="cellData.value"></dx-check-box>
+      </ng-template>
+    </dxi-column>
+    <dxi-column dataField="DECIMO_CUARTO_BOOL" caption="Décimo Cuarto" [width]="150" dataType="boolean">
+      <ng-template dxTemplate="cell" let-cellData="cellData">
+        <dx-check-box [value]="cellData.value"></dx-check-box>
+      </ng-template>
+    </dxi-column>
+  </dx-data-grid>
+</div>

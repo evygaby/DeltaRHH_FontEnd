@@ -31,6 +31,7 @@ import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFam
 import { HorariosSGEComponent } from './Mantenimientos/HorariosSGE/HorariosSGE.component';
 import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.component';
 import { HistoriaContratoComponent } from './Procesos/HistoriaContrato/HistoriaContrato.component';
+import { AcumulaDecimosComponent } from './Roles/AcumulaDecimos/AcumulaDecimos.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,7 @@ const routes: Routes = [
 
 
   ///////////PROCESOS DE ROL
+  {path: "AcumulaDecimos", component: AcumulaDecimosComponent, canActivate: [MenuGuard]},
   {path: "ComparaRoles", component: ComparaRolesComponent, canActivate: [MenuGuard]},
   {path: "ComparaMensual", component: ComparaMensualComponent, canActivate: [MenuGuard]},
   {path: "VisorRoles", component: VisorRolesComponent, canActivate: [MenuGuard]},

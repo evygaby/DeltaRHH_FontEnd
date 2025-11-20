@@ -23,7 +23,7 @@ public getNumeroMes: any;
         .CumpleaniosPersonal(
           this.user.Nombre!,
           this.user.password!,
-          3
+          this.user.ID_EMPRESA!
         )
         .subscribe({
           next: (data: any) => {

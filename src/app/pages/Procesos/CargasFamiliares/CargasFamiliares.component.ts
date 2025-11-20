@@ -28,14 +28,14 @@ export class CargasFamiliaresComponent implements OnInit {
     this.CargarDatos();
   }
   CargarDatos() {
-    //  const fech = this.user.fecha_proceso!;
+    const fechaProc = new Date(this.user.fecha_proceso!);
     //this.anio=fech.getFullYear();
     this.servicios
       .CargasFamiliaresSelect(
         this.user.Nombre!,
         this.user.password!,
         this.user.ID_EMPRESA!,
-        2025
+        fechaProc
       )
       .subscribe({
         next: (data: any) => {

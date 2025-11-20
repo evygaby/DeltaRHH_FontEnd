@@ -68,6 +68,7 @@ import { CargasFamiliaresComponent } from './Procesos/CargasFamiliares/CargasFam
 import { HorariosSGEComponent } from './Mantenimientos/HorariosSGE/HorariosSGE.component';
 import { ComparaMensualComponent } from './Roles/ComparaMensual/ComparaMensual.component';
 import { HistoriaContratoComponent } from './Procesos/HistoriaContrato/HistoriaContrato.component';
+import { AcumulaDecimosComponent } from './Roles/AcumulaDecimos/AcumulaDecimos.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,7 @@ import { HistoriaContratoComponent } from './Procesos/HistoriaContrato/HistoriaC
     PrestamoSaldosComponent, 
     VisorRolesComponent, 
     CargasFamiliaresComponent, 
-    HorariosSGEComponent,HistoriaContratoComponent
+    HorariosSGEComponent,HistoriaContratoComponent,AcumulaDecimosComponent
   ],
   exports: [AutoFocusInvalidDirective],
   imports: [
