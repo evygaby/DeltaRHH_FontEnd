@@ -9,7 +9,7 @@ describe('NumeroAlumnasComponent', () => {
   let component: NumeroAlumnasComponent;
   let fixture: ComponentFixture<NumeroAlumnasComponent>;
 
- beforeEach(waitForAsync(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NumeroAlumnasComponent ]
     })

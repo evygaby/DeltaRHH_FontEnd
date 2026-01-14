@@ -1,17 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { menuGuard } from './menu.guard';
+import { MenuGuard } from './menu.guard';
 
-describe('menuGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => menuGuard(...guardParameters));
+describe('MenuGuard', () => {
+  let guard: MenuGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        MenuGuard,
+        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } }
+      ]
+    });
+    guard = TestBed.inject(MenuGuard);
   });
 
   it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+    expect(guard).toBeTruthy();
   });
 });
